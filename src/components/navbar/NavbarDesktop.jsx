@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import NavLogo from "./NavLogo";
 import DropdownMenu from "./DropdownMenu";
-import { mainMenu, ctaButton } from "../../data/NavbarData";
+import { ctaButton, mainMenu } from "../../data/NavbarData";
 
 const NavbarDesktop = () => {
   const location = useLocation();
@@ -67,7 +67,6 @@ const NavbarDesktop = () => {
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          {/* <button></button> */}
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
