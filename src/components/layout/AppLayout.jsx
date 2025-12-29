@@ -6,7 +6,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../navbar";
-// import Footer from "./Footer";
+import Footer from "../Footer";
 
 function AppLayout() {
   return (
@@ -20,7 +20,7 @@ function AppLayout() {
       </main>
 
       {/* Footer */}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

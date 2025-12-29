@@ -6,6 +6,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Suspense } from "react";
 import AppLayout from "./components/layout/AppLayout";
+import HomePage from "./pages/Homepage/HomePage";
 
 // Placeholder component for pages
 const PlaceholderPage = ({ title }) => {
@@ -30,7 +31,7 @@ const PlaceholderPage = ({ title }) => {
 };
 
 // Pages (placeholders for now)
-const HomePage = () => <PlaceholderPage title="Welcome to Radina Clinic" />;
+
 const TreatmentsPage = () => <PlaceholderPage title="Our Treatments" />;
 const ConditionsPage = () => <PlaceholderPage title="Conditions We Treat" />;
 const PackagesPage = () => <PlaceholderPage title="Our Packages" />;

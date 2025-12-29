@@ -1,145 +1,131 @@
-// src/components/layout/navbar/NavbarMobile.jsx
-// ========================================
-// MOBILE NAVIGATION MENU (<1024px)
-// ========================================
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import NavLogo from "./NavLogo";
-import { mainMenu, ctaButton } from "../../data/NavbarData";
+import Logo from "./Logo";
+import { navigationItems, ctaConfig, socialLinks } from "../../data/navbarData";
 
 const NavbarMobile = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const [expandedDropdown, setExpandedDropdown] = useState(null);
 
   // Close menu on route change
-  useEffect(() => {
-    setIsOpen(false);
-    setExpandedDropdown(null);
-  }, [location]);
+  useEffect(() => setIsOpen(false), [location]);
 
-  // Prevent body scroll when menu is open
+  // Prevent background scroll
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
   }, [isOpen]);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const toggleDropdown = (menuId) => {
-    setExpandedDropdown(expandedDropdown === menuId ? null : menuId);
-  };
-
   return (
-    <div className="lg:hidden flex items-center justify-between w-full">
-      {/* Logo */}
-      <NavLogo />
-
-      {/* Hamburger Button */}
+    <div className="lg:hidden">
+      {/* --- HAMBURGER BUTTON --- */}
       <button
-        onClick={toggleMenu}
-        className="flex flex-col gap-1.5 w-7 h-6 justify-center items-center nav-button z-50"
-        aria-label="Toggle menu"
-        aria-expanded={isOpen}
+        onClick={() => setIsOpen(true)}
+        className="p-2 text-text-primary hover:text-primary transition-colors"
+        aria-label="Open Menu"
       >
-        <span
-          className={`hamburger-line h-0.5 w-full bg-text-primary rounded-full ${
-            isOpen ? "rotate-45 translate-y-2" : ""
-          }`}
-        />
-        <span
-          className={`hamburger-line h-0.5 w-full bg-text-primary rounded-full ${
-            isOpen ? "opacity-0" : ""
-          }`}
-        />
-        <span
-          className={`hamburger-line h-0.5 w-full bg-text-primary rounded-full ${
-            isOpen ? "-rotate-45 -translate-y-2" : ""
-          }`}
-        />
+        <svg
+          className="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.5"
+            d="M4 8h16M4 16h16"
+          />
+        </svg>
       </button>
 
-      {/* Mobile Menu Overlay */}
-      {isOpen && (
-        <div className="fixed inset-0 bg-mobile-overlay z-40 mobile-menu-overlay animate-fade-in">
-          <div className="flex flex-col items-center justify-center h-full px-6 py-20">
-            {/* Menu Items */}
-            <nav className="flex flex-col items-center gap-6 w-full max-w-sm">
-              {mainMenu.map((item, index) => (
-                <div key={item.id} className="w-full">
-                  {item.hasDropdown ? (
-                    <div className="flex flex-col items-center gap-3">
-                      {/* Dropdown Trigger */}
-                      <button
-                        onClick={() => toggleDropdown(item.id)}
-                        className={`font-heading text-2xl font-semibold text-text-primary hover:text-primary transition-all duration-300 animate-slide-in-stagger stagger-${
-                          index + 1
-                        }`}
-                      >
-                        {item.label}
-                      </button>
+      {/* --- LEFT SIDE OVERLAY --- */}
+      <div
+        className={`fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm transition-opacity duration-500
+          ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+        onClick={() => setIsOpen(false)}
+      />
 
-                      {/* Dropdown Items */}
-                      {expandedDropdown === item.id && (
-                        <div className="flex flex-col items-center gap-2 animate-fade-in">
-                          {item.dropdownItems.map((subItem) => (
-                            <Link
-                              key={subItem.id}
-                              to={subItem.path}
-                              className="font-body text-base text-text-secondary hover:text-primary transition-colors duration-200"
-                            >
-                              {subItem.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <Link
-                      to={item.path}
-                      className={`font-heading text-2xl font-semibold text-text-primary hover:text-primary transition-all duration-300 animate-slide-in-stagger stagger-${
-                        index + 1
-                      } block text-center`}
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
+      {/* --- RIGHT SIDE DRAWER MENU (70% Width) --- */}
+      <aside
+        className={`fixed top-0 right-0 z-[70] h-full w-[75%] sm:w-[60%] bg-background shadow-2xl 
+          transition-transform duration-500 ease-out flex flex-col
+          ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+      >
+        {/* Header inside Menu */}
+        <div className="flex items-center justify-between p-6 border-b border-secondary-light">
+          <span className="font-display text-lg italic text-primary">Menu</span>
+          <button
+            onClick={() => setIsOpen(false)}
+            className="text-text-secondary"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
 
-              {/* CTA Button */}
-              <Link
-                to={ctaButton.path}
-                className="btn-primary mt-6 animate-slide-in-stagger stagger-7 flex items-center gap-2"
+        {/* Navigation Links */}
+        <nav className="flex-1 overflow-y-auto py-8 px-8">
+          <ul className="space-y-6">
+            {navigationItems.map((item, index) => (
+              <li
+                key={item.id}
+                className={`transition-all duration-500 delay-[${index * 100}ms]
+                  ${
+                    isOpen
+                      ? "opacity-100 translate-x-0"
+                      : "opacity-0 translate-x-10"
+                  }`}
               >
-                {ctaButton.label}
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                <Link
+                  to={item.path}
+                  className="block font-body text-xl tracking-widest uppercase hover:text-primary transition-colors"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-              </Link>
-            </nav>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-12">
+            <Link
+              to={ctaConfig.primary.path}
+              className="block w-full text-center bg-primary text-white py-4 rounded-full font-body text-sm uppercase tracking-widest shadow-elegant"
+            >
+              {ctaConfig.primary.label}
+            </Link>
+          </div>
+        </nav>
+
+        {/* Footer inside Menu */}
+        <div className="p-8 border-t border-secondary-light bg-secondary-light/30">
+          <div className="flex gap-6 justify-center">
+            {Object.entries(socialLinks).map(([key, url]) => (
+              <a
+                key={key}
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-text-secondary hover:text-accent transition-colors"
+              >
+                <span className="capitalize text-xs tracking-widest">
+                  {key}
+                </span>
+              </a>
+            ))}
           </div>
         </div>
-      )}
+      </aside>
     </div>
   );
 };

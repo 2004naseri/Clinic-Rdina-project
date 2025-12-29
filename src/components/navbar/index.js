@@ -7,5 +7,5 @@
 export { default as Navbar } from "./Navbar";
 export { default as NavbarDesktop } from "./NavbarDesktop";
 export { default as NavbarMobile } from "./NavbarMobile";
-export { default as NavLogo } from "./NavLogo";
+export { default as NavLogo } from "./Logo";
 export { default as DropdownMenu } from "./DropdownMenu";
