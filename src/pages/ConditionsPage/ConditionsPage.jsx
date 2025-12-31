@@ -59,7 +59,9 @@ const ConditionsPage = () => {
             <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm text-white tracking-[0.3em] uppercase text-xs font-medium mb-6 rounded-full border border-white/30">
               {hero.badge}
             </span>
-            <h1 className="heading-xl text-white mb-6">{hero.title}</h1>
+            <h1 className="backdrop-blur-3xl bg-white/30 p-7 rounded-xl text-4xl">
+              {hero.title}
+            </h1>
             <p className="text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
               {hero.description}
             </p>

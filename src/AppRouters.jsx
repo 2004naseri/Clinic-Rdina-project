@@ -9,6 +9,7 @@ import AppLayout from "./components/layout/AppLayout";
 import HomePage from "./pages/Homepage/HomePage";
 import TreatmentsPage from "./pages/treatmentsPage/TreatmentsPage";
 import ConditionsPage from "./pages/ConditionsPage/ConditionsPage";
+import PackagesPage from "./pages/PackagesPage/PackagesPage";
 
 // Loader component
 const Loader = () => {
@@ -37,10 +38,10 @@ function AppRouters() {
           path: "/conditions",
           element: <ConditionsPage />,
         },
-        // {
-        //   path: "/packages",
-        //   element: <PackagesPage />,
-        // },
+        {
+          path: "/packages",
+          element: <PackagesPage />,
+        },
         // {
         //   path: "/meet-the-team",
         //   element: <MeetTheTeamPage />,

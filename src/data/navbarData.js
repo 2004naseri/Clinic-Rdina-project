@@ -11,7 +11,7 @@ export const brandConfig = {
   name: "Radina Clinic",
   tagline: "Beauty & Wellness",
   logo: {
-    type: "text", // 'text' | 'image' | 'icon'
+    type: "logo.png", // 'text' | 'image' | 'icon'
     initial: "R",
     imagePath: null, // Path to logo image if type is 'image'
   },

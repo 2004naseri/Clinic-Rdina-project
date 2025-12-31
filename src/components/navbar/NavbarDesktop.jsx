@@ -57,7 +57,7 @@ const NavbarDesktop = () => {
   return (
     <div className="hidden lg:flex items-center justify-between w-full">
       <Logo />
-
+      {/* <img src="/images/logo.png" /> */}
       <nav>
         <ul className="flex items-center gap-12">
           {navigationItems.map((item) => (
