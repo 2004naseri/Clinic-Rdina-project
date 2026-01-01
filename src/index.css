@@ -4,78 +4,74 @@
 @import "tailwindcss";
 
 /* ===================== */
-/* Radina Clinic - Elegant Beauty Design System */
-/* ===================== */
-
-/* ===================== */
-/* LUXURY BEAUTY CLINIC COLOR PALETTE */
+/* Radina Aesthetic - Vibrant Majesty Design System */
 /* ===================== */
 
 @theme {
-  /* PRIMARY - Sophisticated Mauve */
-  --color-primary: #9b7b8f;
-  --color-primary-dark: #7d5f73;
-  --color-primary-light: #c5adb9;
-  --color-primary-50: #f5f1f3;
+  /* PRIMARY - Derived from your Logo Red-Purple (#88243d) */
+  --color-primary: #88243d;
+  --color-primary-dark: #660665; /* Deep Orchid from logo */
+  --color-primary-light: #a6445d;
+  --color-primary-50: #fdf2f4;
 
-  /* SECONDARY - Warm Cream */
-  --color-secondary: #e8ddd0;
-  --color-secondary-dark: #d4c3ae;
-  --color-secondary-light: #f5f0e8;
+  /* SECONDARY - Derived from your Deepest Logo Purple (#430568) */
+  --color-secondary: #430568;
+  --color-secondary-dark: #2d0346;
+  --color-secondary-light: #6b3a8a;
 
-  /* ACCENT - Rose Gold */
+  /* ACCENT - Sparkling Champagne (To balance the heavy purples) */
   --color-accent: #d4a574;
   --color-accent-light: #e8c99b;
   --color-accent-dark: #b8865a;
 
-  /* NEUTRAL PALETTE */
-  --color-neutral-50: #fafaf9;
-  --color-neutral-100: #f5f5f4;
-  --color-neutral-200: #e7e5e4;
-  --color-neutral-300: #d6d3d1;
-  --color-neutral-400: #a8a29e;
-  --color-neutral-500: #78716c;
-  --color-neutral-600: #57534e;
-  --color-neutral-700: #44403c;
-  --color-neutral-800: #292524;
-  --color-neutral-900: #1c1917;
+  /* NEUTRAL PALETTE - Clean & High Contrast */
+  --color-neutral-50: #ffffff;
+  --color-neutral-100: #fafafa;
+  --color-neutral-200: #f5f5f5;
+  --color-neutral-300: #e5e5e5;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
 
-  /* BACKGROUND COLORS */
-  --color-background: #fdfdfb;
-  --color-surface: #f9f8f6;
+  /* BACKGROUND COLORS - Crisp White to stop eye exhaustion */
+  --color-background: #ffffff;
+  --color-surface: #fdfaff; /* Very subtle purple-tinted white */
   --color-card: #ffffff;
 
   /* TEXT COLORS */
-  --color-text-primary: #292524;
-  --color-text-secondary: #57534e;
-  --color-text-muted: #78716c;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #4a4a4a;
+  --color-text-muted: #737373;
   --color-text-light: #ffffff;
 
   /* BORDER COLORS */
-  --color-border: #e7e5e4;
-  --color-border-light: #f5f5f4;
+  --color-border: #f0f0f0;
+  --color-border-light: #f9f9f9;
 
   /* STATUS COLORS */
-  --color-success: #86a68e;
-  --color-warning: #d4a574;
-  --color-error: #c17b7b;
-  --color-info: #8b9fb5;
+  --color-success: #2d6a4f;
+  --color-warning: #88243d;
+  --color-error: #991b1b;
+  --color-info: #430568;
 
-  /* SHADOWS */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  --shadow-elegant: 0 8px 30px rgba(155, 123, 143, 0.12);
+  /* SHADOWS - Tinted with brand colors for depth */
+  --shadow-sm: 0 1px 2px 0 rgba(136, 36, 61, 0.05);
+  --shadow-md: 0 4px 12px -1px rgba(67, 5, 104, 0.12);
+  --shadow-lg: 0 20px 25px -5px rgba(67, 5, 104, 0.1);
+  --shadow-xl: 0 35px 60px -15px rgba(136, 36, 61, 0.15);
+  --shadow-elegant: 0 15px 40px rgba(67, 5, 104, 0.08);
 
-  /* GRADIENTS */
-  --gradient-primary: linear-gradient(135deg, #9b7b8f 0%, #c5adb9 100%);
-  --gradient-warm: linear-gradient(135deg, #e8ddd0 0%, #f5f0e8 100%);
-  --gradient-luxury: linear-gradient(135deg, #9b7b8f 0%, #d4a574 100%);
+  /* GRADIENTS - Powerful brand identity */
+  --gradient-primary: linear-gradient(135deg, #88243d 0%, #660665 100%);
+  --gradient-warm: linear-gradient(135deg, #430568 0%, #88243d 100%);
+  --gradient-luxury: linear-gradient(135deg, #660665 0%, #d4a574 100%);
   --gradient-overlay: linear-gradient(
     to bottom,
-    rgba(253, 253, 251, 0) 0%,
-    rgba(253, 253, 251, 0.8) 100%
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.95) 100%
   );
 }
 
@@ -87,19 +83,17 @@
   .font-display {
     font-family: "Cormorant Garamond", serif;
   }
-
   .font-body {
     font-family: "Montserrat", sans-serif;
   }
-
   .font-accent {
     font-family: "Forum", cursive;
   }
 
-  /* Heading Styles - FIXED: Using explicit font-family to avoid apply errors */
+  /* Heading Styles - Increased tracking for a "High Fashion" look */
   .heading-hero {
     font-family: "Cormorant Garamond", serif;
-    @apply text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[1.1] text-text-primary;
+    @apply text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[1.05] text-secondary;
   }
 
   .heading-xl {
@@ -122,15 +116,15 @@
     @apply text-xl sm:text-2xl md:text-3xl font-normal tracking-tight leading-tight text-text-primary;
   }
 
-  /* Body Text */
+  /* Body Text - Using slightly more line-height to reduce eye fatigue */
   .text-body-lg {
     font-family: "Montserrat", sans-serif;
-    @apply text-base sm:text-lg leading-relaxed text-text-secondary;
+    @apply text-base sm:text-lg leading-[1.8] text-text-secondary;
   }
 
   .text-body {
     font-family: "Montserrat", sans-serif;
-    @apply text-sm sm:text-base leading-relaxed text-text-secondary;
+    @apply text-sm sm:text-base leading-[1.8] text-text-secondary;
   }
 
   .text-body-sm {
@@ -138,60 +132,59 @@
     @apply text-xs sm:text-sm leading-relaxed text-text-muted;
   }
 
-  /* Container */
   .container-custom {
-    @apply w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
+    @apply w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12;
   }
 
-  /* Buttons */
+  /* REFINED BUTTONS - More Modern & Exclusive */
   .btn-primary {
     font-family: "Montserrat", sans-serif;
-    @apply px-6 py-3.5 bg-primary text-white font-medium text-sm tracking-[0.15em]
-           rounded-full transition-all duration-300 ease-out uppercase
-           hover:bg-primary-dark hover:shadow-lg hover:-translate-y-0.5
-           active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+    @apply px-10 py-4 bg-primary text-white font-semibold text-xs tracking-[0.2em]
+           rounded-none transition-all duration-500 ease-in-out uppercase
+           hover:bg-secondary hover:shadow-xl hover:-translate-y-1
+           active:translate-y-0 focus:outline-none focus:ring-1 focus:ring-primary;
   }
 
   .btn-secondary {
     font-family: "Montserrat", sans-serif;
-    @apply px-6 py-3.5 bg-secondary text-text-primary font-medium text-sm tracking-[0.15em]
-           rounded-full transition-all duration-300 ease-out uppercase
-           hover:bg-secondary-dark hover:shadow-md hover:-translate-y-0.5
-           active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2;
+    @apply px-10 py-4 bg-secondary text-white font-semibold text-xs tracking-[0.2em]
+           rounded-none transition-all duration-500 ease-in-out uppercase
+           hover:bg-primary hover:shadow-xl hover:-translate-y-1
+           active:translate-y-0 focus:outline-none focus:ring-1 focus:ring-secondary;
   }
 
   .btn-outline {
     font-family: "Montserrat", sans-serif;
-    @apply px-6 py-3.5 bg-transparent border-2 border-primary text-primary font-medium text-sm tracking-[0.15em]
-           rounded-full transition-all duration-300 ease-out uppercase
-           hover:bg-primary hover:text-white hover:shadow-md hover:-translate-y-0.5
-           active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+    @apply px-10 py-4 bg-transparent border border-primary text-primary font-semibold text-xs tracking-[0.2em]
+           rounded-none transition-all duration-500 ease-in-out uppercase
+           hover:bg-primary hover:text-white hover:shadow-lg
+           active:translate-y-0 focus:outline-none;
   }
 
-  /* Cards */
+  /* CARDS - Cleaner and more breathable */
   .card {
-    @apply bg-card rounded-2xl p-6 border border-border transition-all duration-300;
+    @apply bg-card rounded-none p-10 border border-neutral-100 transition-all duration-500;
   }
 
   .card-hover {
-    @apply hover:shadow-elegant hover:-translate-y-1;
+    @apply hover:shadow-elegant hover:border-primary/10 hover:-translate-y-2;
   }
 
   /* Animations */
   .animate-fade-in {
-    animation: fadeIn 0.6s ease-out;
+    animation: fadeIn 0.8s ease-out;
   }
   .animate-slide-up {
-    animation: slideUp 0.6s ease-out;
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .animate-slide-in-left {
-    animation: slideInLeft 0.6s ease-out;
+    animation: slideInLeft 0.8s ease-out;
   }
   .animate-slide-in-right {
-    animation: slideInRight 0.6s ease-out;
+    animation: slideInRight 0.8s ease-out;
   }
   .animate-scale-in {
-    animation: scaleIn 0.5s ease-out;
+    animation: scaleIn 0.6s ease-out;
   }
 
   /* Stagger delays */
@@ -203,15 +196,6 @@
   }
   .stagger-3 {
     animation-delay: 0.3s;
-  }
-  .stagger-4 {
-    animation-delay: 0.4s;
-  }
-  .stagger-5 {
-    animation-delay: 0.5s;
-  }
-  .stagger-6 {
-    animation-delay: 0.6s;
   }
 }
 
@@ -230,7 +214,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -240,7 +224,7 @@
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-40px);
   }
   to {
     opacity: 1;
@@ -250,7 +234,7 @@
 @keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(40px);
   }
   to {
     opacity: 1;
@@ -260,7 +244,7 @@
 @keyframes scaleIn {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.97);
   }
   to {
     opacity: 1;
@@ -280,12 +264,6 @@
 /* GLOBAL STYLES */
 /* ===================== */
 
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
-
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -296,11 +274,11 @@ body {
   background-color: var(--color-background);
   color: var(--color-text-primary);
   overflow-x: hidden;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 ::selection {
-  background-color: var(--color-primary-light);
+  background-color: var(--color-primary);
   color: white;
 }
 
@@ -312,7 +290,7 @@ body {
   .loader {
     width: 48px;
     height: 48px;
-    border: 3px solid var(--color-primary-light);
+    border: 2px solid var(--color-primary-50);
     border-bottom-color: var(--color-primary);
     border-radius: 50%;
     display: inline-block;
@@ -328,7 +306,7 @@ body {
   position: absolute;
   top: -100px;
   left: 0;
-  background: var(--color-primary);
+  background: var(--color-secondary);
   color: white;
   padding: 10px 20px;
   z-index: 999;
@@ -339,14 +317,14 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-neutral-100);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-primary-light);
-  border-radius: 5px;
+  border-radius: 0px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);

@@ -29,15 +29,13 @@
 // };
 
 // export default Navbar;
-
 import { NavbarDesktop, NavbarMobile } from "./index";
 
 const Navbar = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-secondary-light/50 shadow-sm">
-      <div className="container-custom mx-auto px-4 md:px-8">
-        <div className="flex items-center justify-between h-20 md:h-24">
-          {/* We move Logo here to keep it centered or left-aligned consistently */}
+    <header className="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-[#660665]/10 shadow-sm py-4">
+      <div className="container-custom">
+        <div className="flex items-center justify-between">
           <NavbarDesktop />
           <NavbarMobile />
         </div>

@@ -10,6 +10,9 @@ import HomePage from "./pages/Homepage/HomePage";
 import TreatmentsPage from "./pages/treatmentsPage/TreatmentsPage";
 import ConditionsPage from "./pages/ConditionsPage/ConditionsPage";
 import PackagesPage from "./pages/PackagesPage/PackagesPage";
+import MeetTheTeamPage from "./pages/MeetTheTeamPage/MeetTheTeamPag";
+import SkinShopPage from "./pages/SkinShopPage/SkinShopPage ";
+import ContactPage from "./pages/ContactPage/ContactPage";
 
 // Loader component
 const Loader = () => {
@@ -42,14 +45,14 @@ function AppRouters() {
           path: "/packages",
           element: <PackagesPage />,
         },
-        // {
-        //   path: "/meet-the-team",
-        //   element: <MeetTheTeamPage />,
-        // },
-        // {
-        //   path: "/skin-shop",
-        //   element: <SkinShopPage />,
-        // },
+        {
+          path: "/meet-the-team",
+          element: <MeetTheTeamPage />,
+        },
+        {
+          path: "/skin-shop",
+          element: <SkinShopPage />,
+        },
         // {
         //   path: "/about",
         //   element: <AboutPage />,
@@ -66,10 +69,10 @@ function AppRouters() {
         //   path: "/training",
         //   element: <TrainingPage />,
         // },
-        // {
-        //   path: "/contact",
-        //   element: <ContactPage />,
-        // },
+        {
+          path: "/contact",
+          element: <ContactPage />,
+        },
       ],
     },
   ]);
