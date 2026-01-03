@@ -23,152 +23,103 @@ const HomePage = () => {
       {/* ====================
           1. HERO SECTION 
       ==================== */}
+      // HomePage Hero Section - Text Over Image Style //
+      ======================================== // Replace your current HomePage
+      hero with this // ========================================
       <Section
-        padding="large"
         background="transparent"
-        className="min-h-[85vh] lg:min-h-[90vh] flex items-center"
+        padding="none"
+        className="relative overflow-hidden"
       >
-        {/* Background Pattern */}
+        {/* Full-width Background Image with Gradient Overlay */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full bg-gradient-to-bl from-primary-50 to-transparent opacity-40" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
+          {hero.image.src && !hero.image.placeholder?.show ? (
+            <>
+              <img
+                src={hero.image.src}
+                alt={hero.image.alt}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
+            </>
+          ) : (
+            <div
+              className={`absolute inset-0 bg-gradient-to-br ${hero.image.placeholder.gradient}`}
+            />
+          )}
         </div>
 
+        {/* Content Overlay */}
         <Container className="relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left Content */}
-            <div className="max-w-2xl">
-              <span
-                className="inline-block text-accent tracking-[0.3em] uppercase text-xs font-medium mb-6 animate-fade-in"
-                style={{ animationDelay: "0.1s" }}
-              >
+          <div className="min-h-[85vh] lg:min-h-[90vh] flex items-center">
+            <div className="max-w-3xl mx-auto text-center py-12 lg:py-20">
+              {/* Badge */}
+              <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm text-white tracking-[0.3em] uppercase text-xs font-medium mb-6 rounded-full border border-white/30 animate-fade-in">
                 {hero.badge}
               </span>
 
+              {/* Title */}
               <h1
-                className="heading-hero mb-6 animate-slide-up"
-                style={{ animationDelay: "0.2s" }}
+                className="text-black  mb-6 animate-slide-up backdrop-blur-xl bg-white/30 p-7 rounded-xl text-4xl"
+                style={{ animationDelay: "0.1s" }}
               >
-                {hero.title.line1}{" "}
-                <span className="italic font-light text-primary">
-                  {hero.title.highlight}
-                </span>
-                <br />
-                {hero.title.line2}
+                {hero.title}
               </h1>
 
+              {/* Description */}
               <p
-                className="text-body-lg mb-10 max-w-xl leading-relaxed animate-slide-up"
-                style={{ animationDelay: "0.3s" }}
+                className="text-lg lg:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10 animate-slide-up"
+                style={{ animationDelay: "0.2s" }}
               >
                 {hero.description}
               </p>
 
+              {/* Buttons */}
               <div
-                className="flex flex-wrap gap-4 animate-slide-up"
-                style={{ animationDelay: "0.4s" }}
+                className="flex flex-wrap gap-4 justify-center mb-16 animate-slide-up"
+                style={{ animationDelay: "0.3s" }}
               >
                 {hero.buttons.map((btn, i) => (
                   <Button
                     key={i}
                     to={btn.link}
                     variant={btn.variant}
+                    size="large"
                     icon={i === 1 ? <CalendarIcon /> : null}
+                    className={
+                      btn.variant === "primary"
+                        ? "bg-accent text-white hover:bg-accent-dark"
+                        : "border-2 border-white text-white hover:bg-white hover:text-primary"
+                    }
                   >
                     {btn.text}
                   </Button>
                 ))}
               </div>
 
-              {/* Stats Row */}
+              {/* Stats Row - Centered */}
               <div
-                className="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-border animate-fade-in"
-                style={{ animationDelay: "0.5s" }}
+                className="grid grid-cols-3 gap-8 max-w-2xl mx-auto animate-fade-in"
+                style={{ animationDelay: "0.4s" }}
               >
                 {hero.stats.map((stat, i) => (
-                  <div key={i}>
-                    <div className="font-display text-3xl text-primary mb-1">
+                  <div key={i} className="text-center">
+                    <div className="font-display text-4xl lg:text-5xl text-white mb-2 drop-shadow-lg">
                       {stat.number}
                     </div>
-                    <div className="text-body-sm text-text-muted uppercase tracking-wide">
+                    <div className="text-xs lg:text-sm text-white/80 uppercase tracking-wider font-medium">
                       {stat.label}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Right Image - FIXED */}
-            <div
-              className="relative hidden lg:block animate-scale-in"
-              style={{ animationDelay: "0.3s" }}
-            >
-              <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-elegant">
-                {/* Show image if src exists and has valid path, otherwise show placeholder */}
-                {hero.image.src &&
-                hero.image.src.length > 0 &&
-                !hero.image.placeholder?.show ? (
-                  // REAL IMAGE
-                  <img
-                    src={hero.image.src}
-                    alt={hero.image.alt}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      // If image fails to load, hide it and show gradient
-                      e.target.style.display = "none";
-                      e.target.nextElementSibling.style.display = "block";
-                    }}
-                  />
-                ) : null}
-
-                {/* PLACEHOLDER GRADIENT (fallback) */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${hero.image.placeholder.gradient}`}
-                  style={{
-                    display:
-                      hero.image.src && !hero.image.placeholder?.show
-                        ? "none"
-                        : "block",
-                  }}
-                />
-
-                {/* Decorative Frame */}
-                <div className="absolute inset-4 border-2 border-white/50 rounded-2xl" />
-
-                {/* Floating Badge */}
-                <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <svg
-                        className="w-6 h-6 text-primary"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="font-display text-lg text-text-primary mb-0.5">
-                        {hero.badge_on_image.title}
-                      </div>
-                      <div className="text-body-sm text-text-muted">
-                        {hero.badge_on_image.subtitle}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </Container>
-      </Section>
 
+        {/* Bottom Gradient Fade to White */}
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10"></div>
+      </Section>
       {/* ====================
           2. FEATURED TREATMENTS
       ==================== */}
@@ -207,7 +158,6 @@ const HomePage = () => {
           </div>
         </Container>
       </Section>
-
       {/* ====================
           3. PHILOSOPHY SECTION - FIXED
       ==================== */}
@@ -341,7 +291,6 @@ const HomePage = () => {
           </div>
         </Container>
       </Section>
-
       {/* ====================
           4. CTA SECTION
       ==================== */}

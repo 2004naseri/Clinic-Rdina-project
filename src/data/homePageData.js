@@ -10,11 +10,7 @@ export const homePageData = {
   // ==================
   hero: {
     badge: "Beauty & Wellness",
-    title: {
-      line1: "Enhance Your",
-      highlight: "Natural", // This word will be styled differently
-      line2: "Beauty",
-    },
+    title: "Enhance Your Natural Beauty",
     description:
       "Experience luxury aesthetic treatments at Radina Clinic. We combine medical expertise with artistry to enhance your natural radiance.",
     buttons: [
