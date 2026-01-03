@@ -52,14 +52,22 @@
 
 // export default NavbarDesktop;
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import { navigationItems, ctaConfig } from "../../data/navbarData";
 
 const NavbarDesktop = () => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
-
+  const navigate = useNavigate();
+  function handleClick(path) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth", // Changed from "instant" to "auto"
+    });
+    navigate(path);
+  }
   return (
     <div className="hidden lg:flex items-center justify-between w-full">
       <Logo />
@@ -68,9 +76,9 @@ const NavbarDesktop = () => {
         <ul className="flex items-center gap-10">
           {navigationItems.map((item) => (
             <li key={item.id} className="relative group">
-              <Link
-                to={item.path}
-                className={`text-[11px] uppercase tracking-[0.25em] font-semibold transition-all duration-300 ${
+              <button
+                onClick={() => handleClick(item.path)}
+                className={`text-[11px] uppercase hover:cursor-pointer tracking-[0.25em] font-semibold transition-all duration-300 ${
                   isActive(item.path)
                     ? "text-[#88243d]"
                     : "text-[#430568] hover:text-[#88243d]"
@@ -82,7 +90,7 @@ const NavbarDesktop = () => {
                     isActive(item.path) ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
-              </Link>
+              </button>
             </li>
           ))}
         </ul>

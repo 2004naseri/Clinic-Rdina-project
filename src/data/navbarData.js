@@ -24,6 +24,13 @@ export const brandConfig = {
  */
 export const navigationItems = [
   {
+    id: "home",
+    label: "Home",
+    path: "/",
+    type: "link", // 'link' | 'dropdown' | 'megamenu'
+    description: "",
+  },
+  {
     id: "treatments",
     label: "Treatments",
     path: "/treatments",
@@ -61,7 +68,7 @@ export const navigationItems = [
   {
     id: "about",
     label: "About",
-    path: "#",
+    path: "/about",
     type: "dropdown",
     description: "Learn more about us",
     dropdownItems: [

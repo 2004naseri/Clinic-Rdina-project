@@ -238,7 +238,7 @@ const SkinShopPage = () => {
       {/* ====================
           5. CTA SECTION
       ==================== */}
-      {/* <Section background="primary" padding="default">
+      <Section background="primary" padding="default">
         <Container>
           <div className="max-w-3xl mx-auto text-center text-white">
             <h2 className="text-4xl text- mb-4">{cta.title}</h2>
@@ -255,7 +255,7 @@ const SkinShopPage = () => {
             </Button>
           </div>
         </Container>
-      </Section> */}
+      </Section>
     </main>
   );
 };

@@ -4,7 +4,7 @@
 // ========================================
 
 import { Link } from "react-router-dom";
-import { LogoLight } from "../components/navbar/Logo";
+import Logo from "../components/navbar/Logo";
 import {
   navigationItems,
   contactInfo,
@@ -28,7 +28,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <LogoLight className="mb-6" />
+            <Logo className="mb-6" />
             <p className="text-white/70 text-sm leading-relaxed mb-6">
               Experience luxury aesthetic treatments in the heart of Kabul.
               Enhancing natural beauty with medical expertise.

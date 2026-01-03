@@ -205,13 +205,24 @@
 
 // export default NavbarMobile;
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import { navigationItems, ctaConfig } from "../../data/navbarData";
 
 const NavbarMobile = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const isActive = (path) => location.pathname === path;
+
   const location = useLocation();
+  const navigate = useNavigate();
+  function handleClick(path) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth", // Changed from "instant" to "auto"
+    });
+    navigate(path);
+  }
 
   useEffect(() => setIsOpen(false), [location]);
 
@@ -267,12 +278,23 @@ const NavbarMobile = () => {
                       : "opacity-0 translate-x-10"
                   }`}
                 >
-                  <Link
-                    to={item.path}
-                    className="text-3xl font-light tracking-widest uppercase text-[#430568] hover:text-[#88243d]"
+                  <button
+                    onClick={() => handleClick(item.path)}
+                    className={`text-[11px] uppercase hover:cursor-pointer tracking-[0.25em] font-semibold transition-all duration-300 ${
+                      isActive(item.path)
+                        ? "text-[#88243d]"
+                        : "text-[#430568] hover:text-[#88243d]"
+                    }`}
                   >
                     {item.label}
-                  </Link>
+                    <span
+                      className={`absolute -bottom-2 left-0 h-[2px] bg-[#88243d] transition-all duration-300 ${
+                        isActive(item.path)
+                          ? "w-full"
+                          : "w-0 group-hover:w-full"
+                      }`}
+                    />
+                  </button>
                 </li>
               ))}
             </ul>

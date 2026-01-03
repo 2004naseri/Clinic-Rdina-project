@@ -13,6 +13,7 @@ import PackagesPage from "./pages/PackagesPage/PackagesPage";
 import MeetTheTeamPage from "./pages/MeetTheTeamPage/MeetTheTeamPag";
 import SkinShopPage from "./pages/SkinShopPage/SkinShopPage ";
 import ContactPage from "./pages/ContactPage/ContactPage";
+import AboutPage from "./pages/AboutPage/AboutPage";
 
 // Loader component
 const Loader = () => {
@@ -53,10 +54,10 @@ function AppRouters() {
           path: "/skin-shop",
           element: <SkinShopPage />,
         },
-        // {
-        //   path: "/about",
-        //   element: <AboutPage />,
-        // },
+        {
+          path: "/about",
+          element: <AboutPage />,
+        },
         // {
         //   path: "/price-list",
         //   element: <PriceListPage />,
