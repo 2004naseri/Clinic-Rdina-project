@@ -26,7 +26,7 @@ export const aboutData = {
     statement:
       "At Radina Clinic, we believe exceptional aesthetic outcomes are achieved through the perfect harmony of medical expertise, cutting-edge technology, and an unwavering commitment to individualized care.",
     signature: {
-      name: "Dr. Sarah Ahmad",
+      name: "Dr. Shikiba Hussaini",
       title: "Founder & Medical Director",
     },
   },
@@ -184,13 +184,13 @@ export const aboutData = {
     members: [
       {
         id: 1,
-        name: "Dr. Sarah Ahmad",
+        name: "Dr. Shikiba hussaini",
         credentials: "MD, FAAD",
         role: "Founder & Medical Director",
         specialization: "Dermatology & Aesthetic Medicine",
         image: {
-          src: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80",
-          alt: "Dr. Sarah Ahmad",
+          src: "images/boss.jpg",
+          alt: "Dr. Shikiba hussaini",
         },
       },
       {

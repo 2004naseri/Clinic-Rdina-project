@@ -4,7 +4,7 @@
 // ========================================
 // Now images show correctly in hero and philosophy sections!
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Section,
   Container,
@@ -17,15 +17,21 @@ import homePageData from "../../data/homePageData";
 
 const HomePage = () => {
   const { hero, featuredTreatments, philosophy, cta } = homePageData;
-
+  const navigate = useNavigate();
+  function handleClick(path) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth", // Changed from "instant" to "auto"
+    });
+    navigate(path);
+  }
   return (
     <main id="main-content" className="relative bg-background">
       {/* ====================
           1. HERO SECTION 
       ==================== */}
-      // HomePage Hero Section - Text Over Image Style //
-      ======================================== // Replace your current HomePage
-      hero with this // ========================================
+
       <Section
         background="transparent"
         padding="none"
@@ -82,7 +88,7 @@ const HomePage = () => {
                 {hero.buttons.map((btn, i) => (
                   <Button
                     key={i}
-                    to={btn.link}
+                    onClick={() => handleClick(btn.link)}
                     variant={btn.variant}
                     size="large"
                     icon={i === 1 ? <CalendarIcon /> : null}
@@ -309,9 +315,9 @@ const HomePage = () => {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 {cta.buttons.map((btn, i) => (
-                  <Link
+                  <button
                     key={i}
-                    to={btn.link}
+                    onClick={() => handleClick(btn.link)}
                     className={`
                       px-10 py-4 rounded-full uppercase text-xs tracking-[0.2em] 
                       font-semibold transition-all shadow-lg hover:shadow-xl inline-block
@@ -323,7 +329,7 @@ const HomePage = () => {
                     `}
                   >
                     {btn.text}
-                  </Link>
+                  </button>
                 ))}
               </div>
 

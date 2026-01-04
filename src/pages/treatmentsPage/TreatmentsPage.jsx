@@ -131,7 +131,7 @@ const TreatmentsPage = () => {
                     badge={treatment.badge}
                     title={treatment.name}
                     description={treatment.shortDescription}
-                    link={`/treatments/${treatment.id}`}
+                    // link={`/treatments/${treatment.id}`}
                     linkText="View Details"
                     imageHeight="h-64"
                   />

@@ -4,7 +4,7 @@
 // ========================================
 // All button styles in one component
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Button = ({
   children,
@@ -20,6 +20,15 @@ const Button = ({
   className = "",
   type = "button",
 }) => {
+  const navigate = useNavigate();
+  function handleClick(path) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth", // Changed from "instant" to "auto"
+    });
+    navigate(path);
+  }
   // Variant styles
   const variants = {
     primary: `
@@ -27,7 +36,7 @@ const Button = ({
       shadow-sm hover:shadow-md
     `,
     secondary: `
-      bg-secondary text-text-primary hover:bg-secondary-dark
+      bg-secondary text-neutral-50 hover:bg-secondary-dark
       shadow-sm hover:shadow-md
     `,
     outline: `
@@ -91,9 +100,12 @@ const Button = ({
   // Render as Link (internal)
   if (to && !disabled) {
     return (
-      <Link to={to} className={`${baseClasses} group`}>
+      <button
+        onClick={() => handleClick(to)}
+        className={`${baseClasses} group`}
+      >
         <Content />
-      </Link>
+      </button>
     );
   }
 

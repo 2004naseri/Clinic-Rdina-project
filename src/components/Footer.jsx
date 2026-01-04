@@ -3,7 +3,7 @@
 // SITE FOOTER
 // ========================================
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../components/navbar/Logo";
 import {
   navigationItems,
@@ -17,7 +17,15 @@ const Footer = () => {
 
   // Get footer navigation (exclude dropdowns)
   const footerNav = navigationItems.filter((item) => item.type === "link");
-
+  const navigate = useNavigate();
+  function handleClick(path) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth", // Changed from "instant" to "auto"
+    });
+    navigate(path);
+  }
   return (
     <footer className="bg-neutral-900 text-white relative overflow-hidden">
       {/* Decorative gradient */}
@@ -59,12 +67,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerNav.slice(0, 5).map((item) => (
                 <li key={item.id}>
-                  <Link
-                    to={item.path}
+                  <button
+                    onClick={() => handleClick(item.path)}
                     className="text-white/70 hover:text-white text-sm transition-colors duration-200 inline-block"
                   >
                     {item.label}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -84,12 +92,12 @@ const Footer = () => {
                 { label: "Gift Cards", path: "/gift-cards" },
               ].map((item, i) => (
                 <li key={i}>
-                  <Link
-                    to={item.path}
+                  <button
+                    onClick={() => handleClick(item.path)}
                     className="text-white/70 hover:text-white text-sm transition-colors duration-200 inline-block"
                   >
                     {item.label}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -198,12 +206,15 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-6">
               <Link
-                to="/privacy"
+                // to="/privacy"
                 className="hover:text-white transition-colors"
               >
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="hover:text-white transition-colors">
+              <Link
+                //  to="/terms"
+                className="hover:text-white transition-colors"
+              >
                 Terms of Service
               </Link>
             </div>

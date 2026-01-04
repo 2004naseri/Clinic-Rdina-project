@@ -4,7 +4,7 @@
 // ========================================
 // Use for section titles and descriptions
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SectionHeader = ({
   badge,
@@ -18,6 +18,15 @@ const SectionHeader = ({
     left: "text-left items-start",
     center: "text-center items-center",
   };
+  const navigate = useNavigate();
+  function handleClick(path) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth", // Changed from "instant" to "auto"
+    });
+    navigate(path);
+  }
 
   return (
     <div
@@ -59,10 +68,10 @@ const SectionHeader = ({
 
         {/* Optional Action Link */}
         {action && (
-          <Link
-            to={action.link}
-            className="group flex items-center gap-2 text-primary font-body text-sm 
-                     tracking-widest uppercase hover:gap-4 transition-all flex-shrink-0"
+          <button
+            onClick={() => handleClick(action.link)}
+            className="group flex items-center  gap-2 text-primary font-body text-sm 
+                     tracking-widest uppercase hover:cursor-pointer hover:gap-4 transition-all flex-shrink-0"
           >
             {action.label}
             <svg
@@ -78,7 +87,7 @@ const SectionHeader = ({
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </Link>
+          </button>
         )}
       </div>
     </div>

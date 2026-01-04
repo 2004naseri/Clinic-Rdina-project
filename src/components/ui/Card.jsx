@@ -4,7 +4,7 @@
 // ========================================
 // Now properly handles both images and placeholders
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Card = ({
   image,
@@ -17,6 +17,15 @@ const Card = ({
   className = "",
   imageHeight = "h-64",
 }) => {
+  const navigate = useNavigate();
+  function handleClick(path) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth", // Changed from "instant" to "auto"
+    });
+    navigate(path);
+  }
   const CardContent = () => (
     <>
       {/* Image Container */}
@@ -118,9 +127,9 @@ const Card = ({
   // If there's a link, make the whole card clickable
   if (link) {
     return (
-      <Link to={link} className={cardClasses}>
+      <button onClick={() => handleClick(link)} className={cardClasses}>
         <CardContent />
-      </Link>
+      </button>
     );
   }
 
