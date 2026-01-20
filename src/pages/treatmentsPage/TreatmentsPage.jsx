@@ -1,16 +1,11 @@
-// src/pages/TreatmentsPage.jsx
+// src/pages/TreatmentsPage/TreatmentsPage.jsx
 // ========================================
-// TREATMENTS PAGE - All Treatments
+// TREATMENTS PAGE - UPDATED WITH CLICKABLE CARDS
 // ========================================
 
 import { useState } from "react";
-import {
-  Section,
-  Container,
-  SectionHeader,
-  Card,
-  Button,
-} from "../../components/ui";
+import { useNavigate } from "react-router-dom";
+import { Section, Container, SectionHeader, Button } from "../../components/ui";
 import treatmentsData, {
   getTreatmentsByCategory,
 } from "../../data/treatmentsData";
@@ -18,9 +13,15 @@ import treatmentsData, {
 const TreatmentsPage = () => {
   const { hero, categories, cta } = treatmentsData;
   const [activeCategory, setActiveCategory] = useState("all");
+  const navigate = useNavigate();
 
   // Get filtered treatments based on active category
   const filteredTreatments = getTreatmentsByCategory(activeCategory);
+
+  const handleTreatmentClick = (treatmentId) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    navigate(`/treatments/${treatmentId}`);
+  };
 
   return (
     <main id="main-content" className="relative bg-background">
@@ -112,7 +113,7 @@ const TreatmentsPage = () => {
       </Section>
 
       {/* ====================
-          3. TREATMENTS GRID
+          3. TREATMENTS GRID - CLICKABLE CARDS
       ==================== */}
       <Section background="white" padding="default">
         <Container>
@@ -121,41 +122,101 @@ const TreatmentsPage = () => {
               {filteredTreatments.map((treatment, index) => (
                 <div
                   key={treatment.id}
+                  onClick={() => handleTreatmentClick(treatment.id)}
+                  className="group cursor-pointer"
                   style={{
                     animation: "slideUp 0.5s ease-out backwards",
                     animationDelay: `${index * 0.1}s`,
                   }}
                 >
-                  <Card
-                    image={treatment.image}
-                    badge={treatment.badge}
-                    title={treatment.name}
-                    description={treatment.shortDescription}
-                    // link={`/treatments/${treatment.id}`}
-                    linkText="View Details"
-                    imageHeight="h-64"
-                  />
+                  {/* Treatment Card */}
+                  <div className="card card-hover p-0 overflow-hidden h-full flex flex-col">
+                    {/* Badge */}
+                    {treatment.badge && (
+                      <div className="absolute top-4 left-4 px-3 py-1 bg-primary text-white text-xs font-semibold uppercase tracking-wide rounded-full z-10">
+                        {treatment.badge}
+                      </div>
+                    )}
 
-                  {/* Price & Duration */}
-                  <div className="mt-4 flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-1 text-text-muted">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    {/* Image */}
+                    <div className="relative h-64 overflow-hidden bg-surface">
+                      {treatment.image.src &&
+                      !treatment.image.src.includes("placeholder") ? (
+                        <img
+                          src={treatment.image.src}
+                          alt={treatment.image.alt}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
-                      </svg>
-                      <span>{treatment.duration}</span>
+                      ) : (
+                        // Placeholder with letter
+                        <>
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-primary-light/10 group-hover:scale-110 transition-transform duration-700" />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="font-display text-8xl text-primary/10 group-hover:text-primary/20 transition-colors duration-500">
+                              {treatment.image.placeholder}
+                            </span>
+                          </div>
+                        </>
+                      )}
+
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                        <span className="px-6 py-2.5 bg-white text-primary rounded-full text-xs uppercase tracking-wider font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                          View Details
+                        </span>
+                      </div>
                     </div>
-                    <div className="font-medium text-primary">
-                      {treatment.price}
+
+                    {/* Content */}
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h3 className="font-display text-2xl text-text-primary mb-3 group-hover:text-primary transition-colors">
+                        {treatment.name}
+                      </h3>
+
+                      <p className="text-body-sm text-text-muted mb-4 flex-1 line-clamp-2">
+                        {treatment.shortDescription}
+                      </p>
+
+                      {/* Price & Duration */}
+                      <div className="flex items-center justify-between text-sm pt-4 border-t border-border">
+                        <div className="flex items-center gap-1 text-text-muted">
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span>{treatment.duration}</span>
+                        </div>
+                        <div className="font-medium text-primary">
+                          {treatment.price}
+                        </div>
+                      </div>
+
+                      {/* Arrow indicator */}
+                      <div className="flex items-center gap-2 text-accent font-medium text-xs tracking-wider uppercase pt-4">
+                        <span>Learn More</span>
+                        <svg
+                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </div>
                     </div>
                   </div>
                 </div>

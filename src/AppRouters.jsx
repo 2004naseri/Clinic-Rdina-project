@@ -14,6 +14,7 @@ import MeetTheTeamPage from "./pages/MeetTheTeamPage/MeetTheTeamPag";
 import SkinShopPage from "./pages/SkinShopPage/SkinShopPage ";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import TreatmentDetailPage from "./pages/treatmentsPage/TreatmentDetailPage";
 
 // Loader component
 const Loader = () => {
@@ -37,6 +38,10 @@ function AppRouters() {
         {
           path: "/treatments",
           element: <TreatmentsPage />,
+        },
+        {
+          path: "/treatments/:treatmentId",
+          element: <TreatmentDetailPage />,
         },
         {
           path: "/conditions",

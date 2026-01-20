@@ -1,8 +1,7 @@
 // src/data/contactData.js
 // ========================================
-// CONTACT DATA - Easy to Edit!
+// CONTACT DATA - UPDATED WITH REAL INFO
 // ========================================
-// All contact information in ONE place
 
 export const contactData = {
   // ==================
@@ -24,42 +23,63 @@ export const contactData = {
   },
 
   // ==================
-  // CONTACT INFO
+  // CONTACT INFO - UPDATED
   // ==================
   contactInfo: {
+    // Primary phone number
     phone: {
-      display: "+93 XXX XXX XXX",
-      link: "tel:+93XXXXXXXXX",
-      available: "Mon-Sat: 9AM-8PM",
+      display: "07795 976868",
+      link: "tel:+447795976868",
+      available: "Mon-Fri: 9AM-6PM, Sat: 10AM-4PM",
     },
+
+    // WhatsApp number
+    whatsapp: {
+      display: "07882 244808",
+      link: "https://wa.me/447882244808",
+      available: "Mon-Sat: 9AM-6PM",
+    },
+
+    // Additional phone numbers
+    additionalPhones: [
+      {
+        display: "07990 348048",
+        link: "tel:+447990348048",
+        label: "Alternative Contact",
+      },
+    ],
+
     email: {
       display: "info@radinaclinic.com",
       link: "mailto:info@radinaclinic.com",
       response: "Within 24 hours",
     },
+
+    // Location - Single listing for London & Leeds
     address: {
-      street: "123 Beauty Avenue",
-      city: "Kabul",
-      country: "Afghanistan",
-      full: "123 Beauty Avenue, Kabul, Afghanistan",
-      mapLink: "https://maps.google.com", // Replace with real Google Maps link
+      city: "London & Leeds",
+      country: "United Kingdom",
+      fullAddress: "London & Leeds, United Kingdom",
+      mapLink: "https://maps.google.com",
     },
+
+    // Opening hours
     hours: {
-      weekdays: "Monday - Friday: 9:00 AM - 8:00 PM",
-      saturday: "Saturday: 10:00 AM - 6:00 PM",
+      weekdays: "Monday - Friday: 09:00 - 18:00",
+      saturday: "Saturday: 10:00 - 16:00",
       sunday: "Sunday: Closed",
     },
   },
 
   // ==================
-  // SOCIAL MEDIA
+  // SOCIAL MEDIA - UPDATED
   // ==================
   socialMedia: [
     {
       id: "instagram",
       platform: "Instagram",
-      url: "https://instagram.com/radinaclinic",
-      handle: "@radinaclinic",
+      url: "https://instagram.com/RadinaAesthetic",
+      handle: "@RadinaAesthetic",
       icon: "instagram",
     },
     {
@@ -72,8 +92,8 @@ export const contactData = {
     {
       id: "whatsapp",
       platform: "WhatsApp",
-      url: "https://wa.me/93XXXXXXXXX",
-      handle: "+93 XXX XXX XXX",
+      url: "https://wa.me/447882244808",
+      handle: "07882 244808",
       icon: "whatsapp",
     },
     {
@@ -103,9 +123,16 @@ export const contactData = {
     },
     phone: {
       label: "Phone Number",
-      placeholder: "+93 XXX XXX XXX",
+      placeholder: "07XXX XXXXXX",
       type: "tel",
       required: true,
+    },
+    location: {
+      label: "Preferred Location",
+      placeholder: "Select a location",
+      type: "select",
+      required: false,
+      options: ["London", "Leeds", "Either location is fine"],
     },
     service: {
       label: "Service Interested In",
@@ -114,11 +141,13 @@ export const contactData = {
       required: false,
       options: [
         "General Consultation",
-        "Facial Treatments",
-        "Laser Therapy",
-        "Injectable Treatments",
-        "Body Contouring",
-        "Skincare Products",
+        "Botox / Anti-Wrinkle Treatment",
+        "Non-Surgical Rhinoplasty",
+        "Dermal Fillers",
+        "Skin Boosters",
+        "Mesotherapy",
+        "Lemon Bottle Fat Dissolving",
+        "Vitamin Therapy",
         "Other",
       ],
     },
@@ -136,7 +165,7 @@ export const contactData = {
       options: [
         "Morning (9AM - 12PM)",
         "Afternoon (12PM - 4PM)",
-        "Evening (4PM - 8PM)",
+        "Evening (4PM - 6PM)",
       ],
     },
     message: {
@@ -157,7 +186,7 @@ export const contactData = {
       title: "Call Us",
       description: "Speak with our team directly",
       icon: "phone",
-      action: "tel:+93XXXXXXXXX",
+      action: "tel:+447795976868",
       buttonText: "Call Now",
     },
     {
@@ -165,7 +194,8 @@ export const contactData = {
       title: "WhatsApp",
       description: "Chat with us on WhatsApp",
       icon: "whatsapp",
-      action: "https://wa.me/93XXXXXXXXX",
+      action:
+        "https://wa.me/447882244808?text=Hello,%20I%20would%20like%20to%20book%20a%20consultation",
       buttonText: "Message Us",
     },
     {
@@ -196,12 +226,18 @@ export const contactData = {
     },
     {
       id: 3,
+      question: "Where are you located?",
+      answer:
+        "We serve clients in both London and Leeds. When booking, you can specify your preferred location and we'll arrange the appointment accordingly.",
+    },
+    {
+      id: 4,
       question: "What should I bring to my appointment?",
       answer:
         "Just bring yourself! If you have any medical history or are on medications, please inform us during booking.",
     },
     {
-      id: 4,
+      id: 5,
       question: "Do you offer payment plans?",
       answer:
         "Yes, we offer flexible payment options for treatment packages. Ask about our payment plans during your consultation.",
