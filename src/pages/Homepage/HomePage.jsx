@@ -1,10 +1,10 @@
 // src/pages/HomePage.jsx
 // ========================================
-// HOMEPAGE - FIXED IMAGE DISPLAY
+// HOMEPAGE - UPDATED WITH TESTIMONIALS + FAQ
 // ========================================
-// Now images show correctly in hero and philosophy sections!
 
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Section,
   Container,
@@ -14,30 +14,30 @@ import {
   CalendarIcon,
 } from "../../components/ui";
 import homePageData from "../../data/homePageData";
+import { getFeaturedTestimonials } from "../../data/Testimonialsdata";
+import faqData from "../../data/faqData";
 
 const HomePage = () => {
   const { hero, featuredTreatments, philosophy, cta } = homePageData;
   const navigate = useNavigate();
+
   function handleClick(path) {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth", // Changed from "instant" to "auto"
+      behavior: "smooth",
     });
     navigate(path);
   }
+
   return (
     <main id="main-content" className="relative bg-background">
-      {/* ====================
-          1. HERO SECTION 
-      ==================== */}
-
+      {/* HERO SECTION */}
       <Section
         background="transparent"
         padding="none"
         className="relative overflow-hidden"
       >
-        {/* Full-width Background Image with Gradient Overlay */}
         <div className="absolute inset-0 z-0">
           {hero.image.src && !hero.image.placeholder?.show ? (
             <>
@@ -55,24 +55,20 @@ const HomePage = () => {
           )}
         </div>
 
-        {/* Content Overlay */}
         <Container className="relative z-10">
           <div className="min-h-[85vh] lg:min-h-[90vh] flex items-center">
             <div className="max-w-3xl mx-auto text-center py-12 lg:py-20">
-              {/* Badge */}
               <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm text-white tracking-[0.3em] uppercase text-xs font-medium mb-6 rounded-full border border-white/30 animate-fade-in">
                 {hero.badge}
               </span>
 
-              {/* Title */}
               <h1
-                className="text-black  mb-6 animate-slide-up backdrop-blur-xl bg-white/30 p-7 rounded-xl text-4xl"
+                className="text-black mb-6 animate-slide-up backdrop-blur-xl bg-white/30 p-7 rounded-xl text-4xl"
                 style={{ animationDelay: "0.1s" }}
               >
                 {hero.title}
               </h1>
 
-              {/* Description */}
               <p
                 className="text-lg lg:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10 animate-slide-up"
                 style={{ animationDelay: "0.2s" }}
@@ -80,7 +76,6 @@ const HomePage = () => {
                 {hero.description}
               </p>
 
-              {/* Buttons */}
               <div
                 className="flex flex-wrap gap-4 justify-center mb-16 animate-slide-up"
                 style={{ animationDelay: "0.3s" }}
@@ -103,7 +98,6 @@ const HomePage = () => {
                 ))}
               </div>
 
-              {/* Stats Row - Centered */}
               <div
                 className="grid grid-cols-3 gap-8 max-w-2xl mx-auto animate-fade-in"
                 style={{ animationDelay: "0.4s" }}
@@ -123,12 +117,10 @@ const HomePage = () => {
           </div>
         </Container>
 
-        {/* Bottom Gradient Fade to White */}
         <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10"></div>
       </Section>
-      {/* ====================
-          2. FEATURED TREATMENTS
-      ==================== */}
+
+      {/* FEATURED TREATMENTS */}
       <Section background="white">
         <Container>
           <SectionHeader
@@ -140,7 +132,6 @@ const HomePage = () => {
             }}
           />
 
-          {/* Treatment Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredTreatments.treatments.map((treatment, index) => (
               <div
@@ -164,35 +155,29 @@ const HomePage = () => {
           </div>
         </Container>
       </Section>
-      {/* ====================
-          3. PHILOSOPHY SECTION - FIXED
-      ==================== */}
+
+      {/* PHILOSOPHY SECTION */}
       <Section background="surface">
         <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
 
         <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Image Side - FIXED */}
             <div className="relative order-2 lg:order-1">
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-elegant">
-                {/* Show image if src exists and has valid path, otherwise show placeholder */}
                 {philosophy.image.src &&
                 philosophy.image.src.length > 0 &&
                 !philosophy.image.placeholder?.show ? (
-                  // REAL IMAGE
                   <img
                     src={philosophy.image.src}
                     alt={philosophy.image.alt}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      // If image fails to load, hide it and show gradient
                       e.target.style.display = "none";
                       e.target.nextElementSibling.style.display = "block";
                     }}
                   />
                 ) : null}
 
-                {/* PLACEHOLDER GRADIENT (fallback) */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${philosophy.image.placeholder.gradient}`}
                   style={{
@@ -204,11 +189,9 @@ const HomePage = () => {
                   }}
                 />
 
-                {/* Decorative Frame */}
                 <div className="absolute inset-4 border-2 border-white/60 rounded-2xl" />
               </div>
 
-              {/* Floating Stats Card - Moved to bottom left to not cover image */}
               <div className="absolute -bottom-8 -left-8 w-64 bg-white rounded-2xl shadow-xl p-8 hidden lg:block">
                 <div className="text-center">
                   <div className="font-display text-5xl text-primary mb-2">
@@ -239,7 +222,6 @@ const HomePage = () => {
               </div>
             </div>
 
-            {/* Content Side */}
             <div className="space-y-8 order-1 lg:order-2">
               <div>
                 <span className="text-accent tracking-[0.3em] uppercase text-xs font-medium mb-4 block">
@@ -256,7 +238,6 @@ const HomePage = () => {
                 </p>
               </div>
 
-              {/* Feature List */}
               <ul className="space-y-4">
                 {philosophy.features.map((feature, i) => (
                   <li key={i} className="flex gap-4">
@@ -297,13 +278,17 @@ const HomePage = () => {
           </div>
         </Container>
       </Section>
-      {/* ====================
-          4. CTA SECTION
-      ==================== */}
+
+      {/* TESTIMONIALS SECTION - NEW */}
+      <TestimonialsSection />
+
+      {/* FAQ SECTION - NEW */}
+      <FAQSection />
+
+      {/* CTA SECTION */}
       <Section background="white">
         <Container>
           <div className="relative bg-gradient-to-br from-primary via-primary-dark to-accent text-white py-16 lg:py-24 px-8 lg:px-16 rounded-[2.5rem] shadow-elegant overflow-hidden">
-            {/* Decorative Elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full translate-x-1/3 -translate-y-1/3 blur-3xl" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/10 rounded-full -translate-x-1/3 translate-y-1/3 blur-3xl" />
 
@@ -333,11 +318,10 @@ const HomePage = () => {
                 ))}
               </div>
 
-              {/* Trust Indicators */}
               <div className="flex flex-wrap items-center justify-center gap-8 mt-12 pt-12 border-t border-white/20">
                 {cta.trustIndicators.map((item, i, arr) => (
-                  <>
-                    <div key={i} className="text-center">
+                  <React.Fragment key={i}>
+                    <div className="text-center">
                       <div className="text-white/70 text-xs uppercase tracking-widest mb-2">
                         {item.label}
                       </div>
@@ -346,7 +330,7 @@ const HomePage = () => {
                     {i < arr.length - 1 && (
                       <div className="w-px h-8 bg-white/20" />
                     )}
-                  </>
+                  </React.Fragment>
                 ))}
               </div>
             </div>
@@ -354,6 +338,184 @@ const HomePage = () => {
         </Container>
       </Section>
     </main>
+  );
+};
+
+// ==========================================
+// TESTIMONIALS SECTION COMPONENT
+// ==========================================
+const TestimonialsSection = () => {
+  const featuredTestimonials = getFeaturedTestimonials();
+  const navigate = useNavigate();
+
+  return (
+    <Section background="white" padding="default">
+      <Container>
+        <SectionHeader
+          title="What Our Clients Say"
+          description="Real experiences from real people who trusted us with their beauty journey."
+          align="center"
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {featuredTestimonials.slice(0, 3).map((testimonial, index) => (
+            <div
+              key={testimonial.id}
+              className="card card-hover p-8"
+              style={{
+                animation: "slideUp 0.5s ease-out backwards",
+                animationDelay: `${index * 0.1}s`,
+              }}
+            >
+              {/* Rating Stars */}
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <svg
+                    key={i}
+                    className="w-5 h-5 text-accent fill-current"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                ))}
+              </div>
+
+              {/* Quote */}
+              <p className="text-text-secondary text-sm leading-relaxed mb-6 italic">
+                "{testimonial.quote}"
+              </p>
+
+              {/* Client Info */}
+              <div className="flex items-center gap-3 pt-6 border-t border-border">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <span className="font-display text-lg text-primary">
+                    {testimonial.image.placeholder}
+                  </span>
+                </div>
+                <div>
+                  <div className="font-medium text-text-primary">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-xs text-text-muted">
+                    {testimonial.location} • {testimonial.treatment}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <button
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              navigate("/contact");
+            }}
+            className="text-primary font-medium text-sm uppercase tracking-wider hover:text-primary-dark transition-colors inline-flex items-center gap-2"
+          >
+            <span>Read More Reviews</span>
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
+      </Container>
+    </Section>
+  );
+};
+
+// ==========================================
+// FAQ SECTION COMPONENT
+// ==========================================
+const FAQSection = () => {
+  const generalFAQs = faqData.general.slice(0, 6);
+
+  return (
+    <Section background="surface" padding="default">
+      <Container size="small">
+        <SectionHeader
+          title="Frequently Asked Questions"
+          description="Find answers to common questions about our treatments and services."
+          align="center"
+        />
+
+        <div className="space-y-4">
+          {generalFAQs.map((faq, index) => (
+            <FAQItem key={faq.id} faq={faq} index={index} />
+          ))}
+        </div>
+
+        <div className="text-center mt-12 pt-8 border-t border-border">
+          <p className="text-text-muted mb-4">
+            Still have questions? We're here to help!
+          </p>
+          <Button to="/contact" variant="primary">
+            Contact Us
+          </Button>
+        </div>
+      </Container>
+    </Section>
+  );
+};
+
+// FAQ Item Component with Accordion
+const FAQItem = ({ faq, index }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <div
+      className="card border border-border hover:border-primary/20 transition-all"
+      style={{
+        animation: "slideUp 0.5s ease-out backwards",
+        animationDelay: `${index * 0.05}s`,
+      }}
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full text-left p-6 flex items-center justify-between gap-4"
+      >
+        <span className="font-medium text-text-primary pr-4">
+          {faq.question}
+        </span>
+        <svg
+          className={`w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+
+      <div
+        className={`overflow-hidden transition-all duration-300 ${
+          isOpen ? "max-h-96" : "max-h-0"
+        }`}
+      >
+        <div className="px-6 pb-6 pt-0">
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {faq.answer}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 

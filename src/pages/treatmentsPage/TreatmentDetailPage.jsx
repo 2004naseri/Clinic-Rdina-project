@@ -148,14 +148,15 @@ const TreatmentDetailPage = () => {
               </section>
 
               {/* How It Works */}
+              {/* ✅ FIXED VERSION */}
               {treatment.howItWorks && (
                 <section className="bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 rounded-3xl p-8 border border-primary/10">
                   <h2 className="text-3xl font-bold text-text-primary mb-6 flex items-center gap-3 font-display">
                     <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
-                    How It Works
+                    {treatment.howItWorks.title || "How It Works"}
                   </h2>
                   <p className="text-text-secondary leading-relaxed text-lg">
-                    {treatment.howItWorks}
+                    {treatment.howItWorks.description}
                   </p>
                 </section>
               )}
