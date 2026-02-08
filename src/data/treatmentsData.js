@@ -167,7 +167,7 @@ export const treatmentsData = {
         "Non-surgical rhinoplasty is one of the most advanced and popular non-invasive methods for reshaping the nose. Using precise dermal filler injections, this treatment helps you achieve a more balanced, smoother, and harmonized nasal appearance in a short period — all without surgery, anesthesia, or downtime.",
 
       image: {
-        src: "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800&q=80",
+        src: "/images/surgecal.png",
         alt: "Non-surgical rhinoplasty",
         placeholder: "N",
       },
@@ -267,7 +267,7 @@ export const treatmentsData = {
         "Dermal fillers are among the most effective and popular non-surgical aesthetic treatments worldwide. They can restore lost volume, smooth wrinkles, and redefine facial contours — all without surgery, anesthesia, or prolonged downtime. Dermal fillers are widely used in top UK clinics and are recognized for their safety, efficacy, and natural-looking results.",
 
       image: {
-        src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
+        src: "/images/DermalFillers.webp",
         alt: "Dermal fillers treatment",
         placeholder: "D",
       },
@@ -368,7 +368,7 @@ export const treatmentsData = {
         "Skin Boosters are one of the most advanced non-surgical skin rejuvenation treatments, designed to deliver deep hydration, restore elasticity, and enhance the overall radiance of the skin. Using precise micro-injections, this treatment revitalizes the skin, leaving it smoother, healthier, and visibly younger.",
 
       image: {
-        src: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80",
+        src: "/images/SkinBoosters.jpeg",
         alt: "Skin boosters treatment",
         placeholder: "S",
       },
@@ -467,7 +467,7 @@ export const treatmentsData = {
         "Mesotherapy is an advanced non-surgical aesthetic treatment designed to rejuvenate the skin and body through precise micro-injections of vitamins, hyaluronic acid, and active nutrients. This treatment helps to restore vitality, reduce localized fat, improve skin quality, and combat signs of aging.",
 
       image: {
-        src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
+        src: "/images/Mesotherapy.jpg",
         alt: "Mesotherapy treatment",
         placeholder: "M",
       },
@@ -567,7 +567,7 @@ export const treatmentsData = {
         "Lemon Bottle Fat Dissolving is an innovative, non-surgical method for targeted fat reduction. Using precise micro-injections of specialized solutions, this treatment helps eliminate stubborn fat deposits resistant to diet and exercise while enhancing the shape and contour of the body naturally.",
 
       image: {
-        src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
+        src: "/images/lemon.webp",
         alt: "Fat dissolving treatment",
         placeholder: "L",
       },
@@ -666,7 +666,7 @@ export const treatmentsData = {
         "Vitamin Therapy is a non-surgical, professional treatment designed to rejuvenate and nourish the skin. Using precise micro-injections, essential vitamins, antioxidants, and nutrients are delivered directly into the skin to restore cellular energy, radiance, and vitality.",
 
       image: {
-        src: "https://images.unsplash.com/photo-1556228852-80c996b57f9e?w=800&q=80",
+        src: "/images/vitamine.webp",
         alt: "Vitamin therapy treatment",
         placeholder: "V",
       },

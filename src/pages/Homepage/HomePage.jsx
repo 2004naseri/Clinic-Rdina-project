@@ -1,6 +1,6 @@
 // src/pages/HomePage.jsx
 // ========================================
-// HOMEPAGE - UPDATED WITH TESTIMONIALS + FAQ
+// HOMEPAGE - PULLS TREATMENTS FROM treatmentsData.js
 // ========================================
 
 import React from "react";
@@ -14,12 +14,24 @@ import {
   CalendarIcon,
 } from "../../components/ui";
 import homePageData from "../../data/homePageData";
+import { getFeaturedTreatments } from "../../data/treatmentsData"; // ← Import from treatmentsData
 import { getFeaturedTestimonials } from "../../data/Testimonialsdata";
 import faqData from "../../data/faqData";
 
 const HomePage = () => {
-  const { hero, featuredTreatments, philosophy, cta } = homePageData;
+  const {
+    hero,
+    featuredTreatments: featuredConfig,
+    philosophy,
+    cta,
+  } = homePageData;
   const navigate = useNavigate();
+
+  // Get REAL featured treatments from treatmentsData.js
+  const featuredTreatments = getFeaturedTreatments().slice(
+    0,
+    featuredConfig.displayLimit || 3
+  );
 
   function handleClick(path) {
     window.scrollTo({
@@ -120,20 +132,20 @@ const HomePage = () => {
         <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10"></div>
       </Section>
 
-      {/* FEATURED TREATMENTS */}
+      {/* FEATURED TREATMENTS - NOW USING REAL DATA */}
       <Section background="white">
         <Container>
           <SectionHeader
-            title={featuredTreatments.title}
-            description={featuredTreatments.description}
+            title={featuredConfig.title}
+            description={featuredConfig.description}
             action={{
-              label: featuredTreatments.viewAllLink.text,
-              link: featuredTreatments.viewAllLink.link,
+              label: featuredConfig.viewAllLink.text,
+              link: featuredConfig.viewAllLink.link,
             }}
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredTreatments.treatments.map((treatment, index) => (
+            {featuredTreatments.map((treatment, index) => (
               <div
                 key={treatment.id}
                 style={{
@@ -144,9 +156,9 @@ const HomePage = () => {
                 <Card
                   image={treatment.image}
                   badge={treatment.badge}
-                  title={treatment.title}
-                  description={treatment.description}
-                  link={treatment.link}
+                  title={treatment.name}
+                  description={treatment.shortDescription}
+                  link={`/treatments/${treatment.id}`} // ← FIXED: Now goes to specific treatment
                   linkText="Learn More"
                   imageHeight="h-72"
                 />
@@ -279,10 +291,10 @@ const HomePage = () => {
         </Container>
       </Section>
 
-      {/* TESTIMONIALS SECTION - NEW */}
+      {/* TESTIMONIALS SECTION */}
       <TestimonialsSection />
 
-      {/* FAQ SECTION - NEW */}
+      {/* FAQ SECTION */}
       <FAQSection />
 
       {/* CTA SECTION */}

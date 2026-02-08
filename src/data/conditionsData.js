@@ -35,7 +35,7 @@ export const conditionsData = {
       longDescription:
         "Our comprehensive acne treatment program combines professional treatments, medical-grade products, and personalized skincare routines to clear existing breakouts and prevent future acne formation.",
       image: {
-        src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+        src: "/images/acne.jpeg",
         alt: "Acne treatment",
         placeholder: "A",
       },
@@ -54,6 +54,8 @@ export const conditionsData = {
         "Oily skin",
       ],
     },
+
+    // second 2 Wrinkles
     {
       id: "wrinkles",
       name: "Fine Lines & Wrinkles",
@@ -62,7 +64,7 @@ export const conditionsData = {
       longDescription:
         "Combat fine lines and wrinkles with our range of proven anti-aging treatments including Botox, dermal fillers, laser resurfacing, and collagen-stimulating therapies.",
       image: {
-        src: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80",
+        src: "/images/wrinkless.webp",
         alt: "Anti-aging treatment",
         placeholder: "W",
       },
@@ -81,6 +83,7 @@ export const conditionsData = {
         "Loss of volume",
       ],
     },
+    // pigmentation 3 condition
     {
       id: "pigmentation",
       name: "Pigmentation & Dark Spots",
@@ -89,7 +92,7 @@ export const conditionsData = {
       longDescription:
         "Our pigmentation treatments target dark spots, melasma, sun damage, and uneven skin tone using advanced laser technology and medical-grade products.",
       image: {
-        src: "https://images.unsplash.com/photo-1598885159329-9377168ac375?w=800&q=80",
+        src: "/images/darkspot.webp",
         alt: "Pigmentation treatment",
         placeholder: "P",
       },
@@ -103,6 +106,7 @@ export const conditionsData = {
       ],
       symptoms: ["Dark spots", "Melasma", "Sun damage", "Uneven skin tone"],
     },
+    //
     {
       id: "scarring",
       name: "Acne Scars & Scarring",
@@ -111,7 +115,7 @@ export const conditionsData = {
       longDescription:
         "Advanced scar treatment options including microneedling, laser therapy, and dermal fillers help reduce the appearance of acne scars and improve skin texture.",
       image: {
-        src: "https://images.unsplash.com/photo-1617897903655-d2c7685eea01?w=800&q=80",
+        src: "/images/scars.webp",
         alt: "Scar treatment",
         placeholder: "S",
       },
@@ -165,7 +169,7 @@ export const conditionsData = {
       longDescription:
         "Repair and reverse the effects of sun exposure with treatments that target pigmentation, texture issues, and premature aging caused by UV damage.",
       image: {
-        src: "https://images.unsplash.com/photo-1580870069867-74c57ee60d19?w=800&q=80",
+        src: "/images/sun.jpg",
         alt: "Sun damage treatment",
         placeholder: "S",
       },
@@ -324,7 +328,7 @@ export const conditionsData = {
     buttonText: "Schedule Consultation",
     buttonLink: "/contact",
     image: {
-      src: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80",
+      src: "/images/boss.jpg",
       alt: "Free consultation",
     },
   },

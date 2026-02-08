@@ -1,8 +1,9 @@
 // src/data/homePageData.js
 // ========================================
-// HOMEPAGE DATA - Easy to Edit!
+// HOMEPAGE DATA - UPDATED (No Duplicate Treatment Data)
 // ========================================
 // All text, images, and content for the homepage in ONE place
+// NOTE: Featured treatments are now pulled from treatmentsData.js
 
 export const homePageData = {
   // ==================
@@ -50,8 +51,10 @@ export const homePageData = {
   },
 
   // ==================
-  // FEATURED TREATMENTS
+  // FEATURED TREATMENTS SECTION CONFIG
   // ==================
+  // NOTE: Actual treatment data comes from treatmentsData.js
+  // This section just controls the heading and layout
   featuredTreatments: {
     badge: "Our Services",
     title: "Our Signature Treatments",
@@ -61,47 +64,8 @@ export const homePageData = {
       text: "View All Treatments",
       link: "/treatments",
     },
-    // Treatment Cards
-    treatments: [
-      {
-        id: 1,
-        title: "Facial Rejuvenation",
-        description:
-          "Advanced facial treatments to restore youthful glow and reduce signs of aging with proven medical techniques.",
-        image: {
-          src: "/images/face.avif", // 👈 REPLACE with your image
-          alt: "Facial rejuvenation treatment",
-          placeholder: "F", // Letter to show if no image
-        },
-        link: "/treatments",
-        badge: "Popular", // Optional
-      },
-      {
-        id: 2,
-        title: "Laser Therapy",
-        description:
-          "State-of-the-art laser treatments for skin resurfacing, pigmentation, and texture improvement.",
-        image: {
-          src: "/images/leser.jpg", // 👈 REPLACE with your image
-          alt: "Laser therapy treatment",
-          placeholder: "L",
-        },
-        link: "/treatments",
-        badge: "New", // Optional
-      },
-      {
-        id: 3,
-        title: "Skincare Solutions",
-        description:
-          "Customized skincare routines and medical-grade products for lasting results and healthy skin.",
-        image: {
-          src: "/images/skinCare.webp", // 👈 REPLACE with your image
-          alt: "Professional skincare solutions",
-          placeholder: "S",
-        },
-        link: "/treatments",
-      },
-    ],
+    // How many featured treatments to show on homepage
+    displayLimit: 3,
   },
 
   // ==================

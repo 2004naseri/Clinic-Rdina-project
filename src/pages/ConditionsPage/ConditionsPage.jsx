@@ -97,7 +97,7 @@ const ConditionsPage = () => {
                     image={condition.image}
                     title={condition.name}
                     description={condition.shortDescription}
-                    // link={`/conditions/${condition.id}`}
+                    link={`/conditions/${condition.id}`} // ← UNCOMMENTED!
                     linkText="View Solutions"
                     imageHeight="h-64"
                   />

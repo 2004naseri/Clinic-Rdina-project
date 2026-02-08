@@ -15,6 +15,7 @@ import SkinShopPage from "./pages/SkinShopPage/SkinShopPage ";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import TreatmentDetailPage from "./pages/treatmentsPage/TreatmentDetailPage";
+import ConditionDetailPage from "./pages/ConditionsPage/ConditionDetailPage";
 
 // Loader component
 const Loader = () => {
@@ -46,6 +47,10 @@ function AppRouters() {
         {
           path: "/conditions",
           element: <ConditionsPage />,
+        },
+        {
+          path: "/conditions/:conditionId", // ← NEW ROUTE FOR CONDITION DETAILS
+          element: <ConditionDetailPage />,
         },
         {
           path: "/packages",
