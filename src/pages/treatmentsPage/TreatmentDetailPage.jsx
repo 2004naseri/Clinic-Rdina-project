@@ -1,13 +1,15 @@
 // src/pages/TreatmentDetailPage/TreatmentDetailPage.jsx
 // ========================================
-// ENHANCED TREATMENT DETAIL PAGE - READY TO USE
-// Just COPY this entire file and REPLACE your existing TreatmentDetailPage.jsx
+// COMPLETE TREATMENT DETAIL PAGE
+// ALL data pulled from treatmentsData.js - NO hardcoded text
+// Compact before/after gallery
+// READY TO COPY & PASTE
 // ========================================
 
 import React, { useState } from "react";
 import { useParams, Navigate, useNavigate } from "react-router-dom";
 import { Section, Container, Button } from "../../components/ui";
-import { getTreatmentById } from "../../data/treatmentsData";
+import { getTreatmentById, treatmentsData } from "../../data/treatmentsData";
 import {
   ArrowLeft,
   Clock,
@@ -21,8 +23,6 @@ import {
   Award,
   Shield,
   Users,
-  TrendingUp,
-  Zap,
 } from "lucide-react";
 
 const TreatmentDetailPage = () => {
@@ -42,8 +42,7 @@ const TreatmentDetailPage = () => {
       {/* HERO SECTION */}
       <div className="relative h-[70vh] min-h-[600px] overflow-hidden">
         <div className="absolute inset-0">
-          {treatment.image.src &&
-          !treatment.image.src.includes("placeholder") ? (
+          {treatment.image.src ? (
             <>
               <img
                 src={treatment.image.src}
@@ -84,7 +83,6 @@ const TreatmentDetailPage = () => {
             <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight font-display">
               {treatment.name}
             </h1>
-
             <p className="text-xl text-white/90 leading-relaxed mb-8">
               {treatment.shortDescription}
             </p>
@@ -116,38 +114,57 @@ const TreatmentDetailPage = () => {
         </div>
       </div>
 
-      {/* TRUST BADGES - NEW SECTION */}
+      {/* TRUST BADGES FROM DATA */}
       <Section background="transparent" padding="default">
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 -mt-12">
-            {[
-              { icon: Award, label: "CPD Certified", color: "text-accent" },
-              { icon: Shield, label: "Safe & Approved", color: "text-primary" },
-              { icon: Users, label: "5000+ Clients", color: "text-secondary" },
-              { icon: Star, label: "98% Satisfaction", color: "text-accent" },
-            ].map((badge, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center gap-3 p-6 bg-white rounded-2xl border border-primary/10 hover:border-primary/30 transition-all shadow-lg"
-              >
-                <badge.icon className={`w-8 h-8 ${badge.color}`} />
-                <span className="text-sm font-medium text-text-primary text-center">
-                  {badge.label}
-                </span>
-              </div>
-            ))}
+            {treatmentsData.trustBadges.map((badge, i) => {
+              const IconComponent = {
+                award: Award,
+                shield: Shield,
+                users: Users,
+                star: Star,
+              }[badge.icon];
+
+              return (
+                <div
+                  key={i}
+                  className="flex flex-col items-center gap-3 p-6 bg-white rounded-2xl border border-primary/10 hover:border-primary/30 transition-all shadow-lg"
+                >
+                  <IconComponent className="w-8 h-8 text-primary" />
+                  <span className="text-sm font-medium text-text-primary text-center">
+                    {badge.label}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </Container>
       </Section>
 
-      {/* BEFORE/AFTER GALLERY - NEW INTERACTIVE SECTION */}
-      <BeforeAfterGallery treatment={treatment} />
+      {/* COMPACT BEFORE/AFTER GALLERY FROM DATA */}
+      {treatment.beforeAfterGallery && (
+        <Section background="white" padding="default">
+          <Container>
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-text-primary mb-2 font-display">
+                {treatment.beforeAfterGallery.title}
+              </h2>
+              <p className="text-text-secondary">
+                {treatment.beforeAfterGallery.description}
+              </p>
+            </div>
+
+            <CompactBeforeAfterGallery gallery={treatment.beforeAfterGallery} />
+          </Container>
+        </Section>
+      )}
 
       {/* MAIN CONTENT */}
       <Section background="transparent" padding="default">
         <Container>
           <div className="grid lg:grid-cols-3 gap-12">
-            {/* Left Column - Main Content */}
+            {/* Left Column */}
             <div className="lg:col-span-2 space-y-12">
               {/* Overview */}
               <section>
@@ -155,18 +172,9 @@ const TreatmentDetailPage = () => {
                   <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
                   Overview
                 </h2>
-                <div className="prose prose-lg max-w-none text-text-secondary leading-relaxed space-y-4">
-                  {treatment.longDescription
-                    .split("\n\n")
-                    .map((paragraph, i) => (
-                      <p
-                        key={i}
-                        className="text-text-secondary leading-relaxed"
-                      >
-                        {paragraph}
-                      </p>
-                    ))}
-                </div>
+                <p className="text-text-secondary leading-relaxed text-lg">
+                  {treatment.longDescription}
+                </p>
               </section>
 
               {/* How It Works */}
@@ -174,10 +182,10 @@ const TreatmentDetailPage = () => {
                 <section className="bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 rounded-3xl p-8 border border-primary/10">
                   <h2 className="text-3xl font-bold text-text-primary mb-6 flex items-center gap-3 font-display">
                     <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
-                    How It Works
+                    {treatment.howItWorks.title}
                   </h2>
                   <p className="text-text-secondary leading-relaxed text-lg">
-                    {treatment.howItWorks.description || treatment.howItWorks}
+                    {treatment.howItWorks.description}
                   </p>
                 </section>
               )}
@@ -193,7 +201,7 @@ const TreatmentDetailPage = () => {
                     {treatment.treatmentAreas.map((area, i) => (
                       <div
                         key={i}
-                        className="flex items-start gap-3 p-4 bg-white rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all duration-300"
+                        className="flex items-start gap-3 p-4 bg-white rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all"
                       >
                         <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                         <span className="text-text-secondary">{area}</span>
@@ -237,11 +245,7 @@ const TreatmentDetailPage = () => {
                     {treatment.faqs.map((faq, i) => (
                       <div
                         key={i}
-                        className="bg-white rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
-                        style={{
-                          animation: "slideUp 0.5s ease-out backwards",
-                          animationDelay: `${i * 0.1}s`,
-                        }}
+                        className="bg-white rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg transition-all"
                       >
                         <h3 className="text-xl font-bold text-text-primary mb-3 font-display">
                           {faq.question}
@@ -256,9 +260,8 @@ const TreatmentDetailPage = () => {
               )}
             </div>
 
-            {/* Right Column - Sidebar */}
+            {/* Right Sidebar - FROM DATA */}
             <div className="space-y-6">
-              {/* Booking Card */}
               <div className="sticky top-24 bg-gradient-to-br from-primary to-accent rounded-3xl p-8 text-white shadow-2xl">
                 <h3 className="text-2xl font-bold mb-6 font-display">
                   Treatment Information
@@ -289,7 +292,6 @@ const TreatmentDetailPage = () => {
                     </div>
                   )}
                 </div>
-
                 <Button
                   to="/contact"
                   variant="secondary"
@@ -300,25 +302,18 @@ const TreatmentDetailPage = () => {
                 >
                   Book This Treatment
                 </Button>
-
                 <p className="text-center text-white/80 text-sm">
                   Free consultation included
                 </p>
               </div>
 
-              {/* Why Choose Us */}
+              {/* Why Choose Us - FROM DATA */}
               <div className="bg-white rounded-3xl p-8 border border-border shadow-lg">
                 <h3 className="text-xl font-bold text-text-primary mb-6 font-display">
                   Why Choose Radina?
                 </h3>
                 <ul className="space-y-4">
-                  {[
-                    "CPD-certified specialists",
-                    "Premium, approved products",
-                    "Natural-looking results",
-                    "Safe, professional environment",
-                    "Personalized consultations",
-                  ].map((item, i) => (
+                  {treatmentsData.whyChooseUs.map((item, i) => (
                     <li key={i} className="flex items-center gap-3">
                       <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
                       <span className="text-text-secondary">{item}</span>
@@ -327,30 +322,34 @@ const TreatmentDetailPage = () => {
                 </ul>
               </div>
 
-              {/* Contact Info */}
+              {/* Contact - FROM DATA */}
               <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-8 border border-primary/10">
                 <h3 className="text-xl font-bold text-text-primary mb-4 font-display">
-                  Have Questions?
+                  {treatmentsData.sidebarContact.title}
                 </h3>
                 <p className="text-text-secondary mb-6">
-                  Our team is here to help you understand your options.
+                  {treatmentsData.sidebarContact.description}
                 </p>
                 <div className="space-y-3">
                   <a
-                    href="tel:+447795976868"
+                    href={treatmentsData.sidebarContact.phone.link}
                     className="flex items-center gap-3 text-primary hover:text-primary-dark transition-colors"
                   >
                     <Phone className="w-5 h-5" />
-                    <span className="font-medium">07795 976868</span>
+                    <span className="font-medium">
+                      {treatmentsData.sidebarContact.phone.display}
+                    </span>
                   </a>
                   <a
-                    href="https://wa.me/447882244808"
+                    href={treatmentsData.sidebarContact.whatsapp.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-primary hover:text-primary-dark transition-colors"
                   >
                     <MessageCircle className="w-5 h-5" />
-                    <span className="font-medium">WhatsApp Us</span>
+                    <span className="font-medium">
+                      {treatmentsData.sidebarContact.whatsapp.display}
+                    </span>
                   </a>
                 </div>
               </div>
@@ -359,7 +358,7 @@ const TreatmentDetailPage = () => {
         </Container>
       </Section>
 
-      {/* CTA SECTION */}
+      {/* CTA - FROM DATA */}
       <Section background="primary" padding="default">
         <Container>
           <div className="max-w-4xl mx-auto text-center text-white">
@@ -390,39 +389,14 @@ const TreatmentDetailPage = () => {
 };
 
 // ==========================================
-// BEFORE/AFTER GALLERY COMPONENT - NEW
+// COMPACT BEFORE/AFTER GALLERY COMPONENT
 // ==========================================
-const BeforeAfterGallery = ({ treatment }) => {
+const CompactBeforeAfterGallery = ({ gallery }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
 
-  // Placeholder images - replace with real ones later
-  const beforeAfterImages = [
-    {
-      before:
-        "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80",
-      after:
-        "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=600&q=80",
-      label: "After 1 week",
-    },
-    {
-      before:
-        "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80",
-      after:
-        "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80",
-      label: "After 2 weeks",
-    },
-    {
-      before:
-        "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&q=80",
-      after:
-        "https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?w=600&q=80",
-      label: "After 4 weeks",
-    },
-  ];
-
-  const active = beforeAfterImages[activeIndex];
+  const active = gallery.images[activeIndex];
 
   const handleMove = (e) => {
     if (!isDragging && e.type !== "mousemove") return;
@@ -437,99 +411,88 @@ const BeforeAfterGallery = ({ treatment }) => {
   };
 
   return (
-    <Section background="white" padding="default">
-      <Container>
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-text-primary mb-4 font-display">
-            Real Results
-          </h2>
-          <p className="text-text-secondary">
-            See the amazing transformations our clients have achieved
-          </p>
-        </div>
+    <div>
+      {/* Main Slider - Compact */}
+      <div className="max-w-2xl mx-auto mb-6">
+        <div
+          className="relative aspect-video rounded-xl overflow-hidden shadow-xl select-none"
+          onMouseMove={handleMove}
+          onMouseDown={() => setIsDragging(true)}
+          onMouseUp={() => setIsDragging(false)}
+          onMouseLeave={() => setIsDragging(false)}
+          onTouchMove={handleMove}
+          onTouchStart={() => setIsDragging(true)}
+          onTouchEnd={() => setIsDragging(false)}
+        >
+          <img
+            src={active.after}
+            alt="After"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
 
-        {/* Main Before/After Slider */}
-        <div className="max-w-4xl mx-auto mb-12">
           <div
-            className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl select-none"
-            onMouseMove={handleMove}
-            onMouseDown={() => setIsDragging(true)}
-            onMouseUp={() => setIsDragging(false)}
-            onMouseLeave={() => setIsDragging(false)}
-            onTouchMove={handleMove}
-            onTouchStart={() => setIsDragging(true)}
-            onTouchEnd={() => setIsDragging(false)}
+            className="absolute inset-0 overflow-hidden"
+            style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
           >
             <img
-              src={active.after}
-              alt="After"
+              src={active.before}
+              alt="Before"
               className="absolute inset-0 w-full h-full object-cover"
             />
+          </div>
 
-            <div
-              className="absolute inset-0 overflow-hidden"
-              style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
-            >
-              <img
-                src={active.before}
-                alt="Before"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </div>
-
-            <div
-              className="absolute inset-y-0 w-1 bg-white cursor-ew-resize z-10"
-              style={{ left: `${sliderPosition}%` }}
-            >
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center">
-                <div className="flex gap-1">
-                  <div className="w-0.5 h-4 bg-primary"></div>
-                  <div className="w-0.5 h-4 bg-primary"></div>
-                </div>
+          <div
+            className="absolute inset-y-0 w-1 bg-white cursor-ew-resize z-10"
+            style={{ left: `${sliderPosition}%` }}
+          >
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
+              <div className="flex gap-0.5">
+                <div className="w-0.5 h-3 bg-primary"></div>
+                <div className="w-0.5 h-3 bg-primary"></div>
               </div>
             </div>
+          </div>
 
-            <div className="absolute top-4 left-4 px-4 py-2 bg-black/50 backdrop-blur-sm text-white rounded-full text-sm font-medium">
-              Before
-            </div>
-            <div className="absolute top-4 right-4 px-4 py-2 bg-black/50 backdrop-blur-sm text-white rounded-full text-sm font-medium">
-              After
-            </div>
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-6 py-3 bg-black/70 backdrop-blur-sm text-white rounded-full text-sm font-medium">
-              {active.label}
-            </div>
+          <div className="absolute top-3 left-3 px-3 py-1 bg-black/60 backdrop-blur-sm text-white rounded-full text-xs font-medium">
+            Before
+          </div>
+          <div className="absolute top-3 right-3 px-3 py-1 bg-black/60 backdrop-blur-sm text-white rounded-full text-xs font-medium">
+            After
+          </div>
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/70 backdrop-blur-sm text-white rounded-full text-sm font-medium">
+            {active.label}
           </div>
         </div>
+      </div>
 
-        {/* Thumbnails */}
-        <div className="flex justify-center gap-4 flex-wrap">
-          {beforeAfterImages.map((img, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                setActiveIndex(i);
-                setSliderPosition(50);
-              }}
-              className={`w-24 h-24 rounded-lg overflow-hidden border-4 transition-all ${
-                activeIndex === i
-                  ? "border-primary scale-105"
-                  : "border-transparent opacity-60 hover:opacity-100"
-              }`}
-            >
-              <img
-                src={img.after}
-                alt={img.label}
-                className="w-full h-full object-cover"
-              />
-            </button>
-          ))}
-        </div>
+      {/* Thumbnails - Compact */}
+      <div className="flex justify-center gap-3">
+        {gallery.images.map((img, i) => (
+          <button
+            key={i}
+            onClick={() => {
+              setActiveIndex(i);
+              setSliderPosition(50);
+            }}
+            className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+              activeIndex === i
+                ? "border-primary scale-110"
+                : "border-border opacity-60 hover:opacity-100"
+            }`}
+          >
+            <img
+              src={img.after}
+              alt={img.label}
+              className="w-full h-full object-cover"
+            />
+          </button>
+        ))}
+      </div>
 
-        <p className="text-center text-sm text-text-muted mt-8 italic">
-          * Results may vary. Individual results depend on various factors.
-        </p>
-      </Container>
-    </Section>
+      <p className="text-center text-xs text-text-muted mt-4 italic">
+        {gallery.disclaimer}
+      </p>
+    </div>
   );
 };
 

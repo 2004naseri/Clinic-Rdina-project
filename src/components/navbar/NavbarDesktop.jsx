@@ -58,7 +58,9 @@ import { navigationItems, ctaConfig } from "../../data/navbarData";
 
 const NavbarDesktop = () => {
   const location = useLocation();
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) =>
+    location.pathname === path || location.pathname.startsWith(path + "/");
+
   const navigate = useNavigate();
   function handleClick(path) {
     window.scrollTo({

@@ -133,7 +133,8 @@ const NavbarMobile = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) =>
+    location.pathname === path || location.pathname.startsWith(path + "/");
 
   // Close menu on route change
   useEffect(() => setIsOpen(false), [location]);
