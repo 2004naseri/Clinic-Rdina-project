@@ -1,113 +1,81 @@
 // src/data/contactData.js
 // ========================================
-// CONTACT DATA - UPDATED WITH REAL INFO
+// CONTACT DATA
+// Social links & phone numbers live in siteConfig.js
 // ========================================
+import { social, phones, whatsapp, hours } from "./siteConfig";
 
 export const contactData = {
-  // ==================
-  // PAGE HERO
-  // ==================
   hero: {
     badge: "Get In Touch",
     title: "Book Your Consultation",
     description:
-      "Ready to begin your beauty journey? Contact us today to schedule your complimentary consultation with our expert team.",
+      "Ready to begin your journey? Contact us to schedule your complimentary consultation with Dr. Hussaini.",
     image: {
       src: "/images/room.webp",
       alt: "Contact Radina Clinic",
-      placeholder: {
-        show: false,
-        gradient: "from-primary/20 via-accent/10 to-secondary/20",
-      },
     },
   },
 
-  // ==================
-  // CONTACT INFO - UPDATED
-  // ==================
   contactInfo: {
-    // Primary phone number
     phone: {
-      display: "07795 976868",
-      link: "tel:+447795976868",
-      available: "Mon-Fri: 9AM-6PM, Sat: 10AM-4PM",
+      display: phones.primary.display,
+      link: phones.primary.link,
+      available: "Mon–Fri: 9AM–6PM, Sat: 10AM–4PM",
     },
-
-    // WhatsApp number
     whatsapp: {
-      display: "07882 244808",
-      link: "https://wa.me/447882244808",
-      available: "Mon-Sat: 9AM-6PM",
+      display: whatsapp.display,
+      link: whatsapp.messageLink,
+      available: whatsapp.available,
     },
-
-    // Additional phone numbers
     additionalPhones: [
       {
-        display: "07990 348048",
-        link: "tel:+447990348048",
-        label: "Alternative Contact",
+        display: phones.alternative.display,
+        link: phones.alternative.link,
+        label: phones.alternative.label,
       },
     ],
-
     email: {
       display: "info@radinaclinic.com",
       link: "mailto:info@radinaclinic.com",
-      response: "Within 24 hours",
+      response: "within 24 hours",
     },
-
-    // Location - Single listing for London & Leeds
     address: {
-      city: "London & Leeds",
-      country: "United Kingdom",
       fullAddress: "London & Leeds, United Kingdom",
       mapLink: "https://maps.google.com",
     },
-
-    // Opening hours
-    hours: {
-      weekdays: "Monday - Friday: 09:00 - 18:00",
-      saturday: "Saturday: 10:00 - 16:00",
-      sunday: "Sunday: Closed",
-    },
+    hours,
   },
 
-  // ==================
-  // SOCIAL MEDIA - UPDATED
-  // ==================
-  socialMedia: [
+  socialMedia: social,
+
+  quickActions: [
     {
-      id: "instagram",
-      platform: "Instagram",
-      url: "https://instagram.com/RadinaAesthetic",
-      handle: "@RadinaAesthetic",
-      icon: "instagram",
-    },
-    {
-      id: "facebook",
-      platform: "Facebook",
-      url: "https://facebook.com/radinaclinic",
-      handle: "RadinaClinic",
-      icon: "facebook",
+      id: "call",
+      title: "Call Us",
+      description: "Speak with our team directly",
+      icon: "phone",
+      action: phones.primary.link,
+      buttonText: "Call Now",
     },
     {
       id: "whatsapp",
-      platform: "WhatsApp",
-      url: "https://wa.me/447882244808",
-      handle: "07882 244808",
+      title: "WhatsApp",
+      description: "Chat with us instantly",
       icon: "whatsapp",
+      action: whatsapp.messageLink,
+      buttonText: "Message Us",
     },
     {
-      id: "tiktok",
-      platform: "TikTok",
-      url: "https://tiktok.com/@radinaclinic",
-      handle: "@radinaclinic",
-      icon: "tiktok",
+      id: "email",
+      title: "Email Us",
+      description: "Send us your questions",
+      icon: "email",
+      action: "mailto:info@radinaclinic.com",
+      buttonText: "Send Email",
     },
   ],
 
-  // ==================
-  // FORM FIELDS
-  // ==================
   formFields: {
     name: {
       label: "Full Name",
@@ -163,94 +131,57 @@ export const contactData = {
       type: "select",
       required: false,
       options: [
-        "Morning (9AM - 12PM)",
-        "Afternoon (12PM - 4PM)",
-        "Evening (4PM - 6PM)",
+        "Morning (9AM – 12PM)",
+        "Afternoon (12PM – 4PM)",
+        "Evening (4PM – 6PM)",
       ],
     },
     message: {
       label: "Message (Optional)",
-      placeholder: "Tell us about your concerns or questions...",
+      placeholder: "Tell us about your concerns…",
       type: "textarea",
       required: false,
       rows: 4,
     },
   },
 
-  // ==================
-  // QUICK ACTIONS
-  // ==================
-  quickActions: [
-    {
-      id: "call",
-      title: "Call Us",
-      description: "Speak with our team directly",
-      icon: "phone",
-      action: "tel:+447795976868",
-      buttonText: "Call Now",
-    },
-    {
-      id: "whatsapp",
-      title: "WhatsApp",
-      description: "Chat with us on WhatsApp",
-      icon: "whatsapp",
-      action:
-        "https://wa.me/447882244808?text=Hello,%20I%20would%20like%20to%20book%20a%20consultation",
-      buttonText: "Message Us",
-    },
-    {
-      id: "email",
-      title: "Email Us",
-      description: "Send us your questions",
-      icon: "email",
-      action: "mailto:info@radinaclinic.com",
-      buttonText: "Send Email",
-    },
-  ],
-
-  // ==================
-  // FAQ
-  // ==================
   faqs: [
     {
       id: 1,
       question: "Do I need an appointment?",
       answer:
-        "Yes, we operate by appointment only to ensure personalized attention for each client. Walk-ins are welcome based on availability.",
+        "Yes, we operate by appointment only to ensure personalised attention. Walk-ins are welcome based on availability.",
     },
     {
       id: 2,
       question: "Is the consultation free?",
       answer:
-        "Yes! Your first consultation is completely complimentary. We'll assess your skin, discuss your goals, and recommend treatments.",
+        "Yes — your first consultation is completely complimentary. Dr. Hussaini will assess your skin and discuss your goals with no obligation.",
     },
     {
       id: 3,
       question: "Where are you located?",
       answer:
-        "We serve clients in both London and Leeds. When booking, you can specify your preferred location and we'll arrange the appointment accordingly.",
+        "We serve clients in both London and Leeds. Specify your preferred location when booking and we'll arrange accordingly.",
     },
     {
       id: 4,
-      question: "What should I bring to my appointment?",
+      question: "What should I bring?",
       answer:
-        "Just bring yourself! If you have any medical history or are on medications, please inform us during booking.",
+        "Just yourself. If you have medical history or are on medications, please let us know at the time of booking.",
     },
     {
       id: 5,
       question: "Do you offer payment plans?",
       answer:
-        "Yes, we offer flexible payment options for treatment packages. Ask about our payment plans during your consultation.",
+        "Yes — flexible payment options are available for treatment packages. Ask during your consultation.",
     },
   ],
 
-  // ==================
-  // FORM SUCCESS
-  // ==================
   formSuccess: {
     title: "Thank You!",
     message:
-      "We've received your consultation request. Our team will contact you within 24 hours to confirm your appointment.",
+      "We've received your request. Dr. Hussaini's team will contact you within 24 hours to confirm your appointment.",
     buttonText: "Back to Home",
   },
 };

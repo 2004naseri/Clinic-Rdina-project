@@ -1,20 +1,15 @@
-// src/pages/HomePage.jsx
-// ========================================
-// HOMEPAGE - PULLS TREATMENTS FROM treatmentsData.js
-// ========================================
+// src/pages/Homepage/HomePage.jsx
+// ═══════════════════════════════════════════════════════
+// HOMEPAGE  —  Radina Aesthetic Brand
+// Palette: secondary (#430568) · primary (#b17bbc) · accent (#d4a574)
+// Fonts: font-display (Cormorant Garamond) · font-body (Montserrat)
+// Sections: Hero → Featured Treatments → Philosophy → Testimonials → FAQ → CTA
+// ═══════════════════════════════════════════════════════
 
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  Section,
-  Container,
-  SectionHeader,
-  Card,
-  Button,
-  CalendarIcon,
-} from "../../components/ui";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import homePageData from "../../data/homePageData";
-import { getFeaturedTreatments } from "../../data/treatmentsData"; // ← Import from treatmentsData
+import { getFeaturedTreatments } from "../../data/treatmentsData";
 import { getFeaturedTestimonials } from "../../data/Testimonialsdata";
 import faqData from "../../data/faqData";
 
@@ -27,235 +22,250 @@ const HomePage = () => {
   } = homePageData;
   const navigate = useNavigate();
 
-  // Get REAL featured treatments from treatmentsData.js
   const featuredTreatments = getFeaturedTreatments().slice(
     0,
-    featuredConfig.displayLimit || 3
+    featuredConfig.displayLimit || 3,
   );
 
-  function handleClick(path) {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+  const handleClick = (path) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     navigate(path);
-  }
+  };
 
   return (
-    <main id="main-content" className="relative bg-background">
-      {/* HERO SECTION */}
-      <Section
-        background="transparent"
-        padding="none"
-        className="relative overflow-hidden"
-      >
+    <div className="bg-background overflow-x-hidden">
+      {/* ══════════════════════════════════════
+          HERO  —  Full bleed, brand gradient
+      ══════════════════════════════════════ */}
+      <section className="relative min-h-screen flex flex-col justify-center">
         <div className="absolute inset-0 z-0">
           {hero.image.src && !hero.image.placeholder?.show ? (
-            <>
-              <img
-                src={hero.image.src}
-                alt={hero.image.alt}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
-            </>
+            <img
+              src={hero.image.src}
+              alt={hero.image.alt}
+              className="w-full h-full object-cover"
+              onError={(e) => e.target.classList.add("hidden")}
+            />
           ) : (
             <div
-              className={`absolute inset-0 bg-gradient-to-br ${hero.image.placeholder.gradient}`}
+              className={`absolute inset-0 bg-gradient-to-br
+                             ${
+                               hero.image.placeholder?.gradient ||
+                               "from-secondary to-primary"
+                             }`}
             />
           )}
+          <div
+            className="absolute inset-0 bg-gradient-to-t
+                          from-secondary/95 via-secondary/55 to-secondary/20"
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-r
+                          from-secondary/65 via-transparent to-transparent"
+          />
         </div>
 
-        <Container className="relative z-10">
-          <div className="min-h-[85vh] lg:min-h-[90vh] flex items-center">
-            <div className="max-w-3xl mx-auto text-center py-12 lg:py-20">
-              <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm text-white tracking-[0.3em] uppercase text-xs font-medium mb-6 rounded-full border border-white/30 animate-fade-in">
+        {/* Decorative vertical strip */}
+        <div
+          className="absolute right-10 top-1/3 z-10 hidden lg:flex
+                        flex-col items-center gap-3"
+        >
+          <div className="w-px h-16 bg-white/12" />
+          <span
+            className="font-body text-[7px] tracking-[0.5em] uppercase
+                           text-white/20 [writing-mode:vertical-rl]"
+          >
+            Radina Aesthetic Clinic
+          </span>
+          <div className="w-px h-16 bg-white/12" />
+        </div>
+
+        <div
+          className="relative z-10 max-w-[1300px] mx-auto px-6 lg:px-12
+                        pt-32 lg:pt-36 pb-24 lg:pb-32 w-full"
+        >
+          {/* Badge */}
+          {hero.badge && (
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-8 h-px bg-accent" />
+              <span
+                className="font-body text-[8px] tracking-[0.45em]
+                               uppercase text-accent font-semibold"
+              >
                 {hero.badge}
               </span>
-
-              <h1
-                className="text-black mb-6 animate-slide-up backdrop-blur-xl bg-white/30 p-7 rounded-xl text-4xl"
-                style={{ animationDelay: "0.1s" }}
-              >
-                {hero.title}
-              </h1>
-
-              <p
-                className="text-lg lg:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10 animate-slide-up"
-                style={{ animationDelay: "0.2s" }}
-              >
-                {hero.description}
-              </p>
-
-              <div
-                className="flex flex-wrap gap-4 justify-center mb-16 animate-slide-up"
-                style={{ animationDelay: "0.3s" }}
-              >
-                {hero.buttons.map((btn, i) => (
-                  <Button
-                    key={i}
-                    onClick={() => handleClick(btn.link)}
-                    variant={btn.variant}
-                    size="large"
-                    icon={i === 1 ? <CalendarIcon /> : null}
-                    className={
-                      btn.variant === "primary"
-                        ? "bg-accent text-white hover:bg-accent-dark"
-                        : "border-2 border-white text-white hover:bg-white hover:text-primary"
-                    }
-                  >
-                    {btn.text}
-                  </Button>
-                ))}
-              </div>
-
-              <div
-                className="grid grid-cols-3 gap-8 max-w-2xl mx-auto animate-fade-in"
-                style={{ animationDelay: "0.4s" }}
-              >
-                {hero.stats.map((stat, i) => (
-                  <div key={i} className="text-center">
-                    <div className="font-display text-4xl lg:text-5xl text-white mb-2 drop-shadow-lg">
-                      {stat.number}
-                    </div>
-                    <div className="text-xs lg:text-sm text-white/80 uppercase tracking-wider font-medium">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
-          </div>
-        </Container>
+          )}
 
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10"></div>
-      </Section>
+          {/* Giant title */}
+          <h1
+            className="font-display font-light text-white leading-[0.92]
+                       tracking-tight mb-8"
+            style={{ fontSize: "clamp(50px, 9.5vw, 134px)" }}
+          >
+            {hero.title}
+          </h1>
 
-      {/* FEATURED TREATMENTS - NOW USING REAL DATA */}
-      <Section background="white">
-        <Container>
-          <SectionHeader
-            title={featuredConfig.title}
-            description={featuredConfig.description}
-            action={{
-              label: featuredConfig.viewAllLink.text,
-              link: featuredConfig.viewAllLink.link,
-            }}
-          />
+          <p
+            className="font-body text-[13px] leading-[2] text-white/55
+                         max-w-[500px] mb-12"
+          >
+            {hero.description}
+          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredTreatments.map((treatment, index) => (
-              <div
-                key={treatment.id}
-                style={{
-                  animation: "slideUp 0.6s ease-out backwards",
-                  animationDelay: `${index * 0.1}s`,
-                }}
+          {/* Buttons */}
+          <div className="flex flex-wrap gap-4 mb-20">
+            {hero.buttons?.map((btn, i) => (
+              <button
+                key={i}
+                onClick={() => handleClick(btn.link)}
+                className={`font-body text-[9px] font-bold tracking-[0.3em]
+                             uppercase px-10 py-4 transition-all duration-300
+                             ${
+                               i === 0
+                                 ? "bg-accent text-secondary hover:bg-white"
+                                 : "border border-white/30 text-white/80 hover:border-accent hover:text-accent"
+                             }`}
               >
-                <Card
-                  image={treatment.image}
-                  badge={treatment.badge}
-                  title={treatment.name}
-                  description={treatment.shortDescription}
-                  link={`/treatments/${treatment.id}`} // ← FIXED: Now goes to specific treatment
-                  linkText="Learn More"
-                  imageHeight="h-72"
-                />
-              </div>
+                {btn.text}
+              </button>
             ))}
           </div>
-        </Container>
-      </Section>
 
-      {/* PHILOSOPHY SECTION */}
-      <Section background="surface">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-
-        <Container className="relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div className="relative order-2 lg:order-1">
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-elegant">
-                {philosophy.image.src &&
-                philosophy.image.src.length > 0 &&
-                !philosophy.image.placeholder?.show ? (
-                  <img
-                    src={philosophy.image.src}
-                    alt={philosophy.image.alt}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      e.target.style.display = "none";
-                      e.target.nextElementSibling.style.display = "block";
-                    }}
-                  />
-                ) : null}
-
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${philosophy.image.placeholder.gradient}`}
-                  style={{
-                    display:
-                      philosophy.image.src &&
-                      !philosophy.image.placeholder?.show
-                        ? "none"
-                        : "block",
-                  }}
-                />
-
-                <div className="absolute inset-4 border-2 border-white/60 rounded-2xl" />
-              </div>
-
-              <div className="absolute -bottom-8 -left-8 w-64 bg-white rounded-2xl shadow-xl p-8 hidden lg:block">
-                <div className="text-center">
-                  <div className="font-display text-5xl text-primary mb-2">
-                    {philosophy.statsCard.number}
-                  </div>
-                  <div className="text-body-sm uppercase tracking-widest text-text-muted">
-                    {philosophy.statsCard.label}
-                  </div>
-                  <div className="mt-4 pt-4 border-t border-border">
-                    <div className="flex items-center justify-center gap-1">
-                      {[...Array(philosophy.statsCard.rating.stars)].map(
-                        (_, i) => (
-                          <svg
-                            key={i}
-                            className="w-4 h-4 text-accent fill-current"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                          </svg>
-                        )
-                      )}
-                    </div>
-                    <p className="text-xs text-text-muted mt-2">
-                      {philosophy.statsCard.rating.text}
+          {/* Stats row */}
+          {hero.stats && (
+            <div className="flex flex-wrap gap-10">
+              {hero.stats.map((stat, i) => (
+                <div key={i} className="flex items-center gap-4">
+                  {i > 0 && <span className="w-px h-8 bg-white/15" />}
+                  <div>
+                    <p
+                      className="font-display font-light text-white leading-none mb-1"
+                      style={{ fontSize: "clamp(28px, 3.5vw, 46px)" }}
+                    >
+                      {stat.number}
+                    </p>
+                    <p
+                      className="font-body text-[8px] tracking-[0.3em]
+                                   uppercase text-white/35"
+                    >
+                      {stat.label}
                     </p>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
+          )}
+        </div>
 
-            <div className="space-y-8 order-1 lg:order-2">
-              <div>
-                <span className="text-accent tracking-[0.3em] uppercase text-xs font-medium mb-4 block">
-                  {philosophy.badge}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-28
+                        bg-gradient-to-t from-background to-transparent z-10"
+        />
+      </section>
+
+      {/* ══════════════════════════════════════
+          FEATURED TREATMENTS
+      ══════════════════════════════════════ */}
+      <section className="py-20 lg:py-28 bg-background">
+        <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
+          {/* Header */}
+          <div className="flex items-end justify-between mb-14">
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-7 h-px bg-accent" />
+                <span
+                  className="font-body text-[8px] tracking-[0.4em]
+                                 uppercase text-accent font-semibold"
+                >
+                  Featured
                 </span>
-                <h2 className="heading-lg mb-6">
-                  {philosophy.title.text}{" "}
-                  <span className="italic font-light text-primary">
-                    {philosophy.title.highlight}
-                  </span>
-                </h2>
-                <p className="text-body-lg leading-relaxed">
-                  {philosophy.description}
-                </p>
               </div>
+              <h2
+                className="font-display font-light text-secondary leading-tight"
+                style={{ fontSize: "clamp(28px, 4vw, 54px)" }}
+              >
+                {featuredConfig.title}
+              </h2>
+            </div>
+            <Link
+              to={featuredConfig.viewAllLink?.link || "/treatments"}
+              className="hidden md:flex items-center gap-2 font-body text-[9px]
+                         font-bold tracking-[0.25em] uppercase text-secondary/60
+                         hover:text-secondary transition-colors duration-300"
+            >
+              {featuredConfig.viewAllLink?.text || "View All"}
+              <svg
+                className="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          </div>
 
-              <ul className="space-y-4">
-                {philosophy.features.map((feature, i) => (
-                  <li key={i} className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+          {/* Treatment cards — no border-radius, editorial grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+            {featuredTreatments.map((treatment, index) => (
+              <div
+                key={treatment.id}
+                onClick={() => handleClick(`/treatments/${treatment.id}`)}
+                className="group cursor-pointer bg-white hover:bg-surface
+                           transition-colors duration-300 flex flex-col"
+                style={{
+                  animation: "slideUp 0.5s ease-out backwards",
+                  animationDelay: `${index * 0.1}s`,
+                }}
+              >
+                {/* Image */}
+                <div className="relative h-64 overflow-hidden bg-secondary/5">
+                  {treatment.image?.src ? (
+                    <img
+                      src={treatment.image.src}
+                      alt={treatment.image.alt || treatment.name}
+                      className="w-full h-full object-cover
+                                 transition-transform duration-700
+                                 group-hover:scale-[1.06]"
+                      onError={(e) => (e.target.style.display = "none")}
+                    />
+                  ) : (
+                    <div
+                      className="w-full h-full bg-gradient-to-br
+                                     from-secondary/8 to-primary/8
+                                     flex items-center justify-center"
+                    >
+                      <span
+                        className="font-display text-[100px] font-light
+                                        text-secondary/10 leading-none select-none"
+                      >
+                        {treatment.name?.charAt(0)}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Hover overlay */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t
+                                  from-secondary/88 to-transparent
+                                  opacity-0 group-hover:opacity-100
+                                  transition-opacity duration-500
+                                  flex items-end justify-center pb-7"
+                  >
+                    <span
+                      className="font-body text-[9px] font-bold
+                                      tracking-[0.3em] uppercase text-white
+                                      flex items-center gap-2"
+                    >
+                      View Treatment
                       <svg
-                        className="w-5 h-5 text-primary"
+                        className="w-3.5 h-3.5"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -264,127 +274,428 @@ const HomePage = () => {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+
+                  {treatment.badge && (
+                    <div className="absolute top-4 left-4 z-10">
+                      <span
+                        className="font-body text-[8px] font-bold
+                                        tracking-[0.25em] uppercase px-3 py-1.5
+                                        bg-accent text-secondary"
+                      >
+                        {treatment.badge}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="p-7 flex flex-col flex-1">
+                  <h3
+                    className="font-display font-normal text-text-primary
+                                group-hover:text-secondary transition-colors
+                                duration-300 leading-tight mb-3"
+                    style={{ fontSize: "clamp(18px, 1.7vw, 24px)" }}
+                  >
+                    {treatment.name}
+                  </h3>
+                  <p
+                    className="font-body text-[12px] leading-[1.85]
+                                 text-text-muted line-clamp-2 flex-1 mb-5"
+                  >
+                    {treatment.shortDescription}
+                  </p>
+                  <div
+                    className="h-px bg-gradient-to-r from-transparent
+                                   via-border to-transparent mb-5"
+                  />
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p
+                        className="font-body text-[8px] tracking-[0.25em]
+                                     uppercase text-text-muted mb-0.5"
+                      >
+                        From
+                      </p>
+                      <p className="font-display text-[20px] font-normal text-secondary">
+                        {treatment.price || "On consultation"}
+                      </p>
+                    </div>
+                    <span
+                      className="font-body text-[8px] font-bold
+                                      tracking-[0.25em] uppercase text-accent
+                                      group-hover:text-secondary
+                                      transition-colors duration-300
+                                      flex items-center gap-1.5"
+                    >
+                      Explore
+                      <svg
+                        className="w-3 h-3 group-hover:translate-x-0.5
+                                      transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                  {/* Hover bar */}
+                  <div
+                    className="mt-5 h-0.5 bg-gradient-to-r
+                                   from-secondary/0 to-secondary/0
+                                   group-hover:from-secondary group-hover:via-primary
+                                   group-hover:to-accent transition-all duration-500"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile view all */}
+          <div className="mt-10 text-center md:hidden">
+            <Link
+              to="/treatments"
+              className="inline-flex items-center gap-2 font-body text-[9px]
+                         font-bold tracking-[0.25em] uppercase text-secondary
+                         border-b border-secondary/30 pb-0.5"
+            >
+              View All Treatments
+              <svg
+                className="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          PHILOSOPHY  —  Split layout
+      ══════════════════════════════════════ */}
+      <section className="py-20 lg:py-28 bg-surface overflow-hidden">
+        <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            {/* Image side */}
+            <div className="relative order-2 lg:order-1">
+              <div className="relative aspect-[4/5] overflow-hidden">
+                {philosophy.image.src && !philosophy.image.placeholder?.show ? (
+                  <img
+                    src={philosophy.image.src}
+                    alt={philosophy.image.alt}
+                    className="w-full h-full object-cover"
+                    onError={(e) => e.target.classList.add("hidden")}
+                  />
+                ) : (
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br
+                                   ${
+                                     philosophy.image.placeholder?.gradient ||
+                                     "from-secondary/20 to-primary/20"
+                                   }`}
+                  />
+                )}
+                {/* Inner border */}
+                <div className="absolute inset-4 border border-white/40" />
+              </div>
+
+              {/* Floating stats card */}
+              <div
+                className="absolute -bottom-8 -right-4 lg:-right-10
+                              w-52 bg-white p-7 shadow-elegant hidden lg:block"
+              >
+                <p
+                  className="font-display text-[44px] font-light text-secondary
+                               leading-none mb-1"
+                >
+                  {philosophy.statsCard?.number}
+                </p>
+                <p
+                  className="font-body text-[8px] tracking-[0.3em] uppercase
+                               text-text-muted mb-4"
+                >
+                  {philosophy.statsCard?.label}
+                </p>
+                <div className="h-px bg-border mb-3" />
+                <div className="flex items-center gap-0.5 mb-1.5">
+                  {[...Array(philosophy.statsCard?.rating?.stars || 5)].map(
+                    (_, i) => (
+                      <svg
+                        key={i}
+                        className="w-3.5 h-3.5 text-accent fill-current"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ),
+                  )}
+                </div>
+                <p className="font-body text-[9px] text-text-muted">
+                  {philosophy.statsCard?.rating?.text}
+                </p>
+              </div>
+            </div>
+
+            {/* Text side */}
+            <div className="space-y-8 order-1 lg:order-2">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-7 h-px bg-accent" />
+                  <span
+                    className="font-body text-[8px] tracking-[0.4em]
+                                   uppercase text-accent font-semibold"
+                  >
+                    {philosophy.badge}
+                  </span>
+                </div>
+                <h2
+                  className="font-display font-light text-text-primary
+                              leading-tight mb-6"
+                  style={{ fontSize: "clamp(26px, 3.5vw, 50px)" }}
+                >
+                  {philosophy.title?.text}{" "}
+                  <em className="not-italic text-secondary font-light">
+                    {philosophy.title?.highlight}
+                  </em>
+                </h2>
+                <p className="font-body text-[13px] leading-[2] text-text-secondary">
+                  {philosophy.description}
+                </p>
+              </div>
+
+              {/* Feature list */}
+              <ul className="space-y-5">
+                {philosophy.features?.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-5">
+                    <div
+                      className="w-9 h-9 shrink-0 border border-secondary/20
+                                    flex items-center justify-center mt-0.5"
+                    >
+                      <svg
+                        className="w-4 h-4 text-secondary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={1.5}
                           d="M5 13l4 4L19 7"
                         />
                       </svg>
                     </div>
                     <div>
-                      <div className="font-body font-medium text-text-primary mb-1">
+                      <p
+                        className="font-body text-[12px] font-semibold
+                                     text-text-primary mb-1 tracking-wide"
+                      >
                         {feature.title}
-                      </div>
-                      <div className="text-body-sm text-text-muted">
+                      </p>
+                      <p
+                        className="font-body text-[11px] leading-[1.8]
+                                     text-text-muted"
+                      >
                         {feature.description}
-                      </div>
+                      </p>
                     </div>
                   </li>
                 ))}
               </ul>
 
-              <Button
-                to={philosophy.button.link}
-                variant={philosophy.button.variant}
+              <button
+                onClick={() => handleClick(philosophy.button?.link || "/about")}
+                className="btn-secondary"
               >
-                {philosophy.button.text}
-              </Button>
+                {philosophy.button?.text || "Learn More About Us"}
+              </button>
             </div>
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
 
-      {/* TESTIMONIALS SECTION */}
+      {/* ══════════════════════════════════════
+          TESTIMONIALS
+      ══════════════════════════════════════ */}
       <TestimonialsSection />
 
-      {/* FAQ SECTION */}
+      {/* ══════════════════════════════════════
+          FAQ
+      ══════════════════════════════════════ */}
       <FAQSection />
 
-      {/* CTA SECTION */}
-      <Section background="white">
-        <Container>
-          <div className="relative bg-gradient-to-br from-primary via-primary-dark to-accent text-white py-16 lg:py-24 px-8 lg:px-16 rounded-[2.5rem] shadow-elegant overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full translate-x-1/3 -translate-y-1/3 blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/10 rounded-full -translate-x-1/3 translate-y-1/3 blur-3xl" />
+      {/* ══════════════════════════════════════
+          CTA  —  Brand gradient
+      ══════════════════════════════════════ */}
+      <section className="relative overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-br
+                        from-secondary via-secondary-dark to-primary-dark"
+        />
+        <div
+          className="absolute -top-32 -right-32 w-[500px] h-[500px]
+                        rounded-full border border-white/5 pointer-events-none"
+        />
+        <div
+          className="absolute -bottom-40 -left-20 w-[380px] h-[380px]
+                        rounded-full border border-white/4 pointer-events-none"
+        />
+        <div
+          className="absolute right-0 top-1/2 -translate-y-1/2
+                        font-display font-light text-white/[0.04] leading-none
+                        select-none pointer-events-none hidden xl:block"
+          style={{ fontSize: "360px" }}
+        >
+          R
+        </div>
+        <div
+          className="absolute top-0 left-0 right-0 h-px
+                        bg-gradient-to-r from-transparent via-accent/50 to-transparent"
+        />
 
-            <div className="relative z-10 text-center max-w-3xl mx-auto">
-              <h2 className="heading-xl text-white mb-6">{cta.title}</h2>
-              <p className="text-white/90 text-lg mb-10 leading-relaxed">
-                {cta.description}
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                {cta.buttons.map((btn, i) => (
-                  <button
-                    key={i}
-                    onClick={() => handleClick(btn.link)}
-                    className={`
-                      px-10 py-4 rounded-full uppercase text-xs tracking-[0.2em] 
-                      font-semibold transition-all shadow-lg hover:shadow-xl inline-block
-                      ${
-                        btn.variant === "primary-white"
-                          ? "bg-white text-primary hover:bg-secondary-light"
-                          : "bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary"
-                      }
-                    `}
-                  >
-                    {btn.text}
-                  </button>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap items-center justify-center gap-8 mt-12 pt-12 border-t border-white/20">
-                {cta.trustIndicators.map((item, i, arr) => (
-                  <React.Fragment key={i}>
-                    <div className="text-center">
-                      <div className="text-white/70 text-xs uppercase tracking-widest mb-2">
-                        {item.label}
-                      </div>
-                      <div className="text-white font-medium">{item.value}</div>
-                    </div>
-                    {i < arr.length - 1 && (
-                      <div className="w-px h-8 bg-white/20" />
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
+        <div
+          className="relative z-10 max-w-[900px] mx-auto px-6 lg:px-12
+                        py-28 lg:py-36 text-center"
+        >
+          <div className="flex items-center justify-center gap-4 mb-10">
+            <span className="w-10 h-px bg-accent/40" />
+            <span
+              className="font-body text-[7px] tracking-[0.55em] uppercase
+                             text-accent/70 font-semibold"
+            >
+              Your Journey Starts Here
+            </span>
+            <span className="w-10 h-px bg-accent/40" />
           </div>
-        </Container>
-      </Section>
-    </main>
+
+          <h2
+            className="font-display font-light text-white leading-[1.0] mb-6"
+            style={{ fontSize: "clamp(34px, 6vw, 82px)" }}
+          >
+            {cta.title}
+          </h2>
+
+          <p
+            className="font-body text-[13px] leading-[2] text-white/50
+                         max-w-[420px] mx-auto mb-12"
+          >
+            {cta.description}
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+            {cta.buttons?.map((btn, i) => (
+              <button
+                key={i}
+                onClick={() => handleClick(btn.link)}
+                className={`font-body text-[9px] font-bold tracking-[0.35em]
+                             uppercase px-12 py-4 transition-all duration-300
+                             ${
+                               btn.variant === "primary-white"
+                                 ? "bg-accent text-secondary hover:bg-white"
+                                 : "border border-white/20 text-white/70 hover:border-accent hover:text-accent"
+                             }`}
+              >
+                {btn.text}
+              </button>
+            ))}
+          </div>
+
+          {/* Trust indicators */}
+          {cta.trustIndicators && (
+            <div
+              className="flex flex-wrap items-center justify-center gap-8
+                             pt-10 border-t border-white/10"
+            >
+              {cta.trustIndicators.map((item, i, arr) => (
+                <React.Fragment key={i}>
+                  <div className="text-center">
+                    <p
+                      className="font-body text-[7px] tracking-[0.4em] uppercase
+                                   text-white/28 mb-1.5"
+                    >
+                      {item.label}
+                    </p>
+                    <p className="font-display text-[16px] font-light text-white/70">
+                      {item.value}
+                    </p>
+                  </div>
+                  {i < arr.length - 1 && (
+                    <div className="w-px h-7 bg-white/12 hidden sm:block" />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div
+          className="absolute bottom-0 left-0 right-0 h-px
+                        bg-gradient-to-r from-transparent via-accent/40 to-transparent"
+        />
+      </section>
+    </div>
   );
 };
 
-// ==========================================
-// TESTIMONIALS SECTION COMPONENT
-// ==========================================
+// ══════════════════════════════════════
+// TESTIMONIALS SECTION
+// ══════════════════════════════════════
 const TestimonialsSection = () => {
   const featuredTestimonials = getFeaturedTestimonials();
-  const navigate = useNavigate();
 
   return (
-    <Section background="white" padding="default">
-      <Container>
-        <SectionHeader
-          title="What Our Clients Say"
-          description="Real experiences from real people who trusted us with their beauty journey."
-          align="center"
-        />
+    <section className="py-20 lg:py-28 bg-white">
+      <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
+        <div className="flex items-center gap-4 mb-4">
+          <span className="w-7 h-px bg-accent" />
+          <span
+            className="font-body text-[8px] tracking-[0.4em] uppercase
+                           text-accent font-semibold"
+          >
+            Client Stories
+          </span>
+        </div>
+        <h2
+          className="font-display font-light text-secondary leading-tight mb-14"
+          style={{ fontSize: "clamp(26px, 3.8vw, 52px)" }}
+        >
+          What Our Clients Say
+        </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
           {featuredTestimonials.slice(0, 3).map((testimonial, index) => (
             <div
               key={testimonial.id}
-              className="card card-hover p-8"
+              className="bg-white p-8 flex flex-col"
               style={{
                 animation: "slideUp 0.5s ease-out backwards",
                 animationDelay: `${index * 0.1}s`,
               }}
             >
-              {/* Rating Stars */}
-              <div className="flex items-center gap-1 mb-4">
+              {/* Stars */}
+              <div className="flex items-center gap-1 mb-5">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-5 h-5 text-accent fill-current"
+                    className="w-3.5 h-3.5 text-accent fill-current"
                     viewBox="0 0 24 24"
                   >
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -392,101 +703,105 @@ const TestimonialsSection = () => {
                 ))}
               </div>
 
-              {/* Quote */}
-              <p className="text-text-secondary text-sm leading-relaxed mb-6 italic">
-                "{testimonial.quote}"
+              {/* Large opening quote */}
+              <div
+                className="font-display text-[60px] text-secondary/10
+                               leading-none mb-2 select-none"
+              >
+                "
+              </div>
+
+              <p
+                className="font-display font-light text-[16px] leading-[1.7]
+                             text-text-secondary italic flex-1 mb-6"
+              >
+                {testimonial.quote}
               </p>
 
-              {/* Client Info */}
-              <div className="flex items-center gap-3 pt-6 border-t border-border">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <span className="font-display text-lg text-primary">
-                    {testimonial.image.placeholder}
+              <div className="h-px bg-border mb-5" />
+
+              <div className="flex items-center gap-3">
+                <div
+                  className="w-10 h-10 bg-secondary/8 flex items-center
+                                 justify-center shrink-0"
+                >
+                  <span className="font-display text-lg text-secondary">
+                    {testimonial.image?.placeholder ||
+                      testimonial.name?.charAt(0)}
                   </span>
                 </div>
                 <div>
-                  <div className="font-medium text-text-primary">
+                  <p className="font-body text-[11px] font-semibold text-text-primary">
                     {testimonial.name}
-                  </div>
-                  <div className="text-xs text-text-muted">
-                    {testimonial.location} • {testimonial.treatment}
-                  </div>
+                  </p>
+                  <p className="font-body text-[9px] text-text-muted tracking-wide">
+                    {testimonial.location} · {testimonial.treatment}
+                  </p>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-        <div className="text-center mt-12">
-          <button
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-              navigate("/contact");
-            }}
-            className="text-primary font-medium text-sm uppercase tracking-wider hover:text-primary-dark transition-colors inline-flex items-center gap-2"
-          >
-            <span>Read More Reviews</span>
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 };
 
-// ==========================================
-// FAQ SECTION COMPONENT
-// ==========================================
+// ══════════════════════════════════════
+// FAQ SECTION
+// ══════════════════════════════════════
 const FAQSection = () => {
   const generalFAQs = faqData.general.slice(0, 6);
 
   return (
-    <Section background="surface" padding="default">
-      <Container size="small">
-        <SectionHeader
-          title="Frequently Asked Questions"
-          description="Find answers to common questions about our treatments and services."
-          align="center"
-        />
+    <section className="py-20 lg:py-28 bg-surface">
+      <div className="max-w-[900px] mx-auto px-6 lg:px-12">
+        <div className="flex items-center gap-4 mb-4">
+          <span className="w-7 h-px bg-accent" />
+          <span
+            className="font-body text-[8px] tracking-[0.4em] uppercase
+                           text-accent font-semibold"
+          >
+            FAQ
+          </span>
+        </div>
+        <h2
+          className="font-display font-light text-secondary leading-tight mb-4"
+          style={{ fontSize: "clamp(26px, 3.5vw, 50px)" }}
+        >
+          Frequently Asked Questions
+        </h2>
+        <p className="font-body text-[12px] leading-[1.9] text-text-muted mb-14">
+          Find answers to common questions about our treatments and services.
+        </p>
 
-        <div className="space-y-4">
+        <div>
           {generalFAQs.map((faq, index) => (
             <FAQItem key={faq.id} faq={faq} index={index} />
           ))}
+          <div className="border-t border-border" />
         </div>
 
-        <div className="text-center mt-12 pt-8 border-t border-border">
-          <p className="text-text-muted mb-4">
-            Still have questions? We're here to help!
+        <div className="mt-12 text-center">
+          <p className="font-body text-[12px] text-text-muted mb-5">
+            Still have questions? We're here to help.
           </p>
-          <Button to="/contact" variant="primary">
+          <Link to="/contact" className="btn-primary">
             Contact Us
-          </Button>
+          </Link>
         </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 };
 
-// FAQ Item Component with Accordion
+// FAQ Item
 const FAQItem = ({ faq, index }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div
-      className="card border border-border hover:border-primary/20 transition-all"
+      className="border-t border-border"
       style={{
         animation: "slideUp 0.5s ease-out backwards",
         animationDelay: `${index * 0.05}s`,
@@ -494,38 +809,42 @@ const FAQItem = ({ faq, index }) => {
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full text-left p-6 flex items-center justify-between gap-4"
+        className="w-full text-left py-6 flex items-start justify-between gap-6
+                   bg-transparent border-none cursor-pointer"
       >
-        <span className="font-medium text-text-primary pr-4">
-          {faq.question}
-        </span>
-        <svg
-          className={`w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </button>
-
-      <div
-        className={`overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-96" : "max-h-0"
-        }`}
-      >
-        <div className="px-6 pb-6 pt-0">
-          <p className="text-text-secondary text-sm leading-relaxed">
-            {faq.answer}
-          </p>
+        <div className="flex items-baseline gap-5">
+          <span
+            className="font-body text-[10px] text-accent font-semibold
+                            tabular-nums shrink-0"
+          >
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <span
+            className={`font-display text-[17px] font-normal leading-snug
+                             transition-colors duration-300
+                             ${isOpen ? "text-secondary" : "text-text-primary"}`}
+          >
+            {faq.question}
+          </span>
         </div>
+        <span
+          className={`text-text-muted text-xl shrink-0 mt-0.5 leading-none
+                          transition-transform duration-300
+                          ${isOpen ? "rotate-45 text-secondary" : ""}`}
+        >
+          +
+        </span>
+      </button>
+      <div
+        className={`overflow-hidden transition-[max-height] duration-500 ease-out
+                       ${isOpen ? "max-h-48" : "max-h-0"}`}
+      >
+        <p
+          className="font-body text-[12.5px] leading-[2] text-text-secondary
+                       pb-6 ml-9"
+        >
+          {faq.answer}
+        </p>
       </div>
     </div>
   );

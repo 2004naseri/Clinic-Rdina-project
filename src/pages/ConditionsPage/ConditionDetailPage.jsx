@@ -1,420 +1,616 @@
-// src/pages/ConditionsPage/ConditionDetailPage.jsx
-// ========================================
-// CONDITION DETAIL PAGE
-// ========================================
+// ConditionDetailPage.jsx — Tailwind v4 version
+import { useState, useRef, useCallback } from "react";
+import { Link, useParams } from "react-router-dom";
+import { getConditionById } from "../../data/conditionsData";
 
-import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import {
-  Section,
-  Container,
-  SectionHeader,
-  Button,
-  Card,
-} from "../../components/ui";
-import { getConditionById, conditionsData } from "../../data/conditionsData";
-import {
-  ArrowLeft,
-  CheckCircle2,
-  Calendar,
-  Phone,
-  MessageCircle,
-} from "lucide-react";
+// ─── Before/After Slider ─────────────────────────────────────
+// Only dynamic value (slider position %) stays inline — everything else Tailwind
+function BeforeAfterSlider({ before, after, caption }) {
+  const [pos, setPos] = useState(50);
+  const containerRef = useRef(null);
+  const dragging = useRef(false);
 
-const ConditionDetailPage = () => {
-  const { conditionId } = useParams();
-  const navigate = useNavigate();
-  const condition = getConditionById(conditionId);
-
-  if (!condition) {
-    return (
-      <Section background="white" padding="large">
-        <Container>
-          <div className="text-center py-20">
-            <h1 className="heading-lg mb-4">Condition Not Found</h1>
-            <p className="text-text-secondary mb-8">
-              The condition you're looking for doesn't exist.
-            </p>
-            <Button to="/conditions" variant="primary">
-              View All Conditions
-            </Button>
-          </div>
-        </Container>
-      </Section>
-    );
-  }
-
-  // Get related conditions (same severity or other featured conditions)
-  const relatedConditions = conditionsData.conditions
-    .filter(
-      (c) =>
-        c.id !== condition.id &&
-        (c.severity === condition.severity || c.featured)
-    )
-    .slice(0, 3);
+  const calcPos = useCallback((clientX) => {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    setPos((x / rect.width) * 100);
+  }, []);
 
   return (
-    <main id="main-content" className="relative bg-background">
-      {/* HERO SECTION */}
-      <HeroSection condition={condition} navigate={navigate} />
+    <div className="flex flex-col gap-3">
+      <div
+        ref={containerRef}
+        className="relative h-[320px] overflow-hidden border border-border cursor-ew-resize select-none"
+        onMouseDown={() => {
+          dragging.current = true;
+        }}
+        onMouseMove={(e) => {
+          if (dragging.current) calcPos(e.clientX);
+        }}
+        onMouseUp={() => {
+          dragging.current = false;
+        }}
+        onMouseLeave={() => {
+          dragging.current = false;
+        }}
+        onTouchMove={(e) => calcPos(e.touches[0].clientX)}
+        onTouchEnd={() => {
+          dragging.current = false;
+        }}
+      >
+        {/* After — base layer */}
+        <img
+          src={after}
+          alt="After"
+          className="absolute inset-0 w-full h-full object-cover"
+          onError={(e) => {
+            e.target.classList.add("hidden");
+          }}
+        />
 
-      {/* MAIN CONTENT */}
-      <Section background="transparent" padding="default">
-        <Container>
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Left Column - Main Content */}
-            <div className="lg:col-span-2 space-y-12">
-              {/* Overview */}
-              <section>
-                <h2 className="text-3xl font-bold text-text-primary mb-6 flex items-center gap-3 font-display">
-                  <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
-                  About {condition.name}
-                </h2>
-                <p className="text-text-secondary leading-relaxed text-lg">
-                  {condition.longDescription}
-                </p>
-              </section>
-
-              {/* Symptoms */}
-              {condition.symptoms && condition.symptoms.length > 0 && (
-                <section>
-                  <h2 className="text-3xl font-bold text-text-primary mb-6 flex items-center gap-3 font-display">
-                    <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
-                    Common Symptoms
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {condition.symptoms.map((symptom, i) => (
-                      <div
-                        key={i}
-                        className="flex items-start gap-3 p-4 bg-white rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all duration-300"
-                        style={{
-                          animation: "slideUp 0.5s ease-out backwards",
-                          animationDelay: `${i * 0.05}s`,
-                        }}
-                      >
-                        <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-text-secondary">{symptom}</span>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              )}
-
-              {/* Related Treatments */}
-              {condition.relatedTreatments &&
-                condition.relatedTreatments.length > 0 && (
-                  <section className="bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 rounded-3xl p-8 border border-primary/10">
-                    <h2 className="text-3xl font-bold text-text-primary mb-6 flex items-center gap-3 font-display">
-                      <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
-                      Recommended Treatments
-                    </h2>
-                    <p className="text-text-secondary mb-6">
-                      Our specialists recommend the following treatments for{" "}
-                      {condition.name.toLowerCase()}:
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {condition.relatedTreatments.map((treatment, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center gap-3 p-4 bg-white rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all"
-                          style={{
-                            animation: "slideUp 0.5s ease-out backwards",
-                            animationDelay: `${i * 0.05}s`,
-                          }}
-                        >
-                          <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                            <svg
-                              className="w-5 h-5 text-accent"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
-                            </svg>
-                          </div>
-                          <span className="font-medium text-text-primary">
-                            {treatment}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-8 text-center">
-                      <Button to="/treatments" variant="primary">
-                        View All Treatments
-                      </Button>
-                    </div>
-                  </section>
-                )}
-            </div>
-
-            {/* Right Column - Sidebar */}
-            <div className="space-y-6">
-              {/* Booking Card */}
-              <div className="sticky top-24 bg-gradient-to-br from-primary to-accent rounded-3xl p-8 text-white shadow-2xl">
-                <h3 className="text-2xl font-bold mb-6 font-display">
-                  Treatment Information
-                </h3>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex justify-between items-center pb-4 border-b border-white/20">
-                    <span className="text-white/80">Condition Severity</span>
-                    <span className="font-semibold">{condition.severity}</span>
-                  </div>
-                  <div className="flex justify-between items-center pb-4 border-b border-white/20">
-                    <span className="text-white/80">Treatment Options</span>
-                    <span className="font-semibold">
-                      {condition.relatedTreatments?.length || 0}+
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-white/80">Consultation</span>
-                    <span className="font-semibold">Free</span>
-                  </div>
-                </div>
-
-                <Button
-                  to="/contact"
-                  variant="secondary"
-                  size="large"
-                  className="w-full justify-center bg-white text-primary hover:bg-white/90 shadow-lg mb-4"
-                  icon={<Calendar className="w-5 h-5" />}
-                  iconPosition="left"
-                >
-                  Book Consultation
-                </Button>
-
-                <p className="text-center text-white/80 text-sm">
-                  Get personalized treatment plan
-                </p>
-              </div>
-
-              {/* Why Choose Us */}
-              <div className="bg-white rounded-3xl p-8 border border-border shadow-lg">
-                <h3 className="text-xl font-bold text-text-primary mb-6 font-display">
-                  Why Choose Radina?
-                </h3>
-                <ul className="space-y-4">
-                  {[
-                    "Expert skin assessment",
-                    "Personalized treatment plans",
-                    "Advanced technology",
-                    "Medical-grade products",
-                    "Proven results",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-text-secondary">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Contact Info */}
-              <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-8 border border-primary/10">
-                <h3 className="text-xl font-bold text-text-primary mb-4 font-display">
-                  Have Questions?
-                </h3>
-                <p className="text-text-secondary mb-6">
-                  Our team is here to help you understand your treatment
-                  options.
-                </p>
-                <div className="space-y-3">
-                  <a
-                    href="tel:+447795976868"
-                    className="flex items-center gap-3 text-primary hover:text-primary-dark transition-colors"
-                  >
-                    <Phone className="w-5 h-5" />
-                    <span className="font-medium">07795 976868</span>
-                  </a>
-                  <a
-                    href="https://wa.me/447882244808"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-primary hover:text-primary-dark transition-colors"
-                  >
-                    <MessageCircle className="w-5 h-5" />
-                    <span className="font-medium">WhatsApp Us</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* RELATED CONDITIONS */}
-      {relatedConditions.length > 0 && (
-        <Section background="surface" padding="default">
-          <Container>
-            <SectionHeader
-              title="Related Conditions"
-              description="You might also be interested in"
-              align="center"
-            />
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {relatedConditions.map((relatedCondition, index) => (
-                <div
-                  key={relatedCondition.id}
-                  style={{
-                    animation: "slideUp 0.5s ease-out backwards",
-                    animationDelay: `${index * 0.1}s`,
-                  }}
-                >
-                  <Card
-                    image={relatedCondition.image}
-                    title={relatedCondition.name}
-                    description={relatedCondition.shortDescription}
-                    link={`/conditions/${relatedCondition.id}`}
-                    linkText="Learn More"
-                    imageHeight="h-64"
-                  />
-                </div>
-              ))}
-            </div>
-          </Container>
-        </Section>
-      )}
-
-      {/* CTA SECTION */}
-      <Section background="primary" padding="default">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <h2 className="heading-lg text-white mb-4">
-              Ready to Address Your Skin Concerns?
-            </h2>
-            <p className="text-lg text-white/90 mb-8 leading-relaxed">
-              Schedule a complimentary consultation with our expert team. We'll
-              assess your skin and recommend the most effective treatment plan
-              for you.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={() => {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                  navigate("/contact");
-                }}
-                variant="secondary"
-                size="large"
-                className="bg-white text-primary hover:bg-white/90"
-              >
-                Book Free Consultation
-              </Button>
-              <Button
-                onClick={() => {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                  navigate("/conditions");
-                }}
-                variant="outline"
-                size="large"
-                className="border-white text-white hover:bg-white hover:text-primary"
-              >
-                View All Conditions
-              </Button>
-            </div>
-
-            <p className="text-sm text-white/70 italic mt-6">
-              Expert assessment • Personalized plan • Proven results
-            </p>
-          </div>
-        </Container>
-      </Section>
-    </main>
-  );
-};
-
-// ==========================================
-// HERO SECTION
-// ==========================================
-const HeroSection = ({ condition, navigate }) => {
-  return (
-    <div className="relative h-[70vh] min-h-[600px] overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0">
-        {condition.image.src &&
-        !condition.image.src.includes("/images/conditions") ? (
-          <>
-            <img
-              src={condition.image.src}
-              alt={condition.image.alt}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/90 via-purple-800/70 to-rose-900/60" />
-          </>
-        ) : (
-          <>
-            <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-accent" />
-            <div className="absolute inset-0 flex items-center justify-center opacity-10">
-              <span className="font-display text-[20rem] text-white">
-                {condition.image.placeholder}
-              </span>
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Content */}
-      <div className="relative h-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center">
-        <div className="max-w-3xl">
-          {/* Back Button */}
-          <button
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-              navigate("/conditions");
+        {/* Before — clipped layer */}
+        <div
+          className="absolute inset-0 transition-[clip-path] duration-[50ms] ease-linear"
+          style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
+        >
+          <img
+            src={before}
+            alt="Before"
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.classList.add("hidden");
             }}
-            className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition-colors group"
+          />
+        </div>
+
+        {/* Divider line */}
+        <div
+          className="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_12px_rgba(0,0,0,0.35)] z-30 pointer-events-none"
+          style={{ left: `${pos}%`, transform: "translateX(-50%)" }}
+        />
+
+        {/* Handle */}
+        <div
+          className="absolute top-1/2 z-40 pointer-events-none
+                     w-11 h-11 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.25)]
+                     flex items-center justify-center -translate-y-1/2"
+          style={{
+            left: `${pos}%`,
+            transform: `translateX(-50%) translateY(-50%)`,
+          }}
+        >
+          <svg
+            className="w-5 h-3.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 20 14"
+            style={{ color: "#430568" }}
           >
-            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-sm uppercase tracking-wider font-medium">
-              Back to Conditions
-            </span>
-          </button>
+            <path
+              strokeWidth={2}
+              strokeLinecap="round"
+              d="M1 7h18M14 2l5 5-5 5M6 2L1 7l5 5"
+            />
+          </svg>
+        </div>
 
-          {/* Title */}
-          <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight font-display">
-            {condition.name}
-          </h1>
-
-          {/* Short Description */}
-          <p className="text-xl text-white/90 leading-relaxed mb-8">
-            {condition.shortDescription}
-          </p>
-
-          {/* Quick Info */}
-          <div className="flex flex-wrap gap-4">
-            <div className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full">
-              <span className="text-white/80 text-sm">Severity:</span>
-              <span className="text-white font-medium">
-                {condition.severity}
-              </span>
-            </div>
-            <div className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full">
-              <span className="text-white/80 text-sm">Treatment Options:</span>
-              <span className="text-white font-medium">
-                {condition.relatedTreatments?.length || 0}+
-              </span>
-            </div>
-          </div>
+        {/* Labels */}
+        <div
+          className="absolute top-3.5 left-4 z-50 pointer-events-none
+                        bg-secondary/85 backdrop-blur-sm px-3 py-1
+                        font-body text-[9px] font-bold tracking-[0.2em] uppercase text-white"
+        >
+          Before
+        </div>
+        <div
+          className="absolute top-3.5 right-4 z-50 pointer-events-none
+                        bg-secondary/85 backdrop-blur-sm px-3 py-1
+                        font-body text-[9px] font-bold tracking-[0.2em] uppercase text-accent"
+        >
+          After
         </div>
       </div>
 
-      {/* Decorative Wave */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg
-          viewBox="0 0 1440 120"
-          className="w-full h-20 text-white fill-current"
+      {caption && (
+        <p className="font-body text-[11px] text-text-muted text-center italic tracking-wide">
+          {caption}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ─── FAQ Item ─────────────────────────────────────────────────
+function FAQItem({ faq, index }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      className="border-b border-border"
+      style={{
+        animation: `fadeUp 0.5s cubic-bezier(.16,1,.3,1) ${index * 0.08}s both`,
+      }}
+    >
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex justify-between items-center py-5 gap-4 text-left
+                   bg-transparent border-none cursor-pointer"
+      >
+        <span
+          className={`font-display text-[20px] font-normal leading-snug transition-colors duration-300
+                          ${open ? "text-secondary" : "text-text-primary"}`}
         >
-          <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
-        </svg>
+          {faq.q}
+        </span>
+        <div
+          className={`w-8 h-8 rounded-full border flex items-center justify-center shrink-0
+                         transition-all duration-300
+                         ${open ? "bg-secondary border-secondary" : "bg-white border-border"}`}
+        >
+          <svg
+            className={`w-3 h-3 transition-transform duration-300 ${open ? "rotate-45" : "rotate-0"}`}
+            fill="none"
+            stroke={open ? "white" : "#737373"}
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 5v14M5 12h14"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        className={`overflow-hidden transition-[max-height] duration-[450ms] ease-out
+                       ${open ? "max-h-52" : "max-h-0"}`}
+      >
+        <p className="font-body text-[13px] leading-[1.9] text-text-muted pb-5">
+          {faq.a}
+        </p>
       </div>
     </div>
   );
-};
+}
 
-export default ConditionDetailPage;
+// ─── Treatment Card ───────────────────────────────────────────
+function TreatmentCard({ t, index }) {
+  return (
+    <div
+      className="group relative overflow-hidden p-7 border border-border bg-white
+                 transition-all duration-400 ease-out
+                 hover:border-secondary hover:bg-surface hover:-translate-y-1
+                 hover:shadow-[0_20px_40px_rgba(67,5,104,0.12)]"
+      style={{
+        animation: `fadeUp 0.55s cubic-bezier(.16,1,.3,1) ${index * 0.1}s both`,
+      }}
+    >
+      {/* Top accent line */}
+      <div
+        className="absolute top-0 left-0 right-0 h-0.5
+                      bg-gradient-to-r from-secondary to-primary
+                      scale-x-0 group-hover:scale-x-100
+                      transition-transform duration-400 origin-left"
+      />
+
+      <h4 className="font-display text-[22px] font-normal text-text-primary mb-2 leading-snug">
+        {t.name}
+      </h4>
+      <p className="font-body text-[12px] leading-[1.8] text-text-muted mb-5">
+        {t.description}
+      </p>
+
+      <div className="flex gap-5 items-center">
+        <div>
+          <div className="font-body text-[8px] tracking-[0.18em] uppercase text-accent font-semibold mb-0.5">
+            Duration
+          </div>
+          <div className="font-display text-[18px] text-text-primary">
+            {t.duration}
+          </div>
+        </div>
+        <div className="w-px h-8 bg-border" />
+        <div>
+          <div className="font-body text-[8px] tracking-[0.18em] uppercase text-accent font-semibold mb-0.5">
+            Sessions
+          </div>
+          <div className="font-display text-[18px] text-text-primary">
+            {t.sessions}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Main Detail Page ─────────────────────────────────────────
+export default function ConditionDetailPage() {
+  const { conditionId } = useParams();
+  const condition = getConditionById(conditionId);
+  const [activeGallery, setActiveGallery] = useState(0);
+
+  if (!condition)
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center gap-6 p-12">
+        <p className="font-display text-[32px] text-text-primary">
+          Condition not found.
+        </p>
+        <Link
+          to="/conditions"
+          className="font-body text-[11px] font-bold tracking-[0.2em] uppercase text-secondary
+                   border-b border-secondary pb-0.5"
+        >
+          ← Back to All Conditions
+        </Link>
+      </div>
+    );
+
+  const heroSrc = condition.heroImage?.src || condition.image.src;
+
+  return (
+    <main id="main-content" className="bg-white font-body overflow-x-hidden">
+      {/* ══ HERO ══════════════════════════════════════════════ */}
+      <section className="relative min-h-[80vh] flex items-end">
+        {/* BG */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={heroSrc}
+            alt={condition.name}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.classList.add("hidden");
+              e.target.nextElementSibling.classList.remove("hidden");
+            }}
+          />
+          <div className="hidden absolute inset-0 bg-gradient-to-br from-secondary to-primary" />
+          <div
+            className="absolute inset-0 bg-gradient-to-t
+                          from-[rgba(26,4,50,0.95)] via-secondary/50 to-black/15"
+          />
+        </div>
+
+        {/* Breadcrumb */}
+        <div className="absolute top-8 left-0 right-0 z-20">
+          <div className="max-w-[1200px] mx-auto px-12 flex items-center gap-3">
+            <Link
+              to="/conditions"
+              className="font-body text-[10px] tracking-[0.18em] uppercase text-white/55 font-medium
+                         flex items-center gap-1.5 hover:text-accent transition-colors duration-300"
+            >
+              <svg
+                className="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              All Conditions
+            </Link>
+            <span className="text-white/30 text-xs">/</span>
+            <span className="font-body text-[10px] tracking-[0.18em] uppercase text-white/80">
+              {condition.name}
+            </span>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div
+          className="relative z-10 w-full max-w-[1200px] mx-auto px-12 pb-16 pt-32
+                        animate-[fadeIn_1s_ease_both]"
+        >
+          <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-px bg-accent inline-block" />
+            <span className="font-body text-[9px] tracking-[0.35em] uppercase text-accent font-semibold">
+              {condition.category}
+            </span>
+          </div>
+
+          <h1
+            className="font-display font-light text-white tracking-tight leading-[0.95] mb-5
+                         text-[clamp(44px,7vw,88px)] max-w-[720px]"
+          >
+            {condition.name}
+          </h1>
+
+          <p
+            className="font-display text-[clamp(18px,2vw,24px)] font-light italic text-white/70
+                        mb-9 max-w-[580px]"
+          >
+            {condition.tagline}
+          </p>
+
+          {/* Stats bar */}
+          <div className="flex flex-wrap">
+            {condition.stats.map((s, i) => (
+              <div
+                key={s.label}
+                className={`flex flex-col gap-0.5 px-7 py-4
+                            bg-white/8 backdrop-blur-md
+                            border border-white/15
+                            ${i < condition.stats.length - 1 ? "border-r-0" : ""}`}
+              >
+                <div className="font-display text-[30px] font-normal text-accent leading-none">
+                  {s.value}
+                </div>
+                <div className="font-body text-[8px] tracking-[0.2em] uppercase text-white/55">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-white z-10" />
+      </section>
+
+      {/* ══ OVERVIEW ══════════════════════════════════════════ */}
+      <section className="bg-white py-20">
+        <div className="max-w-[1200px] mx-auto px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+          {/* Description */}
+          <div className="animate-[fadeUp_0.7s_cubic-bezier(.16,1,.3,1)_both]">
+            <p
+              className="font-body text-[9px] tracking-[0.35em] uppercase text-accent font-semibold mb-4
+                           flex items-center gap-2.5"
+            >
+              <span className="w-5 h-px bg-accent inline-block" />
+              About This Condition
+            </p>
+            <h2
+              className="font-display font-normal text-text-primary tracking-tight leading-[1.15] mb-6
+                           text-[clamp(28px,3vw,42px)]"
+            >
+              Understanding {condition.name}
+            </h2>
+            <p className="font-body text-[13px] leading-[1.95] text-text-secondary mb-8">
+              {condition.longDescription}
+            </p>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2.5 px-8 py-4
+                         bg-gradient-to-r from-secondary to-primary text-white
+                         font-body text-[10px] font-bold tracking-[0.22em] uppercase
+                         transition-all duration-300 hover:opacity-85 hover:-translate-y-0.5"
+            >
+              Book Consultation
+              <svg
+                className="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          </div>
+
+          {/* Symptoms panel */}
+          <div className="animate-[fadeUp_0.7s_cubic-bezier(.16,1,.3,1)_0.15s_both]">
+            <div className="bg-surface border border-border p-10">
+              <p className="font-body text-[9px] tracking-[0.35em] uppercase text-accent font-semibold mb-5">
+                Common Symptoms
+              </p>
+              <div className="flex flex-col">
+                {condition.symptoms.map((s, i) => (
+                  <div
+                    key={s.label}
+                    className={`flex items-center gap-4 py-3.5
+                                ${i < condition.symptoms.length - 1 ? "border-b border-border" : ""}`}
+                  >
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-br from-secondary to-primary shrink-0" />
+                    <span className="font-body text-[13px] text-text-secondary">
+                      {s.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-7 pt-6 border-t border-border flex justify-between items-center">
+                <span className="font-body text-[9px] tracking-[0.18em] uppercase text-text-muted font-semibold">
+                  Severity Range
+                </span>
+                <span className="font-display text-[18px] text-secondary">
+                  {condition.severity}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ BEFORE & AFTER GALLERY ════════════════════════════ */}
+      {condition.gallery?.length > 0 && (
+        <section className="bg-surface py-24">
+          <div className="max-w-[1200px] mx-auto px-12">
+            {/* Header */}
+            <div className="flex items-end justify-between mb-12 flex-wrap gap-6">
+              <div>
+                <p
+                  className="font-body text-[9px] tracking-[0.35em] uppercase text-accent font-semibold mb-3
+                               flex items-center gap-2.5"
+                >
+                  <span className="w-5 h-px bg-accent inline-block" />
+                  Real Results
+                </p>
+                <h2
+                  className="font-display font-normal text-text-primary tracking-tight leading-[1.05]
+                               text-[clamp(30px,3.5vw,50px)]"
+                >
+                  Before & After Gallery
+                </h2>
+              </div>
+              <p className="font-body text-[12px] leading-[1.8] text-text-muted max-w-[320px]">
+                Drag the slider to reveal the transformation. Real patients,
+                real results.
+              </p>
+            </div>
+
+            {/* Active slider */}
+            <div className="mb-7">
+              <BeforeAfterSlider
+                key={activeGallery}
+                before={condition.gallery[activeGallery].before}
+                after={condition.gallery[activeGallery].after}
+                caption={condition.gallery[activeGallery].caption}
+              />
+            </div>
+
+            {/* Thumbnails */}
+            <div
+              className={`grid gap-3`}
+              style={{
+                gridTemplateColumns: `repeat(${condition.gallery.length}, 1fr)`,
+              }}
+            >
+              {condition.gallery.map((item, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveGallery(i)}
+                  className={`relative h-24 overflow-hidden cursor-pointer p-0
+                               border-2 transition-colors duration-300
+                               ${activeGallery === i ? "border-secondary" : "border-transparent"}`}
+                >
+                  <img
+                    src={item.after}
+                    alt={`Result ${i + 1}`}
+                    className={`w-full h-full object-cover transition-opacity duration-300
+                                ${activeGallery === i ? "opacity-100" : "opacity-60"}`}
+                    onError={(e) => {
+                      e.target.classList.add("hidden");
+                    }}
+                  />
+                  {activeGallery === i && (
+                    <div
+                      className="absolute bottom-0 left-0 right-0 h-0.5
+                                    bg-gradient-to-r from-secondary to-primary"
+                    />
+                  )}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span
+                      className="font-body text-[9px] font-bold tracking-[0.12em] uppercase
+                                     text-white bg-secondary/60 px-2 py-0.5 backdrop-blur-sm"
+                    >
+                      Result {i + 1}
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ══ TREATMENTS ════════════════════════════════════════ */}
+      <section className="bg-white py-24">
+        <div className="max-w-[1200px] mx-auto px-12">
+          <div className="text-center mb-16">
+            <p className="font-body text-[9px] tracking-[0.35em] uppercase text-accent font-semibold mb-3">
+              How We Help
+            </p>
+            <h2
+              className="font-display font-normal text-text-primary tracking-tight leading-[1.05] mb-3.5
+                           text-[clamp(30px,3.5vw,50px)]"
+            >
+              Recommended Treatments
+            </h2>
+            <p className="font-body text-[13px] leading-[1.85] text-text-muted max-w-[440px] mx-auto">
+              Each treatment is tailored to your specific skin needs and
+              condition severity.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {condition.relatedTreatments.map((t, i) => (
+              <TreatmentCard key={t.name} t={t} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ FAQ ═══════════════════════════════════════════════ */}
+      {condition.faqs?.length > 0 && (
+        <section className="bg-surface py-24">
+          <div className="max-w-[800px] mx-auto px-12">
+            <div className="text-center mb-14">
+              <p className="font-body text-[9px] tracking-[0.35em] uppercase text-accent font-semibold mb-3">
+                Have Questions?
+              </p>
+              <h2
+                className="font-display font-normal text-text-primary tracking-tight leading-[1.05]
+                             text-[clamp(30px,3.5vw,50px)]"
+              >
+                Frequently Asked Questions
+              </h2>
+            </div>
+            <div>
+              {condition.faqs.map((faq, i) => (
+                <FAQItem key={i} faq={faq} index={i} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ══ BOOKING CTA ═══════════════════════════════════════ */}
+      <section className="relative bg-gradient-to-br from-secondary via-primary-dark to-primary py-24 px-12">
+        {/* Decorative circles — scoped overflow so they never touch the footer */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full border border-white/8" />
+          <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full border border-white/5" />
+          <div className="absolute -bottom-24 -left-14 w-72 h-72 rounded-full border border-white/6" />
+        </div>
+
+        <div className="relative z-10 max-w-[800px] mx-auto text-center">
+          <div className="inline-flex items-center gap-3 mb-7 animate-[float_5s_ease-in-out_infinite]">
+            <span className="w-7 h-px bg-accent inline-block" />
+            <span className="font-body text-[9px] tracking-[0.35em] uppercase text-accent font-semibold">
+              Your Journey Starts Here
+            </span>
+            <span className="w-7 h-px bg-accent inline-block" />
+          </div>
+
+          <h2
+            className="font-display font-light text-white tracking-tight leading-[1.05] mb-5
+                         text-[clamp(36px,5vw,68px)]"
+          >
+            Ready to Transform Your Skin?
+          </h2>
+
+          <p className="font-body text-[14px] leading-[1.9] text-white/72 max-w-[520px] mx-auto mb-12">
+            Book your complimentary consultation and let our experts design a
+            personalised treatment plan for {condition.name.toLowerCase()}.
+          </p>
+
+          <div className="flex gap-4 justify-center flex-wrap">
+            <Link
+              to="/contact"
+              className="inline-block px-11 py-4 bg-white text-secondary
+                         font-body text-[10px] font-bold tracking-[0.25em] uppercase
+                         transition-all duration-300 hover:bg-accent hover:text-white"
+            >
+              Book Free Consultation
+            </Link>
+            <Link
+              to="/conditions"
+              className="inline-block px-11 py-4 border border-white/35 text-white
+                         font-body text-[10px] font-bold tracking-[0.25em] uppercase
+                         transition-all duration-300 hover:border-white/80"
+            >
+              ← All Conditions
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

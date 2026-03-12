@@ -1,21 +1,20 @@
 // src/data/aboutData.js
 // ========================================
-// ABOUT DATA - Professional Version
+// ABOUT DATA — Radina Aesthetic Clinic
 // ========================================
 
 export const aboutData = {
   // ==================
-  // HERO SECTION
+  // HERO
   // ==================
   hero: {
-    badge: "Est. 2018",
-    title: "Redefining Aesthetic Excellence",
-    subtitle: "Radina Clinic",
+    badge: "About Radina",
+    title: "Where Medicine Meets Beauty",
     description:
-      "A sanctuary where advanced medical aesthetics meets personalized luxury care. We deliver transformative results through precision, artistry, and scientific innovation.",
+      "A clinic built on medical excellence, scientific integrity, and a genuine commitment to natural, lasting results. Every client is seen as an individual — never a treatment.",
     image: {
       src: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&q=80",
-      alt: "Radina Clinic",
+      alt: "Radina Aesthetic Clinic",
     },
   },
 
@@ -24,10 +23,10 @@ export const aboutData = {
   // ==================
   intro: {
     statement:
-      "At Radina Clinic, we believe exceptional aesthetic outcomes are achieved through the perfect harmony of medical expertise, cutting-edge technology, and an unwavering commitment to individualized care.",
+      "At Radina Aesthetic Clinic, we believe aesthetic medicine must be medically sound, ethically driven, and supported by scientific evidence. Every treatment begins with listening — understanding your goals, your concerns, and your skin.",
     signature: {
-      name: "Dr. Shikiba Hussaini",
-      title: "Founder & Medical Director",
+      name: "Dr. Shakiba Hussaini",
+      title: "MD · Co-Founder, Radina Aesthetic Clinic",
     },
   },
 
@@ -40,30 +39,30 @@ export const aboutData = {
       {
         id: 1,
         number: "01",
-        title: "Medical Excellence",
+        title: "Medically Sound",
         description:
-          "Every treatment is performed by board-certified physicians with specialized training in aesthetic medicine and dermatology.",
+          "Every treatment is grounded in clinical medicine. Dr. Hussaini's background in cardiology, diagnostics, and ACLS provides a rigorous medical foundation for safe, precise aesthetic practice.",
       },
       {
         id: 2,
         number: "02",
-        title: "Personalized Protocols",
+        title: "Ethically Driven",
         description:
-          "We develop bespoke treatment plans based on comprehensive facial analysis, skin assessment, and your unique aesthetic goals.",
+          "We never recommend treatments that aren't needed. Patient safety and honest assessment guide every consultation — even when that means doing less.",
       },
       {
         id: 3,
         number: "03",
-        title: "Evidence-Based Results",
+        title: "Scientifically Evidenced",
         description:
-          "Our protocols are grounded in clinical research, utilizing only FDA-approved technologies and pharmaceutical-grade products.",
+          "Our protocols are selected based on peer-reviewed research. Dr. Hussaini is a published medical researcher and Editor-in-Chief of Ariana Medical Journal.",
       },
       {
         id: 4,
         number: "04",
-        title: "Holistic Beauty",
+        title: "Naturally Beautiful",
         description:
-          "We address skin health from multiple dimensions—prevention, correction, and maintenance—for sustainable, natural-looking results.",
+          "Results should enhance — never mask — your natural appearance. We pursue subtle, long-lasting improvements that reflect the best version of you.",
       },
     ],
   },
@@ -72,36 +71,36 @@ export const aboutData = {
   // CREDENTIALS
   // ==================
   credentials: {
-    title: "Credentials & Expertise",
+    title: "Qualifications & Standards",
     categories: [
       {
         id: 1,
         category: "Medical Qualifications",
         items: [
-          "Board Certification in Dermatology",
-          "Advanced Aesthetic Medicine Fellowship",
-          "Laser Surgery Certification (ASLMS)",
-          "Injectable Specialist Certification",
+          "Doctor of Medicine (MD) — Kabul University of Medical Sciences",
+          "Advanced Cardiac Life Support (ACLS) Certified",
+          "Echocardiography & Diagnostic Ultrasound Training",
+          "Aesthetic Medicine — Injectable Specialist",
         ],
       },
       {
         id: 2,
-        category: "Professional Memberships",
+        category: "Academic & Research",
         items: [
-          "American Academy of Dermatology",
-          "International Society of Aesthetic Physicians",
-          "European Academy of Dermatology",
-          "World Congress of Aesthetic Medicine",
+          "Published Researcher — Public Health Challenges (Wiley Journal)",
+          "Editor-in-Chief, Ariana Medical Journal",
+          "University Lecturer in Medical Sciences",
+          "Medical Content Producer & Healthcare Educator",
         ],
       },
       {
         id: 3,
-        category: "Technology Partners",
+        category: "Clinical Standards",
         items: [
-          "Allergan Medical Institute",
-          "Galderma Training Faculty",
-          "Cynosure Certified Center",
-          "Venus Concept Elite Provider",
+          "UK Clinical & Aesthetic Standards Compliant",
+          "Evidence-based treatment protocols only",
+          "Individualised skin assessment for every client",
+          "Ongoing professional development & research engagement",
         ],
       },
     ],
@@ -111,35 +110,37 @@ export const aboutData = {
   // FACILITY
   // ==================
   facility: {
-    title: "State-of-the-Art Facility",
+    title: "The Radina Environment",
     description:
-      "Our clinic combines medical-grade equipment with a serene, spa-like environment designed for your comfort and privacy.",
+      "A calm, professional clinic environment where every detail is designed for your comfort, privacy, and confidence.",
     features: [
       {
         id: 1,
-        title: "Advanced Technology",
-        description: "Latest FDA-approved laser systems and aesthetic devices",
+        title: "Professional Clinical Setting",
+        description:
+          "A clean, safe environment aligned with UK clinical standards",
         image: {
           src: "https://images.unsplash.com/photo-1581594549595-35f6edc7b762?w=800&q=80",
-          alt: "Medical Equipment",
+          alt: "Clinical setting",
         },
       },
       {
         id: 2,
         title: "Private Treatment Suites",
-        description: "Luxurious, fully-equipped rooms for complete discretion",
+        description: "Fully equipped, discreet rooms for a relaxed experience",
         image: {
           src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80",
-          alt: "Treatment Room",
+          alt: "Treatment room",
         },
       },
       {
         id: 3,
-        title: "Medical-Grade Standards",
-        description: "Sterile environment meeting clinical safety protocols",
+        title: "Medical-Grade Equipment",
+        description:
+          "Clinically proven devices and pharmaceutical-grade products only",
         image: {
           src: "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=800&q=80",
-          alt: "Clinical Standards",
+          alt: "Medical equipment",
         },
       },
     ],
@@ -148,96 +149,39 @@ export const aboutData = {
   // ==================
   // STATISTICS
   // ==================
-  statistics: {
-    title: "Clinical Excellence",
-    stats: [
-      {
-        id: 1,
-        metric: "5,000+",
-        label: "Treatments Performed",
-      },
-      {
-        id: 2,
-        metric: "98%",
-        label: "Patient Satisfaction",
-      },
-      {
-        id: 3,
-        metric: "6 Years",
-        label: "Trusted Experience",
-      },
-      {
-        id: 4,
-        metric: "15+",
-        label: "Medical Specialists",
-      },
-    ],
-  },
+  statistics: [
+    { metric: "MD", label: "Medically Qualified Doctor" },
+    { metric: "ACLS", label: "Advanced Cardiac Life Support" },
+    { metric: "Wiley", label: "Peer-Reviewed Published Research" },
+    { metric: "UK", label: "Clinical & Aesthetic Standards" },
+  ],
 
   // ==================
-  // MEDICAL TEAM
+  // DOCTOR (single)
   // ==================
-  team: {
-    title: "Our Medical Team",
-    description:
-      "Led by board-certified physicians with specialized training in aesthetic medicine and dermatology.",
-    members: [
-      {
-        id: 1,
-        name: "Dr. Shikiba hussaini",
-        credentials: "MD, FAAD",
-        role: "Founder & Medical Director",
-        specialization: "Dermatology & Aesthetic Medicine",
-        image: {
-          src: "images/boss.jpg",
-          alt: "Dr. Shikiba hussaini",
-        },
-      },
-      {
-        id: 2,
-        name: "Dr. Mariam Karimi",
-        credentials: "MD, MSc",
-        role: "Lead Aesthetic Physician",
-        specialization: "Injectable Treatments & Facial Sculpting",
-        image: {
-          src: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
-          alt: "Dr. Mariam Karimi",
-        },
-      },
-      {
-        id: 3,
-        name: "Dr. Leila Hosseini",
-        credentials: "MD, PhD",
-        role: "Senior Dermatologist",
-        specialization: "Laser Therapy & Skin Rejuvenation",
-        image: {
-          src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80",
-          alt: "Dr. Leila Hosseini",
-        },
-      },
-    ],
-    cta: {
-      text: "View Full Team",
-      link: "/meet-the-team",
+  doctor: {
+    name: "Dr. Shakiba Hussaini",
+    credentials: "MD",
+    role: "Co-Founder & Aesthetic Practitioner",
+    specialization:
+      "Aesthetic Medicine · Medical Research · Clinical Education",
+    image: {
+      src: "/images/boss.jpg",
+      alt: "Dr. Shakiba Hussaini",
     },
+    link: "/meet-the-team",
   },
 
   // ==================
-  // CONSULTATION CTA
+  // CTA
   // ==================
   cta: {
     title: "Begin Your Aesthetic Journey",
     description:
-      "Schedule a comprehensive consultation with our medical team to discuss your goals and develop a personalized treatment plan.",
-    primaryButton: {
-      text: "Book Consultation",
-      link: "/contact",
-    },
-    secondaryButton: {
-      text: "Explore Treatments",
-      link: "/treatments",
-    },
-    note: "Complimentary consultations available",
+      "Schedule a consultation with Dr. Hussaini. She will assess your skin, listen to your goals, and design a personalised, medically guided treatment plan.",
+    primaryButton: { text: "Book Consultation", link: "/contact" },
+    secondaryButton: { text: "Explore Treatments", link: "/treatments" },
+    note: "Complimentary skin analysis included with every consultation.",
   },
 };
 

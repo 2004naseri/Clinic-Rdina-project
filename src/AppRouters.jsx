@@ -1,6 +1,6 @@
 // src/AppRouters.jsx
 // ========================================
-// ROUTER CONFIGURATION
+// ROUTER CONFIGURATION - UPDATED FOR NESTED ROUTES
 // ========================================
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -11,17 +11,18 @@ import TreatmentsPage from "./pages/treatmentsPage/TreatmentsPage";
 import ConditionsPage from "./pages/ConditionsPage/ConditionsPage";
 import PackagesPage from "./pages/PackagesPage/PackagesPage";
 import MeetTheTeamPage from "./pages/MeetTheTeamPage/MeetTheTeamPag";
-import SkinShopPage from "./pages/SkinShopPage/SkinShopPage ";
+// import SkinShopPage from "./pages/SkinShopPage/SkinShopPage ";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import TreatmentDetailPage from "./pages/treatmentsPage/TreatmentDetailPage";
 import ConditionDetailPage from "./pages/ConditionsPage/ConditionDetailPage";
+import SubTreatmentDetailPage from "./pages/treatmentsPage/SubTreatmentDetailPage";
 
 // Loader component
 const Loader = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="loader"></div>
+      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary"></div>
     </div>
   );
 };
@@ -40,16 +41,24 @@ function AppRouters() {
           path: "/treatments",
           element: <TreatmentsPage />,
         },
+        // MAIN TREATMENT OR STANDALONE SUB-TREATMENT
+        // Handles: /treatments/botox OR /treatments/forehead-botox
         {
           path: "/treatments/:treatmentId",
           element: <TreatmentDetailPage />,
+        },
+        // NESTED SUB-TREATMENT (Preferred)
+        // Handles: /treatments/botox/forehead-botox
+        {
+          path: "/treatments/:treatmentId/:subTreatmentId",
+          element: <SubTreatmentDetailPage />,
         },
         {
           path: "/conditions",
           element: <ConditionsPage />,
         },
         {
-          path: "/conditions/:conditionId", // ← NEW ROUTE FOR CONDITION DETAILS
+          path: "/conditions/:conditionId",
           element: <ConditionDetailPage />,
         },
         {
@@ -60,26 +69,14 @@ function AppRouters() {
           path: "/meet-the-team",
           element: <MeetTheTeamPage />,
         },
-        {
-          path: "/skin-shop",
-          element: <SkinShopPage />,
-        },
+        // {
+        //   path: "/skin-shop",
+        //   element: <SkinShopPage />,
+        // },
         {
           path: "/about",
           element: <AboutPage />,
         },
-        // {
-        //   path: "/price-list",
-        //   element: <PriceListPage />,
-        // },
-        // {
-        //   path: "/blog",
-        //   element: <BlogPage />,
-        // },
-        // {
-        //   path: "/training",
-        //   element: <TrainingPage />,
-        // },
         {
           path: "/contact",
           element: <ContactPage />,

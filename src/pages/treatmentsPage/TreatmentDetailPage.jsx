@@ -1,499 +1,902 @@
 // src/pages/TreatmentDetailPage/TreatmentDetailPage.jsx
-// ========================================
-// COMPLETE TREATMENT DETAIL PAGE
-// ALL data pulled from treatmentsData.js - NO hardcoded text
-// Compact before/after gallery
-// READY TO COPY & PASTE
-// ========================================
+// ═══════════════════════════════════════════════════════
+// TREATMENT DETAIL  —  Radina Aesthetic Brand
+// Palette: white bg · secondary (#430568) · primary (#b17bbc) · accent (#d4a574)
+// Fonts: font-display (Cormorant Garamond) · font-body (Montserrat)
+// Design: Editorial luxury — no alternating image/text blocks
+// Sections: Hero → Overview → Benefits → Gallery (film strip) →
+//           Sub-treatments (menu) → Timeline → FAQ → CTA
+// ═══════════════════════════════════════════════════════
 
-import React, { useState } from "react";
-import { useParams, Navigate, useNavigate } from "react-router-dom";
-import { Section, Container, Button } from "../../components/ui";
-import { getTreatmentById, treatmentsData } from "../../data/treatmentsData";
-import {
-  ArrowLeft,
-  Clock,
-  DollarSign,
-  Sparkles,
-  CheckCircle2,
-  Calendar,
-  Phone,
-  MessageCircle,
-  Star,
-  Award,
-  Shield,
-  Users,
-} from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { useParams, Navigate, useNavigate, Link } from "react-router-dom";
+import { getTreatmentById } from "../../data/treatmentsData";
+import { whatsapp, phones } from "../../data/siteConfig";
 
-const TreatmentDetailPage = () => {
-  const { treatmentId } = useParams();
-  const treatment = getTreatmentById(treatmentId);
-  const navigate = useNavigate();
-
-  if (!treatment) {
-    return <Navigate to="/treatments" replace />;
-  }
+// ─── Lightbox ──────────────────────────────────────────
+function Lightbox({ images, startIndex, onClose }) {
+  const [idx, setIdx] = useState(startIndex);
+  useEffect(() => {
+    const h = (e) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight")
+        setIdx((i) => Math.min(i + 1, images.length - 1));
+      if (e.key === "ArrowLeft") setIdx((i) => Math.max(i - 1, 0));
+    };
+    window.addEventListener("keydown", h);
+    return () => window.removeEventListener("keydown", h);
+  }, [images.length, onClose]);
 
   return (
-    <main
-      id="main-content"
-      className="relative bg-gradient-to-b from-rose-50 via-white to-purple-50"
+    <div
+      className="fixed inset-0 z-[500] bg-secondary/95 backdrop-blur-sm
+                 flex flex-col items-center justify-center"
+      onClick={onClose}
     >
-      {/* HERO SECTION */}
-      <div className="relative h-[70vh] min-h-[600px] overflow-hidden">
-        <div className="absolute inset-0">
-          {treatment.image.src ? (
-            <>
-              <img
-                src={treatment.image.src}
-                alt={treatment.image.alt}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-900/90 via-purple-800/70 to-rose-900/60" />
-            </>
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-purple-700 to-rose-600" />
-          )}
-        </div>
+      <button
+        onClick={onClose}
+        className="absolute top-6 right-8 text-white/50 hover:text-white
+                   transition-colors text-4xl font-light leading-none
+                   bg-transparent border-none cursor-pointer z-10"
+      >
+        ×
+      </button>
 
-        <div className="relative h-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center">
-          <div className="max-w-3xl">
-            <button
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-                navigate("/treatments");
-              }}
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition-colors group"
-            >
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-              <span className="text-sm uppercase tracking-wider font-medium">
-                Back to Treatments
-              </span>
-            </button>
-
-            {treatment.badge && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full mb-6">
-                <Sparkles className="w-4 h-4 text-yellow-300" />
-                <span className="text-white text-sm font-medium">
-                  {treatment.badge}
-                </span>
-              </div>
-            )}
-
-            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight font-display">
-              {treatment.name}
-            </h1>
-            <p className="text-xl text-white/90 leading-relaxed mb-8">
-              {treatment.shortDescription}
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full">
-                <Clock className="w-5 h-5 text-white" />
-                <span className="text-white font-medium">
-                  {treatment.duration}
-                </span>
-              </div>
-              <div className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full">
-                <DollarSign className="w-5 h-5 text-white" />
-                <span className="text-white font-medium">
-                  {treatment.price}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg
-            viewBox="0 0 1440 120"
-            className="w-full h-20 text-white fill-current"
-          >
-            <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
-          </svg>
-        </div>
+      <div
+        className="absolute top-7 left-10 font-body text-[9px]
+                      tracking-[0.4em] uppercase text-white/30"
+      >
+        {String(idx + 1).padStart(2, "0")} /{" "}
+        {String(images.length).padStart(2, "0")}
       </div>
 
-      {/* TRUST BADGES FROM DATA */}
-      <Section background="transparent" padding="default">
-        <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 -mt-12">
-            {treatmentsData.trustBadges.map((badge, i) => {
-              const IconComponent = {
-                award: Award,
-                shield: Shield,
-                users: Users,
-                star: Star,
-              }[badge.icon];
+      <div
+        className="w-full max-w-5xl px-16"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          src={images[idx].src}
+          alt={images[idx].alt}
+          className="w-full max-h-[75vh] object-contain"
+        />
+        {images[idx].label && (
+          <p
+            className="font-body text-[10px] tracking-[0.3em] uppercase
+                         text-white/40 text-center mt-5"
+          >
+            {images[idx].label}
+          </p>
+        )}
+      </div>
 
-              return (
-                <div
-                  key={i}
-                  className="flex flex-col items-center gap-3 p-6 bg-white rounded-2xl border border-primary/10 hover:border-primary/30 transition-all shadow-lg"
-                >
-                  <IconComponent className="w-8 h-8 text-primary" />
-                  <span className="text-sm font-medium text-text-primary text-center">
-                    {badge.label}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </Container>
-      </Section>
-
-      {/* COMPACT BEFORE/AFTER GALLERY FROM DATA */}
-      {treatment.beforeAfterGallery && (
-        <Section background="white" padding="default">
-          <Container>
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-text-primary mb-2 font-display">
-                {treatment.beforeAfterGallery.title}
-              </h2>
-              <p className="text-text-secondary">
-                {treatment.beforeAfterGallery.description}
-              </p>
-            </div>
-
-            <CompactBeforeAfterGallery gallery={treatment.beforeAfterGallery} />
-          </Container>
-        </Section>
+      {idx > 0 && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIdx((i) => i - 1);
+          }}
+          className="absolute left-6 top-1/2 -translate-y-1/2 w-11 h-11
+                     border border-white/20 text-white/50 hover:border-white/60
+                     hover:text-white transition-all flex items-center justify-center
+                     bg-transparent cursor-pointer text-2xl"
+        >
+          ‹
+        </button>
       )}
-
-      {/* MAIN CONTENT */}
-      <Section background="transparent" padding="default">
-        <Container>
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Left Column */}
-            <div className="lg:col-span-2 space-y-12">
-              {/* Overview */}
-              <section>
-                <h2 className="text-3xl font-bold text-text-primary mb-6 flex items-center gap-3 font-display">
-                  <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
-                  Overview
-                </h2>
-                <p className="text-text-secondary leading-relaxed text-lg">
-                  {treatment.longDescription}
-                </p>
-              </section>
-
-              {/* How It Works */}
-              {treatment.howItWorks && (
-                <section className="bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 rounded-3xl p-8 border border-primary/10">
-                  <h2 className="text-3xl font-bold text-text-primary mb-6 flex items-center gap-3 font-display">
-                    <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
-                    {treatment.howItWorks.title}
-                  </h2>
-                  <p className="text-text-secondary leading-relaxed text-lg">
-                    {treatment.howItWorks.description}
-                  </p>
-                </section>
-              )}
-
-              {/* Treatment Areas */}
-              {treatment.treatmentAreas && (
-                <section>
-                  <h2 className="text-3xl font-bold text-text-primary mb-6 flex items-center gap-3 font-display">
-                    <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
-                    Treatment Areas
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {treatment.treatmentAreas.map((area, i) => (
-                      <div
-                        key={i}
-                        className="flex items-start gap-3 p-4 bg-white rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all"
-                      >
-                        <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-text-secondary">{area}</span>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              )}
-
-              {/* Benefits */}
-              {treatment.benefits && (
-                <section>
-                  <h2 className="text-3xl font-bold text-text-primary mb-6 flex items-center gap-3 font-display">
-                    <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
-                    Benefits
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {treatment.benefits.map((benefit, i) => (
-                      <div
-                        key={i}
-                        className="flex items-start gap-3 p-4 bg-white rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all"
-                      >
-                        <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <CheckCircle2 className="w-5 h-5 text-accent" />
-                        </div>
-                        <span className="text-text-secondary">{benefit}</span>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              )}
-
-              {/* FAQ */}
-              {treatment.faqs && treatment.faqs.length > 0 && (
-                <section>
-                  <h2 className="text-3xl font-bold text-text-primary mb-6 flex items-center gap-3 font-display">
-                    <div className="w-1 h-8 bg-gradient-to-b from-primary to-accent rounded-full"></div>
-                    Frequently Asked Questions
-                  </h2>
-                  <div className="space-y-4">
-                    {treatment.faqs.map((faq, i) => (
-                      <div
-                        key={i}
-                        className="bg-white rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg transition-all"
-                      >
-                        <h3 className="text-xl font-bold text-text-primary mb-3 font-display">
-                          {faq.question}
-                        </h3>
-                        <p className="text-text-secondary leading-relaxed">
-                          {faq.answer}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              )}
-            </div>
-
-            {/* Right Sidebar - FROM DATA */}
-            <div className="space-y-6">
-              <div className="sticky top-24 bg-gradient-to-br from-primary to-accent rounded-3xl p-8 text-white shadow-2xl">
-                <h3 className="text-2xl font-bold mb-6 font-display">
-                  Treatment Information
-                </h3>
-                <div className="space-y-4 mb-8">
-                  <div className="flex justify-between items-center pb-4 border-b border-white/20">
-                    <span className="text-white/80">Duration</span>
-                    <span className="font-semibold">{treatment.duration}</span>
-                  </div>
-                  <div className="flex justify-between items-center pb-4 border-b border-white/20">
-                    <span className="text-white/80">Price</span>
-                    <span className="font-semibold">{treatment.price}</span>
-                  </div>
-                  {treatment.resultsTime && (
-                    <div className="flex justify-between items-center pb-4 border-b border-white/20">
-                      <span className="text-white/80">Results</span>
-                      <span className="font-semibold">
-                        {treatment.resultsTime}
-                      </span>
-                    </div>
-                  )}
-                  {treatment.lastingTime && (
-                    <div className="flex justify-between items-center">
-                      <span className="text-white/80">Lasts</span>
-                      <span className="font-semibold">
-                        {treatment.lastingTime}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <Button
-                  to="/contact"
-                  variant="secondary"
-                  size="large"
-                  className="w-full justify-center bg-white text-primary hover:bg-white/90 shadow-lg mb-4"
-                  icon={<Calendar className="w-5 h-5" />}
-                  iconPosition="left"
-                >
-                  Book This Treatment
-                </Button>
-                <p className="text-center text-white/80 text-sm">
-                  Free consultation included
-                </p>
-              </div>
-
-              {/* Why Choose Us - FROM DATA */}
-              <div className="bg-white rounded-3xl p-8 border border-border shadow-lg">
-                <h3 className="text-xl font-bold text-text-primary mb-6 font-display">
-                  Why Choose Radina?
-                </h3>
-                <ul className="space-y-4">
-                  {treatmentsData.whyChooseUs.map((item, i) => (
-                    <li key={i} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-text-secondary">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Contact - FROM DATA */}
-              <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-8 border border-primary/10">
-                <h3 className="text-xl font-bold text-text-primary mb-4 font-display">
-                  {treatmentsData.sidebarContact.title}
-                </h3>
-                <p className="text-text-secondary mb-6">
-                  {treatmentsData.sidebarContact.description}
-                </p>
-                <div className="space-y-3">
-                  <a
-                    href={treatmentsData.sidebarContact.phone.link}
-                    className="flex items-center gap-3 text-primary hover:text-primary-dark transition-colors"
-                  >
-                    <Phone className="w-5 h-5" />
-                    <span className="font-medium">
-                      {treatmentsData.sidebarContact.phone.display}
-                    </span>
-                  </a>
-                  <a
-                    href={treatmentsData.sidebarContact.whatsapp.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-primary hover:text-primary-dark transition-colors"
-                  >
-                    <MessageCircle className="w-5 h-5" />
-                    <span className="font-medium">
-                      {treatmentsData.sidebarContact.whatsapp.display}
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* CTA - FROM DATA */}
-      <Section background="primary" padding="default">
-        <Container>
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-4xl font-bold mb-6 font-display">
-              Explore Other Treatments
-            </h2>
-            <p className="text-xl text-white/90 mb-8">
-              Discover more ways to enhance your natural beauty
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button to="/treatments" variant="secondary" size="large">
-                View All Treatments
-              </Button>
-              <Button
-                to="/contact"
-                variant="outline"
-                size="large"
-                className="border-white text-white hover:bg-white hover:text-primary"
-              >
-                Book Consultation
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </Section>
-    </main>
+      {idx < images.length - 1 && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIdx((i) => i + 1);
+          }}
+          className="absolute right-6 top-1/2 -translate-y-1/2 w-11 h-11
+                     border border-white/20 text-white/50 hover:border-white/60
+                     hover:text-white transition-all flex items-center justify-center
+                     bg-transparent cursor-pointer text-2xl"
+        >
+          ›
+        </button>
+      )}
+    </div>
   );
-};
+}
 
-// ==========================================
-// COMPACT BEFORE/AFTER GALLERY COMPONENT
-// ==========================================
-const CompactBeforeAfterGallery = ({ gallery }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [sliderPosition, setSliderPosition] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
+// ─── Film Strip Gallery ─────────────────────────────────
+// Horizontal drag-scroll. Greyscale → colour on hover. Click → lightbox.
+function FilmStripGallery({ images }) {
+  const [lightbox, setLightbox] = useState(null);
+  const stripRef = useRef(null);
+  const dragging = useRef(false);
+  if (!images?.length) return null;
 
-  const active = gallery.images[activeIndex];
+  const heights = ["h-64", "h-80", "h-56", "h-72", "h-64", "h-[300px]"];
 
-  const handleMove = (e) => {
-    if (!isDragging && e.type !== "mousemove") return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.type.includes("mouse") ? e.clientX : e.touches?.[0]?.clientX;
-    if (!x) return;
-    const position = Math.max(
-      0,
-      Math.min(((x - rect.left) / rect.width) * 100, 100),
-    );
-    setSliderPosition(position);
+  const onMouseDown = (e) => {
+    const el = stripRef.current;
+    dragging.current = false;
+    let startX = e.pageX - el.offsetLeft;
+    let scrollLeft = el.scrollLeft;
+    const onMove = (ev) => {
+      dragging.current = true;
+      el.scrollLeft = scrollLeft - (ev.pageX - el.offsetLeft - startX);
+    };
+    const onUp = () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
   };
 
   return (
-    <div>
-      {/* Main Slider - Compact */}
-      <div className="max-w-2xl mx-auto mb-6">
-        <div
-          className="relative aspect-video rounded-xl overflow-hidden shadow-xl select-none"
-          onMouseMove={handleMove}
-          onMouseDown={() => setIsDragging(true)}
-          onMouseUp={() => setIsDragging(false)}
-          onMouseLeave={() => setIsDragging(false)}
-          onTouchMove={handleMove}
-          onTouchStart={() => setIsDragging(true)}
-          onTouchEnd={() => setIsDragging(false)}
-        >
-          <img
-            src={active.after}
-            alt="After"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+    <>
+      <div
+        ref={stripRef}
+        className="flex gap-3 overflow-x-auto pb-3 cursor-grab active:cursor-grabbing"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        onMouseDown={onMouseDown}
+      >
+        <div className="flex-shrink-0 w-6 lg:w-14" />
 
+        {images.map((img, i) => (
           <div
-            className="absolute inset-0 overflow-hidden"
-            style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+            key={i}
+            onClick={() => {
+              if (!dragging.current) setLightbox(i);
+            }}
+            className={`relative flex-shrink-0 w-56 lg:w-64
+                        ${heights[i % heights.length]}
+                        overflow-hidden cursor-pointer group`}
           >
+            {/* Frame number */}
+            <div
+              className="absolute top-2.5 left-3 z-20 font-body text-[8px]
+                            tracking-[0.35em] text-white/50 select-none"
+            >
+              {String(i + 1).padStart(2, "0")}
+            </div>
+
             <img
-              src={active.before}
-              alt="Before"
-              className="absolute inset-0 w-full h-full object-cover"
+              src={img.src}
+              alt={img.alt}
+              className="w-full h-full object-cover transition-all duration-700
+                         group-hover:scale-[1.05]"
+              onError={(e) => {
+                e.target.closest("div").style.background =
+                  "linear-gradient(135deg, #b17bbc22, #43056822)";
+              }}
             />
+
+            {/* Hover overlay with label */}
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent
+                            opacity-0 group-hover:opacity-100 transition-opacity duration-400
+                            flex items-end p-4"
+            >
+              {img.label && (
+                <p className="font-body text-[9px] tracking-[0.2em] uppercase text-white/80">
+                  {img.label}
+                </p>
+              )}
+            </div>
+
+            {/* Expand icon */}
+            <div
+              className="absolute top-2.5 right-3 w-6 h-6 border border-white/40
+                            flex items-center justify-center opacity-0
+                            group-hover:opacity-100 transition-opacity duration-300
+                            bg-secondary/40 backdrop-blur-sm"
+            >
+              <svg
+                className="w-2.5 h-2.5 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"
+                />
+              </svg>
+            </div>
+          </div>
+        ))}
+
+        <div className="flex-shrink-0 w-6 lg:w-14" />
+      </div>
+
+      {/* Hint */}
+      <div className="flex items-center gap-4 mt-4 px-6 lg:px-14">
+        <div className="h-px flex-1 bg-border" />
+        <span className="font-body text-[8px] tracking-[0.4em] uppercase text-text-muted">
+          drag · click to enlarge
+        </span>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+
+      {lightbox !== null && (
+        <Lightbox
+          images={images}
+          startIndex={lightbox}
+          onClose={() => setLightbox(null)}
+        />
+      )}
+    </>
+  );
+}
+
+// ─── FAQ Accordion ──────────────────────────────────────
+function FAQItem({ faq, index }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-t border-border">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-start justify-between gap-6 py-6
+                   bg-transparent border-none cursor-pointer text-left"
+      >
+        <div className="flex items-baseline gap-5">
+          <span className="font-body text-[10px] text-accent tabular-nums shrink-0 font-semibold">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <span
+            className={`font-display text-[19px] font-normal leading-snug
+                             transition-colors duration-300
+                             ${open ? "text-secondary" : "text-text-primary"}`}
+          >
+            {faq.question}
+          </span>
+        </div>
+        <span
+          className={`text-text-muted text-xl shrink-0 mt-0.5 leading-none
+                          transition-transform duration-300
+                          ${open ? "rotate-45 text-secondary" : ""}`}
+        >
+          +
+        </span>
+      </button>
+      <div
+        className={`overflow-hidden transition-[max-height] duration-500 ease-out
+                       ${open ? "max-h-56" : "max-h-0"}`}
+      >
+        <p className="font-body text-[13px] leading-[1.95] text-text-secondary pb-7 ml-9">
+          {faq.answer}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════
+// MAIN PAGE
+// ═══════════════════════════════════════════════════════
+export default function TreatmentDetailPage() {
+  const { treatmentId } = useParams();
+  const navigate = useNavigate();
+  const treatment = getTreatmentById(treatmentId);
+
+  if (!treatment) return <Navigate to="/treatments" replace />;
+
+  const subs = treatment.subTreatments || [];
+  const gallery = treatment.beforeAfterGallery || [];
+  const faqs = treatment.faqs || [];
+  const benefits = treatment.benefits || [];
+  const timeline = treatment.resultsTimeline || {};
+
+  return (
+    <div className="bg-background overflow-x-hidden">
+      {/* ══════════════════════════════════════
+          HERO  —  Full bleed image, giant title
+          Title bleeds from image into the white section
+      ══════════════════════════════════════ */}
+      <section className="relative h-[88vh] min-h-[580px] flex flex-col justify-end">
+        <div className="absolute inset-0 z-0">
+          {treatment.image?.src && (
+            <img
+              src={treatment.image.src}
+              alt={treatment.image.alt}
+              className="w-full h-full object-cover"
+              onError={(e) => e.target.classList.add("hidden")}
+            />
+          )}
+          {/* Brand gradient overlay */}
+          <div
+            className="absolute inset-0 bg-gradient-to-t
+                          from-secondary/95 via-secondary/50 to-secondary/20"
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-r
+                          from-secondary/70 via-transparent to-transparent"
+          />
+        </div>
+
+        {/* Back button */}
+        <button
+          onClick={() => navigate("/treatments")}
+          className="absolute top-8 left-6 lg:left-12 z-20
+                     flex items-center gap-2.5 font-body text-[9px]
+                     tracking-[0.35em] uppercase text-white/60
+                     hover:text-white transition-colors duration-300
+                     bg-transparent border-none cursor-pointer"
+        >
+          <svg
+            className="w-3.5 h-3.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          All Treatments
+        </button>
+
+        {/* Vertical category strip — right side */}
+        <div
+          className="absolute right-10 top-1/3 z-10 hidden lg:flex
+                        flex-col items-center gap-3"
+        >
+          <div className="w-px h-14 bg-white/15" />
+          <span
+            className="font-body text-[7px] tracking-[0.5em] uppercase text-white/25
+                           [writing-mode:vertical-rl]"
+          >
+            {treatment.category}
+          </span>
+          <div className="w-px h-14 bg-white/15" />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-[1300px] mx-auto px-6 lg:px-12 pb-16 w-full">
+          {treatment.badge && (
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-8 h-px bg-accent" />
+              <span className="font-body text-[8px] tracking-[0.45em] uppercase text-accent font-semibold">
+                {treatment.badge}
+              </span>
+            </div>
+          )}
+
+          {/* Giant name — sits over the gradient fade */}
+          <h1
+            className="font-display font-light text-white leading-[0.92]
+                       tracking-tight"
+            style={{ fontSize: "clamp(52px, 9vw, 130px)" }}
+          >
+            {treatment.name}
+          </h1>
+        </div>
+
+        {/* Fade to white */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-28
+                        bg-gradient-to-t from-background to-transparent z-10"
+        />
+      </section>
+
+      {/* ══════════════════════════════════════
+          METADATA STRIP
+      ══════════════════════════════════════ */}
+      <section className="bg-background relative z-20 pt-8">
+        <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
+          <div className="flex flex-wrap border-y border-border">
+            {[
+              { label: "Duration", value: treatment.duration },
+              { label: "Starting From", value: treatment.price },
+              { label: "Initial Results", value: timeline.initial },
+              { label: "Full Results", value: timeline.full },
+              { label: "Lasts", value: timeline.duration },
+            ]
+              .filter((m) => m.value)
+              .map((m, i, arr) => (
+                <div
+                  key={i}
+                  className={`flex-1 min-w-[130px] py-5 px-6
+                             ${i < arr.length - 1 ? "border-r border-border" : ""}`}
+                >
+                  <p
+                    className="font-body text-[8px] tracking-[0.3em] uppercase
+                               text-text-muted mb-1.5"
+                  >
+                    {m.label}
+                  </p>
+                  <p className="font-display text-[19px] font-normal text-secondary">
+                    {m.value}
+                  </p>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          OVERVIEW  —  Large pull-quote + CTA sidebar
+      ══════════════════════════════════════ */}
+      <section className="py-24 lg:py-32 bg-background">
+        <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
+          <div className="flex items-center gap-4 mb-14">
+            <span className="w-7 h-px bg-accent" />
+            <span
+              className="font-body text-[8px] tracking-[0.4em] uppercase
+                             text-accent font-semibold"
+            >
+              Overview
+            </span>
           </div>
 
-          <div
-            className="absolute inset-y-0 w-1 bg-white cursor-ew-resize z-10"
-            style={{ left: `${sliderPosition}%` }}
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
-              <div className="flex gap-0.5">
-                <div className="w-0.5 h-3 bg-primary"></div>
-                <div className="w-0.5 h-3 bg-primary"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-16 items-start">
+            {/* Pull-quote — large display type */}
+            <p
+              className="font-display font-light text-text-primary leading-[1.5]"
+              style={{ fontSize: "clamp(20px, 2.6vw, 36px)" }}
+            >
+              {treatment.longDescription}
+            </p>
+
+            {/* Sidebar */}
+            <div className="lg:pt-2 flex flex-col gap-5">
+              <p className="font-body text-[12px] leading-[1.95] text-text-muted">
+                {treatment.shortDescription}
+              </p>
+              <Link
+                to="/contact"
+                className="btn-primary text-center text-[9px] tracking-[0.3em]"
+              >
+                Book Free Consultation
+              </Link>
+              <a
+                href={whatsapp.messageLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline text-center text-[9px] tracking-[0.3em]
+                           flex items-center justify-center gap-2"
+              >
+                <svg
+                  className="w-3.5 h-3.5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                </svg>
+                WhatsApp Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          BENEFITS  —  Monumental numbered rows
+          Ghost numeral watermark behind each row
+      ══════════════════════════════════════ */}
+      {benefits.length > 0 && (
+        <section className="py-20 lg:py-28 bg-surface">
+          <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
+            <div className="flex items-center gap-4 mb-16">
+              <span className="w-7 h-px bg-accent" />
+              <span
+                className="font-body text-[8px] tracking-[0.4em] uppercase
+                               text-accent font-semibold"
+              >
+                Benefits
+              </span>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+
+            {benefits.map((benefit, i) => (
+              <div
+                key={i}
+                className="relative flex items-center border-b border-border
+                           py-6 group hover:bg-white transition-colors duration-300
+                           px-4 -mx-4"
+              >
+                {/* Ghost watermark */}
+                <span
+                  className="absolute right-4 font-display font-light leading-none
+                              text-secondary/[0.05] select-none pointer-events-none
+                              group-hover:text-secondary/[0.09]
+                              transition-colors duration-500"
+                  style={{ fontSize: "clamp(52px, 7vw, 88px)" }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                {/* Small number */}
+                <span
+                  className="font-body text-[9px] text-accent font-semibold
+                                  tabular-nums w-10 shrink-0"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                {/* Dot */}
+                <span
+                  className="w-1.5 h-1.5 rounded-full bg-accent/50 shrink-0 mr-6
+                                  group-hover:bg-accent transition-colors duration-300"
+                />
+
+                {/* Benefit text */}
+                <p
+                  className="font-display font-normal text-text-secondary
+                              group-hover:text-text-primary transition-colors duration-400"
+                  style={{ fontSize: "clamp(14px, 1.6vw, 20px)" }}
+                >
+                  {benefit}
+                </p>
               </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════
+          GALLERY  —  Cinematic film strip
+          Drag to scroll, greyscale → colour on hover
+      ══════════════════════════════════════ */}
+      {gallery.length > 0 && (
+        <section className="py-20 lg:py-28 bg-background overflow-hidden">
+          <div className="max-w-[1300px] mx-auto px-6 lg:px-12 mb-10">
+            <div className="flex items-end justify-between">
+              <div>
+                <div className="flex items-center gap-4 mb-3">
+                  <span className="w-7 h-px bg-accent" />
+                  <span
+                    className="font-body text-[8px] tracking-[0.4em] uppercase
+                                   text-accent font-semibold"
+                  >
+                    Results Gallery
+                  </span>
+                </div>
+                <h2
+                  className="font-display font-light text-secondary leading-tight"
+                  style={{ fontSize: "clamp(28px, 4vw, 56px)" }}
+                >
+                  Real Results
+                </h2>
+              </div>
+              <span
+                className="font-body text-[10px] text-text-muted hidden lg:block
+                               tracking-[0.2em] uppercase"
+              >
+                {gallery.length} images
+              </span>
             </div>
           </div>
 
-          <div className="absolute top-3 left-3 px-3 py-1 bg-black/60 backdrop-blur-sm text-white rounded-full text-xs font-medium">
-            Before
+          {/* Strip stretches past container */}
+          <div className="pl-6 lg:pl-12">
+            <FilmStripGallery images={gallery} />
           </div>
-          <div className="absolute top-3 right-3 px-3 py-1 bg-black/60 backdrop-blur-sm text-white rounded-full text-xs font-medium">
-            After
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════
+          SUB-TREATMENTS  —  Luxury menu list
+      ══════════════════════════════════════ */}
+      {subs.length > 0 && (
+        <section className="py-20 lg:py-28 bg-surface">
+          <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
+            <div className="flex items-center gap-4 mb-4">
+              <span className="w-7 h-px bg-accent" />
+              <span
+                className="font-body text-[8px] tracking-[0.4em] uppercase
+                               text-accent font-semibold"
+              >
+                Specialised Treatments
+              </span>
+            </div>
+            <p className="font-body text-[11px] text-text-muted mb-16 ml-11 tracking-wide">
+              Select a treatment below to explore in full detail
+            </p>
+
+            {subs.map((sub, i) => (
+              <Link
+                key={sub.id}
+                to={`/treatments/${treatmentId}/${sub.id}`}
+                className="group flex items-stretch border-b border-border
+                           hover:bg-white transition-all duration-300
+                           px-4 -mx-4"
+              >
+                {/* Index */}
+                <div className="py-7 pr-7 shrink-0 flex items-start pt-7">
+                  <span
+                    className="font-body text-[9px] text-text-muted/50 tabular-nums
+                                   group-hover:text-accent font-semibold
+                                   transition-colors duration-300"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+
+                {/* Name + description */}
+                <div className="py-7 flex-1 min-w-0">
+                  <h3
+                    className="font-display font-normal text-text-primary
+                                group-hover:text-secondary transition-colors duration-300
+                                leading-snug mb-1.5"
+                    style={{ fontSize: "clamp(17px, 2vw, 26px)" }}
+                  >
+                    {sub.name}
+                  </h3>
+                  <p
+                    className="font-body text-[11px] text-text-muted leading-relaxed
+                                 hidden md:block group-hover:text-text-secondary
+                                 transition-colors duration-300 max-w-xl"
+                  >
+                    {sub.shortDescription}
+                  </p>
+                </div>
+
+                {/* Price + Duration + Arrow */}
+                <div className="py-7 pl-7 flex items-center gap-7 shrink-0">
+                  <div className="text-right hidden lg:block">
+                    <p
+                      className="font-body text-[7px] tracking-[0.3em] uppercase
+                                   text-text-muted mb-1"
+                    >
+                      From
+                    </p>
+                    <p
+                      className="font-display text-[16px] text-secondary
+                                   group-hover:text-primary
+                                   transition-colors duration-300"
+                    >
+                      {sub.price}
+                    </p>
+                  </div>
+                  <div className="text-right hidden md:block">
+                    <p
+                      className="font-body text-[7px] tracking-[0.3em] uppercase
+                                   text-text-muted mb-1"
+                    >
+                      Time
+                    </p>
+                    <p className="font-body text-[11px] text-text-secondary">
+                      {sub.duration}
+                    </p>
+                  </div>
+
+                  {/* Arrow box */}
+                  <div
+                    className="w-9 h-9 border border-border flex items-center justify-center
+                                   group-hover:border-secondary group-hover:bg-secondary
+                                   transition-all duration-300"
+                  >
+                    <svg
+                      className="w-3.5 h-3.5 text-text-muted group-hover:text-white
+                                  transition-colors duration-300
+                                  group-hover:translate-x-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/70 backdrop-blur-sm text-white rounded-full text-sm font-medium">
-            {active.label}
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════
+          TIMELINE  —  Bordered stat blocks
+      ══════════════════════════════════════ */}
+      {(timeline.initial || timeline.full || timeline.duration) && (
+        <section className="bg-background">
+          <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 border border-border">
+              {[
+                { label: "Initial Results", value: timeline.initial },
+                { label: "Full Results", value: timeline.full },
+                { label: "Duration", value: timeline.duration },
+                {
+                  label: "Sessions",
+                  value: timeline.sessions || "Personalised",
+                },
+              ]
+                .filter((s) => s.value)
+                .map((stat, i, arr) => (
+                  <div
+                    key={i}
+                    className={`px-8 py-10 text-center
+                               ${i < arr.length - 1 ? "border-r border-border" : ""}`}
+                  >
+                    <p
+                      className="font-body text-[7px] tracking-[0.4em] uppercase
+                                 text-text-muted mb-3"
+                    >
+                      {stat.label}
+                    </p>
+                    <p
+                      className="font-display font-light text-secondary leading-none"
+                      style={{ fontSize: "clamp(14px, 1.8vw, 22px)" }}
+                    >
+                      {stat.value}
+                    </p>
+                  </div>
+                ))}
+            </div>
           </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════
+          FAQ  —  Clean accordion
+      ══════════════════════════════════════ */}
+      {faqs.length > 0 && (
+        <section className="py-20 lg:py-28 bg-background">
+          <div className="max-w-[900px] mx-auto px-6 lg:px-12">
+            <div className="flex items-center gap-4 mb-4">
+              <span className="w-7 h-px bg-accent" />
+              <span
+                className="font-body text-[8px] tracking-[0.4em] uppercase
+                               text-accent font-semibold"
+              >
+                Questions
+              </span>
+            </div>
+            <h2
+              className="font-display font-light text-secondary leading-tight mb-12"
+              style={{ fontSize: "clamp(28px, 3.5vw, 50px)" }}
+            >
+              Common Questions
+            </h2>
+            {faqs.map((faq, i) => (
+              <FAQItem key={i} faq={faq} index={i} />
+            ))}
+            <div className="border-t border-border" />
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════
+          CTA  —  Brand gradient, warm gold accents
+      ══════════════════════════════════════ */}
+      <section className="relative overflow-hidden">
+        {/* Deep brand gradient */}
+        <div
+          className="absolute inset-0 bg-gradient-to-br
+                        from-secondary via-secondary-dark to-primary-dark"
+        />
+
+        {/* Decorative circles */}
+        <div
+          className="absolute -top-32 -right-32 w-[500px] h-[500px]
+                        rounded-full border border-white/5 pointer-events-none"
+        />
+        <div
+          className="absolute -bottom-40 -left-20 w-[400px] h-[400px]
+                        rounded-full border border-white/4 pointer-events-none"
+        />
+
+        {/* Ghost letter */}
+        <div
+          className="absolute right-0 top-1/2 -translate-y-1/2
+                     font-display font-light text-white/[0.04] leading-none
+                     select-none pointer-events-none hidden xl:block"
+          style={{ fontSize: "360px" }}
+        >
+          {treatment.name.charAt(0)}
         </div>
-      </div>
 
-      {/* Thumbnails - Compact */}
-      <div className="flex justify-center gap-3">
-        {gallery.images.map((img, i) => (
-          <button
-            key={i}
-            onClick={() => {
-              setActiveIndex(i);
-              setSliderPosition(50);
-            }}
-            className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
-              activeIndex === i
-                ? "border-primary scale-110"
-                : "border-border opacity-60 hover:opacity-100"
-            }`}
+        {/* Gold shimmer bar at top */}
+        <div
+          className="absolute top-0 left-0 right-0 h-px
+                        bg-gradient-to-r from-transparent via-accent/50 to-transparent"
+        />
+
+        <div
+          className="relative z-10 max-w-[900px] mx-auto px-6 lg:px-12
+                        py-28 lg:py-36 text-center"
+        >
+          {/* Label */}
+          <div className="flex items-center justify-center gap-4 mb-10">
+            <span className="w-10 h-px bg-accent/40" />
+            <span
+              className="font-body text-[7px] tracking-[0.55em] uppercase
+                             text-accent/70 font-semibold"
+            >
+              Begin Your Journey
+            </span>
+            <span className="w-10 h-px bg-accent/40" />
+          </div>
+
+          {/* Headline */}
+          <h2
+            className="font-display font-light text-white leading-[1.0] mb-6"
+            style={{ fontSize: "clamp(36px, 6.5vw, 84px)" }}
           >
-            <img
-              src={img.after}
-              alt={img.label}
-              className="w-full h-full object-cover"
-            />
-          </button>
-        ))}
-      </div>
+            Book Your
+            <br />
+            <em className="not-italic text-accent">{treatment.name}</em>
+          </h2>
 
-      <p className="text-center text-xs text-text-muted mt-4 italic">
-        {gallery.disclaimer}
-      </p>
+          <p
+            className="font-body text-[13px] leading-[2] text-white/50
+                         max-w-[420px] mx-auto mb-12"
+          >
+            Free consultation with Dr. Shakiba Hussaini. No obligation — just an
+            honest, expert assessment of what's right for you.
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
+            <Link
+              to="/contact"
+              className="inline-block px-12 py-4 bg-accent text-secondary
+                         font-body text-[9px] font-bold tracking-[0.35em] uppercase
+                         hover:bg-white transition-colors duration-300"
+            >
+              Book Free Consultation
+            </Link>
+            <a
+              href={whatsapp.messageLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-10 py-4
+                         border border-white/20 text-white/70
+                         font-body text-[9px] font-bold tracking-[0.25em] uppercase
+                         hover:border-accent hover:text-accent
+                         transition-all duration-300"
+            >
+              <svg
+                className="w-3.5 h-3.5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+              </svg>
+              WhatsApp
+            </a>
+            <a
+              href={`tel:${phones.primary}`}
+              className="inline-flex items-center gap-3 px-10 py-4
+                         border border-white/20 text-white/70
+                         font-body text-[9px] font-bold tracking-[0.25em] uppercase
+                         hover:border-accent hover:text-accent
+                         transition-all duration-300"
+            >
+              <svg
+                className="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                />
+              </svg>
+              Call Us
+            </a>
+          </div>
+
+          <p className="font-body text-[9px] text-white/25 tracking-[0.2em]">
+            ✦ &nbsp;Complimentary skin analysis with every first appointment
+          </p>
+        </div>
+
+        {/* Gold shimmer bar at bottom */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-px
+                        bg-gradient-to-r from-transparent via-accent/40 to-transparent"
+        />
+      </section>
     </div>
   );
-};
-
-export default TreatmentDetailPage;
+}

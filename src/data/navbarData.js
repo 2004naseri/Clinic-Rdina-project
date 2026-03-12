@@ -1,71 +1,41 @@
 // src/data/navbarData.js
 // ========================================
-// NAVBAR DATA - UPDATED WITH CORRECT INFO
+// NAVBAR DATA
+// ⚠️  Contact info & social links live in siteConfig.js
+//     Never duplicate them here — import instead
 // ========================================
+import { clinic, phones, whatsapp, social, hours } from "./siteConfig";
 
+// ==================
+// BRAND
+// ==================
 export const brandConfig = {
-  name: "Radina Clinic",
-  tagline: "Beauty & Wellness",
+  name: clinic.name,
+  tagline: clinic.tagline,
   logo: {
-    type: "logo.png",
+    type: "image",
+    imagePath: "/public/images/logo.png",
     initial: "R",
-    imagePath: "/images/logo.png",
   },
   link: "/",
 };
 
+// ==================
+// NAVIGATION ITEMS
+// ==================
 export const navigationItems = [
-  {
-    id: "home",
-    label: "Home",
-    path: "/",
-    type: "link",
-    description: "",
-  },
-  {
-    id: "treatments",
-    label: "Treatments",
-    path: "/treatments",
-    type: "link",
-    description: "Explore our treatments",
-  },
-  {
-    id: "conditions",
-    label: "Conditions",
-    path: "/conditions",
-    type: "link",
-    description: "Conditions we treat",
-  },
-  {
-    id: "packages",
-    label: "Packages",
-    path: "/packages",
-    type: "link",
-    description: "Special packages",
-  },
-  {
-    id: "team",
-    label: "Our Team",
-    path: "/meet-the-team",
-    type: "link",
-    description: "Meet our experts",
-  },
-  {
-    id: "shop",
-    label: "Skin Shop",
-    path: "/skin-shop",
-    type: "link",
-    description: "Premium skincare products",
-  },
-  {
-    id: "about",
-    label: "About",
-    path: "/about",
-    type: "link",
-    description: "Learn more about us",
-  },
+  { id: "home", label: "Home", path: "/", type: "link" },
+  { id: "treatments", label: "Treatments", path: "/treatments", type: "link" },
+  { id: "conditions", label: "Conditions", path: "/conditions", type: "link" },
+  { id: "packages", label: "Packages", path: "/packages", type: "link" },
+  { id: "team", label: "Our Team", path: "/meet-the-team", type: "link" },
+  { id: "about", label: "About", path: "/about", type: "link" },
+  { id: "contact", label: "Contact Us", path: "/contact", type: "link" },
 ];
 
+// ==================
+// CTA BUTTONS
+// ==================
 export const ctaConfig = {
   primary: {
     label: "Book Appointment",
@@ -76,7 +46,7 @@ export const ctaConfig = {
   },
   secondary: {
     label: "Call Us",
-    path: "tel:+447795976868",
+    path: phones.primary.link,
     style: "outline",
     icon: "phone",
     external: true,
@@ -85,87 +55,8 @@ export const ctaConfig = {
 };
 
 // ==================
-// UPDATED CONTACT INFO
+// QUICK ACTIONS (mobile menu etc.)
 // ==================
-export const contactInfo = {
-  phone: {
-    display: "07795 976868",
-    link: "tel:+447795976868",
-  },
-  whatsapp: {
-    display: "07882 244808",
-    link: "https://wa.me/447882244808",
-  },
-  alternativePhone: {
-    display: "07990 348048",
-    link: "tel:+447990348048",
-  },
-  email: {
-    display: "info@radinaclinic.com",
-    link: "mailto:info@radinaclinic.com",
-  },
-  address: {
-    city: "London & Leeds",
-    country: "United Kingdom",
-    fullAddress: "London & Leeds, United Kingdom",
-  },
-  hours: {
-    weekdays: "Monday - Friday: 09:00 - 18:00",
-    saturday: "Saturday: 10:00 - 16:00",
-    sunday: "Sunday: Closed",
-  },
-};
-
-// ==================
-// UPDATED SOCIAL MEDIA LINKS
-// ==================
-export const socialLinks = [
-  {
-    id: "instagram",
-    platform: "Instagram",
-    url: "https://instagram.com/RadinaAesthetic",
-    icon: "instagram",
-    color: "#E4405F",
-  },
-  {
-    id: "facebook",
-    platform: "Facebook",
-    url: "https://facebook.com/radinaclinic",
-    icon: "facebook",
-    color: "#1877F2",
-  },
-  {
-    id: "whatsapp",
-    platform: "WhatsApp",
-    url: "https://wa.me/447882244808",
-    icon: "whatsapp",
-    color: "#25D366",
-  },
-  {
-    id: "tiktok",
-    platform: "TikTok",
-    url: "https://tiktok.com/@radinaclinic",
-    icon: "tiktok",
-    color: "#000000",
-  },
-];
-
-export const navbarConfig = {
-  behavior: {
-    hideOnScroll: true,
-    showOnScrollUp: true,
-    transparentOnTop: true,
-    blurWhenScrolled: true,
-  },
-  breakpoints: {
-    mobile: 1024,
-  },
-  animation: {
-    duration: 300,
-    easing: "ease-out",
-  },
-};
-
 export const quickActions = [
   {
     id: "consultation",
@@ -177,55 +68,79 @@ export const quickActions = [
   {
     id: "whatsapp",
     label: "WhatsApp Us",
-    path: "https://wa.me/447882244808",
+    path: whatsapp.messageLink,
     icon: "whatsapp",
     featured: true,
   },
 ];
 
+// ==================
+// RE-EXPORT from siteConfig
+// So the navbar component only needs to import from ONE file
+// ==================
+export { phones, whatsapp, hours };
+export const socialLinks = social; // alias — keeps existing navbar component working
+export const contactInfo = {
+  phone: { display: phones.primary.display, link: phones.primary.link },
+  whatsapp: { display: whatsapp.display, link: whatsapp.messageLink },
+  alternativePhone: {
+    display: phones.alternative.display,
+    link: phones.alternative.link,
+  },
+  email: { display: clinic.email, link: `mailto:${clinic.email}` },
+  address: {
+    city: "London & Leeds",
+    country: "United Kingdom",
+    fullAddress: clinic.location,
+  },
+  hours,
+};
+
+// ==================
+// NAVBAR BEHAVIOUR
+// ==================
+export const navbarConfig = {
+  behavior: {
+    hideOnScroll: true,
+    showOnScrollUp: true,
+    transparentOnTop: true,
+    blurWhenScrolled: true,
+  },
+  breakpoints: { mobile: 1024 },
+  animation: { duration: 300, easing: "ease-out" },
+};
+
+// ==================
+// SEO
+// ==================
 export const seoConfig = {
-  defaultTitle: "Radina Clinic | Beauty & Wellness",
-  titleTemplate: "%s | Radina Clinic",
+  defaultTitle: `${clinic.name} | ${clinic.tagline}`,
+  titleTemplate: `%s | ${clinic.name}`,
   description:
-    "Experience luxury beauty treatments at Radina Clinic. Expert aesthetics, skincare, and wellness services in London & Leeds, UK.",
+    "Experience advanced aesthetic medicine at Radina Aesthetic Clinic. Medical-grade treatments in London & Leeds, UK.",
   keywords: [
-    "beauty clinic",
-    "aesthetics",
-    "skincare",
+    "aesthetic clinic",
+    "botox",
+    "dermal fillers",
+    "skin boosters",
+    "mesotherapy",
+    "non-surgical rhinoplasty",
     "London",
     "Leeds",
     "UK",
-    "botox",
-    "dermal fillers",
-    "non-surgical rhinoplasty",
-    "skin boosters",
-    "mesotherapy",
   ],
 };
 
-// Helper Functions
-export const getAllPaths = () => {
-  const paths = [];
-  navigationItems.forEach((item) => {
-    if (item.type === "link" && item.path !== "#") {
-      paths.push(item.path);
-    }
-    if (item.type === "dropdown" && item.dropdownItems) {
-      item.dropdownItems.forEach((subItem) => {
-        if (subItem.path !== "#") {
-          paths.push(subItem.path);
-        }
-      });
-    }
-  });
-  return paths;
-};
-
-export const getNavItemById = (id) => {
-  return navigationItems.find((item) => item.id === id);
-};
-
+// ==================
+// HELPERS
+// ==================
+export const getNavItemById = (id) =>
+  navigationItems.find((item) => item.id === id);
 export const isPathActive = (currentPath, itemPath) => {
   if (itemPath === "#") return false;
   return currentPath === itemPath || currentPath.startsWith(itemPath + "/");
 };
+export const getAllPaths = () =>
+  navigationItems
+    .filter((item) => item.type === "link" && item.path !== "#")
+    .map((item) => item.path);

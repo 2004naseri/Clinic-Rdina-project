@@ -28,7 +28,7 @@ export const homePageData = {
     ],
     // Hero Image (right side)
     image: {
-      src: "/images/hero.jpg", // 👈 REPLACE THIS with your image path
+      src: "/public/images/web pic/4.jpeg", // 👈 REPLACE THIS with your image path
       alt: "Luxury beauty treatment at Radina Clinic",
       // If no image, show this placeholder:
       placeholder: {
@@ -80,7 +80,7 @@ export const homePageData = {
     description:
       "At Radina Clinic, we believe beauty is personal. Our approach combines cutting-edge medical technology with personalized care to enhance your natural features, never change them.",
     image: {
-      src: "/images/doctor.jpg", // 👈 REPLACE with your image
+      src: "/public/images/web pic/21.jpeg", // 👈 REPLACE with your image
       alt: "Radina Clinic interior",
       placeholder: {
         show: false, // Set to false when you add real image
