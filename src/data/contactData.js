@@ -12,7 +12,7 @@ export const contactData = {
     description:
       "Ready to begin your journey? Contact us to schedule your complimentary consultation with Dr. Hussaini.",
     image: {
-      src: "/public/images/web pic/about.jpeg",
+      src: "/images/web pic/dr.jpeg",
       alt: "Contact Radina Clinic",
     },
   },

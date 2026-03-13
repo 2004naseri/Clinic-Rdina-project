@@ -183,29 +183,53 @@ export default function ContactPage() {
   return (
     <main id="main-content" className="bg-white font-body overflow-x-hidden">
       {/* ══ HERO ══════════════════════════════════════════════ */}
-      <section className="relative min-h-[65vh] flex items-end">
-        <div className="absolute inset-0 z-0">
-          <img
-            src={hero.image.src}
-            alt={hero.image.alt}
-            className="w-full h-full object-cover"
-            onError={(e) => e.target.classList.add("hidden")}
+      <section
+        className="relative min-h-[65vh] flex items-end
+                          bg-gradient-to-br from-[#1a0432] via-secondary to-primary-dark overflow-hidden"
+      >
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full
+                          border border-white/6"
           />
           <div
-            className="absolute inset-0 bg-gradient-to-t
-                          from-[rgba(26,4,50,0.96)] via-secondary/50 to-black/20"
+            className="absolute -top-16 -right-16 w-[300px] h-[300px] rounded-full
+                          border border-white/5"
           />
+          <div
+            className="absolute bottom-0 left-1/3 w-[400px] h-[400px] rounded-full
+                          border border-white/4"
+          />
+          {/* Shimmer bars */}
+          <div
+            className="absolute top-1/3 right-0 w-1 h-48
+                          bg-gradient-to-b from-transparent via-accent/30 to-transparent"
+          />
+          <div
+            className="absolute top-1/2 right-20 w-px h-32
+                          bg-gradient-to-b from-transparent via-white/15 to-transparent"
+          />
+        </div>
+
+        {/* Ghost R letter */}
+        <div
+          className="absolute right-16 top-1/2 -translate-y-1/2
+                        font-display text-[280px] font-light leading-none
+                        text-white/4 select-none hidden lg:block"
+        >
+          R
         </div>
 
         {/* Side label */}
         <div
           className="absolute left-8 top-1/2 -translate-y-1/2 -rotate-90 z-10
                         hidden lg:flex items-center gap-3 whitespace-nowrap
-                        font-body text-[8px] tracking-[0.45em] uppercase text-white/30"
+                        font-body text-[8px] tracking-[0.45em] uppercase text-white/25"
         >
-          <span className="w-8 h-px bg-white/30 inline-block" />
+          <span className="w-8 h-px bg-white/25 inline-block" />
           Radina Aesthetic Clinic
-          <span className="w-8 h-px bg-white/30 inline-block" />
+          <span className="w-8 h-px bg-white/25 inline-block" />
         </div>
 
         <div
@@ -224,7 +248,7 @@ export default function ContactPage() {
           >
             {hero.title}
           </h1>
-          <p className="font-body text-[15px] leading-[1.9] text-white/75 max-w-[480px]">
+          <p className="font-body text-[15px] leading-[1.9] text-white/70 max-w-[480px]">
             {hero.description}
           </p>
         </div>

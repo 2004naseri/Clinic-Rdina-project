@@ -13,7 +13,7 @@ export const teamData = {
     description:
       "Where medical science, research integrity, and natural aesthetics meet with trust.",
     image: {
-      src: "/public/images/web pic/boos2.jpeg",
+      src: "/images/web pic/boos2.jpeg",
       alt: "Radina Aesthetic Clinic",
     },
   },
@@ -32,7 +32,7 @@ export const teamData = {
       "Editor-in-Chief, Ariana Medical Journal",
     ],
     image: {
-      src: "/public/images/web pic/dr.jpeg",
+      src: "/images/web pic/dr.jpeg",
       alt: "Dr. Shakiba Hussaini",
     },
     tagline:
