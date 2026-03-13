@@ -14,7 +14,7 @@ export const brandConfig = {
   tagline: clinic.tagline,
   logo: {
     type: "image",
-    imagePath: "/public/images/logo.png",
+    imagePath: "/images/logo.png",
     initial: "R",
   },
   link: "/",

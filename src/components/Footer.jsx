@@ -77,7 +77,7 @@ const Footer = () => {
               className="block mb-5 bg-transparent border-none cursor-pointer p-0"
             >
               <img
-                src="/public/images/logo.png"
+                src="/images/logo.png"
                 alt={clinic.name}
                 className="h-12 w-auto"
                 onError={(e) => {

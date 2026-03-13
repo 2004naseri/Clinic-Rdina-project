@@ -326,7 +326,7 @@ export const conditionsData = {
         "Calm inflammation and reduce persistent facial redness.",
       longDescription:
         "Specialized treatments for rosacea target redness, visible blood vessels, and inflammation using gentle yet effective therapies tailored to sensitive skin. Our expert dermatologists develop a long-term management plan that keeps flare-ups at bay and restores skin confidence.",
-      image: { src: "/public/images/Rosacea.webp", alt: "Rosacea treatment" },
+      image: { src: "/images/Rosacea.webp", alt: "Rosacea treatment" },
       severity: "Mild to Moderate",
       featured: false,
       stats: [
@@ -471,10 +471,7 @@ export const conditionsData = {
         "Minimize pore size for smoother, refined skin texture.",
       longDescription:
         "Professional treatments that cleanse, tighten, and minimize the appearance of enlarged pores for a smoother, more refined complexion. Our pore-refining protocols combine deep cleansing with collagen-stimulating treatments to visibly reduce pore size and improve overall skin texture.",
-      image: {
-        src: "/public/images/LargePores.png",
-        alt: "Large pores treatment",
-      },
+      image: { src: "/images/LargePores.png", alt: "Large pores treatment" },
       severity: "Mild to Moderate",
       featured: false,
       stats: [
@@ -546,10 +543,7 @@ export const conditionsData = {
       shortDescription: "Restore firmness and lift to aging, sagging skin.",
       longDescription:
         "Combat skin laxity and volume loss with advanced treatments that tighten, lift, and restore youthful contours to the face and body. Our non-surgical lifting protocols harness the latest radiofrequency, ultrasound, and filler technologies to turn back time — beautifully.",
-      image: {
-        src: "/public/images/SaggingSkin.jpg",
-        alt: "Sagging skin treatment",
-      },
+      image: { src: "/images/SaggingSkin.jpg", alt: "Sagging skin treatment" },
       severity: "Moderate to Severe",
       featured: false,
       stats: [
@@ -620,10 +614,7 @@ export const conditionsData = {
       shortDescription: "Brighten and refresh tired-looking under-eye area.",
       longDescription:
         "Specialized treatments for dark circles, puffiness, and under-eye concerns that brighten and rejuvenate the delicate eye area. We address hollow tear troughs, pigmentation, and fine lines with precision techniques that restore a bright, well-rested appearance.",
-      image: {
-        src: "/public/images/DarkCircles.jpg",
-        alt: "Dark circles treatment",
-      },
+      image: { src: "/images/DarkCircles.jpg", alt: "Dark circles treatment" },
       severity: "Mild to Moderate",
       featured: false,
       stats: [
@@ -696,7 +687,7 @@ export const conditionsData = {
         "Permanent hair reduction with advanced laser technology.",
       longDescription:
         "Safe, effective laser hair removal for all skin types and body areas. Achieve smooth, hair-free skin with long-lasting results using our state-of-the-art laser systems. Say goodbye to razors, waxing, and ingrown hairs — permanently.",
-      image: { src: "/public/images/UnwantedHair.webp", alt: "Hair removal" },
+      image: { src: "/images/UnwantedHair.webp", alt: "Hair removal" },
       severity: "All Levels",
       featured: false,
       stats: [
