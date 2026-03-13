@@ -13,7 +13,7 @@ export const aboutData = {
     description:
       "A clinic built on medical excellence, scientific integrity, and a genuine commitment to natural, lasting results. Every client is seen as an individual — never a treatment.",
     image: {
-      src: "/public/images/web pic/clinic.jpeg",
+      src: "/images/web pic/clinic.jpeg",
       alt: "Radina Aesthetic Clinic",
     },
   },
