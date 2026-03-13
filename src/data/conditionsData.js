@@ -1,5 +1,5 @@
 // ============================================================
-// conditionsData.js — Enhanced with gallery, FAQs, stats & more
+// conditionsData.js — Conditions data with FAQs, stats & related treatments
 // ============================================================
 
 export const conditionsData = {
@@ -9,7 +9,7 @@ export const conditionsData = {
     description:
       "From acne to aging, we offer advanced treatments for a wide range of skin concerns. Discover personalized solutions for your unique needs.",
     image: {
-      src: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=80",
+      src: "/images/micronedling/1.jpeg",
       alt: "Skin conditions we treat",
     },
   },
@@ -30,10 +30,6 @@ export const conditionsData = {
       image: {
         src: "/images/acne.jpeg",
         alt: "Acne treatment",
-      },
-      heroImage: {
-        src: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1400&q=80",
-        alt: "Acne treatment hero",
       },
       severity: "Mild to Severe",
       featured: true,
@@ -74,29 +70,6 @@ export const conditionsData = {
           sessions: "Custom",
         },
       ],
-      gallery: [
-        {
-          before:
-            "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80",
-          caption: "After 6 sessions of Chemical Peels",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&q=80",
-          caption: "After Acne Treatment Program",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1607008829749-c0f284a49fc4?w=600&q=80",
-          caption: "After Microneedling Course",
-        },
-      ],
       faqs: [
         {
           q: "How long before I see results from acne treatments?",
@@ -132,10 +105,6 @@ export const conditionsData = {
       image: {
         src: "/images/wrinkless.webp",
         alt: "Anti-aging treatment",
-      },
-      heroImage: {
-        src: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1400&q=80",
-        alt: "Anti-aging hero",
       },
       severity: "Mild to Moderate",
       featured: true,
@@ -177,29 +146,6 @@ export const conditionsData = {
           sessions: "4–6",
         },
       ],
-      gallery: [
-        {
-          before:
-            "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
-          caption: "After Botox & Filler Combination",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&q=80",
-          caption: "After Laser Resurfacing",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1607008829749-c0f284a49fc4?w=600&q=80",
-          caption: "After Full Anti-Aging Protocol",
-        },
-      ],
       faqs: [
         {
           q: "How long do Botox results last?",
@@ -235,10 +181,6 @@ export const conditionsData = {
       image: {
         src: "/images/darkspot.webp",
         alt: "Pigmentation treatment",
-      },
-      heroImage: {
-        src: "https://images.unsplash.com/photo-1487412840181-f73b67e44c8f?w=1400&q=80",
-        alt: "Pigmentation hero",
       },
       severity: "Mild to Severe",
       featured: true,
@@ -280,29 +222,6 @@ export const conditionsData = {
           sessions: "Ongoing",
         },
       ],
-      gallery: [
-        {
-          before:
-            "https://images.unsplash.com/photo-1607008829749-c0f284a49fc4?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80",
-          caption: "After IPL Photofacial Series",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80",
-          caption: "After Chemical Peel Course",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1487412840181-f73b67e44c8f?w=600&q=80",
-          caption: "After Full Pigmentation Protocol",
-        },
-      ],
       faqs: [
         {
           q: "Can pigmentation be completely removed?",
@@ -336,10 +255,6 @@ export const conditionsData = {
       longDescription:
         "Advanced scar treatment options including microneedling, laser therapy, and dermal fillers help reduce the appearance of acne scars and dramatically improve skin texture. Our multi-modality approach targets both the surface irregularity and the underlying collagen structure for transformative results.",
       image: { src: "/images/scars.webp", alt: "Scar treatment" },
-      heroImage: {
-        src: "https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=1400&q=80",
-        alt: "Scarring hero",
-      },
       severity: "Mild to Severe",
       featured: false,
       stats: [
@@ -379,29 +294,6 @@ export const conditionsData = {
           sessions: "3–4",
         },
       ],
-      gallery: [
-        {
-          before:
-            "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1487412840181-f73b67e44c8f?w=600&q=80",
-          caption: "After Microneedling + PRP",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1607008829749-c0f284a49fc4?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80",
-          caption: "After Laser Resurfacing",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80",
-          caption: "After Full Scar Protocol",
-        },
-      ],
       faqs: [
         {
           q: "Can all types of acne scars be treated?",
@@ -435,10 +327,6 @@ export const conditionsData = {
       longDescription:
         "Specialized treatments for rosacea target redness, visible blood vessels, and inflammation using gentle yet effective therapies tailored to sensitive skin. Our expert dermatologists develop a long-term management plan that keeps flare-ups at bay and restores skin confidence.",
       image: { src: "/public/images/Rosacea.webp", alt: "Rosacea treatment" },
-      heroImage: {
-        src: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1400&q=80",
-        alt: "Rosacea hero",
-      },
       severity: "Mild to Moderate",
       featured: false,
       stats: [
@@ -479,29 +367,6 @@ export const conditionsData = {
           sessions: "Monthly",
         },
       ],
-      gallery: [
-        {
-          before:
-            "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80",
-          caption: "After IPL Series",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1487412840181-f73b67e44c8f?w=600&q=80",
-          caption: "After Vascular Laser",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1607008829749-c0f284a49fc4?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80",
-          caption: "After 4-Month Program",
-        },
-      ],
       faqs: [
         {
           q: "Is rosacea curable?",
@@ -535,10 +400,6 @@ export const conditionsData = {
       longDescription:
         "Repair and reverse the effects of sun exposure with treatments that target pigmentation, texture issues, and premature aging caused by UV damage. Our comprehensive photo-aging protocols restore a healthy, youthful glow while protecting your skin from future damage.",
       image: { src: "/images/sun.jpg", alt: "Sun damage treatment" },
-      heroImage: {
-        src: "https://images.unsplash.com/photo-1607008829749-c0f284a49fc4?w=1400&q=80",
-        alt: "Sun damage hero",
-      },
       severity: "Mild to Severe",
       featured: true,
       stats: [
@@ -578,29 +439,6 @@ export const conditionsData = {
           sessions: "Ongoing",
         },
       ],
-      gallery: [
-        {
-          before:
-            "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&q=80",
-          caption: "After IPL Photofacial Series",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80",
-          caption: "After Laser Resurfacing",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80",
-          caption: "After Full Sun Damage Protocol",
-        },
-      ],
       faqs: [
         {
           q: "Can years of sun damage really be reversed?",
@@ -636,10 +474,6 @@ export const conditionsData = {
       image: {
         src: "/public/images/LargePores.png",
         alt: "Large pores treatment",
-      },
-      heroImage: {
-        src: "https://images.unsplash.com/photo-1487412840181-f73b67e44c8f?w=1400&q=80",
-        alt: "Large pores hero",
       },
       severity: "Mild to Moderate",
       featured: false,
@@ -681,29 +515,6 @@ export const conditionsData = {
           sessions: "3–4",
         },
       ],
-      gallery: [
-        {
-          before:
-            "https://images.unsplash.com/photo-1607008829749-c0f284a49fc4?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1487412840181-f73b67e44c8f?w=600&q=80",
-          caption: "After HydraFacial Series",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80",
-          caption: "After Microneedling Course",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80",
-          caption: "After Pore Refining Protocol",
-        },
-      ],
       faqs: [
         {
           q: "Can pores actually shrink permanently?",
@@ -738,10 +549,6 @@ export const conditionsData = {
       image: {
         src: "/public/images/SaggingSkin.jpg",
         alt: "Sagging skin treatment",
-      },
-      heroImage: {
-        src: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1400&q=80",
-        alt: "Sagging skin hero",
       },
       severity: "Moderate to Severe",
       featured: false,
@@ -782,29 +589,6 @@ export const conditionsData = {
           sessions: "3–4",
         },
       ],
-      gallery: [
-        {
-          before:
-            "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&q=80",
-          caption: "After Filler Lift Protocol",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80",
-          caption: "After Laser Tightening",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1607008829749-c0f284a49fc4?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80",
-          caption: "After Full Volume Restoration",
-        },
-      ],
       faqs: [
         {
           q: "Can non-surgical treatments really lift skin?",
@@ -839,10 +623,6 @@ export const conditionsData = {
       image: {
         src: "/public/images/DarkCircles.jpg",
         alt: "Dark circles treatment",
-      },
-      heroImage: {
-        src: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1400&q=80",
-        alt: "Dark circles hero",
       },
       severity: "Mild to Moderate",
       featured: false,
@@ -884,29 +664,6 @@ export const conditionsData = {
           sessions: "2–3",
         },
       ],
-      gallery: [
-        {
-          before:
-            "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80",
-          caption: "After Tear Trough Filler",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1607008829749-c0f284a49fc4?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1487412840181-f73b67e44c8f?w=600&q=80",
-          caption: "After PRP Eye Treatment",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80",
-          caption: "After Full Eye Rejuvenation",
-        },
-      ],
       faqs: [
         {
           q: "Are tear trough fillers safe?",
@@ -940,10 +697,6 @@ export const conditionsData = {
       longDescription:
         "Safe, effective laser hair removal for all skin types and body areas. Achieve smooth, hair-free skin with long-lasting results using our state-of-the-art laser systems. Say goodbye to razors, waxing, and ingrown hairs — permanently.",
       image: { src: "/public/images/UnwantedHair.webp", alt: "Hair removal" },
-      heroImage: {
-        src: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1400&q=80",
-        alt: "Hair removal hero",
-      },
       severity: "All Levels",
       featured: false,
       stats: [
@@ -964,29 +717,6 @@ export const conditionsData = {
             "Permanently disable hair follicles with targeted laser energy.",
           duration: "15–60 min",
           sessions: "6–8",
-        },
-      ],
-      gallery: [
-        {
-          before:
-            "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&q=80",
-          caption: "After 6 Sessions — Legs",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80",
-          caption: "After 6 Sessions — Underarm",
-        },
-        {
-          before:
-            "https://images.unsplash.com/photo-1607008829749-c0f284a49fc4?w=600&q=80",
-          after:
-            "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80",
-          caption: "After 8 Sessions — Face",
         },
       ],
       faqs: [

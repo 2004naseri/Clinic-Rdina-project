@@ -13,7 +13,7 @@ export const aboutData = {
     description:
       "A clinic built on medical excellence, scientific integrity, and a genuine commitment to natural, lasting results. Every client is seen as an individual — never a treatment.",
     image: {
-      src: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&q=80",
+      src: "/public/images/web pic/clinic.jpeg",
       alt: "Radina Aesthetic Clinic",
     },
   },
@@ -119,29 +119,17 @@ export const aboutData = {
         title: "Professional Clinical Setting",
         description:
           "A clean, safe environment aligned with UK clinical standards",
-        image: {
-          src: "https://images.unsplash.com/photo-1581594549595-35f6edc7b762?w=800&q=80",
-          alt: "Clinical setting",
-        },
       },
       {
         id: 2,
         title: "Private Treatment Suites",
         description: "Fully equipped, discreet rooms for a relaxed experience",
-        image: {
-          src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80",
-          alt: "Treatment room",
-        },
       },
       {
         id: 3,
         title: "Medical-Grade Equipment",
         description:
           "Clinically proven devices and pharmaceutical-grade products only",
-        image: {
-          src: "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=800&q=80",
-          alt: "Medical equipment",
-        },
       },
     ],
   },

@@ -1,21 +1,30 @@
 // src/data/treatmentsData.js
-// ========================================
-// COMPLETE TREATMENTS DATA - FULLY POPULATED
-// Ready to use - just replace image URLs later
-// ========================================
+// ============================================================
+// TREATMENTS DATA  —  Radina Aesthetic Clinic
+// ============================================================
+// IMAGE PATHS:
+//   All real images → /images/<folder>/<file>
+//   Empty src ""   → no image yet, will show placeholder
+// ============================================================
 
 export const treatmentsData = {
+  // ─────────────────────────────────────────
+  // HERO  (Treatments listing page)
+  // ─────────────────────────────────────────
   hero: {
     badge: "Our Services",
     title: "Advanced Aesthetic Treatments",
     description:
       "Discover our range of professional treatments designed to enhance your natural beauty",
     image: {
-      src: "/public/images/DermalFillers.webp",
-      alt: "Radina Clinic",
+      src: "/images/filler/dermal.webp",
+      alt: "Radina Clinic Treatments",
     },
   },
 
+  // ─────────────────────────────────────────
+  // CATEGORIES  (filter tabs)
+  // ─────────────────────────────────────────
   categories: [
     { id: "all", name: "All Treatments" },
     { id: "injectable", name: "Injectable Treatments" },
@@ -23,10 +32,13 @@ export const treatmentsData = {
     { id: "body-contouring", name: "Body Contouring" },
   ],
 
+  // ─────────────────────────────────────────
+  // TREATMENTS
+  // ─────────────────────────────────────────
   treatments: [
-    // ==========================================
-    // 1. BOTOX - COMPLETE WITH ALL 8 SUB-TREATMENTS
-    // ==========================================
+    // ============================================================
+    // 1. BOTOX
+    // ============================================================
     {
       id: "botox",
       name: "Botox Anti-Wrinkle Treatments",
@@ -35,39 +47,15 @@ export const treatmentsData = {
         "FDA-approved anti-wrinkle injections for natural-looking results",
       longDescription:
         "Botox is the world's most trusted anti-wrinkle treatment, used by millions to smooth lines, prevent wrinkles, and achieve a refreshed, youthful appearance without surgery or downtime.",
+      // ── card / hero image ──
       image: {
-        src: "/public/images/web pic/botox2.jpg",
+        src: "/images/botox/forhead-botox2.jpg",
         alt: "Botox Treatment",
-        placeholder: "B",
       },
       price: "From £150",
       duration: "15-30 minutes",
       featured: true,
       badge: "Most Popular",
-
-      sections: [
-        {
-          title: "What is Botox?",
-          content:
-            "Botox is a purified protein that temporarily relaxes facial muscles responsible for expression lines. It's FDA-approved, clinically proven, and delivers natural-looking results that enhance your features without changing your appearance.",
-          image: {
-            src: "/public/images/botox.jpg",
-            alt: "Botox explanation",
-          },
-          layout: "image-right",
-        },
-        {
-          title: "Safe & Proven",
-          content:
-            "With over 20 years of clinical use and millions of treatments performed worldwide, Botox has an exceptional safety profile. Our certified specialists use precise techniques to ensure optimal results.",
-          image: {
-            src: "/public/images/web pic/botox1.jpg",
-            alt: "Safe Botox treatment",
-            // placeholder: "B2",
-          },
-          layout: "image-left",
-        },
-      ],
 
       benefits: [
         "Smooths expression lines naturally",
@@ -84,26 +72,27 @@ export const treatmentsData = {
         duration: "3-6 months",
       },
 
+      // ── main gallery (one image per key sub-treatment) ──
       beforeAfterGallery: [
         {
-          src: "/public/images/botox/forhead lines botox/26.jpeg",
-          alt: "Botox full face results",
-          label: "Forhead Treatment",
+          src: "/images/botox/forhead lines botox/26.jpeg",
+          alt: "Forehead treatment",
+          label: "Forehead Lines",
         },
         {
-          src: "/public/images/botox/forhead lines botox/25.jpeg",
-          alt: "Botox forehead results",
-          label: "Forehead & Frown Lines ",
+          src: "/images/botox/forhead lines botox/25.jpeg",
+          alt: "Frown lines",
+          label: "Forehead & Frown",
         },
         {
           src: "/public/images/botox/CROW’S FEET BOTOX/1.jpeg",
-          alt: "Botox eye area results",
-          label: "Crow's Feet ",
+          alt: "Crow's feet",
+          label: "Crow's Feet",
         },
         {
-          src: "/public/images/botox/GUMMY SMILE BOTOX/20.jpeg",
-          alt: "Natural Botox results",
-          label: "Gummy Smile Botox",
+          src: "/images/botox/GUMMY SMILE BOTOX/20.jpeg",
+          alt: "Gummy smile",
+          label: "Gummy Smile",
         },
       ],
 
@@ -125,8 +114,11 @@ export const treatmentsData = {
         },
       ],
 
+      // ──────────────────────────────────────
+      // BOTOX SUB-TREATMENTS  (9 total)
+      // ──────────────────────────────────────
       subTreatments: [
-        // SUB 1: FOREHEAD BOTOX
+        // ── Botox Sub 1: Forehead Lines ──────────────────────────
         {
           id: "forehead-botox",
           name: "Forehead Lines Botox",
@@ -137,46 +129,9 @@ export const treatmentsData = {
           price: "From £160",
           duration: "10-15 minutes",
           image: {
-            src: "/public/images/botox/forhead-botox.jpg",
+            src: "/public/images/botox/forhead lines botox/forhead-botox-2.jpg",
             alt: "Forehead Botox Treatment",
-            // placeholder: "FH",
           },
-
-          sections: [
-            {
-              title: "Understanding Forehead Lines",
-              content:
-                "Forehead lines develop from years of facial expressions—raising eyebrows, concentrating, showing surprise. Over time, these repeated muscle movements create permanent horizontal creases that can make you appear older or tired.",
-              image: {
-                src: "/public/images/botox/forhead lines botox/forhead-botox.jpg",
-                // placeholder: "FH1",
-              },
-              layout: "image-right",
-            },
-            {
-              title: "Natural Movement Preserved",
-              content:
-                "Our technique uses precise dosing to soften lines while maintaining natural forehead movement. You'll still raise your eyebrows and show emotions normally—just without the deep wrinkles.",
-              image: {
-                src: "/public/images/botox/forhead lines botox/forhead-botox-2.jpg",
-                alt: "Natural forehead results",
-                // placeholder: "FH2",
-              },
-              layout: "image-left",
-            },
-            {
-              title: "Quick & Comfortable",
-              content:
-                "Treatment takes just 10-15 minutes with minimal discomfort. Most clients return to work immediately after their appointment.",
-              image: {
-                src: "/public/images/botox/forhead lines botox/forhead-botox-3.webp",
-                alt: "Quick treatment",
-                // placeholder: "FH3",
-              },
-              layout: "image-right",
-            },
-          ],
-
           benefits: [
             "Smooths horizontal forehead lines",
             "Prevents deeper lines from forming",
@@ -187,43 +142,43 @@ export const treatmentsData = {
             "Lasts 3-6 months",
             "No downtime required",
           ],
-
           resultsTimeline: {
             initial: "3-5 days",
             full: "10-14 days",
             duration: "3-6 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "/public/images/botox/forhead lines botox/forhead-botox.jpg",
-              alt: "Forehead Botox results 1",
-              label: "Light Lines - 2 Weeks Post Treatment",
+              src: "/public/images/botox/forhead lines botox/24.jpeg",
+              alt: "Forehead results 1",
+              label: "Light Lines - 2 Weeks",
             },
             {
-              src: "/public/images/botox/forhead lines botox/24.jpeg",
-
-              alt: "Forehead Botox results 2",
+              src: "/images/botox/forhead lines botox/25.jpeg",
+              alt: "Forehead results 2",
               label: "Moderate Lines - 3 Weeks",
             },
             {
-              src: "/public/images/botox/forhead lines botox/25.jpeg",
-
-              alt: "Forehead Botox results 3",
-              label: "Deep Lines - 4 Weeks Post Treatment",
+              src: "/images/botox/forhead lines botox/26.jpeg",
+              alt: "Forehead results 3",
+              label: "Deep Lines - 4 Weeks",
             },
             {
-              src: "/public/images/botox/forhead lines botox/26.jpeg",
-              alt: "Forehead Botox results 4",
+              src: "/images/botox/forhead lines botox/27.jpg",
+              alt: "Forehead results 4",
               label: "Natural Look - Full Results",
             },
             // {
-            //   src: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=1200&q=80",
-            //   alt: "Forehead Botox results 5",
-            //   label: "Refreshed Appearance - 2 Weeks",
+            //   src: "/images/botox/forhead lines botox/forhead-botox-2.jpg",
+            //   alt: "Forehead results 5",
+            //   label: "Refreshed - 2 Weeks",
+            // },
+            // {
+            //   src: "/images/botox/forhead lines botox/forhead-botox-3.webp",
+            //   alt: "Forehead results 6",
+            //   label: "Smooth Forehead - Full Effect",
             // },
           ],
-
           faqs: [
             {
               question: "Will I still be able to move my forehead?",
@@ -248,7 +203,7 @@ export const treatmentsData = {
           ],
         },
 
-        // SUB 2: GLABELLAR BOTOX
+        // ── Botox Sub 2: Glabellar (Frown Lines) ─────────────────
         {
           id: "glabellar-botox",
           name: "Glabellar Botox (Frown Lines)",
@@ -261,34 +216,7 @@ export const treatmentsData = {
           image: {
             src: "/public/images/botox/GLABELLAR BOTOX/Glabellar botox 1.webp",
             alt: "Glabellar Botox Treatment",
-            // placeholder: "GB",
           },
-
-          sections: [
-            {
-              title: "The Problem: Angry Resting Face",
-              content:
-                "Even when you're relaxed and happy, these vertical lines can make you appear stern, worried, or unapproachable. They're one of the first aging signs people notice and often the most bothersome.",
-              image: {
-                src: "/public/images/botox/GLABELLAR BOTOX/1.jpeg",
-                alt: "Frown lines explanation",
-                placeholder: "GB1",
-              },
-              layout: "image-right",
-            },
-            {
-              title: "Dramatic Transformation",
-              content:
-                "This is one of our most transformative treatments. Clients consistently report feeling more confident and approachable after treating their frown lines. The difference is immediate and remarkable.",
-              image: {
-                src: "https://images.unsplash.com/photo-1552693673-1bf958298935?w=800&q=80",
-                alt: "Confidence boost",
-                placeholder: "GB2",
-              },
-              layout: "image-left",
-            },
-          ],
-
           benefits: [
             "Eliminates frown lines completely",
             "Creates relaxed, approachable appearance",
@@ -299,41 +227,33 @@ export const treatmentsData = {
             "Minimal discomfort",
             "No downtime required",
           ],
-
           resultsTimeline: {
             initial: "3-5 days",
             full: "7-10 days",
             duration: "4-6 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1200&q=80",
+              src: "/images/botox/GLABELLAR BOTOX/1.jpeg",
               alt: "Glabellar results 1",
-              label: "Moderate Lines - 1 Week Post Treatment",
+              label: "Frown Lines - Before & After",
             },
             {
-              src: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1200&q=80",
+              src: "/images/botox/GLABELLAR BOTOX/2.jpeg",
               alt: "Glabellar results 2",
               label: "Deep Frown Lines - 2 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1200&q=80",
+              src: "/images/botox/GLABELLAR BOTOX/3.jpeg",
               alt: "Glabellar results 3",
               label: "Complete Smoothing - 10 Days",
             },
             {
-              src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=1200&q=80",
+              src: "/images/botox/GLABELLAR BOTOX/4.jpeg",
               alt: "Glabellar results 4",
-              label: "Relaxed Appearance - Full Results",
-            },
-            {
-              src: "https://images.unsplash.com/photo-1598440947619-2c35fc9af908?w=1200&q=80",
-              alt: "Glabellar results 5",
-              label: "Confident Look - 3 Weeks",
+              label: "Relaxed Appearance - Full Result",
             },
           ],
-
           faqs: [
             {
               question: "How many units are needed?",
@@ -346,54 +266,27 @@ export const treatmentsData = {
                 "You'll still be able to frown slightly, but the deep creases won't form. The goal is softening, not freezing—you'll maintain natural expressions.",
             },
             {
-              question: "Is this the most dramatic Botox treatment?",
+              question: "Is this the most dramatic Botox result?",
               answer:
                 "Many clients find this area provides the most noticeable transformation, as it directly impacts how others perceive your mood and demeanor.",
             },
           ],
         },
 
-        // SUB 3: CROW'S FEET BOTOX
+        // ── Botox Sub 3: Crow's Feet ──────────────────────────────
         {
           id: "crows-feet-botox",
           name: "Crow's Feet Botox",
           shortDescription:
             "Smooth fine lines around the eyes for a bright, youthful sparkle",
           longDescription:
-            "Crow's feet are the fine lines that radiate from the outer corners of your eyes when you smile or squint. While they're natural, treating them can take years off your appearance while maintaining your beautiful smile.",
+            "Crow's feet are the fine lines that radiate from the outer corners of your eyes when you smile or squint. Treating them can take years off your appearance while maintaining your beautiful smile.",
           price: "From £150",
           duration: "10-15 minutes",
           image: {
-            src: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=1200&q=80",
-            alt: "Crow's Feet Botox",
-            placeholder: "CF",
+            src: "/public/images/botox/CROW’S FEET BOTOX/crows-feet-btx-4.jpg",
+            alt: "Crow's Feet Botox Treatment",
           },
-
-          sections: [
-            {
-              title: "Keep Your Smile, Lose the Lines",
-              content:
-                "Crow's feet treatment doesn't stop you from smiling—it prevents the deep creases from forming. Your smile remains genuine, warm, and beautiful, just smoother around the edges.",
-              image: {
-                src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80",
-                alt: "Maintaining smile",
-                placeholder: "CF1",
-              },
-              layout: "image-right",
-            },
-            {
-              title: "Brightens the Entire Eye Area",
-              content:
-                "Smoothing crow's feet creates an instant brightening effect around the eyes, making you look more awake, refreshed, and youthful without surgery or downtime.",
-              image: {
-                src: "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&q=80",
-                alt: "Bright eyes",
-                placeholder: "CF2",
-              },
-              layout: "image-left",
-            },
-          ],
-
           benefits: [
             "Softens eye wrinkles dramatically",
             "Brightens the entire eye area",
@@ -404,41 +297,42 @@ export const treatmentsData = {
             "No impact on vision or eye function",
             "Complements other facial treatments",
           ],
-
           resultsTimeline: {
             initial: "3-5 days",
             full: "10-14 days",
             duration: "3-4 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80",
+              src: "/public/images/botox/CROW’S FEET BOTOX/1.jpeg",
               alt: "Crow's feet results 1",
-              label: "Smile Lines - 2 Weeks Post Treatment",
+              label: "Eye Wrinkles - Before & After",
             },
             {
-              src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1200&q=80",
+              src: "/public/images/botox/CROW’S FEET BOTOX/2.jpeg",
+
               alt: "Crow's feet results 2",
-              label: "Eye Wrinkles - 10 Days",
+              label: "Smile Lines - 2 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=1200&q=80",
+              src: "/public/images/botox/CROW’S FEET BOTOX/3.jpeg",
+
               alt: "Crow's feet results 3",
               label: "Youthful Eyes - 3 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1200&q=80",
+              src: "/public/images/botox/CROW’S FEET BOTOX/4.jpeg",
+
               alt: "Crow's feet results 4",
               label: "Natural Smile - Full Results",
             },
             {
-              src: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=1200&q=80",
+              src: "/public/images/botox/CROW’S FEET BOTOX/5.jpeg",
+
               alt: "Crow's feet results 5",
-              label: "Bright Eyes - 2 Weeks",
+              label: "Bright Eyes - Full Effect",
             },
           ],
-
           faqs: [
             {
               question: "Will this affect my smile?",
@@ -451,83 +345,69 @@ export const treatmentsData = {
                 "Yes! Crow's feet are often treated alongside forehead and frown lines for complete upper face rejuvenation—what we call the 'Botox Three.'",
             },
             {
-              question: "Why do results last slightly less here?",
+              question: "Why do results last less here?",
               answer:
                 "The muscles around the eyes are active throughout the day (blinking, smiling), so Botox may wear off slightly faster (3-4 months vs 4-6 months in other areas).",
             },
           ],
         },
 
-        // SUB 4: GUMMY SMILE
+        // ── Botox Sub 4: Gummy Smile ──────────────────────────────
         {
           id: "gummy-smile-botox",
           name: "Gummy Smile Botox",
           shortDescription:
             "Reduce excessive gum display for a balanced, confident smile",
           longDescription:
-            "A gummy smile occurs when excessive upper gum tissue shows when you smile. While not a medical concern, many feel self-conscious about it. Botox provides a simple, non-surgical solution.",
+            "A gummy smile occurs when excessive upper gum tissue shows when you smile. Botox provides a simple, non-surgical solution that creates a more balanced, proportional smile.",
           price: "From £120",
           duration: "10 minutes",
           image: {
-            src: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80",
-            alt: "Gummy Smile Treatment",
-            placeholder: "GS",
+            src: "/images/botox/GUMMY SMILE BOTOX/Gummy-Smile-Botox.png",
+            alt: "Gummy Smile Botox Treatment",
           },
-
-          sections: [
-            {
-              title: "Simple, Effective Solution",
-              content:
-                "This quick treatment relaxes the muscle that lifts your upper lip too high, revealing less gum tissue when you smile. It's a game-changer for confidence.",
-              image: {
-                src: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80",
-                alt: "Smile solution",
-                placeholder: "GS1",
-              },
-              layout: "image-right",
-            },
-          ],
-
           benefits: [
             "Reduces visible gum tissue",
             "Creates balanced, proportional smile",
             "Boosts confidence dramatically",
-            "Non-surgical alternative to surgery",
+            "Non-surgical alternative",
             "Quick 10-minute treatment",
             "Natural-looking results",
             "Minimal discomfort",
             "Immediate social impact",
           ],
-
           resultsTimeline: {
             initial: "3-7 days",
             full: "2 weeks",
             duration: "3-4 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=1200&q=80",
+              src: "/images/botox/GUMMY SMILE BOTOX/18.jpeg",
               alt: "Gummy smile results 1",
-              label: "Balanced Smile - 2 Weeks",
+              label: "Balanced Smile - Before & After",
             },
             {
-              src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80",
+              src: "/images/botox/GUMMY SMILE BOTOX/19.jpeg",
               alt: "Gummy smile results 2",
               label: "Confidence Boost - 10 Days",
             },
             {
-              src: "https://images.unsplash.com/photo-1506956191951-7a88da4435e5?w=1200&q=80",
+              src: "/images/botox/GUMMY SMILE BOTOX/20.jpeg",
               alt: "Gummy smile results 3",
               label: "Natural Smile - 2 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200&q=80",
+              src: "/images/botox/GUMMY SMILE BOTOX/21.jpeg",
               alt: "Gummy smile results 4",
               label: "Beautiful Results - 3 Weeks",
             },
+            {
+              src: "/images/botox/GUMMY SMILE BOTOX/22.jpeg",
+              alt: "Gummy smile results 5",
+              label: "Full Effect - 4 Weeks",
+            },
           ],
-
           faqs: [
             {
               question: "Will I still smile normally?",
@@ -547,7 +427,7 @@ export const treatmentsData = {
           ],
         },
 
-        // SUB 5: NECK BOTOX
+        // ── Botox Sub 5: Neck Tightening ──────────────────────────
         {
           id: "neck-botox",
           name: "Neck Skin Tightening Botox",
@@ -558,36 +438,9 @@ export const treatmentsData = {
           price: "From £200",
           duration: "15-20 minutes",
           image: {
-            src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80",
+            src: "/public/images/botox/neck tight/necktight.webp",
             alt: "Neck Botox Treatment",
-            placeholder: "NB",
           },
-
-          sections: [
-            {
-              title: "Smooth Vertical Bands",
-              content:
-                "The platysma muscle creates visible vertical bands in the neck as we age. Botox relaxes these bands, creating a smoother, more elegant neck profile.",
-              image: {
-                src: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80",
-                alt: "Neck bands",
-                placeholder: "NB1",
-              },
-              layout: "image-right",
-            },
-            {
-              title: "Subtle Lifting Effect",
-              content:
-                "By relaxing the downward-pulling muscles, the neck appears slightly lifted and more defined—a non-surgical mini neck lift.",
-              image: {
-                src: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=800&q=80",
-                alt: "Neck lifting",
-                placeholder: "NB2",
-              },
-              layout: "image-left",
-            },
-          ],
-
           benefits: [
             "Smooths vertical neck bands",
             "Provides subtle lifting effect",
@@ -598,36 +451,28 @@ export const treatmentsData = {
             "Natural-looking results",
             "Complements facelift results",
           ],
-
           resultsTimeline: {
             initial: "1 week",
             full: "2 weeks",
             duration: "4-6 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=80",
-              alt: "Neck Botox results 1",
+              src: "/images/botox/neck tight/1.jpeg",
+              alt: "Neck results 1",
               label: "Smooth Bands - 2 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1598440947619-2c35fc9af908?w=1200&q=80",
-              alt: "Neck Botox results 2",
+              src: "/images/botox/neck tight/2.jpeg",
+              alt: "Neck results 2",
               label: "Lifted Appearance - 3 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=80",
-              alt: "Neck Botox results 3",
-              label: "Defined Jawline - 2 Weeks",
-            },
-            {
-              src: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80",
-              alt: "Neck Botox results 4",
-              label: "Elegant Profile - Full Results",
+              src: "/images/botox/neck tight/3.jpeg",
+              alt: "Neck results 3",
+              label: "Elegant Profile - Full Result",
             },
           ],
-
           faqs: [
             {
               question: "Is this the same as a Nefertiti Lift?",
@@ -642,7 +487,7 @@ export const treatmentsData = {
           ],
         },
 
-        // SUB 6: NEFERTITI LIFT
+        // ── Botox Sub 6: Nefertiti Lift (Platysma) ───────────────
         {
           id: "nefertiti-lift",
           name: "Nefertiti Lift (Platysma Botox)",
@@ -653,25 +498,9 @@ export const treatmentsData = {
           price: "From £250",
           duration: "20 minutes",
           image: {
-            src: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=1200&q=80",
-            alt: "Nefertiti Lift",
-            placeholder: "NL",
+            src: "/images/botox/Platysma Botox/10.jpeg",
+            alt: "Nefertiti Lift Treatment",
           },
-
-          sections: [
-            {
-              title: "Sculpted Jawline Definition",
-              content:
-                "By strategically placing Botox along the jawline, we relax downward-pulling muscles, allowing the upward-lifting muscles to create a more defined, sculpted appearance.",
-              image: {
-                src: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=800&q=80",
-                alt: "Jawline definition",
-                placeholder: "NL1",
-              },
-              layout: "image-right",
-            },
-          ],
-
           benefits: [
             "Defines and sculpts jawline",
             "Smooths neck bands",
@@ -682,36 +511,33 @@ export const treatmentsData = {
             "Long-lasting effects",
             "No downtime required",
           ],
-
           resultsTimeline: {
             initial: "1-2 weeks",
             full: "3 weeks",
             duration: "4-6 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1200&q=80",
-              alt: "Nefertiti lift results 1",
+              src: "/images/botox/Platysma Botox/10.jpeg",
+              alt: "Nefertiti results 1",
               label: "Jawline Definition - 3 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1200&q=80",
-              alt: "Nefertiti lift results 2",
+              src: "/images/botox/Platysma Botox/11.jpeg",
+              alt: "Nefertiti results 2",
               label: "Neck Smoothing - 2 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80",
-              alt: "Nefertiti lift results 3",
+              src: "/images/botox/Platysma Botox/12.jpeg",
+              alt: "Nefertiti results 3",
               label: "Elegant Profile - 4 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80",
-              alt: "Nefertiti lift results 4",
+              src: "/images/botox/Platysma Botox/13.jpeg",
+              alt: "Nefertiti results 4",
               label: "Lifted Appearance - Full Results",
             },
           ],
-
           faqs: [
             {
               question: "Who is a good candidate?",
@@ -726,7 +552,7 @@ export const treatmentsData = {
           ],
         },
 
-        // SUB 7: SMOKER LINES
+        // ── Botox Sub 7: Smoker Lines (Perioral) ─────────────────
         {
           id: "smoker-lines-botox",
           name: "Smoker Lines Botox (Perioral Lines)",
@@ -737,25 +563,9 @@ export const treatmentsData = {
           price: "From £140",
           duration: "10 minutes",
           image: {
-            src: "https://images.unsplash.com/photo-1552693673-1bf958298935?w=1200&q=80",
-            alt: "Smoker Lines Treatment",
-            placeholder: "SL",
+            src: "/public/images/botox/Perioral Lines Botox/smokerlines.avif",
+            alt: "Smoker Lines Botox Treatment",
           },
-
-          sections: [
-            {
-              title: "Soften Lipstick Lines",
-              content:
-                "These vertical lines can cause lipstick to bleed and make the mouth area look aged. Botox smooths them while maintaining natural lip movement.",
-              image: {
-                src: "https://images.unsplash.com/photo-1506956191951-7a88da4435e5?w=800&q=80",
-                alt: "Smooth lip lines",
-                placeholder: "SL1",
-              },
-              layout: "image-right",
-            },
-          ],
-
           benefits: [
             "Smooths vertical lip lines",
             "Prevents lipstick bleeding",
@@ -766,36 +576,23 @@ export const treatmentsData = {
             "No impact on speech",
             "Can combine with fillers",
           ],
-
           resultsTimeline: {
             initial: "5-7 days",
             full: "2 weeks",
             duration: "3-4 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=1200&q=80",
+              src: "/images/botox/Perioral Lines Botox/14.jpeg",
               alt: "Smoker lines results 1",
-              label: "Smooth Lips - 2 Weeks",
+              label: "Smooth Lips - Before & After",
             },
             {
-              src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80",
+              src: "/images/botox/Perioral Lines Botox/15.jpeg",
               alt: "Smoker lines results 2",
-              label: "Youthful Mouth - 10 Days",
-            },
-            {
-              src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200&q=80",
-              alt: "Smoker lines results 3",
-              label: "Natural Results - 3 Weeks",
-            },
-            {
-              src: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1200&q=80",
-              alt: "Smoker lines results 4",
-              label: "Softened Lines - Full Results",
+              label: "Youthful Mouth - 2 Weeks",
             },
           ],
-
           faqs: [
             {
               question: "Will it affect my ability to purse my lips?",
@@ -810,94 +607,66 @@ export const treatmentsData = {
           ],
         },
 
-        // SUB 8: CHIN BOTOX
+        // ── Botox Sub 9: Chain Botox ──────────────────────────────
         {
-          id: "chin-botox",
-          name: "Chin Botox",
-          shortDescription: "Smooth chin dimpling and improve chin contour",
+          id: "chain-botox",
+          name: "Chain Botox",
+          shortDescription:
+            "Targeted Botox treatment for a refined, natural result",
           longDescription:
-            "Chin Botox treats the 'orange peel' or 'cobblestone' appearance caused by overactive mentalis muscle. It creates a smooth, refined chin contour.",
-          price: "From £130",
-          duration: "10 minutes",
+            "Chain Botox delivers precise, controlled injections to address specific muscle groups, creating a smooth, natural-looking result tailored to your facial anatomy.",
+          price: "From £150",
+          duration: "15-20 minutes",
           image: {
-            src: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1200&q=80",
-            alt: "Chin Botox Treatment",
-            placeholder: "CB",
+            src: "/public/images/botox/chain botox/chain.jfif",
+            alt: "Chain Botox Treatment",
           },
-
-          sections: [
-            {
-              title: "Eliminate Orange Peel Chin",
-              content:
-                "The mentalis muscle creates an uneven, dimpled texture on the chin. Botox relaxes this muscle for a smooth, refined appearance.",
-              image: {
-                src: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80",
-                alt: "Smooth chin",
-                placeholder: "CB1",
-              },
-              layout: "image-right",
-            },
-          ],
-
           benefits: [
-            "Smooths chin dimpling",
-            "Eliminates 'orange peel' texture",
-            "Improves chin contour",
+            "Precise, targeted treatment",
+            "Natural-looking results",
+            "Minimal discomfort",
+            "No downtime required",
             "Quick procedure",
-            "Natural results",
-            "No downtime",
-            "Can combine with filler",
-            "Enhances profile",
+            "Long-lasting effects",
+            "Tailored to facial anatomy",
+            "Expert technique",
           ],
-
           resultsTimeline: {
-            initial: "5-7 days",
-            full: "2 weeks",
-            duration: "3-4 months",
+            initial: "3-5 days",
+            full: "10-14 days",
+            duration: "3-6 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=80",
-              alt: "Chin Botox results 1",
-              label: "Smooth Chin - 2 Weeks",
+              src: "/images/botox/chain botox/16.jpeg",
+              alt: "Chain Botox results 1",
+              label: "Before & After - 2 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1598440947619-2c35fc9af908?w=1200&q=80",
-              alt: "Chin Botox results 2",
-              label: "Refined Contour - 10 Days",
-            },
-            {
-              src: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=80",
-              alt: "Chin Botox results 3",
-              label: "No Dimpling - 3 Weeks",
-            },
-            {
-              src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1200&q=80",
-              alt: "Chin Botox results 4",
-              label: "Beautiful Results - Full Effect",
+              src: "/images/botox/chain botox/17.jpeg",
+              alt: "Chain Botox results 2",
+              label: "Natural Results - Full Effect",
             },
           ],
-
           faqs: [
             {
-              question: "Who needs chin Botox?",
+              question: "What makes Chain Botox different?",
               answer:
-                "Anyone bothered by chin dimpling or a 'pebbly' texture when making facial expressions. It's a subtle but impactful treatment.",
+                "Chain Botox uses a precise, linked injection technique to create a smooth, even result across targeted muscle groups.",
             },
             {
-              question: "Can it improve a weak chin?",
+              question: "How long do results last?",
               answer:
-                "For projection, chin filler is better. Botox is specifically for smoothing texture and reducing dimpling.",
+                "Results typically last 3-6 months. Maintenance appointments keep results looking their best.",
             },
           ],
         },
-      ],
+      ], // end botox subTreatments
     },
 
-    // ==========================================
-    // 2. DERMAL FILLERS - COMPLETE WITH ALL SUB-TREATMENTS
-    // ==========================================
+    // ============================================================
+    // 2. DERMAL FILLERS
+    // ============================================================
     {
       id: "fillers",
       name: "Dermal Fillers",
@@ -906,40 +675,15 @@ export const treatmentsData = {
         "Restore volume, enhance contours, and smooth wrinkles naturally",
       longDescription:
         "Dermal fillers use hyaluronic acid to restore lost volume, enhance facial features, and create youthful, natural-looking results without surgery.",
+      // ── card / hero image ──
       image: {
-        src: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1200&q=80",
+        src: "/images/filler/dermal.webp",
         alt: "Dermal Fillers",
-        placeholder: "F",
       },
       price: "From £250",
       duration: "30-45 minutes",
       featured: true,
       badge: "Versatile",
-
-      sections: [
-        {
-          title: "Natural Volume Restoration",
-          content:
-            "As we age, we lose facial volume in key areas. Hyaluronic acid fillers restore this volume naturally, creating a refreshed, youthful appearance.",
-          image: {
-            src: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
-            alt: "Volume restoration",
-            placeholder: "F1",
-          },
-          layout: "image-right",
-        },
-        {
-          title: "Immediate, Beautiful Results",
-          content:
-            "See instant improvement after treatment. Results continue to enhance over 2 weeks as the filler settles and integrates naturally with your tissues.",
-          image: {
-            src: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=800&q=80",
-            alt: "Immediate results",
-            placeholder: "F2",
-          },
-          layout: "image-left",
-        },
-      ],
 
       benefits: [
         "Immediate visible results",
@@ -958,26 +702,27 @@ export const treatmentsData = {
         duration: "6-18 months",
       },
 
+      // ── main gallery (one image per sub-treatment) ──
       beforeAfterGallery: [
         {
-          src: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&q=80",
-          alt: "Filler results 1",
-          label: "Lip Enhancement - Immediate",
+          src: "/images/filler/lip-filler/1.jpeg",
+          alt: "Lip filler",
+          label: "Lip Enhancement",
         },
         {
-          src: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=1200&q=80",
-          alt: "Filler results 2",
-          label: "Cheek Augmentation - 1 Week",
+          src: "/images/filler/under eye filler/14.jpeg",
+          alt: "Under eye filler",
+          label: "Under Eye Filler",
         },
         {
-          src: "https://images.unsplash.com/photo-1485875437342-9b39470b3d95?w=1200&q=80",
-          alt: "Filler results 3",
-          label: "Nasolabial Folds - 2 Weeks",
+          src: "/images/filler/Nasolabial Fold Filler/20.jpeg",
+          alt: "Nasolabial filler",
+          label: "Nasolabial Folds",
         },
         {
-          src: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1200&q=80",
-          alt: "Filler results 4",
-          label: "Under Eye - 1 Week",
+          src: "/images/filler/Jawline Contouring Filler/10.jpeg",
+          alt: "Jawline filler",
+          label: "Jawline Contouring",
         },
       ],
 
@@ -999,8 +744,11 @@ export const treatmentsData = {
         },
       ],
 
+      // ──────────────────────────────────────
+      // FILLER SUB-TREATMENTS  (8 total)
+      // ──────────────────────────────────────
       subTreatments: [
-        // FILLER SUB 1: LIP FILLER
+        // ── Filler Sub 1: Lip Filler ──────────────────────────────
         {
           id: "lip-filler",
           name: "Lip Filler",
@@ -1011,36 +759,9 @@ export const treatmentsData = {
           price: "From £250",
           duration: "30 minutes",
           image: {
-            src: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&q=80",
-            alt: "Lip Filler",
-            placeholder: "LF",
+            src: "/images/filler/lip-filler/1.jpeg",
+            alt: "Lip Filler Treatment",
           },
-
-          sections: [
-            {
-              title: "Natural Enhancement Philosophy",
-              content:
-                "Our approach: enhance, don't change. We create fuller, more defined lips that look naturally beautiful—never overdone or fake.",
-              image: {
-                src: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=800&q=80",
-                alt: "Natural lips",
-                placeholder: "LF1",
-              },
-              layout: "image-right",
-            },
-            {
-              title: "Customized To Your Features",
-              content:
-                "Every lip is unique. We customize treatment to your facial proportions, desired outcome, and natural lip anatomy.",
-              image: {
-                src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80",
-                alt: "Custom lips",
-                placeholder: "LF2",
-              },
-              layout: "image-left",
-            },
-          ],
-
           benefits: [
             "Adds natural volume",
             "Defines lip border",
@@ -1051,41 +772,43 @@ export const treatmentsData = {
             "Reversible",
             "Lasts 6-12 months",
           ],
-
           resultsTimeline: {
             initial: "Immediate",
             full: "1 week",
             duration: "6-12 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=1200&q=80",
-              alt: "Lip filler results 1",
-              label: "Natural Volume - Immediate Results",
+              src: "/images/filler/lip-filler/1.jpeg",
+              alt: "Lip results 1",
+              label: "Natural Volume - Immediate",
             },
             {
-              src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80",
-              alt: "Lip filler results 2",
+              src: "/images/filler/lip-filler/2.jpeg",
+              alt: "Lip results 2",
               label: "Defined Border - 1 Week",
             },
             {
-              src: "https://images.unsplash.com/photo-1506956191951-7a88da4435e5?w=1200&q=80",
-              alt: "Lip filler results 3",
-              label: "Symmetry Correction - 3 Days",
+              src: "/images/filler/lip-filler/3.jpeg",
+              alt: "Lip results 3",
+              label: "Symmetry - 3 Days",
             },
             {
-              src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200&q=80",
-              alt: "Lip filler results 4",
-              label: "Beautiful Full Lips - Final",
+              src: "/images/filler/lip-filler/4.jpeg",
+              alt: "Lip results 4",
+              label: "Full Lips - 2 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&q=80",
-              alt: "Lip filler results 5",
-              label: "Hydrated Lips - 2 Weeks",
+              src: "/images/filler/lip-filler/5.jpeg",
+              alt: "Lip results 5",
+              label: "Beautiful Results - Final",
+            },
+            {
+              src: "/images/filler/lip-filler/6.jpeg",
+              alt: "Lip results 6",
+              label: "Hydrated Lips - Full Effect",
             },
           ],
-
           faqs: [
             {
               question: "Will my lips look natural?",
@@ -1105,7 +828,7 @@ export const treatmentsData = {
           ],
         },
 
-        // FILLER SUB 2: UNDER EYE FILLER
+        // ── Filler Sub 2: Under Eye Filler ────────────────────────
         {
           id: "under-eye-filler",
           name: "Under Eye Filler (Tear Trough)",
@@ -1116,25 +839,9 @@ export const treatmentsData = {
           price: "From £300",
           duration: "30 minutes",
           image: {
-            src: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=1200&q=80",
-            alt: "Under Eye Filler",
-            placeholder: "UE",
+            src: "/images/filler/under eye filler/14.jpeg",
+            alt: "Under Eye Filler Treatment",
           },
-
-          sections: [
-            {
-              title: "Erase Tired Eyes",
-              content:
-                "Tear trough hollows create shadows that make you look tired, even when well-rested. Filler restores volume and eliminates this shadowing.",
-              image: {
-                src: "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&q=80",
-                alt: "Bright eyes",
-                placeholder: "UE1",
-              },
-              layout: "image-right",
-            },
-          ],
-
           benefits: [
             "Reduces dark circles",
             "Fills tear trough hollows",
@@ -1145,36 +852,33 @@ export const treatmentsData = {
             "Minimal downtime",
             "Safe when done expertly",
           ],
-
           resultsTimeline: {
             initial: "Immediate",
             full: "1-2 weeks",
             duration: "12-18 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1200&q=80",
-              alt: "Under eye filler results 1",
+              src: "/images/filler/under eye filler/14.jpeg",
+              alt: "Under eye results 1",
               label: "Dark Circles Reduced - 1 Week",
             },
             {
-              src: "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=1200&q=80",
-              alt: "Under eye filler results 2",
+              src: "/images/filler/under eye filler/15.jpeg",
+              alt: "Under eye results 2",
               label: "Hollows Filled - Immediate",
             },
             {
-              src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80",
-              alt: "Under eye filler results 3",
+              src: "/images/filler/under eye filler/16.jpeg",
+              alt: "Under eye results 3",
               label: "Refreshed Look - 2 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=1200&q=80",
-              alt: "Under eye filler results 4",
+              src: "/images/filler/under eye filler/17.jpeg",
+              alt: "Under eye results 4",
               label: "Youthful Eyes - Full Results",
             },
           ],
-
           faqs: [
             {
               question: "Is this treatment safe?",
@@ -1189,7 +893,7 @@ export const treatmentsData = {
           ],
         },
 
-        // FILLER SUB 3: NASOLABIAL FILLER
+        // ── Filler Sub 3: Nasolabial Fold Filler ─────────────────
         {
           id: "nasolabial-filler",
           name: "Nasolabial Fold Filler",
@@ -1200,25 +904,9 @@ export const treatmentsData = {
           price: "From £280",
           duration: "30 minutes",
           image: {
-            src: "https://images.unsplash.com/photo-1485875437342-9b39470b3d95?w=1200&q=80",
-            alt: "Nasolabial Filler",
-            placeholder: "NF",
+            src: "/images/filler/Nasolabial Fold Filler/20.jpeg",
+            alt: "Nasolabial Filler Treatment",
           },
-
-          sections: [
-            {
-              title: "Restore Youthful Contours",
-              content:
-                "These smile lines deepen with age due to volume loss. Filler restores mid-face volume, creating a natural lift and smoothing.",
-              image: {
-                src: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=800&q=80",
-                alt: "Smooth folds",
-                placeholder: "NF1",
-              },
-              layout: "image-right",
-            },
-          ],
-
           benefits: [
             "Softens deep smile lines",
             "Restores mid-face volume",
@@ -1229,36 +917,33 @@ export const treatmentsData = {
             "Minimal downtime",
             "Complements other treatments",
           ],
-
           resultsTimeline: {
             initial: "Immediate",
             full: "1 week",
             duration: "9-15 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1485875437342-9b39470b3d95?w=1200&q=80",
-              alt: "Nasolabial filler results 1",
+              src: "/images/filler/Nasolabial Fold Filler/20.jpeg",
+              alt: "Nasolabial results 1",
               label: "Deep Folds Softened - 1 Week",
             },
             {
-              src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=1200&q=80",
-              alt: "Nasolabial filler results 2",
+              src: "/images/filler/Nasolabial Fold Filler/21.jpeg",
+              alt: "Nasolabial results 2",
               label: "Mid-Face Lift - Immediate",
             },
             {
-              src: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=1200&q=80",
-              alt: "Nasolabial filler results 3",
+              src: "/images/filler/Nasolabial Fold Filler/22.jpeg",
+              alt: "Nasolabial results 3",
               label: "Smooth Lines - 2 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=1200&q=80",
-              alt: "Nasolabial filler results 4",
+              src: "/images/filler/Nasolabial Fold Filler/23.jpeg",
+              alt: "Nasolabial results 4",
               label: "Youthful Appearance - Full Results",
             },
           ],
-
           faqs: [
             {
               question: "Will this make me look puffy?",
@@ -1273,91 +958,68 @@ export const treatmentsData = {
           ],
         },
 
-        // FILLER SUB 4: CHIN FILLER
-        {
-          id: "chin-filler",
-          name: "Chin Filler",
-          shortDescription:
-            "Enhance chin projection and profile for better facial balance",
-          longDescription:
-            "Chin filler adds projection, improves profile, creates symmetry, and enhances overall facial harmony.",
-          price: "From £320",
-          duration: "30 minutes",
-          image: {
-            src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=80",
-            alt: "Chin Filler",
-            placeholder: "CF",
-          },
+        // ── Filler Sub 4: Chin Filler ─────────────────────────────
+        // {
+        //   id: "chin-filler",
+        //   name: "Chin Filler",
+        //   shortDescription:
+        //     "Enhance chin projection and profile for better facial balance",
+        //   longDescription:
+        //     "Chin filler adds projection, improves profile, creates symmetry, and enhances overall facial harmony.",
+        //   price: "From £320",
+        //   duration: "30 minutes",
+        //   // ── no image yet ──
+        //   image: {
+        //     src: "/public/images/filler/chain filler/31.jpeg",
+        //     alt: "Chin Filler Treatment",
+        //   },
+        //   benefits: [
+        //     "Adds chin projection",
+        //     "Improves profile",
+        //     "Creates symmetry",
+        //     "Defines jawline",
+        //     "Non-surgical",
+        //     "Immediate results",
+        //     "Reversible",
+        //     "Long-lasting",
+        //   ],
+        //   resultsTimeline: {
+        //     initial: "Immediate",
+        //     full: "1-2 weeks",
+        //     duration: "12-18 months",
+        //   },
+        //   beforeAfterGallery: [
+        //     {
+        //       src: "/public/images/filler/chain filler/31.jpeg",
+        //       alt: "chin filler",
+        //       label: "",
+        //     },
+        //     {
+        //       src: "/public/images/filler/chain filler/32.jpeg",
+        //       alt: "chin filler",
+        //       label: "",
+        //     },
+        //     {
+        //       src: "/public/images/filler/chain filler/33.jpeg",
+        //       alt: "chin filler",
+        //       label: "",
+        //     },
+        //   ],
+        //   faqs: [
+        //     {
+        //       question: "Is this better than surgery?",
+        //       answer:
+        //         "For mild to moderate enhancement, yes! Filler provides immediate results without surgery or downtime.",
+        //     },
+        //     {
+        //       question: "Can it fix asymmetry?",
+        //       answer:
+        //         "Absolutely! We can correct minor asymmetries and create better balance.",
+        //     },
+        //   ],
+        // },
 
-          sections: [
-            {
-              title: "Profile Enhancement",
-              content:
-                "A well-defined chin creates balance and harmony. Filler can dramatically improve your side profile in just 30 minutes.",
-              image: {
-                src: "https://images.unsplash.com/photo-1598440947619-2c35fc9af908?w=800&q=80",
-                alt: "Profile improvement",
-                placeholder: "CF1",
-              },
-              layout: "image-right",
-            },
-          ],
-
-          benefits: [
-            "Adds chin projection",
-            "Improves profile",
-            "Creates symmetry",
-            "Defines jawline",
-            "Non-surgical",
-            "Immediate results",
-            "Reversible",
-            "Long-lasting",
-          ],
-
-          resultsTimeline: {
-            initial: "Immediate",
-            full: "1-2 weeks",
-            duration: "12-18 months",
-          },
-
-          beforeAfterGallery: [
-            {
-              src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=80",
-              alt: "Chin filler results 1",
-              label: "Enhanced Projection - Immediate",
-            },
-            {
-              src: "https://images.unsplash.com/photo-1598440947619-2c35fc9af908?w=1200&q=80",
-              alt: "Chin filler results 2",
-              label: "Profile Improvement - 1 Week",
-            },
-            {
-              src: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=80",
-              alt: "Chin filler results 3",
-              label: "Facial Balance - 2 Weeks",
-            },
-            {
-              src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1200&q=80",
-              alt: "Chin filler results 4",
-              label: "Defined Chin - Full Results",
-            },
-          ],
-
-          faqs: [
-            {
-              question: "Is this better than surgery?",
-              answer:
-                "For mild to moderate enhancement, yes! Filler provides immediate results without surgery or downtime.",
-            },
-            {
-              question: "Can it fix asymmetry?",
-              answer:
-                "Absolutely! We can correct minor asymmetries and create better balance.",
-            },
-          ],
-        },
-
-        // FILLER SUB 5: JAWLINE FILLER
+        // ── Filler Sub 5: Jawline Contouring ──────────────────────
         {
           id: "jawline-filler",
           name: "Jawline Contouring Filler",
@@ -1368,25 +1030,9 @@ export const treatmentsData = {
           price: "From £400",
           duration: "45 minutes",
           image: {
-            src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1200&q=80",
-            alt: "Jawline Filler",
-            placeholder: "JF",
+            src: "/images/filler/Jawline Contouring Filler/10.jpeg",
+            alt: "Jawline Filler Treatment",
           },
-
-          sections: [
-            {
-              title: "Sculpted Definition",
-              content:
-                "A defined jawline creates an elegant, youthful appearance. Filler can transform a soft jawline into a sculpted, contoured feature.",
-              image: {
-                src: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&q=80",
-                alt: "Jawline sculpting",
-                placeholder: "JF1",
-              },
-              layout: "image-right",
-            },
-          ],
-
           benefits: [
             "Creates defined jawline",
             "Enhances angles",
@@ -1397,36 +1043,33 @@ export const treatmentsData = {
             "Masculine or feminine options",
             "Boosts confidence",
           ],
-
           resultsTimeline: {
             initial: "Immediate",
             full: "1-2 weeks",
             duration: "12-18 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1200&q=80",
-              alt: "Jawline filler results 1",
+              src: "/images/filler/Jawline Contouring Filler/10.jpeg",
+              alt: "Jawline results 1",
               label: "Defined Jawline - Immediate",
             },
             {
-              src: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1200&q=80",
-              alt: "Jawline filler results 2",
+              src: "/images/filler/Jawline Contouring Filler/11.jpeg",
+              alt: "Jawline results 2",
               label: "Sculpted Angles - 1 Week",
             },
             {
-              src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80",
-              alt: "Jawline filler results 3",
+              src: "/images/filler/Jawline Contouring Filler/12.jpeg",
+              alt: "Jawline results 3",
               label: "Profile Enhancement - 2 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=80",
-              alt: "Jawline filler results 4",
+              src: "/images/filler/Jawline Contouring Filler/13.jpeg",
+              alt: "Jawline results 4",
               label: "Chiseled Look - Full Results",
             },
           ],
-
           faqs: [
             {
               question: "How much filler is needed?",
@@ -1441,95 +1084,184 @@ export const treatmentsData = {
           ],
         },
 
-        // FILLER SUB 6: CHEEK FILLER
+        // ── Filler Sub 6: Cheek Filler ────────────────────────────
+        // {
+        //   id: "cheek-filler",
+        //   name: "Cheek Filler",
+        //   shortDescription:
+        //     "Restore volume and lift for youthful, sculpted cheekbones",
+        //   longDescription:
+        //     "Cheek filler restores lost volume, creates lift, defines cheekbones, and rejuvenates the entire mid-face.",
+        //   price: "From £350",
+        //   duration: "40 minutes",
+        //   // ── no image yet ──
+        //   image: { src: "", alt: "Cheek Filler Treatment" },
+        //   benefits: [
+        //     "Restores cheek volume",
+        //     "Creates natural lift",
+        //     "Defines cheekbones",
+        //     "Rejuvenates mid-face",
+        //     "Improves smile lines",
+        //     "Long-lasting results",
+        //     "Natural appearance",
+        //     "Minimal downtime",
+        //   ],
+        //   resultsTimeline: {
+        //     initial: "Immediate",
+        //     full: "1-2 weeks",
+        //     duration: "12-18 months",
+        //   },
+        //   beforeAfterGallery: [],
+        //   faqs: [
+        //     {
+        //       question: "Will I look puffy?",
+        //       answer:
+        //         "Not when done correctly! We create subtle, natural lift that enhances your features without looking overdone.",
+        //     },
+        //     {
+        //       question: "Can this help with sagging?",
+        //       answer:
+        //         "Yes! By restoring volume in the cheeks, we create a lifting effect that improves lower face sagging.",
+        //     },
+        //   ],
+        // },
+
+        // ── Filler Sub 7: Chain Filler ────────────────────────────
         {
-          id: "cheek-filler",
-          name: "Cheek Filler",
+          id: "chain-filler",
+          name: "Chain Filler",
           shortDescription:
-            "Restore volume and lift for youthful, sculpted cheekbones",
+            "Precise filler technique for smooth, natural contouring",
           longDescription:
-            "Cheek filler restores lost volume, creates lift, defines cheekbones, and rejuvenates the entire mid-face.",
-          price: "From £350",
-          duration: "40 minutes",
+            "Chain filler uses a linked injection technique to distribute filler evenly across treatment areas, creating seamless, natural-looking volume and contour.",
+          price: "From £280",
+          duration: "30-40 minutes",
           image: {
-            src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80",
-            alt: "Cheek Filler",
-            placeholder: "CHF",
+            src: "/images/filler/chain filler/31.jpeg",
+            alt: "Chain Filler Treatment",
           },
-
-          sections: [
-            {
-              title: "Youthful Volume",
-              content:
-                "Cheek volume loss is one of the first signs of aging. Restoring this volume creates an instant lifting effect and youthful appearance.",
-              image: {
-                src: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=800&q=80",
-                alt: "Cheek volume",
-                placeholder: "CHF1",
-              },
-              layout: "image-right",
-            },
-          ],
-
           benefits: [
-            "Restores cheek volume",
-            "Creates natural lift",
-            "Defines cheekbones",
-            "Rejuvenates mid-face",
-            "Improves smile lines",
-            "Long-lasting results",
-            "Natural appearance",
-            "Minimal downtime",
+            "Even filler distribution",
+            "Natural-looking results",
+            "Smooth contouring",
+            "Minimal swelling",
+            "Long-lasting effects",
+            "Tailored technique",
+            "No downtime",
+            "Immediate results",
           ],
-
           resultsTimeline: {
             initial: "Immediate",
             full: "1-2 weeks",
-            duration: "12-18 months",
+            duration: "9-15 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80",
-              alt: "Cheek filler results 1",
-              label: "Volume Restored - Immediate",
+              src: "/images/filler/chain filler/31.jpeg",
+              alt: "Chain filler results 1",
+              label: "Smooth Contour - Immediate",
             },
             {
-              src: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=1200&q=80",
-              alt: "Cheek filler results 2",
-              label: "Lifted Appearance - 1 Week",
+              src: "/images/filler/chain filler/32.jpeg",
+              alt: "Chain filler results 2",
+              label: "Natural Volume - 1 Week",
             },
             {
-              src: "https://images.unsplash.com/photo-1506956191951-7a88da4435e5?w=1200&q=80",
-              alt: "Cheek filler results 3",
-              label: "Defined Cheekbones - 2 Weeks",
-            },
-            {
-              src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200&q=80",
-              alt: "Cheek filler results 4",
-              label: "Youthful Mid-Face - Full Results",
+              src: "/images/filler/chain filler/33.jpeg",
+              alt: "Chain filler results 3",
+              label: "Full Results - 2 Weeks",
             },
           ],
-
           faqs: [
             {
-              question: "Will I look puffy?",
+              question: "What makes chain filler different?",
               answer:
-                "Not when done correctly! We create subtle, natural lift that enhances your features without looking overdone.",
+                "The chain technique distributes filler in a linked pattern for a more even, natural result compared to single-point injections.",
             },
             {
-              question: "Can this help with sagging?",
+              question: "How long do results last?",
               answer:
-                "Yes! By restoring volume in the cheeks, we create a lifting effect that improves lower face sagging.",
+                "Typically 9-15 months depending on the area treated and individual metabolism.",
             },
           ],
         },
-      ],
+
+        // ── Filler Sub 8: Hair Filler ─────────────────────────────
+        {
+          id: "hair-filler",
+          name: "Hair Filler",
+          shortDescription:
+            "Stimulate hair growth and restore scalp health with targeted injections",
+          longDescription:
+            "Hair filler delivers a nourishing cocktail of vitamins, minerals, and hyaluronic acid directly into the scalp to strengthen hair follicles, reduce hair loss, and promote healthy regrowth.",
+          price: "From £200",
+          duration: "30 minutes",
+          image: {
+            src: "/images/filler/hair filler/1.jpeg",
+            alt: "Hair Filler Treatment",
+          },
+          benefits: [
+            "Stimulates hair growth",
+            "Strengthens hair follicles",
+            "Reduces hair loss",
+            "Improves scalp health",
+            "Adds shine and thickness",
+            "Minimal discomfort",
+            "No downtime",
+            "Natural results",
+          ],
+          resultsTimeline: {
+            initial: "4-6 weeks",
+            full: "3-6 months",
+            duration: "Long-lasting with maintenance",
+            sessions: "3-4 sessions recommended",
+          },
+          beforeAfterGallery: [
+            {
+              src: "/images/filler/hair filler/1.jpeg",
+              alt: "Hair filler results 1",
+              label: "Hair Growth - 6 Weeks",
+            },
+            {
+              src: "/images/filler/hair filler/2.jpeg",
+              alt: "Hair filler results 2",
+              label: "Thickness Improved - 3 Sessions",
+            },
+            {
+              src: "/images/filler/hair filler/3.jpeg",
+              alt: "Hair filler results 3",
+              label: "Scalp Health - 2 Months",
+            },
+            {
+              src: "/images/filler/hair filler/4.jpeg",
+              alt: "Hair filler results 4",
+              label: "Regrowth - 4 Sessions",
+            },
+            {
+              src: "/images/filler/hair filler/5.jpeg",
+              alt: "Hair filler results 5",
+              label: "Full Results - 6 Months",
+            },
+          ],
+          faqs: [
+            {
+              question: "Who is this suitable for?",
+              answer:
+                "Anyone experiencing hair thinning, hair loss, or poor scalp health. Suitable for both men and women.",
+            },
+            {
+              question: "How many sessions do I need?",
+              answer:
+                "Typically 3-4 sessions spaced 4 weeks apart, followed by maintenance every 3-6 months.",
+            },
+          ],
+        },
+      ], // end fillers subTreatments
     },
 
-    // ==========================================
-    // 3. SKIN BOOSTERS - COMPLETE
-    // ==========================================
+    // ============================================================
+    // 3. SKIN BOOSTERS
+    // ============================================================
     {
       id: "skin-boosters",
       name: "Skin Boosters",
@@ -1538,39 +1270,13 @@ export const treatmentsData = {
       longDescription:
         "Skin boosters deliver intense hydration deep into the skin, improving texture, elasticity, and overall radiance for a natural glow.",
       image: {
-        src: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=1200&q=80",
-        alt: "Skin Boosters",
-        placeholder: "SB",
+        src: "/images/skin-booster/1.jpeg",
+        alt: "Skin Boosters Treatment",
       },
       price: "From £180",
       duration: "30 minutes",
       featured: true,
       badge: "Hydrating",
-
-      sections: [
-        {
-          title: "Deep Hydration from Within",
-          content:
-            "Skin boosters contain hyaluronic acid that attracts and retains moisture, providing deep hydration that radiates from within.",
-          image: {
-            src: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
-            alt: "Skin hydration",
-            placeholder: "SB1",
-          },
-          layout: "image-right",
-        },
-        {
-          title: "Glowing Results",
-          content:
-            "Experience visibly smoother, plumper, and more radiant skin after a course of treatments. Your skin will glow from within.",
-          image: {
-            src: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=800&q=80",
-            alt: "Glowing skin",
-            placeholder: "SB2",
-          },
-          layout: "image-left",
-        },
-      ],
 
       benefits: [
         "Intense hydration",
@@ -1592,24 +1298,29 @@ export const treatmentsData = {
 
       beforeAfterGallery: [
         {
-          src: "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=1200&q=80",
+          src: "/images/skin-booster/1.jpeg",
           alt: "Skin booster results 1",
           label: "Hydrated Glow - 4 Weeks",
         },
         {
-          src: "https://images.unsplash.com/photo-1506956191951-7a88da4435e5?w=1200&q=80",
+          src: "/images/skin-booster/2.jpeg",
           alt: "Skin booster results 2",
           label: "Smooth Texture - 3 Sessions",
         },
         {
-          src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80",
+          src: "/images/skin-booster/3.jpeg",
           alt: "Skin booster results 3",
           label: "Radiant Skin - 6 Weeks",
         },
         {
-          src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200&q=80",
+          src: "/images/skin-booster/4.jpeg",
           alt: "Skin booster results 4",
           label: "Plump Skin - Full Results",
+        },
+        {
+          src: "/images/skin-booster/5.jpeg",
+          alt: "Skin booster results 5",
+          label: "Natural Glow - Full Effect",
         },
       ],
 
@@ -1631,12 +1342,12 @@ export const treatmentsData = {
         },
       ],
 
-      subTreatments: [], // No sub-treatments for skin boosters
+      subTreatments: [], // no sub-treatments
     },
 
-    // ==========================================
-    // 4. MICRONEEDLING - COMPLETE
-    // ==========================================
+    // ============================================================
+    // 4. MICRONEEDLING
+    // ============================================================
     {
       id: "microneedling",
       name: "Microneedling",
@@ -1646,38 +1357,12 @@ export const treatmentsData = {
       longDescription:
         "Microneedling creates controlled micro-injuries to stimulate your skin's natural healing process, boosting collagen and elastin production for transformative results.",
       image: {
-        src: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80",
-        alt: "Microneedling",
-        placeholder: "MN",
+        src: "/images/micronedling/1.jpeg",
+        alt: "Microneedling Treatment",
       },
       price: "From £150",
       duration: "45 minutes",
       featured: false,
-
-      sections: [
-        {
-          title: "Collagen Stimulation",
-          content:
-            "Microneedling triggers your body's natural healing response, producing fresh collagen and elastin for firmer, smoother, more youthful skin.",
-          image: {
-            src: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
-            alt: "Collagen production",
-            placeholder: "MN1",
-          },
-          layout: "image-right",
-        },
-        {
-          title: "Versatile Treatment",
-          content:
-            "Effective for acne scars, fine lines, large pores, uneven texture, and overall skin rejuvenation. Safe for all skin types.",
-          image: {
-            src: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=800&q=80",
-            alt: "Versatile results",
-            placeholder: "MN2",
-          },
-          layout: "image-left",
-        },
-      ],
 
       benefits: [
         "Reduces fine lines and wrinkles",
@@ -1699,24 +1384,69 @@ export const treatmentsData = {
 
       beforeAfterGallery: [
         {
-          src: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=1200&q=80",
+          src: "/images/micronedling/1.jpeg",
           alt: "Microneedling results 1",
-          label: "Acne Scars Reduced - 6 Sessions",
+          label: "Skin Texture - Before & After",
         },
         {
-          src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1200&q=80",
+          src: "/images/micronedling/2.jpeg",
           alt: "Microneedling results 2",
-          label: "Fine Lines Improved - 4 Sessions",
+          label: "Acne Scars - 3 Sessions",
         },
         {
-          src: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1200&q=80",
+          src: "/images/micronedling/3.jpeg",
           alt: "Microneedling results 3",
-          label: "Texture Enhanced - 5 Sessions",
+          label: "Fine Lines - 4 Sessions",
         },
         {
-          src: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=80",
+          src: "/images/micronedling/4.jpeg",
           alt: "Microneedling results 4",
+          label: "Pore Size - 5 Sessions",
+        },
+        {
+          src: "/images/micronedling/5.jpeg",
+          alt: "Microneedling results 5",
           label: "Overall Glow - 3 Sessions",
+        },
+        {
+          src: "/images/micronedling/6.jpeg",
+          alt: "Microneedling results 6",
+          label: "Radiant Skin - 6 Sessions",
+        },
+        {
+          src: "/images/micronedling/7.jpeg",
+          alt: "Microneedling results 7",
+          label: "Smooth Texture - 4 Sessions",
+        },
+        {
+          src: "/images/micronedling/8.jpeg",
+          alt: "Microneedling results 8",
+          label: "Collagen Boost - 5 Sessions",
+        },
+        {
+          src: "/images/micronedling/9.jpeg",
+          alt: "Microneedling results 9",
+          label: "Youthful Skin - 6 Sessions",
+        },
+        {
+          src: "/images/micronedling/10.jpeg",
+          alt: "Microneedling results 10",
+          label: "Transformed - Full Results",
+        },
+        {
+          src: "/images/micronedling/11.jpeg",
+          alt: "Microneedling results 11",
+          label: "Final Effect - 6 Months",
+        },
+        {
+          src: "/images/micronedling/IMG_2084.JPG.jpeg",
+          alt: "Microneedling results 12",
+          label: "Before & After Comparison",
+        },
+        {
+          src: "/images/micronedling/IMG_2085.JPG.jpeg",
+          alt: "Microneedling results 13",
+          label: "Full Transformation",
         },
       ],
 
@@ -1738,7 +1468,11 @@ export const treatmentsData = {
         },
       ],
 
+      // ──────────────────────────────────────
+      // MICRONEEDLING SUB-TREATMENTS
+      // ──────────────────────────────────────
       subTreatments: [
+        // ── Microneedling Sub 1: PRP ──────────────────────────────
         {
           id: "microneedling-prp",
           name: "Microneedling + PRP",
@@ -1748,26 +1482,11 @@ export const treatmentsData = {
             "Combining microneedling with PRP (your own platelet-rich plasma) amplifies results, accelerating healing and boosting collagen production.",
           price: "From £300",
           duration: "60 minutes",
+          // ── shares microneedling images until dedicated PRP images are added ──
           image: {
-            src: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80",
-            alt: "Microneedling with PRP",
-            placeholder: "MP",
+            src: "/images/micronedling/1.jpeg",
+            alt: "Microneedling + PRP Treatment",
           },
-
-          sections: [
-            {
-              title: "Amplified Results",
-              content:
-                "PRP contains growth factors that dramatically enhance microneedling results, accelerating healing and maximizing collagen production.",
-              image: {
-                src: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
-                alt: "PRP benefits",
-                placeholder: "MP1",
-              },
-              layout: "image-right",
-            },
-          ],
-
           benefits: [
             "Enhanced collagen production",
             "Faster healing",
@@ -1778,37 +1497,34 @@ export const treatmentsData = {
             "Long-lasting improvements",
             "Suitable for all skin types",
           ],
-
           resultsTimeline: {
             initial: "1 week",
             full: "3-6 months",
             duration: "Long-lasting",
             sessions: "3-4 sessions recommended",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=1200&q=80",
-              alt: "Microneedling PRP results 1",
+              src: "/images/micronedling/2.jpeg",
+              alt: "PRP results 1",
               label: "Dramatic Improvement - 3 Sessions",
             },
             {
-              src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1200&q=80",
-              alt: "Microneedling PRP results 2",
+              src: "/images/micronedling/3.jpeg",
+              alt: "PRP results 2",
               label: "Scar Reduction - 4 Sessions",
             },
             {
-              src: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1200&q=80",
-              alt: "Microneedling PRP results 3",
+              src: "/images/micronedling/4.jpeg",
+              alt: "PRP results 3",
               label: "Glowing Skin - 6 Weeks",
             },
             {
-              src: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=80",
-              alt: "Microneedling PRP results 4",
+              src: "/images/micronedling/5.jpeg",
+              alt: "PRP results 4",
               label: "Transformed Texture - Full Results",
             },
           ],
-
           faqs: [
             {
               question: "What is PRP?",
@@ -1822,12 +1538,12 @@ export const treatmentsData = {
             },
           ],
         },
-      ],
+      ], // end microneedling subTreatments
     },
 
-    // ==========================================
-    // 5. MESOTHERAPY - COMPLETE
-    // ==========================================
+    // ============================================================
+    // 5. MESOTHERAPY
+    // ============================================================
     {
       id: "mesotherapy",
       name: "Mesotherapy",
@@ -1837,27 +1553,12 @@ export const treatmentsData = {
       longDescription:
         "Mesotherapy delivers vitamins, minerals, and hyaluronic acid directly into the skin for rejuvenation, brightening, and targeted improvement.",
       image: {
-        src: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=1200&q=80",
-        alt: "Mesotherapy",
-        placeholder: "MT",
+        src: "/public/images/Mesotherapy.jpg",
+        alt: "Mesotherapy Treatment",
       },
       price: "From £150",
       duration: "30 minutes",
       featured: false,
-
-      sections: [
-        {
-          title: "Targeted Nutrition",
-          content:
-            "Delivers essential nutrients directly where your skin needs them most, bypassing the digestive system for maximum effectiveness.",
-          image: {
-            src: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
-            alt: "Skin nutrition",
-            placeholder: "MT1",
-          },
-          layout: "image-right",
-        },
-      ],
 
       benefits: [
         "Brightens skin tone",
@@ -1877,26 +1578,22 @@ export const treatmentsData = {
         sessions: "4-6 sessions recommended",
       },
 
+      // ── note: image 3 is used for under-eye sub-treatment card ──
       beforeAfterGallery: [
         {
-          src: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=1200&q=80",
+          src: "/images/misotrops/1.jpeg",
           alt: "Mesotherapy results 1",
           label: "Brightness - 4 Sessions",
         },
         {
-          src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1200&q=80",
+          src: "/images/misotrops/2.jpeg",
           alt: "Mesotherapy results 2",
           label: "Even Tone - 3 Sessions",
         },
         {
-          src: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1200&q=80",
+          src: "/images/misotrops/4.jpeg",
           alt: "Mesotherapy results 3",
-          label: "Radiant Glow - 5 Sessions",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=80",
-          alt: "Mesotherapy results 4",
-          label: "Healthy Skin - Full Results",
+          label: "Healthy Skin - Full Result",
         },
       ],
 
@@ -1913,7 +1610,11 @@ export const treatmentsData = {
         },
       ],
 
+      // ──────────────────────────────────────
+      // MESOTHERAPY SUB-TREATMENTS  (2 total)
+      // ──────────────────────────────────────
       subTreatments: [
+        // ── Mesotherapy Sub 1: Under Eye ─────────────────────────
         {
           id: "under-eye-mesotherapy",
           name: "Under Eye Mesotherapy",
@@ -1923,26 +1624,11 @@ export const treatmentsData = {
             "Specialized mesotherapy for the under-eye area targets dark circles, fine lines, and crepey skin with gentle, effective treatment.",
           price: "From £130",
           duration: "20 minutes",
+          // ── misotrops/3.jpeg is the under-eye specific image ──
           image: {
-            src: "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=1200&q=80",
-            alt: "Under Eye Mesotherapy",
-            placeholder: "UEM",
+            src: "/public/images/misotrops/1.jpeg",
+            alt: "Under Eye Mesotherapy Treatment",
           },
-
-          sections: [
-            {
-              title: "Gentle Yet Effective",
-              content:
-                "The under-eye area requires special care. Our gentle mesotherapy cocktail brightens, hydrates, and rejuvenates this delicate area.",
-              image: {
-                src: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80",
-                alt: "Under eye treatment",
-                placeholder: "UEM1",
-              },
-              layout: "image-right",
-            },
-          ],
-
           benefits: [
             "Reduces dark circles",
             "Brightens under-eye area",
@@ -1953,36 +1639,31 @@ export const treatmentsData = {
             "Safe and effective",
             "Complements other treatments",
           ],
-
           resultsTimeline: {
             initial: "2 sessions",
             full: "4-6 sessions",
             duration: "3-6 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1200&q=80",
-              alt: "Under eye mesotherapy results 1",
-              label: "Brighter Eyes - 3 Sessions",
+              src: "/public/images/misotrops/1.jpeg",
+
+              alt: "Under eye meso results 1",
+              label: "Brighter Eyes - Before & After",
             },
             {
-              src: "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=1200&q=80",
-              alt: "Under eye mesotherapy results 2",
-              label: "Reduced Dark Circles - 4 Sessions",
+              src: "/public/images/misotrops/2.jpeg",
+
+              alt: "Under eye meso results 1",
+              label: "Brighter Eyes - Before & After",
             },
             {
-              src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80",
-              alt: "Under eye mesotherapy results 3",
-              label: "Smooth Texture - 5 Sessions",
-            },
-            {
-              src: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=1200&q=80",
-              alt: "Under eye mesotherapy results 4",
-              label: "Refreshed Look - Full Results",
+              src: "/public/images/misotrops/3.jpeg",
+
+              alt: "Under eye meso results 1",
+              label: "Brighter Eyes - Before & After",
             },
           ],
-
           faqs: [
             {
               question: "Is this better than filler?",
@@ -1997,6 +1678,7 @@ export const treatmentsData = {
           ],
         },
 
+        // ── Mesotherapy Sub 2: Hand Mesotherapy ──────────────────
         {
           id: "hand-mesotherapy",
           name: "Hand Mesotherapy",
@@ -2006,25 +1688,9 @@ export const treatmentsData = {
           price: "From £150",
           duration: "25 minutes",
           image: {
-            src: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=1200&q=80",
-            alt: "Hand Mesotherapy",
-            placeholder: "HM",
+            src: "/images/misotrophy-hands/1.jpeg",
+            alt: "Hand Mesotherapy Treatment",
           },
-
-          sections: [
-            {
-              title: "Turn Back Time on Your Hands",
-              content:
-                "Hands often show age first. Mesotherapy restores volume, fades spots, and creates smoother, more youthful-looking hands.",
-              image: {
-                src: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80",
-                alt: "Hand rejuvenation",
-                placeholder: "HM1",
-              },
-              layout: "image-right",
-            },
-          ],
-
           benefits: [
             "Restores volume",
             "Fades age spots",
@@ -2035,36 +1701,28 @@ export const treatmentsData = {
             "Minimal downtime",
             "Long-lasting",
           ],
-
           resultsTimeline: {
             initial: "2 sessions",
             full: "4 sessions",
             duration: "6-12 months",
           },
-
           beforeAfterGallery: [
             {
-              src: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=1200&q=80",
-              alt: "Hand mesotherapy results 1",
+              src: "/images/misotrophy-hands/1.jpeg",
+              alt: "Hand meso results 1",
               label: "Volume Restored - 3 Sessions",
             },
             {
-              src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1200&q=80",
-              alt: "Hand mesotherapy results 2",
+              src: "/images/misotrophy-hands/2.jpeg",
+              alt: "Hand meso results 2",
               label: "Faded Spots - 4 Sessions",
             },
             {
-              src: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1200&q=80",
-              alt: "Hand mesotherapy results 3",
-              label: "Smooth Texture - 5 Sessions",
-            },
-            {
-              src: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=80",
-              alt: "Hand mesotherapy results 4",
-              label: "Youthful Hands - Full Results",
+              src: "/images/misotrophy-hands/3.jpeg",
+              alt: "Hand meso results 3",
+              label: "Youthful Hands - Full Result",
             },
           ],
-
           faqs: [
             {
               question: "How many sessions do I need?",
@@ -2078,12 +1736,12 @@ export const treatmentsData = {
             },
           ],
         },
-      ],
+      ], // end mesotherapy subTreatments
     },
 
-    // ==========================================
-    // 6. NON-SURGICAL RHINOPLASTY - COMPLETE
-    // ==========================================
+    // ============================================================
+    // 6. NON-SURGICAL RHINOPLASTY
+    // ============================================================
     {
       id: "non-surgical-rhinoplasty",
       name: "Non-Surgical Rhinoplasty",
@@ -2093,39 +1751,13 @@ export const treatmentsData = {
       longDescription:
         "Non-surgical rhinoplasty uses dermal fillers to smooth bumps, lift the tip, straighten the bridge, and create a more balanced nose profile—all without surgery.",
       image: {
-        src: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1200&q=80",
-        alt: "Non-Surgical Rhinoplasty",
-        placeholder: "R",
+        src: "/images/non-surgecal/1.jpeg",
+        alt: "Non-Surgical Rhinoplasty Treatment",
       },
       price: "From £350",
       duration: "30 minutes",
       featured: true,
       badge: "Instant",
-
-      sections: [
-        {
-          title: "No Surgery Required",
-          content:
-            "Achieve nose refinement without going under the knife. Immediate results with no downtime, no anesthesia, and no recovery period.",
-          image: {
-            src: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=800&q=80",
-            alt: "No surgery needed",
-            placeholder: "R1",
-          },
-          layout: "image-right",
-        },
-        {
-          title: "Natural Balance",
-          content:
-            "We enhance your natural features, creating harmony and proportion without changing who you are. The goal is refinement, not transformation.",
-          image: {
-            src: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80",
-            alt: "Natural balance",
-            placeholder: "R2",
-          },
-          layout: "image-left",
-        },
-      ],
 
       benefits: [
         "No surgery or anesthesia",
@@ -2146,24 +1778,34 @@ export const treatmentsData = {
 
       beforeAfterGallery: [
         {
-          src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=1200&q=80",
+          src: "/images/non-surgecal/1.jpeg",
           alt: "Rhinoplasty results 1",
           label: "Bridge Smoothing - Immediate",
         },
         {
-          src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80",
+          src: "/images/non-surgecal/2.jpeg",
           alt: "Rhinoplasty results 2",
           label: "Tip Lift - Same Day",
         },
         {
-          src: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=1200&q=80",
+          src: "/images/non-surgecal/3.jpeg",
           alt: "Rhinoplasty results 3",
           label: "Profile Enhancement - 1 Week",
         },
         {
-          src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200&q=80",
+          src: "/images/non-surgecal/4.jpeg",
           alt: "Rhinoplasty results 4",
           label: "Balanced Appearance - 2 Weeks",
+        },
+        {
+          src: "/images/non-surgecal/5.jpeg",
+          alt: "Rhinoplasty results 5",
+          label: "Natural Result - 3 Weeks",
+        },
+        {
+          src: "/images/non-surgecal/6.jpeg",
+          alt: "Rhinoplasty results 6",
+          label: "Full Effect - Final",
         },
       ],
 
@@ -2185,12 +1827,12 @@ export const treatmentsData = {
         },
       ],
 
-      subTreatments: [],
+      subTreatments: [], // no sub-treatments
     },
 
-    // ==========================================
-    // 7. FAT DISSOLVING - COMPLETE
-    // ==========================================
+    // ============================================================
+    // 7. FAT DISSOLVING  (Lemon Bottle)
+    // ============================================================
     {
       id: "fat-dissolving",
       name: "Fat Dissolving (Lemon Bottle)",
@@ -2200,39 +1842,13 @@ export const treatmentsData = {
       longDescription:
         "Fat dissolving injections break down stubborn fat cells, which are then naturally eliminated by your body for permanent fat reduction.",
       image: {
-        src: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=80",
-        alt: "Fat Dissolving",
-        placeholder: "FD",
+        src: "/images/lemon/1.jpeg",
+        alt: "Fat Dissolving Treatment",
       },
       price: "From £150",
       duration: "30 minutes",
       featured: true,
       badge: "Popular",
-
-      sections: [
-        {
-          title: "Targeted Fat Reduction",
-          content:
-            "Precisely target areas resistant to diet and exercise, like double chin, abdomen, thighs, and love handles.",
-          image: {
-            src: "https://images.unsplash.com/photo-1598440947619-2c35fc9af908?w=800&q=80",
-            alt: "Targeted treatment",
-            placeholder: "FD1",
-          },
-          layout: "image-right",
-        },
-        {
-          title: "Permanent Results",
-          content:
-            "Once fat cells are destroyed, they don't come back. Maintain results with a healthy lifestyle.",
-          image: {
-            src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
-            alt: "Permanent results",
-            placeholder: "FD2",
-          },
-          layout: "image-left",
-        },
-      ],
 
       benefits: [
         "Non-surgical solution",
@@ -2253,24 +1869,29 @@ export const treatmentsData = {
 
       beforeAfterGallery: [
         {
-          src: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=80",
+          src: "/images/lemon/1.jpeg",
           alt: "Fat dissolving results 1",
-          label: "Double Chin Reduced - 3 Sessions",
+          label: "Double Chin - 3 Sessions",
         },
         {
-          src: "https://images.unsplash.com/photo-1598440947619-2c35fc9af908?w=1200&q=80",
+          src: "/images/lemon/2.jpeg",
           alt: "Fat dissolving results 2",
-          label: "Abdomen Contoured - 5 Sessions",
+          label: "Abdomen - 5 Sessions",
         },
         {
-          src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80",
+          src: "/images/lemon/3.jpeg",
           alt: "Fat dissolving results 3",
-          label: "Thighs Slimmed - 4 Sessions",
+          label: "Thighs - 4 Sessions",
         },
         {
-          src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1200&q=80",
+          src: "/images/lemon/4.jpeg",
           alt: "Fat dissolving results 4",
-          label: "Arms Toned - 3 Sessions",
+          label: "Arms - 3 Sessions",
+        },
+        {
+          src: "/images/lemon/5.jpeg",
+          alt: "Fat dissolving results 5",
+          label: "Full Results - 5 Sessions",
         },
       ],
 
@@ -2292,10 +1913,13 @@ export const treatmentsData = {
         },
       ],
 
-      subTreatments: [],
+      subTreatments: [], // no sub-treatments
     },
-  ],
+  ], // end treatments array
 
+  // ─────────────────────────────────────────
+  // CTA  (bottom of treatments listing page)
+  // ─────────────────────────────────────────
   cta: {
     title: "Ready to Begin Your Transformation?",
     description: "Book a free consultation with our expert team.",
@@ -2303,16 +1927,22 @@ export const treatmentsData = {
     buttonLink: "/contact",
   },
 
+  // ─────────────────────────────────────────
+  // WHY CHOOSE US
+  // ─────────────────────────────────────────
   whyChooseUs: [
     "CPD-certified specialists",
     "Premium, approved products",
     "Natural-looking results",
     "Safe, professional environment",
-    "Personalized consultations",
+    "Personalised consultations",
   ],
-};
+}; // end treatmentsData
 
-// Helper Functions
+// ============================================================
+// HELPER FUNCTIONS
+// ============================================================
+
 export const getTreatmentsByCategory = (categoryId) => {
   if (categoryId === "all") return treatmentsData.treatments;
   return treatmentsData.treatments.filter((t) => t.category === categoryId);
@@ -2330,13 +1960,11 @@ export const getTreatmentById = (parentId, subId = null) => {
     if (mainTreatment) return mainTreatment;
 
     for (const treatment of treatmentsData.treatments) {
-      if (treatment.subTreatments && treatment.subTreatments.length > 0) {
-        const subTreatment = treatment.subTreatments.find(
-          (st) => st.id === parentId,
-        );
-        if (subTreatment) {
+      if (treatment.subTreatments?.length > 0) {
+        const sub = treatment.subTreatments.find((st) => st.id === parentId);
+        if (sub) {
           return {
-            ...subTreatment,
+            ...sub,
             isSubTreatment: true,
             parentId: treatment.id,
             parentName: treatment.name,
@@ -2349,13 +1977,13 @@ export const getTreatmentById = (parentId, subId = null) => {
   }
 
   const parent = treatmentsData.treatments.find((t) => t.id === parentId);
-  if (!parent || !parent.subTreatments) return null;
+  if (!parent?.subTreatments) return null;
 
-  const subTreatment = parent.subTreatments.find((st) => st.id === subId);
-  if (!subTreatment) return null;
+  const sub = parent.subTreatments.find((st) => st.id === subId);
+  if (!sub) return null;
 
   return {
-    ...subTreatment,
+    ...sub,
     isSubTreatment: true,
     parentId: parent.id,
     parentName: parent.name,

@@ -161,7 +161,7 @@ const Logo = ({ className = "" }) => {
       className={`flex items-center gap-3 transition-transform duration-300 hover:scale-105 ${className}`}
     >
       <img
-        src="images/logo.png"
+        src="/public/images/logo.png"
         alt="Radina Aesthetic"
         className="h-12 w-auto md:h-16 object-contain"
       />

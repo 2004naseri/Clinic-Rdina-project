@@ -32,7 +32,7 @@ export const teamData = {
       "Editor-in-Chief, Ariana Medical Journal",
     ],
     image: {
-      src: "/images/boss.jpg",
+      src: "/public/images/web pic/dr.jpeg",
       alt: "Dr. Shakiba Hussaini",
     },
     tagline:
