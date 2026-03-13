@@ -85,7 +85,7 @@ export const treatmentsData = {
           label: "Forehead & Frown",
         },
         {
-          src: "/public/images/botox/CROW’S FEET BOTOX/1.jpeg",
+          src: "/images/botox/CROW’S FEET BOTOX/1.jpeg",
           alt: "Crow's feet",
           label: "Crow's Feet",
         },
@@ -129,7 +129,7 @@ export const treatmentsData = {
           price: "From £160",
           duration: "10-15 minutes",
           image: {
-            src: "/public/images/botox/forhead lines botox/forhead-botox-2.jpg",
+            src: "/images/botox/forhead lines botox/forhead-botox-2.jpg",
             alt: "Forehead Botox Treatment",
           },
           benefits: [
@@ -149,7 +149,7 @@ export const treatmentsData = {
           },
           beforeAfterGallery: [
             {
-              src: "/public/images/botox/forhead lines botox/24.jpeg",
+              src: "/images/botox/forhead lines botox/24.jpeg",
               alt: "Forehead results 1",
               label: "Light Lines - 2 Weeks",
             },
@@ -214,7 +214,7 @@ export const treatmentsData = {
           price: "From £180",
           duration: "10-15 minutes",
           image: {
-            src: "/public/images/botox/GLABELLAR BOTOX/Glabellar botox 1.webp",
+            src: "/images/botox/GLABELLAR BOTOX/Glabellar botox 1.webp",
             alt: "Glabellar Botox Treatment",
           },
           benefits: [
@@ -284,7 +284,7 @@ export const treatmentsData = {
           price: "From £150",
           duration: "10-15 minutes",
           image: {
-            src: "/public/images/botox/CROW’S FEET BOTOX/crows-feet-btx-4.jpg",
+            src: "/images/botox/CROW’S FEET BOTOX/crows-feet-btx-4.jpg",
             alt: "Crow's Feet Botox Treatment",
           },
           benefits: [
@@ -304,30 +304,30 @@ export const treatmentsData = {
           },
           beforeAfterGallery: [
             {
-              src: "/public/images/botox/CROW’S FEET BOTOX/1.jpeg",
+              src: "/images/botox/CROW’S FEET BOTOX/1.jpeg",
               alt: "Crow's feet results 1",
               label: "Eye Wrinkles - Before & After",
             },
             {
-              src: "/public/images/botox/CROW’S FEET BOTOX/2.jpeg",
+              src: "/images/botox/CROW’S FEET BOTOX/2.jpeg",
 
               alt: "Crow's feet results 2",
               label: "Smile Lines - 2 Weeks",
             },
             {
-              src: "/public/images/botox/CROW’S FEET BOTOX/3.jpeg",
+              src: "/images/botox/CROW’S FEET BOTOX/3.jpeg",
 
               alt: "Crow's feet results 3",
               label: "Youthful Eyes - 3 Weeks",
             },
             {
-              src: "/public/images/botox/CROW’S FEET BOTOX/4.jpeg",
+              src: "/images/botox/CROW’S FEET BOTOX/4.jpeg",
 
               alt: "Crow's feet results 4",
               label: "Natural Smile - Full Results",
             },
             {
-              src: "/public/images/botox/CROW’S FEET BOTOX/5.jpeg",
+              src: "/images/botox/CROW’S FEET BOTOX/5.jpeg",
 
               alt: "Crow's feet results 5",
               label: "Bright Eyes - Full Effect",
@@ -438,7 +438,7 @@ export const treatmentsData = {
           price: "From £200",
           duration: "15-20 minutes",
           image: {
-            src: "/public/images/botox/neck tight/necktight.webp",
+            src: "/images/botox/neck tight/necktight.webp",
             alt: "Neck Botox Treatment",
           },
           benefits: [
@@ -563,7 +563,7 @@ export const treatmentsData = {
           price: "From £140",
           duration: "10 minutes",
           image: {
-            src: "/public/images/botox/Perioral Lines Botox/smokerlines.avif",
+            src: "/images/botox/Perioral Lines Botox/smokerlines.avif",
             alt: "Smoker Lines Botox Treatment",
           },
           benefits: [
@@ -618,7 +618,7 @@ export const treatmentsData = {
           price: "From £150",
           duration: "15-20 minutes",
           image: {
-            src: "/public/images/botox/chain botox/chain.jfif",
+            src: "/images/botox/chain botox/chain.jfif",
             alt: "Chain Botox Treatment",
           },
           benefits: [
@@ -970,7 +970,7 @@ export const treatmentsData = {
         //   duration: "30 minutes",
         //   // ── no image yet ──
         //   image: {
-        //     src: "/public/images/filler/chain filler/31.jpeg",
+        //     src: "/images/filler/chain filler/31.jpeg",
         //     alt: "Chin Filler Treatment",
         //   },
         //   benefits: [
@@ -990,17 +990,17 @@ export const treatmentsData = {
         //   },
         //   beforeAfterGallery: [
         //     {
-        //       src: "/public/images/filler/chain filler/31.jpeg",
+        //       src: "/images/filler/chain filler/31.jpeg",
         //       alt: "chin filler",
         //       label: "",
         //     },
         //     {
-        //       src: "/public/images/filler/chain filler/32.jpeg",
+        //       src: "/images/filler/chain filler/32.jpeg",
         //       alt: "chin filler",
         //       label: "",
         //     },
         //     {
-        //       src: "/public/images/filler/chain filler/33.jpeg",
+        //       src: "/images/filler/chain filler/33.jpeg",
         //       alt: "chin filler",
         //       label: "",
         //     },
@@ -1553,7 +1553,7 @@ export const treatmentsData = {
       longDescription:
         "Mesotherapy delivers vitamins, minerals, and hyaluronic acid directly into the skin for rejuvenation, brightening, and targeted improvement.",
       image: {
-        src: "/public/images/Mesotherapy.jpg",
+        src: "/images/Mesotherapy.jpg",
         alt: "Mesotherapy Treatment",
       },
       price: "From £150",
@@ -1626,7 +1626,7 @@ export const treatmentsData = {
           duration: "20 minutes",
           // ── misotrops/3.jpeg is the under-eye specific image ──
           image: {
-            src: "/public/images/misotrops/1.jpeg",
+            src: "/images/misotrops/1.jpeg",
             alt: "Under Eye Mesotherapy Treatment",
           },
           benefits: [
@@ -1646,19 +1646,19 @@ export const treatmentsData = {
           },
           beforeAfterGallery: [
             {
-              src: "/public/images/misotrops/1.jpeg",
+              src: "/images/misotrops/1.jpeg",
 
               alt: "Under eye meso results 1",
               label: "Brighter Eyes - Before & After",
             },
             {
-              src: "/public/images/misotrops/2.jpeg",
+              src: "/images/misotrops/2.jpeg",
 
               alt: "Under eye meso results 1",
               label: "Brighter Eyes - Before & After",
             },
             {
-              src: "/public/images/misotrops/3.jpeg",
+              src: "/images/misotrops/3.jpeg",
 
               alt: "Under eye meso results 1",
               label: "Brighter Eyes - Before & After",
