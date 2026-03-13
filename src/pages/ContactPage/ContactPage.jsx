@@ -3,15 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import contactData from "../../data/contactData";
 
-const {
-  hero,
-  contactInfo,
-  socialMedia,
-  formFields,
-  quickActions,
-  faqs,
-  formSuccess,
-} = contactData;
+const { hero, contactInfo, socialMedia, formFields, quickActions, faqs } =
+  contactData;
 
 // ─── Icons ────────────────────────────────────────────────────
 function PhoneIcon({ className }) {
@@ -159,21 +152,32 @@ const fieldCls = `w-full px-4 py-3.5 border border-border bg-white
                   focus:ring-2 focus:ring-secondary/15
                   transition-all duration-300`;
 
+// ─── WhatsApp Message Builder ─────────────────────────────────
+// Builds a pre-filled WhatsApp message from form fields and opens it
+function buildWhatsAppUrl(data, baseLink) {
+  const lines = [
+    "Hello, I would like to book a consultation at Radina Aesthetic Clinic.",
+    data.name ? `*Name:* ${data.name}` : null,
+    data.phone ? `*Phone:* ${data.phone}` : null,
+    data.service ? `*Treatment:* ${data.service}` : null,
+    data.message ? `*Message:* ${data.message}` : null,
+  ].filter(Boolean);
+  const text = lines.join("\n");
+  const number = baseLink.replace("https://wa.me/", "").split("?")[0];
+  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+}
+
 // ─── Main Page ────────────────────────────────────────────────
 export default function ContactPage() {
   const [formData, setFormData] = useState({});
-  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleWhatsApp = (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({});
-    }, 4000);
+    const url = buildWhatsAppUrl(formData, contactInfo.whatsapp.link);
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -292,9 +296,10 @@ export default function ContactPage() {
       <section className="bg-surface py-20">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {/* ── FORM ── */}
+            {/* ── WHATSAPP FORM ── */}
             <div className="lg:col-span-2">
               <div className="bg-white border border-border p-8 lg:p-10">
+                {/* Header */}
                 <p
                   className="font-body text-[9px] tracking-[0.35em] uppercase text-accent font-semibold mb-3
                                flex items-center gap-2.5"
@@ -304,226 +309,125 @@ export default function ContactPage() {
                 </p>
                 <h2
                   className="font-display font-normal text-text-primary tracking-tight
-                               leading-[1.1] text-[clamp(26px,3vw,40px)] mb-8"
+                               leading-[1.1] text-[clamp(26px,3vw,40px)] mb-3"
                 >
                   Request an Appointment
                 </h2>
 
-                {submitted ? (
-                  /* Success */
-                  <div className="flex flex-col items-center justify-center py-16 text-center">
-                    <div
-                      className="w-16 h-16 rounded-full bg-gradient-to-br from-secondary to-primary
-                                    flex items-center justify-center mb-5"
-                    >
-                      <svg
-                        className="w-8 h-8 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2.5}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <h3 className="font-display text-[28px] font-normal text-text-primary mb-3">
-                      {formSuccess.title}
-                    </h3>
-                    <p className="font-body text-[13px] leading-[1.9] text-text-muted max-w-[340px]">
-                      {formSuccess.message}
+                {/* WhatsApp notice banner */}
+                <div
+                  className="flex items-start gap-4 p-4 mb-7
+                                bg-[#25D366]/8 border border-[#25D366]/30"
+                >
+                  <div className="w-9 h-9 rounded-full bg-[#25D366] flex items-center justify-center shrink-0 mt-0.5">
+                    <WhatsAppIcon className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-body text-[12px] font-semibold text-text-primary mb-1">
+                      Messages go directly to WhatsApp
+                    </p>
+                    <p className="font-body text-[12px] leading-[1.75] text-text-muted">
+                      Fill in your details below and click{" "}
+                      <strong>"Send via WhatsApp"</strong> — your message will
+                      open in WhatsApp ready to send. We reply within a few
+                      hours.
                     </p>
                   </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                    {/* Name */}
+                </div>
+
+                <form onSubmit={handleWhatsApp} className="flex flex-col gap-5">
+                  {/* Name */}
+                  <div>
+                    <label
+                      className="block font-body text-[11px] font-semibold tracking-[0.1em]
+                                      uppercase text-text-primary mb-2"
+                    >
+                      Your Name <span className="text-accent">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      placeholder="e.g. Sarah Johnson"
+                      onChange={handleChange}
+                      className={fieldCls}
+                    />
+                  </div>
+
+                  {/* Phone + Service */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                       <label
                         className="block font-body text-[11px] font-semibold tracking-[0.1em]
                                         uppercase text-text-primary mb-2"
                       >
-                        {formFields.name.label}
-                        {formFields.name.required && (
-                          <span className="text-accent ml-1">*</span>
-                        )}
+                        Phone Number
                       </label>
                       <input
-                        type="text"
-                        name="name"
-                        required
-                        placeholder={formFields.name.placeholder}
+                        type="tel"
+                        name="phone"
+                        placeholder="07XXX XXXXXX"
                         onChange={handleChange}
                         className={fieldCls}
                       />
                     </div>
-
-                    {/* Email + Phone */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      <div>
-                        <label
-                          className="block font-body text-[11px] font-semibold tracking-[0.1em]
-                                          uppercase text-text-primary mb-2"
-                        >
-                          {formFields.email.label}
-                          {formFields.email.required && (
-                            <span className="text-accent ml-1">*</span>
-                          )}
-                        </label>
-                        <input
-                          type="email"
-                          name="email"
-                          required
-                          placeholder={formFields.email.placeholder}
-                          onChange={handleChange}
-                          className={fieldCls}
-                        />
-                      </div>
-                      <div>
-                        <label
-                          className="block font-body text-[11px] font-semibold tracking-[0.1em]
-                                          uppercase text-text-primary mb-2"
-                        >
-                          {formFields.phone.label}
-                          {formFields.phone.required && (
-                            <span className="text-accent ml-1">*</span>
-                          )}
-                        </label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          required
-                          placeholder={formFields.phone.placeholder}
-                          onChange={handleChange}
-                          className={fieldCls}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Location + Service */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      <div>
-                        <label
-                          className="block font-body text-[11px] font-semibold tracking-[0.1em]
-                                          uppercase text-text-primary mb-2"
-                        >
-                          {formFields.location.label}
-                        </label>
-                        <select
-                          name="location"
-                          onChange={handleChange}
-                          className={fieldCls}
-                        >
-                          <option value="">
-                            {formFields.location.placeholder}
-                          </option>
-                          {formFields.location.options.map((o, i) => (
-                            <option key={i} value={o}>
-                              {o}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <div>
-                        <label
-                          className="block font-body text-[11px] font-semibold tracking-[0.1em]
-                                          uppercase text-text-primary mb-2"
-                        >
-                          {formFields.service.label}
-                        </label>
-                        <select
-                          name="service"
-                          onChange={handleChange}
-                          className={fieldCls}
-                        >
-                          <option value="">
-                            {formFields.service.placeholder}
-                          </option>
-                          {formFields.service.options.map((o, i) => (
-                            <option key={i} value={o}>
-                              {o}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-
-                    {/* Date + Time */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      <div>
-                        <label
-                          className="block font-body text-[11px] font-semibold tracking-[0.1em]
-                                          uppercase text-text-primary mb-2"
-                        >
-                          {formFields.preferredDate.label}
-                        </label>
-                        <input
-                          type="date"
-                          name="preferredDate"
-                          onChange={handleChange}
-                          className={fieldCls}
-                        />
-                      </div>
-                      <div>
-                        <label
-                          className="block font-body text-[11px] font-semibold tracking-[0.1em]
-                                          uppercase text-text-primary mb-2"
-                        >
-                          {formFields.preferredTime.label}
-                        </label>
-                        <select
-                          name="preferredTime"
-                          onChange={handleChange}
-                          className={fieldCls}
-                        >
-                          <option value="">
-                            {formFields.preferredTime.placeholder}
-                          </option>
-                          {formFields.preferredTime.options.map((o, i) => (
-                            <option key={i} value={o}>
-                              {o}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-
-                    {/* Message */}
                     <div>
                       <label
                         className="block font-body text-[11px] font-semibold tracking-[0.1em]
                                         uppercase text-text-primary mb-2"
                       >
-                        {formFields.message.label}
+                        Treatment of Interest
                       </label>
-                      <textarea
-                        name="message"
-                        rows={4}
-                        placeholder={formFields.message.placeholder}
+                      <select
+                        name="service"
                         onChange={handleChange}
-                        className={`${fieldCls} resize-none`}
-                      />
+                        className={fieldCls}
+                      >
+                        <option value="">Select a treatment…</option>
+                        {formFields.service.options.map((o, i) => (
+                          <option key={i} value={o}>
+                            {o}
+                          </option>
+                        ))}
+                      </select>
                     </div>
+                  </div>
 
-                    {/* Submit */}
-                    <button
-                      type="submit"
-                      className="w-full py-4 bg-gradient-to-r from-secondary to-primary text-white
-                                 font-body text-[10px] font-bold tracking-[0.25em] uppercase
-                                 transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5
-                                 cursor-pointer mt-2"
+                  {/* Message */}
+                  <div>
+                    <label
+                      className="block font-body text-[11px] font-semibold tracking-[0.1em]
+                                      uppercase text-text-primary mb-2"
                     >
-                      Submit Request
-                    </button>
+                      Your Message
+                    </label>
+                    <textarea
+                      name="message"
+                      rows={4}
+                      placeholder="Tell us about your concerns or any questions you have…"
+                      onChange={handleChange}
+                      className={`${fieldCls} resize-none`}
+                    />
+                  </div>
 
-                    <p className="font-body text-[10px] text-text-muted text-center italic">
-                      ✦ We'll respond within 24 hours to confirm your
-                      appointment.
-                    </p>
-                  </form>
-                )}
+                  {/* Submit */}
+                  <button
+                    type="submit"
+                    className="w-full py-4 flex items-center justify-center gap-3
+                               bg-[#25D366] text-white
+                               font-body text-[10px] font-bold tracking-[0.25em] uppercase
+                               transition-all duration-300 hover:bg-[#1ebe5d] hover:-translate-y-0.5
+                               cursor-pointer mt-2"
+                  >
+                    <WhatsAppIcon className="w-5 h-5" />
+                    Send via WhatsApp
+                  </button>
+
+                  <p className="font-body text-[10px] text-text-muted text-center italic">
+                    ✦ Clicking the button opens WhatsApp with your message
+                    pre-filled — just hit send.
+                  </p>
+                </form>
               </div>
             </div>
 

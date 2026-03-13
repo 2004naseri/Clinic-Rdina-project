@@ -216,45 +216,112 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {facility.features.map((f, i) => (
+          {/* Icon-based feature tiles — no images needed */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
+            {[
+              {
+                title: facility.features[0].title,
+                description: facility.features[0].description,
+                icon: (
+                  <svg
+                    className="w-8 h-8"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                    />
+                  </svg>
+                ),
+              },
+              {
+                title: facility.features[1].title,
+                description: facility.features[1].description,
+                icon: (
+                  <svg
+                    className="w-8 h-8"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    />
+                  </svg>
+                ),
+              },
+              {
+                title: facility.features[2].title,
+                description: facility.features[2].description,
+                icon: (
+                  <svg
+                    className="w-8 h-8"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"
+                    />
+                  </svg>
+                ),
+              },
+            ].map((f, i) => (
               <div
-                key={f.id}
-                className="group overflow-hidden border border-border
-                           hover:shadow-[0_20px_40px_rgba(67,5,104,0.1)]
-                           hover:-translate-y-1.5 transition-all duration-400"
+                key={i}
+                className="group relative bg-white p-10 overflow-hidden
+                           hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(67,5,104,0.1)]
+                           transition-all duration-400"
                 style={{
                   animation: `fadeUp 0.6s cubic-bezier(.16,1,.3,1) ${i * 0.12}s both`,
                 }}
               >
-                <div className="relative h-56 overflow-hidden">
-                  <img
-                    src={f.image.src}
-                    alt={f.image.alt}
-                    className="w-full h-full object-cover transition-transform duration-700
-                               group-hover:scale-[1.06]"
-                    onError={(e) => {
-                      e.target.classList.add("hidden");
-                      e.target.nextElementSibling.classList.remove("hidden");
-                    }}
-                  />
-                  <div className="hidden absolute inset-0 bg-gradient-to-br from-secondary to-primary" />
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent
-                                  opacity-0 group-hover:opacity-100 transition-opacity duration-400"
-                  />
+                {/* Hover top bar */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-0.5
+                                bg-gradient-to-r from-secondary to-primary
+                                scale-x-0 group-hover:scale-x-100
+                                transition-transform duration-400 origin-left"
+                />
+
+                {/* Number watermark */}
+                <div
+                  className="absolute top-6 right-8 font-display text-[72px] font-light
+                                text-secondary/5 leading-none select-none
+                                group-hover:text-secondary/8 transition-colors duration-400"
+                >
+                  {String(i + 1).padStart(2, "0")}
                 </div>
-                <div className="p-6 bg-white">
-                  <h3
-                    className="font-display text-[20px] font-normal text-text-primary mb-2
-                                 group-hover:text-secondary transition-colors duration-300"
-                  >
-                    {f.title}
-                  </h3>
-                  <p className="font-body text-[12px] leading-[1.8] text-text-muted">
-                    {f.description}
-                  </p>
+
+                {/* Icon */}
+                <div
+                  className="w-14 h-14 mb-7 flex items-center justify-center
+                                bg-secondary/6 text-secondary
+                                group-hover:bg-secondary group-hover:text-white
+                                transition-all duration-400"
+                >
+                  {f.icon}
                 </div>
+
+                <h3
+                  className="font-display text-[22px] font-normal text-text-primary mb-3
+                               group-hover:text-secondary transition-colors duration-300 leading-snug"
+                >
+                  {f.title}
+                </h3>
+                <p className="font-body text-[13px] leading-[1.85] text-text-muted">
+                  {f.description}
+                </p>
               </div>
             ))}
           </div>
