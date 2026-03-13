@@ -87,26 +87,41 @@ function PackageCard({ pkg, index }) {
         </div>
       )}
 
-      {/* Image */}
-      <div className="relative h-52 overflow-hidden">
-        <img
-          src={pkg.image.src}
-          alt={pkg.image.alt}
-          className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.05]"
-          onError={(e) => {
-            e.target.classList.add("hidden");
-            e.target.nextElementSibling.classList.remove("hidden");
-          }}
-        />
-        <div className="hidden absolute inset-0 bg-gradient-to-br from-secondary to-primary" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent" />
+      {/* Visual header — no image needed */}
+      <div
+        className={`relative h-52 overflow-hidden flex items-end
+                       ${
+                         pkg.featured
+                           ? "bg-gradient-to-br from-secondary via-primary-dark to-primary"
+                           : "bg-gradient-to-br from-[#1a0432] to-secondary"
+                       }`}
+      >
+        {/* Decorative circles */}
+        <div className="absolute -top-10 -right-10 w-52 h-52 rounded-full border border-white/8 pointer-events-none" />
+        <div className="absolute -top-4 -right-4 w-28 h-28 rounded-full border border-white/6 pointer-events-none" />
 
-        {/* Package number */}
+        {/* Giant package number watermark */}
         <div
-          className="absolute top-4 left-4 font-display text-[52px] font-light
-                        text-white/15 leading-none select-none"
+          className="absolute top-3 left-4 font-display text-[80px] font-light
+                        text-white/10 leading-none select-none"
         >
           {pkg.number}
+        </div>
+
+        {/* Centre label */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <span className="w-6 h-px bg-accent inline-block" />
+              <span className="font-body text-[8px] tracking-[0.35em] uppercase text-accent font-semibold">
+                Treatment Programme
+              </span>
+              <span className="w-6 h-px bg-accent inline-block" />
+            </div>
+            <p className="font-display text-[28px] font-light text-white leading-snug px-6 text-center">
+              {pkg.tagline}
+            </p>
+          </div>
         </div>
 
         {/* Badge */}
@@ -116,8 +131,8 @@ function PackageCard({ pkg, index }) {
                            font-body text-[9px] font-bold tracking-[0.15em] uppercase
                            ${
                              pkg.featured
-                               ? "bg-secondary text-white"
-                               : "bg-white/90 backdrop-blur-sm text-secondary"
+                               ? "bg-accent text-white"
+                               : "bg-white/15 backdrop-blur-sm text-white border border-white/20"
                            }`}
           >
             {pkg.badge}

@@ -13,7 +13,7 @@ export const packagesData = {
     description:
       "Curated multi-session programmes designed to deliver visible, lasting results. Each package combines complementary treatments for maximum impact.",
     image: {
-      src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80",
+      src: "/images/web pic/7.jpeg",
       alt: "Radina Aesthetic Clinic treatment packages",
     },
     urgency: "Availability is limited. Early booking is recommended.",
@@ -42,10 +42,6 @@ export const packagesData = {
       featured: false,
       badge: "Special Offer",
       idealFor: "Wrinkles, dehydration, dull skin and early ageing signs.",
-      image: {
-        src: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800&q=80",
-        alt: "Ageless Glow Package",
-      },
       sessionPlan: [
         {
           number: 1,
@@ -81,7 +77,7 @@ export const packagesData = {
     // ─────────────────────────────────────────
     {
       id: "ultimate-skin-rebirth",
-      number: "03",
+      number: "02",
       name: "Ultimate Skin Rebirth Package",
       tagline:
         "Complete skin rejuvenation — wrinkles, pigmentation & hydration.",
@@ -101,10 +97,6 @@ export const packagesData = {
       },
       idealFor:
         "Wrinkles, pigmentation, dehydration, dull skin and clients seeking complete rejuvenation.",
-      image: {
-        src: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80",
-        alt: "Ultimate Skin Rebirth Package",
-      },
       sessionPlan: [
         {
           number: 1,
