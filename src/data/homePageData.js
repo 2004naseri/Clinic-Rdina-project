@@ -80,7 +80,7 @@ export const homePageData = {
     description:
       "At Radina Clinic, we believe beauty is personal. Our approach combines cutting-edge medical technology with personalized care to enhance your natural features, never change them.",
     image: {
-      src: "/public/images/web pic/21.jpeg", // 👈 REPLACE with your image
+      src: "/images/web pic/21.jpeg", // 👈 REPLACE with your image
       alt: "Radina Clinic interior",
       placeholder: {
         show: false, // Set to false when you add real image
