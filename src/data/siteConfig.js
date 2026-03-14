@@ -22,13 +22,13 @@ export const siteConfig = {
   // ==================
   phones: {
     primary: {
-      display: "07795 976868",
-      link: "tel:+447795976868",
+      display: "",
+      link: "",
       label: "Main",
     },
     alternative: {
-      display: "07990 348048",
-      link: "tel:+447990348048",
+      display: "",
+      link: "",
       label: "Alternative",
     },
   },
@@ -53,7 +53,7 @@ export const siteConfig = {
       id: "instagram",
       platform: "Instagram",
       handle: "@radina_clinic",
-      url: "https://www.instagram.com/radina_clinic?igsh=eWh6eWNpeGRtcnE2&utm_source=qr",
+      url: "https://www.instagram.com/radina_aesthetics?igsh=eWh6eWNpeGRtcnE2&utm_source=qr",
       icon: "instagram",
     },
     {

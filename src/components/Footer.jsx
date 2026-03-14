@@ -198,7 +198,7 @@ const Footer = () => {
 
             <ul className="flex flex-col gap-4">
               {/* Phone */}
-              <li className="flex items-start gap-3">
+              {/* <li className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-full bg-white/8 flex items-center justify-center shrink-0 mt-0.5">
                   <svg
                     className="w-3.5 h-3.5 text-accent"
@@ -231,7 +231,7 @@ const Footer = () => {
                     {phones.alternative.display}
                   </a>
                 </div>
-              </li>
+              </li> */}
 
               {/* WhatsApp */}
               <li className="flex items-start gap-3">
