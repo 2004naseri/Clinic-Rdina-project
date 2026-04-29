@@ -11,7 +11,7 @@ export const teamData = {
       "Where medical science, research integrity, and natural aesthetics meet with trust.",
     image: {
       src: "/images/web pic/boos2.jpeg",
-      alt: "Radina Aesthetic Clinic",
+      alt: "Radina Aesthetic Clinic.",
     },
   },
 
