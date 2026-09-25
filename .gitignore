@@ -25,3 +25,6 @@ dist-ssr
 
 # Raw source photos (HEIC originals) — not shipped, kept locally
 _source-assets/
+
+# Build artifacts / archives — never commit (they blocked the GitHub push)
+*.zip
