@@ -1,5 +1,5 @@
 // src/pages/MeetTheTeamPage/MeetTheTeamPage.jsx
-import { useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import teamData from "../../data/teamData";
 
@@ -44,7 +44,7 @@ function MemberCard({ member, onExpand, isExpanded }) {
   return (
     <div
       className={`group relative flex flex-col bg-white border transition-all duration-500
-        ${isExpanded ? "border-secondary/40 shadow-[0_24px_48px_rgba(67,5,104,0.13)]" : "border-border hover:border-secondary/30 hover:shadow-[0_16px_40px_rgba(67,5,104,0.09)]"}
+        ${isExpanded ? "border-secondary/40 shadow-[0_24px_48px_rgba(58,49,40,0.13)]" : "border-border hover:border-secondary/30 hover:shadow-[0_16px_40px_rgba(58,49,40,0.09)]"}
         hover:-translate-y-1`}
     >
       {/* Founder badge */}
@@ -106,11 +106,13 @@ function MemberCard({ member, onExpand, isExpanded }) {
         {/* Expand button */}
         <button
           onClick={() => onExpand(member.id)}
-          className="inline-flex items-center justify-between w-full
-                     border border-secondary/20 px-4 py-3
-                     font-body text-[9px] tracking-[0.2em] uppercase font-bold
-                     text-secondary hover:bg-secondary hover:text-white hover:border-secondary
-                     transition-all duration-300 cursor-pointer group/btn"
+          className={`inline-flex items-center justify-between w-full
+                     px-4 py-3.5 sm:py-3
+                     font-body text-[10px] sm:text-[9px] tracking-[0.2em] uppercase font-bold
+                     transition-all duration-300 cursor-pointer group/btn
+                     ${isExpanded
+                       ? "bg-secondary text-white border border-secondary"
+                       : "bg-secondary text-white border border-secondary sm:bg-transparent sm:text-secondary sm:border-secondary/20 sm:hover:bg-secondary sm:hover:text-white sm:hover:border-secondary"}`}
         >
           <span>{isExpanded ? "Close Profile" : "View Full Profile"}</span>
           <svg
@@ -138,10 +140,10 @@ function ExpandedProfile({ member, onClose }) {
   const [bioExpanded, setBioExpanded] = useState(false);
 
   return (
-    <div className="mt-6 border border-secondary/20 bg-surface animate-[fadeUp_0.45s_cubic-bezier(.16,1,.3,1)_both]">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-12">
+    <div className="border border-secondary/20 bg-surface animate-[fadeUp_0.45s_cubic-bezier(.16,1,.3,1)_both]">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-12">
         {/* Close bar */}
-        <div className="flex items-center justify-between mb-10 pb-6 border-b border-border">
+        <div className="flex items-center justify-between mb-6 sm:mb-10 pb-4 sm:pb-6 border-b border-border">
           <div className="flex items-center gap-3">
             <span className="w-6 h-px bg-accent inline-block" />
             <span className="font-body text-[9px] tracking-[0.35em] uppercase text-accent font-semibold">
@@ -161,7 +163,7 @@ function ExpandedProfile({ member, onClose }) {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16 items-start">
           {/* Left — portrait + publication (founder only) */}
           <div className="lg:col-span-2">
             <div className="relative mb-8">
@@ -302,12 +304,19 @@ function ExpandedProfile({ member, onClose }) {
 // ── Main page ──────────────────────────────────────────────
 export default function MeetTheTeamPage() {
   const [expandedId, setExpandedId] = useState(null);
+  const expandedRef = useRef(null);
 
   const handleExpand = (id) => {
     setExpandedId((prev) => (prev === id ? null : id));
   };
 
-  const expandedMember = members.find((m) => m.id === expandedId) || null;
+  useEffect(() => {
+    if (!expandedId || !expandedRef.current) return;
+    const t = setTimeout(() => {
+      expandedRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+    return () => clearTimeout(t);
+  }, [expandedId]);
 
   return (
     <main id="main-content" className="bg-white font-body overflow-x-hidden">
@@ -318,16 +327,18 @@ export default function MeetTheTeamPage() {
           <img
             src={hero.image.src}
             alt={hero.image.alt}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+            fetchPriority="high"
             onError={(e) => e.target.classList.add("hidden")}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,4,50,0.96)] via-secondary/55 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-secondary-dark/95 via-secondary/55 to-black/20" />
         </div>
 
         {/* Vertical label */}
         <div className="absolute left-8 top-1/2 -translate-y-1/2 -rotate-90 z-10 hidden lg:flex items-center gap-3 whitespace-nowrap font-body text-[8px] tracking-[0.45em] uppercase text-white/30">
           <span className="w-8 h-px bg-white/30 inline-block" />
-          Radina Aesthetic Clinic
+          Aesthetics by GS
           <span className="w-8 h-px bg-white/30 inline-block" />
         </div>
 
@@ -380,7 +391,7 @@ export default function MeetTheTeamPage() {
             </p>
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
               <h2 className="font-display font-normal text-text-primary tracking-tight leading-[1.05] text-[clamp(30px,4vw,54px)]">
-                The Faces of <span className="italic text-secondary">Radina</span>
+                The Faces of <span className="italic text-secondary">GS</span>
               </h2>
               <p className="font-body text-[12px] leading-[1.9] text-text-muted max-w-[380px] lg:text-right">
                 A team united by expertise, precision, and a shared commitment to natural, evidence-based aesthetics.
@@ -391,23 +402,26 @@ export default function MeetTheTeamPage() {
           {/* Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {members.map((member) => (
-              <MemberCard
-                key={member.id}
-                member={member}
-                onExpand={handleExpand}
-                isExpanded={expandedId === member.id}
-              />
+              <Fragment key={member.id}>
+                <MemberCard
+                  member={member}
+                  onExpand={handleExpand}
+                  isExpanded={expandedId === member.id}
+                />
+                {expandedId === member.id && (
+                  <div
+                    ref={expandedRef}
+                    className="md:col-span-2 lg:col-span-3 scroll-mt-20"
+                  >
+                    <ExpandedProfile
+                      member={member}
+                      onClose={() => setExpandedId(null)}
+                    />
+                  </div>
+                )}
+              </Fragment>
             ))}
           </div>
-
-          {/* Expanded profile panel */}
-          {expandedMember && (
-            <ExpandedProfile
-              key={expandedMember.id}
-              member={expandedMember}
-              onClose={() => setExpandedId(null)}
-            />
-          )}
         </div>
       </section>
 
@@ -551,7 +565,7 @@ export default function MeetTheTeamPage() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <p className="font-body text-[9px] tracking-[0.35em] uppercase text-accent font-semibold mb-3">
-              The Radina Difference
+              The Aesthetics by GS Difference
             </p>
             <h2 className="font-display font-normal text-text-primary tracking-tight leading-[1.05] text-[clamp(30px,3.5vw,50px)]">
               Our Clinical Philosophy
@@ -563,7 +577,7 @@ export default function MeetTheTeamPage() {
               <div
                 key={i}
                 className="group p-7 border border-border hover:border-secondary/40
-                           hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(67,5,104,0.1)]
+                           hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(58,49,40,0.1)]
                            transition-all duration-400 relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-secondary to-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />

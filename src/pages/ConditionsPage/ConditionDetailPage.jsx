@@ -63,7 +63,7 @@ function TreatmentCard({ t, index }) {
       className="group relative overflow-hidden p-7 border border-border bg-white
                  transition-all duration-400 ease-out
                  hover:border-secondary hover:bg-surface hover:-translate-y-1
-                 hover:shadow-[0_20px_40px_rgba(67,5,104,0.12)]"
+                 hover:shadow-[0_20px_40px_rgba(58,49,40,0.12)]"
       style={{
         animation: `fadeUp 0.55s cubic-bezier(.16,1,.3,1) ${index * 0.1}s both`,
       }}
@@ -137,7 +137,8 @@ export default function ConditionDetailPage() {
           <img
             src={heroSrc}
             alt={condition.name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
+            loading="eager"
             onError={(e) => {
               e.target.classList.add("hidden");
               e.target.nextElementSibling.classList.remove("hidden");
@@ -146,7 +147,7 @@ export default function ConditionDetailPage() {
           <div className="hidden absolute inset-0 bg-gradient-to-br from-secondary to-primary" />
           <div
             className="absolute inset-0 bg-gradient-to-t
-                          from-[rgba(26,4,50,0.95)] via-secondary/50 to-black/15"
+                          from-secondary-dark/95 via-secondary/50 to-black/15"
           />
         </div>
 

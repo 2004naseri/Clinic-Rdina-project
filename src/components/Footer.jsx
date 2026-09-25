@@ -90,8 +90,8 @@ const Footer = () => {
                 className="w-12 h-12 rounded-full bg-gradient-to-br from-secondary to-primary
                            items-center justify-center"
               >
-                <span className="font-display text-xl text-white font-light">
-                  R
+                <span className="font-display text-lg text-white font-light tracking-wide">
+                  GS
                 </span>
               </div>
             </button>
@@ -103,7 +103,7 @@ const Footer = () => {
               {clinic.tagline}
             </p>
             <p className="font-body text-[12px] leading-[1.85] text-white/55 mb-7">
-              Advanced aesthetic medicine in London & Leeds, guided by medical
+              Advanced aesthetic medicine in Leeds, guided by medical
               excellence and a commitment to natural results.
             </p>
 
@@ -311,7 +311,7 @@ const Footer = () => {
                     Location
                   </p>
                   <p className="font-body text-[13px] text-white/80">
-                    {clinic.location}
+                    {clinic.address}
                   </p>
                 </div>
               </li>

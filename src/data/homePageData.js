@@ -13,7 +13,7 @@ export const homePageData = {
     badge: "Beauty & Wellness",
     title: "Enhance Your Natural Beauty",
     description:
-      "Experience luxury aesthetic treatments at Radina Clinic. We combine medical expertise with artistry to enhance your natural radiance.",
+      "Experience luxury aesthetic treatments at Aesthetics by GS. We combine medical expertise with artistry to enhance your natural radiance.",
     buttons: [
       {
         text: "Explore Treatments",
@@ -26,10 +26,10 @@ export const homePageData = {
         variant: "outline",
       },
     ],
-    // Hero Image (right side)
+    // Hero Image (full-bleed background)
     image: {
-      src: "/images/web pic/8.jpeg", // 👈 REPLACE THIS with your image path
-      alt: "Luxury beauty treatment at Radina Clinic",
+      src: "/images/brand-stock/beauty-portrait-hero.jpg",
+      alt: "Radiant natural beauty — luxury aesthetic treatments at Aesthetics by GS",
       // If no image, show this placeholder:
       placeholder: {
         show: false, // Set to false when you add real image
@@ -78,10 +78,10 @@ export const homePageData = {
       highlight: "Artistry",
     },
     description:
-      "At Radina Clinic, we believe beauty is personal. Our approach combines cutting-edge medical technology with personalized care to enhance your natural features, never change them.",
+      "At Aesthetics by GS, we believe beauty is personal. Our approach combines cutting-edge medical technology with personalized care to enhance your natural features, never change them.",
     image: {
-      src: "/images/web pic/12.jpeg", // 👈 REPLACE with your image
-      alt: "Radina Clinic interior",
+      src: "/images/brand/aesthetics-injection-hero.jpg",
+      alt: "Aesthetics by GS practitioner performing an aesthetic treatment in Leeds",
       placeholder: {
         show: false, // Set to false when you add real image
         gradient: "from-secondary-light/30 to-primary-light/20",

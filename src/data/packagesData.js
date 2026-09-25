@@ -13,8 +13,8 @@ export const packagesData = {
     description:
       "Curated multi-session programmes designed to deliver visible, lasting results. Each package combines complementary treatments for maximum impact.",
     image: {
-      src: "/images/web pic/7.jpeg",
-      alt: "Radina Aesthetic Clinic treatment packages",
+      src: "/images/brand/clinic-interior-lounge.jpg",
+      alt: "Aesthetics by GS treatment packages in Leeds",
     },
     urgency: "Availability is limited. Early booking is recommended.",
   },

@@ -55,7 +55,7 @@ const Card = ({
               {/* Letter/Icon */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="font-display text-8xl text-primary/10 group-hover:text-primary/20 transition-colors duration-500">
-                  {image.placeholder || title?.[0] || "R"}
+                  {image.placeholder || title?.[0] || "G"}
                 </span>
               </div>
             </>

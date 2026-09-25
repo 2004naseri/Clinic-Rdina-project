@@ -26,7 +26,7 @@ export const faqData = {
       id: 3,
       question: "Where are you located?",
       answer:
-        "We serve clients in both London and Leeds. When booking, you can specify your preferred location and we'll arrange the appointment accordingly.",
+        "We serve clients in Leeds. When booking, you can specify your preferred location and we'll arrange the appointment accordingly.",
       category: "general",
     },
     {

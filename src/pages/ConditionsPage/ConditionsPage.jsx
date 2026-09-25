@@ -14,8 +14,8 @@ function FeaturedCard({ condition, index }) {
       to={`/conditions/${condition.id}`}
       className="group block bg-white border border-border hover:border-primary/25 overflow-hidden
                  transition-all duration-500 ease-out
-                 hover:-translate-y-2.5 hover:shadow-[0_40px_80px_rgba(67,5,104,0.18)]
-                 shadow-[0_4px_24px_rgba(67,5,104,0.07)]"
+                 hover:-translate-y-2.5 hover:shadow-[0_40px_80px_rgba(58,49,40,0.18)]
+                 shadow-[0_4px_24px_rgba(58,49,40,0.07)]"
       style={{
         animation: `fadeUp 0.65s cubic-bezier(.16,1,.3,1) ${index * 0.13}s both`,
       }}
@@ -127,8 +127,8 @@ function CompactCard({ condition, index }) {
                  bg-white border border-border p-6
                  hover:bg-secondary hover:border-secondary
                  transition-all duration-400 ease-out
-                 hover:-translate-y-1.5 hover:shadow-[0_24px_48px_rgba(67,5,104,0.22)]
-                 shadow-[0_2px_12px_rgba(67,5,104,0.05)]"
+                 hover:-translate-y-1.5 hover:shadow-[0_24px_48px_rgba(58,49,40,0.22)]
+                 shadow-[0_2px_12px_rgba(58,49,40,0.05)]"
       style={{
         animation: `fadeUp 0.6s cubic-bezier(.16,1,.3,1) ${index * 0.07}s both`,
       }}
@@ -209,7 +209,9 @@ export default function ConditionsPage() {
           <img
             src={hero.image.src}
             alt={hero.image.alt}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[center_30%]"
+            loading="eager"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-secondary/88 via-primary/62 to-black/25" />
         </div>
@@ -221,7 +223,7 @@ export default function ConditionsPage() {
                         font-body text-[8px] tracking-[0.45em] uppercase text-white/30"
         >
           <span className="w-8 h-px bg-white/30 inline-block" />
-          Radina Aesthetic Clinic
+          Aesthetics by GS
           <span className="w-8 h-px bg-white/30 inline-block" />
         </div>
 

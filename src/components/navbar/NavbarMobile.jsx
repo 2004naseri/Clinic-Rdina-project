@@ -1,115 +1,3 @@
-// import { useState, useEffect } from "react";
-// import { Link, useLocation, useNavigate } from "react-router-dom";
-// import Logo from "./Logo";
-// import { navigationItems, ctaConfig } from "../../data/navbarData";
-
-// const NavbarMobile = () => {
-//   const [isOpen, setIsOpen] = useState(false);
-//   const isActive = (path) => location.pathname === path;
-
-//   const location = useLocation();
-//   const navigate = useNavigate();
-//   function handleClick(path) {
-//     window.scrollTo({
-//       top: 0,
-//       left: 0,
-//       behavior: "smooth", // Changed from "instant" to "auto"
-//     });
-//     navigate(path);
-//   }
-
-//   useEffect(() => setIsOpen(false), [location]);
-
-//   // Prevent scrolling when menu is open
-//   useEffect(() => {
-//     document.body.style.overflow = isOpen ? "hidden" : "unset";
-//   }, [isOpen]);
-
-//   return (
-//     <div className="lg:hidden flex items-center justify-between w-full">
-//       <Logo className="scale-90" />
-
-//       <button
-//         onClick={() => setIsOpen(!isOpen)}
-//         className="relative z-[110] p-2"
-//         aria-label="Toggle Menu"
-//       >
-//         <div className="w-6 h-5 flex flex-col justify-between">
-//           <span
-//             className={`h-0.5 w-full bg-[#430568] transition-all ${
-//               isOpen ? "rotate-45 translate-y-2" : ""
-//             }`}
-//           />
-//           <span
-//             className={`h-0.5 w-full bg-[#430568] transition-all ${
-//               isOpen ? "opacity-0" : "opacity-100"
-//             }`}
-//           />
-//           <span
-//             className={`h-0.5 w-full bg-[#430568] transition-all ${
-//               isOpen ? "-rotate-45 -translate-y-2" : ""
-//             }`}
-//           />
-//         </div>
-//       </button>
-
-//       {/* Full Screen Menu */}
-//       <div
-//         className={`fixed inset-0 z-[105] bg-white transition-transform duration-500 ease-in-out ${
-//           isOpen ? "translate-x-0" : "translate-x-full"
-//         }`}
-//       >
-//         <div className="flex flex-col h-full pt-32 px-10">
-//           <nav>
-//             <ul className="space-y-8">
-//               {navigationItems.map((item, index) => (
-//                 <li
-//                   key={item.id}
-//                   style={{ transitionDelay: `${index * 50}ms` }}
-//                   className={`transition-all duration-500 ${
-//                     isOpen
-//                       ? "opacity-100 translate-x-0"
-//                       : "opacity-0 translate-x-10"
-//                   }`}
-//                 >
-//                   <button
-//                     onClick={() => handleClick(item.path)}
-//                     className={`text-[11px] uppercase hover:cursor-pointer tracking-[0.25em] font-semibold transition-all duration-300 ${
-//                       isActive(item.path)
-//                         ? "text-[#88243d]"
-//                         : "text-[#430568] hover:text-[#88243d]"
-//                     }`}
-//                   >
-//                     {item.label}
-//                     <span
-//                       className={`absolute -bottom-2 left-0 h-[2px] bg-[#88243d] transition-all duration-300 ${
-//                         isActive(item.path)
-//                           ? "w-full"
-//                           : "w-0 group-hover:w-full"
-//                       }`}
-//                     />
-//                   </button>
-//                 </li>
-//               ))}
-//             </ul>
-//           </nav>
-
-//           <div className="mt-auto mb-20">
-//             <Link
-//               to={ctaConfig.primary.path}
-//               className="block w-full text-center bg-[#660665] text-white py-5 uppercase tracking-widest text-xs font-bold"
-//             >
-//               {ctaConfig.primary.label}
-//             </Link>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default NavbarMobile;
-
 // src/components/layout/navbar/NavbarMobile.jsx
 // ========================================
 // MOBILE NAVBAR - New Professional Design
@@ -117,16 +5,15 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  Menu,
-  X,
-  Check,
-  Facebook,
-  Instagram,
-  MessageCircle,
-} from "lucide-react";
+import { Menu, X, Check, Instagram, MessageCircle } from "lucide-react";
 import Logo from "./Logo";
-import { navigationItems, ctaConfig } from "../../data/navbarData";
+import {
+  navigationItems,
+  ctaConfig,
+  socialLinks,
+} from "../../data/navbarData";
+
+const findSocial = (id) => socialLinks.find((s) => s.id === id);
 
 const NavbarMobile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -249,25 +136,29 @@ const NavbarMobile = () => {
               Follow Us
             </p>
             <div className="flex justify-center gap-4">
-              {/* Social Icons */}
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300"
-              >
-                <MessageCircle className="w-4 h-4" />
-              </a>
+              {/* Social Icons — links come from siteConfig */}
+              {findSocial("instagram") && (
+                <a
+                  href={findSocial("instagram").url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300"
+                >
+                  <Instagram className="w-4 h-4" />
+                </a>
+              )}
+              {findSocial("whatsapp") && (
+                <a
+                  href={findSocial("whatsapp").url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp"
+                  className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                </a>
+              )}
             </div>
           </div>
         </div>

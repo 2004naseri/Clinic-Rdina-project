@@ -9,7 +9,7 @@ export const testimonialsData = {
     badge: "Client Stories",
     title: "What Our Clients Say",
     description:
-      "Real experiences from real people. Discover how Radina Clinic has helped our clients feel confident and beautiful.",
+      "Real experiences from real people. Discover how Aesthetics by GS has helped our clients feel confident and beautiful.",
   },
 
   // All testimonials
@@ -17,7 +17,7 @@ export const testimonialsData = {
     {
       id: 1,
       name: "Sophie M.",
-      location: "London",
+      location: "Leeds",
       treatment: "Botox & Dermal Fillers",
       rating: 5,
       image: {
@@ -26,7 +26,7 @@ export const testimonialsData = {
         placeholder: "SM",
       },
       quote:
-        "I had Botox and dermal fillers at Radina, and the results are incredible! My face looks naturally refreshed, and I feel much more confident. The team was professional and made me feel completely at ease.",
+        "I had Botox and dermal fillers with us, and the results are incredible! My face looks naturally refreshed, and I feel much more confident. The team was professional and made me feel completely at ease.",
       date: "January 2025",
       featured: true,
       verified: true,
@@ -43,7 +43,7 @@ export const testimonialsData = {
         placeholder: "ER",
       },
       quote:
-        "The Lemon Bottle Fat Dissolving treatment worked wonders for me. I struggled with stubborn fat for years, and after a few sessions, I finally see the results I've been hoping for. Highly recommend Radina!",
+        "The Lemon Bottle Fat Dissolving treatment worked wonders for me. I struggled with stubborn fat for years, and after a few sessions, I finally see the results I've been hoping for. Highly recommend Aesthetics by GS!",
       date: "December 2024",
       featured: true,
       verified: true,
@@ -60,7 +60,7 @@ export const testimonialsData = {
         placeholder: "HL",
       },
       quote:
-        "Vitamin Therapy and Skin Boosters at Radina have completely transformed my skin. It feels hydrated, radiant, and alive. The process was comfortable, and the staff explained everything clearly.",
+        "Vitamin Therapy and Skin Boosters with us have completely transformed my skin. It feels hydrated, radiant, and alive. The process was comfortable, and the staff explained everything clearly.",
       date: "January 2025",
       featured: true,
       verified: true,
@@ -85,7 +85,7 @@ export const testimonialsData = {
     {
       id: 5,
       name: "Olivia K.",
-      location: "London",
+      location: "Leeds",
       treatment: "Multiple Treatments",
       rating: 5,
       image: {
@@ -94,7 +94,7 @@ export const testimonialsData = {
         placeholder: "OK",
       },
       quote:
-        "The staff at Radina are professional, friendly, and extremely knowledgeable. Every visit is a pleasant experience, and I always leave feeling confident and happy with my results.",
+        "The staff with us are professional, friendly, and extremely knowledgeable. Every visit is a pleasant experience, and I always leave feeling confident and happy with my results.",
       date: "December 2024",
       featured: false,
       verified: true,
@@ -102,7 +102,7 @@ export const testimonialsData = {
     {
       id: 6,
       name: "Sarah T.",
-      location: "London",
+      location: "Leeds",
       treatment: "Dermal Fillers",
       rating: 5,
       image: {
@@ -172,7 +172,7 @@ export const testimonialsData = {
   cta: {
     title: "Ready to Start Your Journey?",
     description:
-      "Join our happy clients and discover the Radina difference – where beauty, health, and confidence come together.",
+      "Join our happy clients and discover the Aesthetics by GS difference – where beauty, health, and confidence come together.",
     buttonText: "Book Your Consultation",
     buttonLink: "/contact",
   },

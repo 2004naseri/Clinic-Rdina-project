@@ -6,12 +6,12 @@ export const teamData = {
   // ==================
   hero: {
     badge: "Meet Our Expert Team",
-    title: "The People Behind Radina",
+    title: "The People Behind Aesthetics by GS",
     description:
       "Where medical science, research integrity, and natural aesthetics meet with trust.",
     image: {
-      src: "/images/web pic/boos2.jpeg",
-      alt: "Radina Aesthetic Clinic.",
+      src: "/images/brand/clinic-treatment-room-1.jpg",
+      alt: "Aesthetics by GS clinic in Leeds",
     },
   },
 
@@ -29,7 +29,7 @@ export const teamData = {
       role: "Aesthetic Practitioner · Medical Researcher",
       roles: [
         "Aesthetic Practitioner",
-        "Co-Founder, Radina Aesthetic Clinic",
+        "Co-Founder, Aesthetics by GS",
         "Medical Researcher",
         "Editor-in-Chief, Ariana Medical Journal",
       ],
@@ -47,7 +47,7 @@ export const teamData = {
         "She obtained her Doctor of Medicine (MD) degree from Kabul University of Medical Sciences and has extensive clinical experience, particularly in cardiology, non-invasive diagnostics, and acute medical care. Her advanced training includes echocardiography, diagnostic ultrasound, electrocardiography (ECG), hemodynamics, and Advanced Cardiac Life Support (ACLS), providing a solid medical foundation for safe and precise aesthetic treatments.",
         `Dr. Hussaini is also an active medical academic and researcher. Her peer-reviewed research article titled "Understanding care-seeking behavior for reproductive tract infections among Afghan women: A cross-sectional study" has been accepted for publication in Public Health Challenges, a Wiley journal, reflecting her contribution to global public health and women's health research.`,
         "In addition to her research activities, Dr. Hussaini serves as Editor-in-Chief of Ariana Medical Journal, working closely with national and international medical academics and scientific advisors. Her editorial role reflects her dedication to medical scholarship, ethical research standards, and the advancement of healthcare knowledge.",
-        "As Co-Founder of Radina Aesthetic Clinic, Dr. Hussaini integrates medical excellence, scientific integrity, and refined aesthetic vision. Every treatment at Radina is guided by thorough consultation, individual assessment, and personalised care, ensuring results that enhance natural beauty while prioritising health and long-term wellbeing.",
+        "As Co-Founder of Aesthetics by GS, Dr. Hussaini integrates medical excellence, scientific integrity, and refined aesthetic vision. Every treatment with us is guided by thorough consultation, individual assessment, and personalised care, ensuring results that enhance natural beauty while prioritising health and long-term wellbeing.",
       ],
       credentials: [
         {
@@ -182,7 +182,7 @@ export const teamData = {
       fullBio: [
         "Golara Shibani is a Registered Nurse and certified Aesthetic Practitioner, professionally trained in Clinical Aesthetics in the United Kingdom. With a strong medical background and extensive experience in advanced aesthetic treatments, she is committed to delivering safe, ethical, and results-focused care tailored to every client.",
         "Combining clinical expertise with an artistic eye, Golara specialises in natural-looking enhancements designed to refresh, restore, and elevate confidence. Her approach is centred on understanding each client's individual features and goals, creating bespoke treatment plans that achieve elegant and balanced results.",
-        "At Radina Clinic, every treatment is performed with precision, professionalism, and the highest standards of patient care. From advanced skin rejuvenation to non-surgical aesthetic procedures, clients can expect a premium experience in a welcoming and trusted environment.",
+        "At Aesthetics by GS, every treatment is performed with precision, professionalism, and the highest standards of patient care. From advanced skin rejuvenation to non-surgical aesthetic procedures, clients can expect a premium experience in a welcoming and trusted environment.",
         "Golara believes that true beauty is not about changing who you are — it is about enhancing your natural features and helping you feel confident in your own skin.",
       ],
       credentials: [
@@ -260,7 +260,7 @@ export const teamData = {
   cta: {
     title: "Ready to Meet the Team?",
     description:
-      "Book a consultation and experience the Radina difference — thorough, personal, and medically guided care from our expert practitioners.",
+      "Book a consultation and experience the Aesthetics by GS difference — thorough, personal, and medically guided care from our expert practitioners.",
     buttonText: "Schedule Consultation",
     buttonLink: "/contact",
   },

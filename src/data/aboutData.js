@@ -1,6 +1,6 @@
 // src/data/aboutData.js
 // ========================================
-// ABOUT DATA — Radina Aesthetic Clinic
+// ABOUT DATA — Aesthetics by GS
 // ========================================
 
 export const aboutData = {
@@ -8,13 +8,13 @@ export const aboutData = {
   // HERO
   // ==================
   hero: {
-    badge: "About Radina",
+    badge: "About Aesthetics by GS",
     title: "Where Medicine Meets Beauty",
     description:
       "A clinic built on medical excellence, scientific integrity, and a genuine commitment to natural, lasting results. Every client is seen as an individual — never a treatment.",
     image: {
-      src: "/images/web pic/clinic.jpeg",
-      alt: "Radina Aesthetic Clinic",
+      src: "/images/brand/clinic-treatment-room-1.jpg",
+      alt: "Aesthetics by GS clinic treatment room in Leeds",
     },
   },
 
@@ -23,10 +23,10 @@ export const aboutData = {
   // ==================
   intro: {
     statement:
-      "At Radina Aesthetic Clinic, we believe aesthetic medicine must be medically sound, ethically driven, and supported by scientific evidence. Every treatment begins with listening — understanding your goals, your concerns, and your skin.",
+      "At Aesthetics by GS, we believe aesthetic medicine must be medically sound, ethically driven, and supported by scientific evidence. Every treatment begins with listening — understanding your goals, your concerns, and your skin.",
     signature: {
       name: "Dr. Shakiba Hussaini",
-      title: "MD · Co-Founder, Radina Aesthetic Clinic",
+      title: "MD · Co-Founder, Aesthetics by GS",
     },
   },
 
@@ -110,7 +110,7 @@ export const aboutData = {
   // FACILITY
   // ==================
   facility: {
-    title: "The Radina Environment",
+    title: "The Aesthetics by GS Environment",
     description:
       "A calm, professional clinic environment where every detail is designed for your comfort, privacy, and confidence.",
     features: [

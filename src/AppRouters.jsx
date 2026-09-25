@@ -3,7 +3,7 @@
 // ROUTER CONFIGURATION - UPDATED FOR NESTED ROUTES
 // ========================================
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import { Suspense } from "react";
 import AppLayout from "./components/layout/AppLayout";
 import HomePage from "./pages/Homepage/HomePage";
@@ -26,6 +26,27 @@ const Loader = () => {
     </div>
   );
 };
+
+// In-app 404 — shown when the SPA loads but the path matches no route
+const NotFound = () => (
+  <div className="min-h-[70vh] flex flex-col items-center justify-center px-6 text-center bg-white">
+    <p className="font-body text-[10px] tracking-[0.35em] uppercase text-accent font-semibold mb-4">
+      Error 404
+    </p>
+    <h1 className="font-display text-[clamp(40px,6vw,72px)] font-light text-secondary leading-none mb-4">
+      Page not found
+    </h1>
+    <p className="font-body text-[13px] text-text-muted max-w-md mb-8">
+      The page you are looking for does not exist or has been moved.
+    </p>
+    <Link
+      to="/"
+      className="inline-block px-8 py-3 bg-secondary text-white font-body text-[10px] font-bold tracking-[0.25em] uppercase hover:bg-primary-dark transition-colors"
+    >
+      Back to Home
+    </Link>
+  </div>
+);
 
 function AppRouters() {
   const router = createBrowserRouter([
@@ -80,6 +101,11 @@ function AppRouters() {
         {
           path: "/contact",
           element: <ContactPage />,
+        },
+        // Catch-all — shown for any URL that doesn't match a real route
+        {
+          path: "*",
+          element: <NotFound />,
         },
       ],
     },

@@ -22,12 +22,14 @@ export default function AboutPage() {
           <img
             src={hero.image.src}
             alt={hero.image.alt}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+            fetchPriority="high"
             onError={(e) => e.target.classList.add("hidden")}
           />
           <div
             className="absolute inset-0 bg-gradient-to-t
-                          from-[rgba(26,4,50,0.96)] via-secondary/50 to-black/20"
+                          from-secondary-dark/95 via-secondary/50 to-black/20"
           />
         </div>
 
@@ -38,7 +40,7 @@ export default function AboutPage() {
                         font-body text-[8px] tracking-[0.45em] uppercase text-white/30"
         >
           <span className="w-8 h-px bg-white/30 inline-block" />
-          Radina Aesthetic Clinic
+          Aesthetics by GS
           <span className="w-8 h-px bg-white/30 inline-block" />
         </div>
 
@@ -162,7 +164,7 @@ export default function AboutPage() {
                 key={p.id}
                 className="group relative p-8 border border-border overflow-hidden
                            hover:border-secondary/40 hover:-translate-y-1
-                           hover:shadow-[0_20px_40px_rgba(67,5,104,0.1)]
+                           hover:shadow-[0_20px_40px_rgba(58,49,40,0.1)]
                            transition-all duration-400"
                 style={{
                   animation: `fadeUp 0.6s cubic-bezier(.16,1,.3,1) ${i * 0.12}s both`,
@@ -280,7 +282,7 @@ export default function AboutPage() {
               <div
                 key={i}
                 className="group relative bg-white p-10 overflow-hidden
-                           hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(67,5,104,0.1)]
+                           hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(58,49,40,0.1)]
                            transition-all duration-400"
                 style={{
                   animation: `fadeUp 0.6s cubic-bezier(.16,1,.3,1) ${i * 0.12}s both`,
@@ -348,7 +350,7 @@ export default function AboutPage() {
               <div
                 key={cat.id}
                 className="p-8 border border-border hover:border-secondary/40
-                           hover:shadow-[0_12px_32px_rgba(67,5,104,0.08)]
+                           hover:shadow-[0_12px_32px_rgba(58,49,40,0.08)]
                            transition-all duration-400 group"
                 style={{
                   animation: `fadeUp 0.6s cubic-bezier(.16,1,.3,1) ${i * 0.12}s both`,
@@ -446,7 +448,7 @@ export default function AboutPage() {
                 someone who truly listens.
               </p>
               <p className="font-body text-[13px] leading-[1.95] text-text-secondary mb-8">
-                At Radina, every consultation is personal — a thorough
+                With us, every consultation is personal — a thorough
                 assessment of your skin, your concerns, and your goals. No
                 pressure, no unnecessary treatments, and always an honest
                 recommendation.

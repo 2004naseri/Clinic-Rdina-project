@@ -1,7 +1,7 @@
 // src/pages/TreatmentDetailPage/SubTreatmentDetailPage.jsx
 // ═══════════════════════════════════════════════════════
 // SUB-TREATMENT DETAIL  —  Route: /treatments/:treatmentId/:subId
-// Radina brand colours. Same editorial luxury style.
+// Aesthetics by GS brand colours. Same editorial luxury style.
 // Extras: breadcrumb trail · back to parent · siblings strip
 // ═══════════════════════════════════════════════════════
 
@@ -153,7 +153,7 @@ function FilmStripGallery({ images }) {
                           group-hover:scale-[1.05]"
               onError={(e) => {
                 e.target.closest("div").style.background =
-                  "linear-gradient(135deg,#b17bbc22,#43056822)";
+                  "linear-gradient(135deg,#c8a24a22,#3a312822)";
               }}
             />
             <div
@@ -281,7 +281,9 @@ export default function SubTreatmentDetailPage() {
             <img
               src={sub.image.src}
               alt={sub.image?.alt}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-[center_25%]"
+              loading="eager"
+              fetchPriority="high"
               onError={(e) => e.target.classList.add("hidden")}
             />
           )}

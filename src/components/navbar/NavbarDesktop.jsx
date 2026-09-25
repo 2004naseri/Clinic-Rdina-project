@@ -82,13 +82,13 @@ const NavbarDesktop = () => {
                 onClick={() => handleClick(item.path)}
                 className={`text-[11px] uppercase hover:cursor-pointer tracking-[0.25em] font-semibold transition-all duration-300 ${
                   isActive(item.path)
-                    ? "text-[#88243d]"
-                    : "text-[#430568] hover:text-[#88243d]"
+                    ? "text-primary"
+                    : "text-secondary hover:text-primary"
                 }`}
               >
                 {item.label}
                 <span
-                  className={`absolute -bottom-2 left-0 h-[2px] bg-[#88243d] transition-all duration-300 ${
+                  className={`absolute -bottom-2 left-0 h-[2px] bg-primary transition-all duration-300 ${
                     isActive(item.path) ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
@@ -100,7 +100,7 @@ const NavbarDesktop = () => {
 
       <Link
         to={ctaConfig.primary.path}
-        className="flex items-center gap-2.5 bg-[#660665] text-white px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-[#430568] transition-all duration-300"
+        className="flex items-center gap-2.5 bg-primary text-white px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-primary-dark transition-all duration-300"
       >
         <svg
           className="w-4 h-4 shrink-0"

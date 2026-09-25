@@ -1,7 +1,7 @@
 // src/pages/treatmentsPage/TreatmentsPage.jsx
 // ═══════════════════════════════════════════════════════
-// TREATMENTS LISTING  —  Radina Aesthetic Brand
-// Palette: secondary (#430568) · primary (#b17bbc) · accent (#d4a574)
+// TREATMENTS LISTING  —  AESTHETICS BY GS
+// Palette via theme tokens: secondary (espresso) · primary (gold) · accent (champagne)
 // Fonts: font-display (Cormorant Garamond) · font-body (Montserrat)
 // No Section/Container/Button UI components
 // ═══════════════════════════════════════════════════════
@@ -39,11 +39,13 @@ const TreatmentsPage = () => {
             <img
               src={hero.image.src}
               alt={hero.image.alt}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
+              loading="eager"
+              fetchPriority="high"
               onError={(e) => e.target.classList.add("hidden")}
             />
           ) : null}
-          {/* Brand purple gradient over image */}
+          {/* Brand gradient over image */}
           <div
             className="absolute inset-0 bg-gradient-to-t
                           from-secondary via-secondary/60 to-secondary/25"
@@ -64,7 +66,7 @@ const TreatmentsPage = () => {
             className="font-body text-[7px] tracking-[0.5em] uppercase
                            text-white/25 [writing-mode:vertical-rl]"
           >
-            Radina Aesthetic
+            Aesthetics by GS
           </span>
           <div className="w-px h-14 bg-white/15" />
         </div>
@@ -364,7 +366,7 @@ const TreatmentsPage = () => {
                         select-none pointer-events-none hidden xl:block"
           style={{ fontSize: "380px" }}
         >
-          R
+          G
         </div>
 
         {/* Gold shimmer */}

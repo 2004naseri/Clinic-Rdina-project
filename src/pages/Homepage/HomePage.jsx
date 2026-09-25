@@ -1,7 +1,7 @@
 // src/pages/Homepage/HomePage.jsx
 // ═══════════════════════════════════════════════════════
-// HOMEPAGE  —  Radina Aesthetic Brand
-// Palette: secondary (#430568) · primary (#b17bbc) · accent (#d4a574)
+// HOMEPAGE  —  AESTHETICS BY GS
+// Palette via theme tokens: secondary (espresso) · primary (gold) · accent (champagne)
 // Fonts: font-display (Cormorant Garamond) · font-body (Montserrat)
 // Sections: Hero → Featured Treatments → Philosophy → Testimonials → FAQ → CTA
 // ═══════════════════════════════════════════════════════
@@ -43,7 +43,9 @@ const HomePage = () => {
             <img
               src={hero.image.src}
               alt={hero.image.alt}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-[75%_center]"
+              loading="eager"
+              fetchPriority="high"
               onError={(e) => e.target.classList.add("hidden")}
             />
           ) : (
@@ -55,13 +57,11 @@ const HomePage = () => {
                              }`}
             />
           )}
-          <div
-            className="absolute inset-0 bg-gradient-to-t
-                          from-secondary/95 via-secondary/55 to-secondary/20"
-          />
+          {/* Directional scrim — rich espresso behind the text (left),
+              clears to reveal the bright image on the right */}
           <div
             className="absolute inset-0 bg-gradient-to-r
-                          from-secondary/65 via-transparent to-transparent"
+                          from-secondary/90 from-10% via-secondary/45 via-60% to-secondary/10"
           />
         </div>
 
@@ -75,7 +75,7 @@ const HomePage = () => {
             className="font-body text-[7px] tracking-[0.5em] uppercase
                            text-white/20 [writing-mode:vertical-rl]"
           >
-            Radina Aesthetic Clinic
+            Aesthetics by GS
           </span>
           <div className="w-px h-16 bg-white/12" />
         </div>
@@ -158,10 +158,6 @@ const HomePage = () => {
           )}
         </div>
 
-        <div
-          className="absolute bottom-0 left-0 right-0 h-28
-                        bg-gradient-to-t from-background to-transparent z-10"
-        />
       </section>
 
       {/* ══════════════════════════════════════
@@ -564,7 +560,7 @@ const HomePage = () => {
                         select-none pointer-events-none hidden xl:block"
           style={{ fontSize: "360px" }}
         >
-          R
+          G
         </div>
         <div
           className="absolute top-0 left-0 right-0 h-px

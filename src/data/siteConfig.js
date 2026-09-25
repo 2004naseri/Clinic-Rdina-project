@@ -10,11 +10,13 @@ export const siteConfig = {
   // CLINIC INFO
   // ==================
   clinic: {
-    name: "Radina Aesthetic Clinic",
-    tagline: "Where Medicine Meets Beauty",
-    location: "London & Leeds, United Kingdom",
-    email: "info@radinaclinic.com",
-    website: "www.radinaclinic.uk",
+    name: "Aesthetics by GS",
+    tagline: "Confidence Looks Beautiful On You",
+    location: "Leeds, United Kingdom",
+    address: "Unit 1, Gemini Business Park, 9 Sheepscar Way, Leeds, LS7 3JB",
+    email: "info@aestheticsbygs.com",
+    website: "www.aestheticsbygs.com",
+    domain: "aestheticsbygs.com",
   },
 
   // ==================
@@ -52,29 +54,15 @@ export const siteConfig = {
     {
       id: "instagram",
       platform: "Instagram",
-      handle: "@radina_clinic",
-      url: "https://www.instagram.com/radina_aesthetics?igsh=eWh6eWNpeGRtcnE2&utm_source=qr",
+      handle: "@aesthetics_b_gs",
+      url: "https://www.instagram.com/aesthetics_b_gs?stkn=cTcybDN1bWV3OWRs&utm_source=qr",
       icon: "instagram",
-    },
-    {
-      id: "facebook",
-      platform: "Facebook",
-      handle: "Radina Clinic",
-      url: "https://www.facebook.com/share/188FpPMtDc/?mibextid=wwXIfr",
-      icon: "facebook",
-    },
-    {
-      id: "youtube",
-      platform: "YouTube",
-      handle: "Radina Clinic",
-      url: "https://www.youtube.com/channel/UCesEM-54wJHU95avynbbF7A",
-      icon: "youtube",
     },
     {
       id: "tiktok",
       platform: "TikTok",
-      handle: "@radina.aesthetics",
-      url: "https://www.tiktok.com/@radina.aesthetics?_r=1&_t=ZN-94KTGusHnnS",
+      handle: "@aesthetics_gs",
+      url: "https://www.tiktok.com/@aesthetics_gs?_r=1&_t=ZN-99hdomMbcPu",
       icon: "tiktok",
     },
     {

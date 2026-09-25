@@ -1,6 +1,6 @@
 // src/data/treatmentsData.js
 // ============================================================
-// TREATMENTS DATA  —  Radina Aesthetic Clinic
+// TREATMENTS DATA  —  Aesthetics by GS
 // ============================================================
 // IMAGE PATHS:
 //   All real images → /images/<folder>/<file>
@@ -17,8 +17,8 @@ export const treatmentsData = {
     description:
       "Discover our range of professional treatments designed to enhance your natural beauty",
     image: {
-      src: "/images/filler/dermal.webp",
-      alt: "Radina Clinic Treatments",
+      src: "/images/brand-stock/clinic-lip-treatment.jpg",
+      alt: "Aesthetic treatment at Aesthetics by GS in Leeds",
     },
   },
 
@@ -49,8 +49,8 @@ export const treatmentsData = {
         "Botox is the world's most trusted anti-wrinkle treatment, used by millions to smooth lines, prevent wrinkles, and achieve a refreshed, youthful appearance without surgery or downtime.",
       // ── card / hero image ──
       image: {
-        src: "/images/botox/forhead-botox2.jpg",
-        alt: "Botox Treatment",
+        src: "/images/brand/botox-anti-wrinkle-treatment.jpg",
+        alt: "Botox anti-wrinkle treatment at Aesthetics by GS",
       },
       price: "From £150",
       duration: "15-30 minutes",
@@ -74,6 +74,11 @@ export const treatmentsData = {
 
       // ── main gallery (one image per key sub-treatment) ──
       beforeAfterGallery: [
+        {
+          src: "/images/brand/brow-detail-treatment.jpg",
+          alt: "Anti-wrinkle treatment at Aesthetics by GS",
+          label: "In-Clinic Treatment",
+        },
         {
           src: "/images/botox/forhead lines botox/26.jpeg",
           alt: "Forehead treatment",
@@ -677,8 +682,8 @@ export const treatmentsData = {
         "Dermal fillers use hyaluronic acid to restore lost volume, enhance facial features, and create youthful, natural-looking results without surgery.",
       // ── card / hero image ──
       image: {
-        src: "/images/filler/dermal.webp",
-        alt: "Dermal Fillers",
+        src: "/images/brand/dermal-filler-consultation.jpg",
+        alt: "Dermal filler treatment at Aesthetics by GS",
       },
       price: "From £250",
       duration: "30-45 minutes",
@@ -704,6 +709,11 @@ export const treatmentsData = {
 
       // ── main gallery (one image per sub-treatment) ──
       beforeAfterGallery: [
+        {
+          src: "/images/brand/lip-filler-treatment.jpg",
+          alt: "Lip filler treatment at Aesthetics by GS",
+          label: "In-Clinic Treatment",
+        },
         {
           src: "/images/filler/lip-filler/1.jpeg",
           alt: "Lip filler",
@@ -1270,8 +1280,8 @@ export const treatmentsData = {
       longDescription:
         "Skin boosters deliver intense hydration deep into the skin, improving texture, elasticity, and overall radiance for a natural glow.",
       image: {
-        src: "/images/skin-booster/1.jpeg",
-        alt: "Skin Boosters Treatment",
+        src: "/images/brand/skin-booster-treatment.jpg",
+        alt: "Skin booster treatment at Aesthetics by GS",
       },
       price: "From £180",
       duration: "30 minutes",
@@ -1297,6 +1307,11 @@ export const treatmentsData = {
       },
 
       beforeAfterGallery: [
+        {
+          src: "/images/brand/facial-skin-rejuvenation.jpg",
+          alt: "Skin rejuvenation facial at Aesthetics by GS",
+          label: "In-Clinic Treatment",
+        },
         {
           src: "/images/skin-booster/1.jpeg",
           alt: "Skin booster results 1",
@@ -1357,8 +1372,8 @@ export const treatmentsData = {
       longDescription:
         "Microneedling creates controlled micro-injuries to stimulate your skin's natural healing process, boosting collagen and elastin production for transformative results.",
       image: {
-        src: "/images/micronedling/1.jpeg",
-        alt: "Microneedling Treatment",
+        src: "/images/brand/skin-treatment-device.jpg",
+        alt: "Microneedling treatment at Aesthetics by GS",
       },
       price: "From £150",
       duration: "45 minutes",
@@ -1553,8 +1568,8 @@ export const treatmentsData = {
       longDescription:
         "Mesotherapy delivers vitamins, minerals, and hyaluronic acid directly into the skin for rejuvenation, brightening, and targeted improvement.",
       image: {
-        src: "/images/Mesotherapy.jpg",
-        alt: "Mesotherapy Treatment",
+        src: "/images/brand/mesotherapy-treatment.jpg",
+        alt: "Mesotherapy treatment at Aesthetics by GS",
       },
       price: "From £150",
       duration: "30 minutes",
@@ -1688,7 +1703,7 @@ export const treatmentsData = {
           price: "From £150",
           duration: "25 minutes",
           image: {
-            src: "/images/misotrophy-hands/1.jpeg",
+            src: "/images/misotrops/2.jpeg",
             alt: "Hand Mesotherapy Treatment",
           },
           benefits: [
@@ -1708,17 +1723,17 @@ export const treatmentsData = {
           },
           beforeAfterGallery: [
             {
-              src: "/images/misotrophy-hands/1.jpeg",
+              src: "/images/misotrops/2.jpeg",
               alt: "Hand meso results 1",
               label: "Volume Restored - 3 Sessions",
             },
             {
-              src: "/images/misotrophy-hands/2.jpeg",
+              src: "/images/misotrops/3.jpeg",
               alt: "Hand meso results 2",
               label: "Faded Spots - 4 Sessions",
             },
             {
-              src: "/images/misotrophy-hands/3.jpeg",
+              src: "/images/misotrops/4.jpeg",
               alt: "Hand meso results 3",
               label: "Youthful Hands - Full Result",
             },

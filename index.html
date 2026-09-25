@@ -1,10 +1,54 @@
 <!doctype html>
-<html lang="fa" dir="ltr">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="images/logo.png" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="apple-touch-icon" href="/images/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Radina CLinic</title>
+    <meta name="theme-color" content="#c8a24a" />
+
+    <!-- Primary SEO -->
+    <title>Aesthetics by GS | Luxury Aesthetic Clinic in Leeds</title>
+    <meta
+      name="description"
+      content="Aesthetics by GS — luxury aesthetic treatments in Leeds. Botox, dermal fillers, skin boosters, mesotherapy and skin rejuvenation. Confidence looks beautiful on you."
+    />
+    <link rel="canonical" href="https://aestheticsbygs.com/" />
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Aesthetics by GS" />
+    <meta
+      property="og:title"
+      content="Aesthetics by GS | Luxury Aesthetic Clinic in Leeds"
+    />
+    <meta
+      property="og:description"
+      content="Luxury aesthetic treatments in Leeds — Botox, dermal fillers, skin boosters and skin rejuvenation."
+    />
+    <meta property="og:url" content="https://aestheticsbygs.com/" />
+    <meta property="og:image" content="https://aestheticsbygs.com/images/brand-hero.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // GitHub Pages SPA path restore: if 404.html redirected us with ?p=/foo,
+      // rewrite the URL back before React Router mounts. No-op on other hosts.
+      (function () {
+        var s = window.location.search;
+        if (!s || s.indexOf("p=") < 0) return;
+        var q = {};
+        s.slice(1).split("&").forEach(function (kv) {
+          var i = kv.indexOf("=");
+          q[kv.slice(0, i)] = decodeURIComponent(kv.slice(i + 1));
+        });
+        if (q.p !== undefined) {
+          window.history.replaceState(
+            null,
+            null,
+            q.p + (q.q ? "?" + q.q.replace(/~and~/g, "&") : "") + window.location.hash
+          );
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

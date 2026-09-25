@@ -156,7 +156,7 @@ const fieldCls = `w-full px-4 py-3.5 border border-border bg-white
 // Builds a pre-filled WhatsApp message from form fields and opens it
 function buildWhatsAppUrl(data, baseLink) {
   const lines = [
-    "Hello, I would like to book a consultation at Radina Aesthetic Clinic.",
+    "Hello, I would like to book a consultation at Aesthetics by GS.",
     data.name ? `*Name:* ${data.name}` : null,
     data.phone ? `*Phone:* ${data.phone}` : null,
     data.service ? `*Treatment:* ${data.service}` : null,
@@ -185,7 +185,7 @@ export default function ContactPage() {
       {/* ══ HERO ══════════════════════════════════════════════ */}
       <section
         className="relative min-h-[65vh] flex items-end
-                          bg-gradient-to-br from-[#1a0432] via-secondary to-primary-dark overflow-hidden"
+                          bg-gradient-to-br from-secondary-dark via-secondary to-primary-dark overflow-hidden"
       >
         {/* Decorative background elements */}
         <div className="absolute inset-0 pointer-events-none">
@@ -212,13 +212,13 @@ export default function ContactPage() {
           />
         </div>
 
-        {/* Ghost R letter */}
+        {/* Ghost brand letter */}
         <div
           className="absolute right-16 top-1/2 -translate-y-1/2
                         font-display text-[280px] font-light leading-none
                         text-white/4 select-none hidden lg:block"
         >
-          R
+          G
         </div>
 
         {/* Side label */}
@@ -228,7 +228,7 @@ export default function ContactPage() {
                         font-body text-[8px] tracking-[0.45em] uppercase text-white/25"
         >
           <span className="w-8 h-px bg-white/25 inline-block" />
-          Radina Aesthetic Clinic
+          Aesthetics by GS
           <span className="w-8 h-px bg-white/25 inline-block" />
         </div>
 
@@ -273,7 +273,7 @@ export default function ContactPage() {
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
                   className="group flex items-center gap-5 p-6 border border-border
-                             hover:border-secondary hover:shadow-[0_16px_40px_rgba(67,5,104,0.12)]
+                             hover:border-secondary hover:shadow-[0_16px_40px_rgba(58,49,40,0.12)]
                              hover:-translate-y-1 transition-all duration-400 relative overflow-hidden"
                   style={{
                     animation: `fadeUp 0.6s cubic-bezier(.16,1,.3,1) ${i * 0.12}s both`,

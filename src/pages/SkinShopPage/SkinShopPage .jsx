@@ -175,7 +175,7 @@ const SkinShopPage = () => {
         <Container>
           <SectionHeader
             title="Why Shop With Us?"
-            description="Experience the Radina difference."
+            description="Experience the Aesthetics by GS difference."
             align="center"
           />
 

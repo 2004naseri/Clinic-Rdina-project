@@ -3,17 +3,17 @@
 // CONTACT DATA
 // Social links & phone numbers live in siteConfig.js
 // ========================================
-import { social, phones, whatsapp, hours } from "./siteConfig";
+import { social, phones, whatsapp, hours, clinic } from "./siteConfig";
 
 export const contactData = {
   hero: {
     badge: "Get In Touch",
     title: "Book Your Consultation",
     description:
-      "Ready to begin your journey? Contact us to schedule your complimentary consultation with Dr. Hussaini.",
+      "Ready to begin your journey? Contact us to schedule your complimentary consultation with our aesthetics team.",
     image: {
-      src: "/images/web pic/dr.jpeg",
-      alt: "Contact Radina Clinic",
+      src: "/images/brand/dermal-filler-consultation.jpg",
+      alt: "Aesthetics by GS consultation in Leeds",
     },
   },
 
@@ -36,13 +36,14 @@ export const contactData = {
       },
     ],
     email: {
-      display: "info@radinaclinic.com",
-      link: "mailto:info@radinaclinic.com",
+      display: clinic.email,
+      link: `mailto:${clinic.email}`,
       response: "within 24 hours",
     },
     address: {
-      fullAddress: "London & Leeds, United Kingdom",
-      mapLink: "https://maps.google.com",
+      fullAddress: clinic.address,
+      mapLink:
+        "https://maps.google.com/?q=Unit+1+Gemini+Business+Park+9+Sheepscar+Way+Leeds+LS7+3JB",
     },
     hours,
   },
@@ -71,7 +72,7 @@ export const contactData = {
       title: "Email Us",
       description: "Send us your questions",
       icon: "email",
-      action: "mailto:info@radinaclinic.com",
+      action: `mailto:${clinic.email}`,
       buttonText: "Send Email",
     },
   ],
@@ -100,7 +101,7 @@ export const contactData = {
       placeholder: "Select a location",
       type: "select",
       required: false,
-      options: ["London", "Leeds", "Either location is fine"],
+      options: ["Leeds Clinic"],
     },
     service: {
       label: "Service Interested In",
@@ -156,13 +157,13 @@ export const contactData = {
       id: 2,
       question: "Is the consultation free?",
       answer:
-        "Yes — your first consultation is completely complimentary. Dr. Hussaini will assess your skin and discuss your goals with no obligation.",
+        "Yes — your first consultation is completely complimentary. Our aesthetics team will assess your skin and discuss your goals with no obligation.",
     },
     {
       id: 3,
       question: "Where are you located?",
       answer:
-        "We serve clients in both London and Leeds. Specify your preferred location when booking and we'll arrange accordingly.",
+        "We're based at Unit 1, Gemini Business Park, 9 Sheepscar Way, Leeds, LS7 3JB. Free parking is available on site.",
     },
     {
       id: 4,
@@ -181,7 +182,7 @@ export const contactData = {
   formSuccess: {
     title: "Thank You!",
     message:
-      "We've received your request. Dr. Hussaini's team will contact you within 24 hours to confirm your appointment.",
+      "We've received your request. Our team will contact you within 24 hours to confirm your appointment.",
     buttonText: "Back to Home",
   },
 };

@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw source photos (HEIC originals) — not shipped, kept locally
+_source-assets/

@@ -9,8 +9,8 @@ export const conditionsData = {
     description:
       "From acne to aging, we offer advanced treatments for a wide range of skin concerns. Discover personalized solutions for your unique needs.",
     image: {
-      src: "/images/micronedling/1.jpeg",
-      alt: "Skin conditions we treat",
+      src: "/images/brand-stock/facial-injection-wide.jpg",
+      alt: "Skin conditions we treat at Aesthetics by GS",
     },
   },
 

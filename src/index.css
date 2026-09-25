@@ -3,75 +3,80 @@
 @import url("https://fonts.googleapis.com/css2?family=Forum&display=swap");
 @import "tailwindcss";
 
-/* ===================== */
-/* Radina Aesthetic - Vibrant Majesty Design System */
-/* ===================== */
+/* =========================================================== */
+/* AESTHETICS BY GS — Ivory · Cream · White · Gold Design System */
+/* -----------------------------------------------------------  */
+/* SINGLE SOURCE OF TRUTH FOR ALL COLOURS.                       */
+/* To re-brand again later, edit ONLY the values below — every   */
+/* component reads these tokens (bg-primary, text-secondary…).   */
+/* Never hardcode hex values in components.                      */
+/* =========================================================== */
 
 @theme {
-  /* PRIMARY - Derived from your Logo Red-Purple (#88243d) */
-  --color-primary: #b17bbc;
-  --color-primary-dark: #660665; /* Deep Orchid from logo */
-  --color-primary-light: #a6445d;
-  --color-primary-50: #fdf2f4;
+  /* PRIMARY — Brand Gold (from the AESTHETICS BY GS monogram) */
+  --color-primary: #c8a24a; /* Rich brand gold */
+  --color-primary-dark: #9c7c2f; /* Deep antique gold */
+  --color-primary-light: #dcc07d; /* Soft light gold */
+  --color-primary-50: #faf5e9; /* Palest gold wash */
 
-  /* SECONDARY - Derived from your Deepest Logo Purple (#430568) */
-  --color-secondary: #430568;
-  --color-secondary-dark: #2d0346;
-  --color-secondary-light: #6b3a8a;
+  /* SECONDARY — Warm Charcoal / Espresso (the serif text on the logo) */
+  --color-secondary: #3a3128; /* Warm espresso for headings/text */
+  --color-secondary-dark: #241d16;
+  --color-secondary-light: #6b5d4a;
 
-  /* ACCENT - Sparkling Champagne (To balance the heavy purples) */
-  --color-accent: #d4a574;
-  --color-accent-light: #e8c99b;
-  --color-accent-dark: #b8865a;
+  /* ACCENT — Champagne / Bronze highlight */
+  --color-accent: #b8935a; /* Champagne bronze */
+  --color-accent-light: #e3cfa1;
+  --color-accent-dark: #8f7038;
 
-  /* NEUTRAL PALETTE - Clean & High Contrast */
+  /* NEUTRAL PALETTE — Ivory & cream warm neutrals */
   --color-neutral-50: #ffffff;
-  --color-neutral-100: #fafafa;
-  --color-neutral-200: #f5f5f5;
-  --color-neutral-300: #e5e5e5;
-  --color-neutral-400: #a3a3a3;
-  --color-neutral-500: #737373;
-  --color-neutral-600: #525252;
-  --color-neutral-700: #404040;
-  --color-neutral-800: #262626;
-  --color-neutral-900: #171717;
+  --color-neutral-100: #fbf8f1; /* Ivory */
+  --color-neutral-200: #f4efe3; /* Cream */
+  --color-neutral-300: #e9e1d1;
+  --color-neutral-400: #c3b7a1;
+  --color-neutral-500: #8f8472;
+  --color-neutral-600: #6b6152;
+  --color-neutral-700: #4d453a;
+  --color-neutral-800: #322c24;
+  --color-neutral-900: #1c1812;
 
-  /* BACKGROUND COLORS - Crisp White to stop eye exhaustion */
-  --color-background: #ffffff;
-  --color-surface: #fdfaff; /* Very subtle purple-tinted white */
+  /* BACKGROUND COLORS — Ivory/cream base instead of stark white */
+  --color-background: #fdfbf6; /* Warm ivory page background */
+  --color-surface: #faf6ec; /* Cream surface */
   --color-card: #ffffff;
 
   /* TEXT COLORS */
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #4a4a4a;
-  --color-text-muted: #737373;
+  --color-text-primary: #2b241c; /* Warm near-black */
+  --color-text-secondary: #5a5040;
+  --color-text-muted: #8f8472;
   --color-text-light: #ffffff;
 
   /* BORDER COLORS */
-  --color-border: #f0f0f0;
-  --color-border-light: #f9f9f9;
+  --color-border: #ece4d5;
+  --color-border-light: #f5efe3;
 
   /* STATUS COLORS */
-  --color-success: #2d6a4f;
-  --color-warning: #88243d;
-  --color-error: #991b1b;
-  --color-info: #430568;
+  --color-success: #4a7c59;
+  --color-warning: #b8935a;
+  --color-error: #9a3b2e;
+  --color-info: #9c7c2f;
 
-  /* SHADOWS - Tinted with brand colors for depth */
-  --shadow-sm: 0 1px 2px 0 rgba(136, 36, 61, 0.05);
-  --shadow-md: 0 4px 12px -1px rgba(67, 5, 104, 0.12);
-  --shadow-lg: 0 20px 25px -5px rgba(67, 5, 104, 0.1);
-  --shadow-xl: 0 35px 60px -15px rgba(136, 36, 61, 0.15);
-  --shadow-elegant: 0 15px 40px rgba(67, 5, 104, 0.08);
+  /* SHADOWS — Tinted warm gold for a soft luxe depth */
+  --shadow-sm: 0 1px 2px 0 rgba(58, 49, 40, 0.05);
+  --shadow-md: 0 4px 12px -1px rgba(58, 49, 40, 0.1);
+  --shadow-lg: 0 20px 25px -5px rgba(58, 49, 40, 0.1);
+  --shadow-xl: 0 35px 60px -15px rgba(58, 49, 40, 0.15);
+  --shadow-elegant: 0 15px 40px rgba(156, 124, 47, 0.12);
 
-  /* GRADIENTS - Powerful brand identity */
-  --gradient-primary: linear-gradient(135deg, #88243d 0%, #660665 100%);
-  --gradient-warm: linear-gradient(135deg, #430568 0%, #88243d 100%);
-  --gradient-luxury: linear-gradient(135deg, #660665 0%, #d4a574 100%);
+  /* GRADIENTS — Gold-forward brand identity */
+  --gradient-primary: linear-gradient(135deg, #c8a24a 0%, #9c7c2f 100%);
+  --gradient-warm: linear-gradient(135deg, #dcc07d 0%, #b8935a 100%);
+  --gradient-luxury: linear-gradient(135deg, #9c7c2f 0%, #e3cfa1 100%);
   --gradient-overlay: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.95) 100%
+    rgba(253, 251, 246, 0) 0%,
+    rgba(253, 251, 246, 0.95) 100%
   );
 }
 

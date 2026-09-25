@@ -1,7 +1,7 @@
 // src/pages/TreatmentDetailPage/TreatmentDetailPage.jsx
 // ═══════════════════════════════════════════════════════
-// TREATMENT DETAIL  —  Radina Aesthetic Brand
-// Palette: white bg · secondary (#430568) · primary (#b17bbc) · accent (#d4a574)
+// TREATMENT DETAIL  —  Aesthetics by GS
+// Palette via theme tokens: secondary (espresso) · primary (gold) · accent (champagne)
 // Fonts: font-display (Cormorant Garamond) · font-body (Montserrat)
 // Design: Editorial luxury — no alternating image/text blocks
 // Sections: Hero → Overview → Benefits → Gallery (film strip) →
@@ -163,7 +163,7 @@ function FilmStripGallery({ images }) {
                          group-hover:scale-[1.05]"
               onError={(e) => {
                 e.target.closest("div").style.background =
-                  "linear-gradient(135deg, #b17bbc22, #43056822)";
+                  "linear-gradient(135deg, #c8a24a22, #3a312822)";
               }}
             />
 
@@ -297,7 +297,9 @@ export default function TreatmentDetailPage() {
             <img
               src={treatment.image.src}
               alt={treatment.image.alt}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-[center_25%]"
+              loading="eager"
+              fetchPriority="high"
               onError={(e) => e.target.classList.add("hidden")}
             />
           )}

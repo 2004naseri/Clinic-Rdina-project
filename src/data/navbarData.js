@@ -15,7 +15,7 @@ export const brandConfig = {
   logo: {
     type: "image",
     imagePath: "/images/logo.png",
-    initial: "R",
+    initial: "GS",
   },
   link: "/",
 };
@@ -89,9 +89,9 @@ export const contactInfo = {
   },
   email: { display: clinic.email, link: `mailto:${clinic.email}` },
   address: {
-    city: "London & Leeds",
+    city: "Leeds",
     country: "United Kingdom",
-    fullAddress: clinic.location,
+    fullAddress: clinic.address,
   },
   hours,
 };
@@ -117,15 +117,16 @@ export const seoConfig = {
   defaultTitle: `${clinic.name} | ${clinic.tagline}`,
   titleTemplate: `%s | ${clinic.name}`,
   description:
-    "Experience advanced aesthetic medicine at Radina Aesthetic Clinic. Medical-grade treatments in London & Leeds, UK.",
+    "Experience luxury aesthetic treatments at Aesthetics by GS in Leeds. Botox, dermal fillers, skin boosters and skin rejuvenation.",
   keywords: [
-    "aesthetic clinic",
-    "botox",
-    "dermal fillers",
+    "aesthetics clinic Leeds",
+    "botox Leeds",
+    "dermal fillers Leeds",
     "skin boosters",
-    "mesotherapy",
+    "skin rejuvenation",
     "non-surgical rhinoplasty",
-    "London",
+    "lip filler Leeds",
+    "Aesthetics by GS",
     "Leeds",
     "UK",
   ],

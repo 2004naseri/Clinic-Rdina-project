@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Aesthetics by GS</title>
+    <script>
+      // GitHub Pages SPA shim: redirect any unknown path back to "/"
+      // with the original path preserved in the query, then index.html
+      // restores it via History API before React Router boots.
+      (function () {
+        var l = window.location;
+        var redirect =
+          l.pathname.replace(/\/$/, "") +
+          (l.search ? "?" + l.search.slice(1).replace(/&/g, "~and~") : "");
+        l.replace(l.protocol + "//" + l.host + "/?p=" + redirect + l.hash);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
