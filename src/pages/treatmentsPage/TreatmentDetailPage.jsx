@@ -103,7 +103,7 @@ function Lightbox({ images, startIndex, onClose }) {
 
 // ─── Film Strip Gallery ─────────────────────────────────
 // Horizontal drag-scroll. Greyscale → colour on hover. Click → lightbox.
-function FilmStripGallery({ images }) {
+function FilmStripGallery({ images, fit }) {
   const [lightbox, setLightbox] = useState(null);
   const stripRef = useRef(null);
   const dragging = useRef(false);
@@ -159,6 +159,9 @@ function FilmStripGallery({ images }) {
             <img
               src={img.src}
               alt={img.alt}
+              loading="lazy"
+              decoding="async"
+              style={{ objectFit: fit }}
               className="w-full h-full object-cover transition-all duration-700
                          group-hover:scale-[1.05]"
               onError={(e) => {
@@ -280,7 +283,10 @@ export default function TreatmentDetailPage() {
   if (!treatment) return <Navigate to="/treatments" replace />;
 
   const subs = treatment.subTreatments || [];
-  const gallery = treatment.beforeAfterGallery || [];
+  const galleries = [
+    { images: treatment.treatmentGallery || [], badge: "In the Clinic", title: "Treatment Gallery", fit: "cover" },
+    { images: treatment.beforeAfterGallery || [], badge: "Results Gallery", title: "Real Results", fit: "contain" },
+  ].filter(({ images }) => images.length > 0);
   const faqs = treatment.faqs || [];
   const benefits = treatment.benefits || [];
   const timeline = treatment.resultsTimeline || {};
@@ -298,6 +304,7 @@ export default function TreatmentDetailPage() {
               src={treatment.image.src}
               alt={treatment.image.alt}
               className="w-full h-full object-cover object-[center_25%]"
+              style={{ objectPosition: treatment.image.position }}
               loading="eager"
               fetchPriority="high"
               onError={(e) => e.target.classList.add("hidden")}
@@ -390,7 +397,10 @@ export default function TreatmentDetailPage() {
           <div className="flex flex-wrap border-y border-border">
             {[
               { label: "Duration", value: treatment.duration },
-              { label: "Starting From", value: treatment.price },
+              {
+                label: treatment.price?.startsWith("From ") ? "Starting From" : "Pricing",
+                value: treatment.price,
+              },
               { label: "Initial Results", value: timeline.initial },
               { label: "Full Results", value: timeline.full },
               { label: "Lasts", value: timeline.duration },
@@ -541,8 +551,8 @@ export default function TreatmentDetailPage() {
           GALLERY  —  Cinematic film strip
           Drag to scroll, greyscale → colour on hover
       ══════════════════════════════════════ */}
-      {gallery.length > 0 && (
-        <section className="py-20 lg:py-28 bg-background overflow-hidden">
+      {galleries.map(({ images: gallery, badge, title, fit }) => (
+        <section key={title} className="py-20 lg:py-28 bg-background overflow-hidden">
           <div className="max-w-[1300px] mx-auto px-6 lg:px-12 mb-10">
             <div className="flex items-end justify-between">
               <div>
@@ -552,14 +562,14 @@ export default function TreatmentDetailPage() {
                     className="font-body text-[8px] tracking-[0.4em] uppercase
                                    text-accent font-semibold"
                   >
-                    Results Gallery
+                    {badge}
                   </span>
                 </div>
                 <h2
                   className="font-display font-light text-secondary leading-tight"
                   style={{ fontSize: "clamp(28px, 4vw, 56px)" }}
                 >
-                  Real Results
+                  {title}
                 </h2>
               </div>
               <span
@@ -573,10 +583,10 @@ export default function TreatmentDetailPage() {
 
           {/* Strip stretches past container */}
           <div className="pl-6 lg:pl-12">
-            <FilmStripGallery images={gallery} />
+            <FilmStripGallery images={gallery} fit={fit} />
           </div>
         </section>
-      )}
+      ))}
 
       {/* ══════════════════════════════════════
           SUB-TREATMENTS  —  Luxury menu list

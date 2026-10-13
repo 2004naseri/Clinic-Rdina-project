@@ -4,7 +4,7 @@
 // ========================================
 // All button styles in one component
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Button = ({
   children,
@@ -25,7 +25,7 @@ const Button = ({
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth", // Changed from "instant" to "auto"
+      behavior: "smooth",
     });
     navigate(path);
   }
@@ -97,7 +97,7 @@ const Button = ({
     </>
   );
 
-  // Render as Link (internal)
+  // Navigate internally
   if (to && !disabled) {
     return (
       <button

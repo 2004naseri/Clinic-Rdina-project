@@ -226,6 +226,7 @@ const HomePage = () => {
                     <img
                       src={treatment.image.src}
                       alt={treatment.image.alt || treatment.name}
+                      style={{ objectPosition: treatment.image.position }}
                       className="w-full h-full object-cover
                                  transition-transform duration-700
                                  group-hover:scale-[1.06]"
@@ -398,6 +399,7 @@ const HomePage = () => {
                     src={philosophy.image.src}
                     alt={philosophy.image.alt}
                     className="w-full h-full object-cover"
+                    style={{ objectPosition: philosophy.image.position }}
                     onError={(e) => e.target.classList.add("hidden")}
                   />
                 ) : (

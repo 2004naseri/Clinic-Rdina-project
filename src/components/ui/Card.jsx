@@ -4,7 +4,7 @@
 // ========================================
 // Now properly handles both images and placeholders
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({
   image,
@@ -22,7 +22,7 @@ const Card = ({
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth", // Changed from "instant" to "auto"
+      behavior: "smooth",
     });
     navigate(path);
   }

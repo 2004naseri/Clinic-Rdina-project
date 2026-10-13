@@ -11,6 +11,7 @@ import { useNavigate, Link } from "react-router-dom";
 import treatmentsData, {
   getTreatmentsByCategory,
 } from "../../data/treatmentsData";
+import ClinicGallery from "../../components/ClinicGallery";
 
 const TreatmentsPage = () => {
   const navigate = useNavigate();
@@ -173,6 +174,7 @@ const TreatmentsPage = () => {
                       <img
                         src={treatment.image.src}
                         alt={treatment.image.alt || treatment.name}
+                        style={{ objectPosition: treatment.image.position }}
                         className="w-full h-full object-cover transition-transform
                                    duration-700 group-hover:scale-[1.06]"
                         onError={(e) => {
@@ -283,7 +285,7 @@ const TreatmentsPage = () => {
                           className="font-body text-[8px] tracking-[0.25em]
                                        uppercase text-text-muted mb-1"
                         >
-                          Starting from
+                          {treatment.price?.startsWith("From ") ? "Starting from" : "Pricing"}
                         </p>
                         <p
                           className="font-display text-[22px] font-normal
@@ -341,6 +343,11 @@ const TreatmentsPage = () => {
           )}
         </div>
       </section>
+
+      {/* ══════════════════════════════════════
+          CLINIC GALLERY
+      ══════════════════════════════════════ */}
+      <ClinicGallery gallery={treatmentsData.clinicGallery} />
 
       {/* ══════════════════════════════════════
           CTA  —  Brand gradient, gold accents

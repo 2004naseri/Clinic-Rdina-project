@@ -1,5 +1,4 @@
 // ConditionsPage.jsx — Tailwind v4 version
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import conditionsData from "../../data/conditionsData";
 

@@ -14,6 +14,8 @@ export const siteConfig = {
     tagline: "Confidence Looks Beautiful On You",
     location: "Leeds, United Kingdom",
     address: "Unit 1, Gemini Business Park, 9 Sheepscar Way, Leeds, LS7 3JB",
+    mapPlaceId: "ChIJ4eF82-xdeUgRqVdmw6aF1oQ",
+    mapCid: "9571985009311897513",
     email: "info@aestheticsbygs.com",
     website: "www.aestheticsbygs.com",
     domain: "aestheticsbygs.com",

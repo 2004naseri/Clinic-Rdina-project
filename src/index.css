@@ -4,7 +4,7 @@
 @import "tailwindcss";
 
 /* =========================================================== */
-/* AESTHETICS BY GS — Ivory · Cream · White · Gold Design System */
+/* AESTHETICS BY GS — Vanilla Cream · Dark Plum Design System */
 /* -----------------------------------------------------------  */
 /* SINGLE SOURCE OF TRUTH FOR ALL COLOURS.                       */
 /* To re-brand again later, edit ONLY the values below — every   */
@@ -13,71 +13,238 @@
 /* =========================================================== */
 
 @theme {
-  /* PRIMARY — Brand Gold (from the AESTHETICS BY GS monogram) */
-  --color-primary: #c8a24a; /* Rich brand gold */
-  --color-primary-dark: #9c7c2f; /* Deep antique gold */
-  --color-primary-light: #dcc07d; /* Soft light gold */
-  --color-primary-50: #faf5e9; /* Palest gold wash */
+  /* REFERENCE PALETTE — exact colours from the supplied image */
+  --color-vanilla: #fff3c5;
+  --color-plum: #37192c;
 
-  /* SECONDARY — Warm Charcoal / Espresso (the serif text on the logo) */
-  --color-secondary: #3a3128; /* Warm espresso for headings/text */
-  --color-secondary-dark: #241d16;
-  --color-secondary-light: #6b5d4a;
+  /* PRIMARY — plum shades keep white button labels readable */
+  --color-primary: #62334f;
+  --color-primary-dark: var(--color-plum);
+  --color-primary-light: #8b617a;
+  --color-primary-50: #f6eef2;
 
-  /* ACCENT — Champagne / Bronze highlight */
-  --color-accent: #b8935a; /* Champagne bronze */
-  --color-accent-light: #e3cfa1;
-  --color-accent-dark: #8f7038;
+  /* SECONDARY — deep plum for headings, overlays and dark panels */
+  --color-secondary: var(--color-plum);
+  --color-secondary-dark: #24101d;
+  --color-secondary-light: #705366;
 
-  /* NEUTRAL PALETTE — Ivory & cream warm neutrals */
-  --color-neutral-50: #ffffff;
-  --color-neutral-100: #fbf8f1; /* Ivory */
-  --color-neutral-200: #f4efe3; /* Cream */
-  --color-neutral-300: #e9e1d1;
-  --color-neutral-400: #c3b7a1;
-  --color-neutral-500: #8f8472;
-  --color-neutral-600: #6b6152;
-  --color-neutral-700: #4d453a;
-  --color-neutral-800: #322c24;
-  --color-neutral-900: #1c1812;
+  /* ACCENT — readable on cream; dark surfaces switch to vanilla below */
+  --color-accent-ink: #75445f;
+  --color-accent: var(--color-accent-ink);
+  --color-accent-light: var(--color-vanilla);
+  --color-accent-dark: #62334f;
 
-  /* BACKGROUND COLORS — Ivory/cream base instead of stark white */
-  --color-background: #fdfbf6; /* Warm ivory page background */
-  --color-surface: #faf6ec; /* Cream surface */
+  /* NEUTRALS — soft ivory and subtle plum-tinted greys */
+  --color-neutral-50: #fdfbfc;
+  --color-neutral-100: #f7f3f4;
+  --color-neutral-200: #eee5ea;
+  --color-neutral-300: #e4d8df;
+  --color-neutral-400: #b9a3af;
+  --color-neutral-500: #806b79;
+  --color-neutral-600: #67505f;
+  --color-neutral-700: #503746;
+  --color-neutral-800: var(--color-plum);
+  --color-neutral-900: #24101d;
+
+  /* BACKGROUNDS — quiet ivory surfaces; vanilla stays in small highlights */
+  --color-background: #fdfbfc;
+  --color-surface: #f7f3f4;
   --color-card: #ffffff;
 
   /* TEXT COLORS */
-  --color-text-primary: #2b241c; /* Warm near-black */
-  --color-text-secondary: #5a5040;
-  --color-text-muted: #8f8472;
+  --color-text-primary: var(--color-plum);
+  --color-text-secondary: #614858;
+  --color-text-muted: #776272;
   --color-text-light: #ffffff;
 
   /* BORDER COLORS */
-  --color-border: #ece4d5;
-  --color-border-light: #f5efe3;
+  --color-border: #e4d7da;
+  --color-border-light: #f0e6e5;
 
   /* STATUS COLORS */
   --color-success: #4a7c59;
-  --color-warning: #b8935a;
+  --color-warning: #8b661f;
   --color-error: #9a3b2e;
-  --color-info: #9c7c2f;
+  --color-info: var(--color-primary);
 
-  /* SHADOWS — Tinted warm gold for a soft luxe depth */
-  --shadow-sm: 0 1px 2px 0 rgba(58, 49, 40, 0.05);
-  --shadow-md: 0 4px 12px -1px rgba(58, 49, 40, 0.1);
-  --shadow-lg: 0 20px 25px -5px rgba(58, 49, 40, 0.1);
-  --shadow-xl: 0 35px 60px -15px rgba(58, 49, 40, 0.15);
-  --shadow-elegant: 0 15px 40px rgba(156, 124, 47, 0.12);
+  /* SHADOWS — plum tint */
+  --shadow-sm: 0 1px 2px 0 rgb(55 25 44 / 0.05);
+  --shadow-md: 0 4px 12px -1px rgb(55 25 44 / 0.1);
+  --shadow-lg: 0 20px 25px -5px rgb(55 25 44 / 0.1);
+  --shadow-xl: 0 35px 60px -15px rgb(55 25 44 / 0.15);
+  --shadow-elegant: 0 15px 40px rgb(55 25 44 / 0.12);
 
-  /* GRADIENTS — Gold-forward brand identity */
-  --gradient-primary: linear-gradient(135deg, #c8a24a 0%, #9c7c2f 100%);
-  --gradient-warm: linear-gradient(135deg, #dcc07d 0%, #b8935a 100%);
-  --gradient-luxury: linear-gradient(135deg, #9c7c2f 0%, #e3cfa1 100%);
+  /* GRADIENTS — all stops follow the shared brand tokens */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  --gradient-warm: linear-gradient(135deg, var(--color-background), var(--color-surface));
+  --gradient-cream: linear-gradient(
+    135deg,
+    var(--color-vanilla),
+    color-mix(in srgb, var(--color-vanilla) 45%, var(--color-card))
+  );
+  --gradient-luxury: linear-gradient(135deg, var(--color-plum), var(--color-primary-light));
+  --gradient-image-fallback: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-primary) 13%, transparent),
+    color-mix(in srgb, var(--color-secondary) 13%, transparent)
+  );
   --gradient-overlay: linear-gradient(
     to bottom,
-    rgba(253, 251, 246, 0) 0%,
-    rgba(253, 251, 246, 0.95) 100%
+    color-mix(in srgb, var(--color-background) 0%, transparent) 0%,
+    color-mix(in srgb, var(--color-background) 95%, transparent) 100%
   );
+}
+
+/* Accent contrast follows the existing surfaces, including image heroes.
+   These local tokens let every page keep its current utility classes. */
+@layer base {
+  :where(
+    .bg-secondary,
+    .bg-secondary-dark,
+    .bg-secondary\/95,
+    .bg-neutral-800,
+    .bg-neutral-900,
+    .bg-primary,
+    .bg-primary-dark,
+    [class~="from-secondary"][class*="bg-gradient-"],
+    [class~="from-secondary-dark"][class*="bg-gradient-"],
+    [class*="from-secondary/7"][class*="bg-gradient-"],
+    [class*="from-secondary/8"][class*="bg-gradient-"],
+    [class*="from-secondary/9"][class*="bg-gradient-"]
+  ),
+  section:has(> .absolute:is([class*="from-secondary"], [class*="via-secondary"])),
+  section:has(> .absolute :is([class*="from-secondary"], [class*="via-secondary"])),
+  :where(.relative):has(> .absolute:is([class*="from-secondary/7"], [class*="from-secondary/8"], [class*="from-secondary/9"])) {
+    --color-accent: var(--color-vanilla);
+    --button-primary-fill: var(--color-vanilla);
+    --button-primary-ink: var(--color-plum);
+  }
+
+  :where(
+    .bg-white,
+    .bg-white\/95,
+    .bg-background,
+    .bg-surface,
+    .bg-card,
+    .bg-neutral-50,
+    .bg-neutral-100,
+    .bg-neutral-200,
+    .bg-primary-50
+  ) {
+    --color-accent: var(--color-accent-ink);
+    --button-primary-fill: var(--color-primary);
+    --button-primary-ink: var(--color-vanilla);
+  }
+}
+
+@layer utilities {
+  /* Existing cream badges and buttons already use dark text. */
+  .bg-accent.text-secondary {
+    background-color: var(--color-vanilla);
+  }
+
+  /* Keep the existing contact utilities on the shared brand palette. */
+  [class~="bg-[#25D366]"] {
+    background-color: var(--color-primary);
+    color: var(--color-vanilla);
+  }
+
+  [class~="bg-[#25D366]/8"] {
+    background-color: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  }
+
+  [class~="border-[#25D366]/30"] {
+    border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  }
+
+  /* Gallery error handlers set an inline gradient; keep its colours in sync. */
+  .group.cursor-pointer.overflow-hidden[style*="linear-gradient"]:has(> img) {
+    background-image: var(--gradient-image-fallback) !important;
+  }
+
+  /* White labels need plum when an accent hover fills a light button. */
+  @media (hover: hover) {
+    .hover\:bg-accent.hover\:text-white:hover {
+      background-color: var(--color-accent-ink);
+    }
+
+    .bg-accent.text-secondary.hover\:bg-white:hover {
+      background-color: var(--color-white);
+    }
+
+    [class~="hover:bg-[#1ebe5d]"]:hover {
+      background-color: var(--color-primary-dark);
+    }
+  }
+}
+
+/* Pair vanilla and plum in focal details, keeping large surfaces neutral. */
+@layer utilities {
+  :is(a, button).bg-primary.text-white {
+    color: var(--color-vanilla);
+  }
+
+  header :is(a, button):is(.bg-primary, .bg-accent).text-white {
+    background-color: var(--color-vanilla);
+    color: var(--color-plum);
+    box-shadow: inset 0 0 0 1px var(--color-plum);
+  }
+
+  button.bg-secondary.text-white.border-secondary {
+    background-color: var(--color-vanilla);
+    color: var(--color-plum);
+  }
+
+  /* Small cream tiles create a recurring brand detail beside plum text. */
+  [class~="bg-secondary/6"],
+  [class~="bg-secondary/8"],
+  .w-9.h-9.border-secondary\/20 {
+    background-color: var(--color-vanilla);
+  }
+
+  .bg-white.shadow-elegant,
+  div:has(> iframe[title^="Clinic location:"]) > .bg-background {
+    background-image: var(--gradient-cream);
+  }
+
+  /* Offer badges carry both colours rather than another shade of plum. */
+  .bg-accent.text-white,
+  [class~="from-accent"][class~="to-accent-dark"] {
+    background-image: none;
+    background-color: var(--color-vanilla);
+    color: var(--color-plum);
+  }
+
+  footer h3 {
+    color: var(--color-vanilla);
+  }
+
+  [class~="from-accent"][class~="to-accent-dark"] .text-white {
+    color: var(--color-plum);
+  }
+
+  h2 em.text-secondary {
+    background-image: linear-gradient(transparent 78%, var(--color-vanilla) 78%);
+  }
+
+  footer > .absolute.h-px {
+    background-image: linear-gradient(90deg, transparent, var(--color-vanilla), transparent);
+    opacity: 0.7;
+  }
+
+  @media (hover: hover) {
+    header :is(a, button):is(.bg-primary, .bg-accent).text-white:hover,
+    button.bg-secondary.text-white.border-secondary:hover {
+      background-color: var(--color-plum);
+      color: var(--color-vanilla);
+    }
+
+    footer a[aria-label]:hover {
+      background-image: none;
+      background-color: var(--color-vanilla);
+      color: var(--color-plum);
+    }
+  }
 }
 
 /* ===================== */
@@ -144,15 +311,24 @@
   /* REFINED BUTTONS - More Modern & Exclusive */
   .btn-primary {
     font-family: "Montserrat", sans-serif;
-    @apply px-10 py-4 bg-primary text-white font-semibold text-xs tracking-[0.2em]
+    @apply px-10 py-4 bg-primary text-vanilla font-semibold text-xs tracking-[0.2em]
            rounded-none transition-all duration-500 ease-in-out uppercase
            hover:bg-secondary hover:shadow-xl hover:-translate-y-1
            active:translate-y-0 focus:outline-none focus:ring-1 focus:ring-primary;
+    background-color: var(--button-primary-fill, var(--color-primary));
+    color: var(--button-primary-ink, var(--color-vanilla));
+  }
+
+  @media (hover: hover) {
+    .btn-primary:hover {
+      background-color: var(--color-secondary-dark);
+      color: var(--color-vanilla);
+    }
   }
 
   .btn-secondary {
     font-family: "Montserrat", sans-serif;
-    @apply px-10 py-4 bg-secondary text-white font-semibold text-xs tracking-[0.2em]
+    @apply px-10 py-4 bg-secondary text-vanilla font-semibold text-xs tracking-[0.2em]
            rounded-none transition-all duration-500 ease-in-out uppercase
            hover:bg-primary hover:shadow-xl hover:-translate-y-1
            active:translate-y-0 focus:outline-none focus:ring-1 focus:ring-secondary;

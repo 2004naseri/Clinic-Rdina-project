@@ -149,6 +149,9 @@ function FilmStripGallery({ images }) {
             <img
               src={img.src}
               alt={img.alt}
+              loading="lazy"
+              decoding="async"
+              style={{ objectFit: "contain" }}
               className="w-full h-full object-cover transition-all duration-700
                           group-hover:scale-[1.05]"
               onError={(e) => {
@@ -282,6 +285,7 @@ export default function SubTreatmentDetailPage() {
               src={sub.image.src}
               alt={sub.image?.alt}
               className="w-full h-full object-cover object-[center_25%]"
+              style={{ objectPosition: sub.image.position }}
               loading="eager"
               fetchPriority="high"
               onError={(e) => e.target.classList.add("hidden")}

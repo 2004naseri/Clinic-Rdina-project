@@ -80,8 +80,9 @@ export const homePageData = {
     description:
       "At Aesthetics by GS, we believe beauty is personal. Our approach combines cutting-edge medical technology with personalized care to enhance your natural features, never change them.",
     image: {
-      src: "/images/brand/aesthetics-injection-hero.jpg",
-      alt: "Aesthetics by GS practitioner performing an aesthetic treatment in Leeds",
+      src: "/images/clinic-photos/facial-microneedling-02.webp",
+      position: "50% 55%",
+      alt: "A practitioner performing facial microneedling in the clinic",
       placeholder: {
         show: false, // Set to false when you add real image
         gradient: "from-secondary-light/30 to-primary-light/20",

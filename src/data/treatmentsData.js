@@ -30,6 +30,7 @@ export const treatmentsData = {
     { id: "injectable", name: "Injectable Treatments" },
     { id: "skin-care", name: "Skin Care" },
     { id: "body-contouring", name: "Body Contouring" },
+    { id: "wellness", name: "IV & Vitamin Therapy" },
   ],
 
   // ─────────────────────────────────────────
@@ -49,8 +50,8 @@ export const treatmentsData = {
         "Botox is the world's most trusted anti-wrinkle treatment, used by millions to smooth lines, prevent wrinkles, and achieve a refreshed, youthful appearance without surgery or downtime.",
       // ── card / hero image ──
       image: {
-        src: "/images/brand/botox-anti-wrinkle-treatment.jpg",
-        alt: "Botox anti-wrinkle treatment at Aesthetics by GS",
+        src: "/images/botox/forhead lines botox/forhead-botox-2.jpg",
+        alt: "Representative anti-wrinkle injection at the forehead"
       },
       price: "From £150",
       duration: "15-30 minutes",
@@ -75,30 +76,25 @@ export const treatmentsData = {
       // ── main gallery (one image per key sub-treatment) ──
       beforeAfterGallery: [
         {
-          src: "/images/brand/brow-detail-treatment.jpg",
-          alt: "Anti-wrinkle treatment at Aesthetics by GS",
-          label: "In-Clinic Treatment",
-        },
-        {
           src: "/images/botox/forhead lines botox/26.jpeg",
           alt: "Forehead treatment",
-          label: "Forehead Lines",
+          label: "Forehead Lines"
         },
         {
           src: "/images/botox/forhead lines botox/25.jpeg",
           alt: "Frown lines",
-          label: "Forehead & Frown",
+          label: "Forehead & Frown"
         },
         {
           src: "/images/botox/CROW’S FEET BOTOX/1.jpeg",
           alt: "Crow's feet",
-          label: "Crow's Feet",
+          label: "Crow's Feet"
         },
         {
           src: "/images/botox/GUMMY SMILE BOTOX/20.jpeg",
           alt: "Gummy smile",
-          label: "Gummy Smile",
-        },
+          label: "Gummy Smile"
+        }
       ],
 
       faqs: [
@@ -537,11 +533,6 @@ export const treatmentsData = {
               alt: "Nefertiti results 3",
               label: "Elegant Profile - 4 Weeks",
             },
-            {
-              src: "/images/botox/Platysma Botox/13.jpeg",
-              alt: "Nefertiti results 4",
-              label: "Lifted Appearance - Full Results",
-            },
           ],
           faqs: [
             {
@@ -708,32 +699,34 @@ export const treatmentsData = {
       },
 
       // ── main gallery (one image per sub-treatment) ──
-      beforeAfterGallery: [
+      treatmentGallery: [
         {
           src: "/images/brand/lip-filler-treatment.jpg",
           alt: "Lip filler treatment at Aesthetics by GS",
-          label: "In-Clinic Treatment",
-        },
+          label: "In-Clinic Treatment"
+        }
+      ],
+      beforeAfterGallery: [
         {
           src: "/images/filler/lip-filler/1.jpeg",
           alt: "Lip filler",
-          label: "Lip Enhancement",
+          label: "Lip Enhancement"
         },
         {
           src: "/images/filler/under eye filler/14.jpeg",
           alt: "Under eye filler",
-          label: "Under Eye Filler",
+          label: "Under Eye Filler"
         },
         {
           src: "/images/filler/Nasolabial Fold Filler/20.jpeg",
           alt: "Nasolabial filler",
-          label: "Nasolabial Folds",
+          label: "Nasolabial Folds"
         },
         {
           src: "/images/filler/Jawline Contouring Filler/10.jpeg",
           alt: "Jawline filler",
-          label: "Jawline Contouring",
-        },
+          label: "Jawline Contouring"
+        }
       ],
 
       faqs: [
@@ -884,7 +877,7 @@ export const treatmentsData = {
               label: "Refreshed Look - 2 Weeks",
             },
             {
-              src: "/images/filler/under eye filler/17.jpeg",
+              src: "/images/filler/facial-comparison.jpeg",
               alt: "Under eye results 4",
               label: "Youthful Eyes - Full Results",
             },
@@ -939,7 +932,7 @@ export const treatmentsData = {
               label: "Deep Folds Softened - 1 Week",
             },
             {
-              src: "/images/filler/Nasolabial Fold Filler/21.jpeg",
+              src: "/images/filler/facial-comparison.jpeg",
               alt: "Nasolabial results 2",
               label: "Mid-Face Lift - Immediate",
             },
@@ -1281,7 +1274,7 @@ export const treatmentsData = {
         "Skin boosters deliver intense hydration deep into the skin, improving texture, elasticity, and overall radiance for a natural glow.",
       image: {
         src: "/images/brand/skin-booster-treatment.jpg",
-        alt: "Skin booster treatment at Aesthetics by GS",
+        alt: "Practitioner preparing for a facial treatment in the clinic"
       },
       price: "From £180",
       duration: "30 minutes",
@@ -1308,35 +1301,30 @@ export const treatmentsData = {
 
       beforeAfterGallery: [
         {
-          src: "/images/brand/facial-skin-rejuvenation.jpg",
-          alt: "Skin rejuvenation facial at Aesthetics by GS",
-          label: "In-Clinic Treatment",
-        },
-        {
           src: "/images/skin-booster/1.jpeg",
           alt: "Skin booster results 1",
-          label: "Hydrated Glow - 4 Weeks",
+          label: "Hydrated Glow - 4 Weeks"
         },
         {
           src: "/images/skin-booster/2.jpeg",
           alt: "Skin booster results 2",
-          label: "Smooth Texture - 3 Sessions",
+          label: "Smooth Texture - 3 Sessions"
         },
         {
           src: "/images/skin-booster/3.jpeg",
           alt: "Skin booster results 3",
-          label: "Radiant Skin - 6 Weeks",
+          label: "Radiant Skin - 6 Weeks"
         },
         {
           src: "/images/skin-booster/4.jpeg",
           alt: "Skin booster results 4",
-          label: "Plump Skin - Full Results",
+          label: "Plump Skin - Full Results"
         },
         {
           src: "/images/skin-booster/5.jpeg",
           alt: "Skin booster results 5",
-          label: "Natural Glow - Full Effect",
-        },
+          label: "Natural Glow - Full Effect"
+        }
       ],
 
       faqs: [
@@ -1372,8 +1360,10 @@ export const treatmentsData = {
       longDescription:
         "Microneedling creates controlled micro-injuries to stimulate your skin's natural healing process, boosting collagen and elastin production for transformative results.",
       image: {
-        src: "/images/brand/skin-treatment-device.jpg",
-        alt: "Microneedling treatment at Aesthetics by GS",
+        src: "/images/clinic-photos/facial-microneedling-01.webp",
+        alt: "Practitioner using a microneedling pen on a client's face",
+        label: "Facial microneedling",
+        position: "50% 60%"
       },
       price: "From £150",
       duration: "45 minutes",
@@ -1397,72 +1387,79 @@ export const treatmentsData = {
         sessions: "3-6 sessions recommended",
       },
 
+      treatmentGallery: [
+        {
+          src: "/images/clinic-photos/facial-microneedling-01.webp",
+          alt: "Practitioner using a microneedling pen on a client's face",
+          label: "Facial microneedling"
+        },
+        {
+          src: "/images/clinic-photos/facial-microneedling-02.webp",
+          alt: "Facial microneedling performed in the clinic",
+          label: "Facial microneedling"
+        },
+        {
+          src: "/images/clinic-photos/facial-microneedling-03.webp",
+          alt: "Microneedling pen used on a client's cheek",
+          label: "Cheek microneedling"
+        }
+      ],
       beforeAfterGallery: [
         {
           src: "/images/micronedling/1.jpeg",
-          alt: "Microneedling results 1",
-          label: "Skin Texture - Before & After",
+          alt: "Facial skin comparison",
+          label: "Facial skin comparison"
         },
         {
           src: "/images/micronedling/2.jpeg",
-          alt: "Microneedling results 2",
-          label: "Acne Scars - 3 Sessions",
+          alt: "Cheek lines comparison",
+          label: "Cheek lines comparison"
         },
         {
           src: "/images/micronedling/3.jpeg",
-          alt: "Microneedling results 3",
-          label: "Fine Lines - 4 Sessions",
+          alt: "Cheek pigmentation comparison",
+          label: "Cheek pigmentation comparison"
         },
         {
           src: "/images/micronedling/4.jpeg",
-          alt: "Microneedling results 4",
-          label: "Pore Size - 5 Sessions",
+          alt: "Facial lines comparison",
+          label: "Facial lines comparison"
         },
         {
           src: "/images/micronedling/5.jpeg",
-          alt: "Microneedling results 5",
-          label: "Overall Glow - 3 Sessions",
+          alt: "Facial profile comparison",
+          label: "Facial profile comparison"
         },
         {
           src: "/images/micronedling/6.jpeg",
-          alt: "Microneedling results 6",
-          label: "Radiant Skin - 6 Sessions",
+          alt: "Cheek texture comparison",
+          label: "Cheek texture comparison"
         },
         {
           src: "/images/micronedling/7.jpeg",
-          alt: "Microneedling results 7",
-          label: "Smooth Texture - 4 Sessions",
+          alt: "Cheek scarring comparison",
+          label: "Cheek scarring comparison"
         },
         {
           src: "/images/micronedling/8.jpeg",
-          alt: "Microneedling results 8",
-          label: "Collagen Boost - 5 Sessions",
-        },
-        {
-          src: "/images/micronedling/9.jpeg",
-          alt: "Microneedling results 9",
-          label: "Youthful Skin - 6 Sessions",
+          alt: "Cheek marks comparison",
+          label: "Cheek marks comparison"
         },
         {
           src: "/images/micronedling/10.jpeg",
-          alt: "Microneedling results 10",
-          label: "Transformed - Full Results",
-        },
-        {
-          src: "/images/micronedling/11.jpeg",
-          alt: "Microneedling results 11",
-          label: "Final Effect - 6 Months",
+          alt: "Skin texture comparison",
+          label: "Skin texture comparison"
         },
         {
           src: "/images/micronedling/IMG_2084.JPG.jpeg",
-          alt: "Microneedling results 12",
-          label: "Before & After Comparison",
+          alt: "Cheek profile comparison",
+          label: "Cheek profile comparison"
         },
         {
           src: "/images/micronedling/IMG_2085.JPG.jpeg",
-          alt: "Microneedling results 13",
-          label: "Full Transformation",
-        },
+          alt: "Cheek pigmentation comparison",
+          label: "Cheek pigmentation comparison"
+        }
       ],
 
       faqs: [
@@ -1499,8 +1496,10 @@ export const treatmentsData = {
           duration: "60 minutes",
           // ── shares microneedling images until dedicated PRP images are added ──
           image: {
-            src: "/images/micronedling/1.jpeg",
-            alt: "Microneedling + PRP Treatment",
+            src: "/images/clinic-photos/facial-microneedling-01.webp",
+            alt: "The microneedling stage of a facial treatment",
+            label: "Facial microneedling",
+            position: "50% 60%"
           },
           benefits: [
             "Enhanced collagen production",
@@ -1518,28 +1517,7 @@ export const treatmentsData = {
             duration: "Long-lasting",
             sessions: "3-4 sessions recommended",
           },
-          beforeAfterGallery: [
-            {
-              src: "/images/micronedling/2.jpeg",
-              alt: "PRP results 1",
-              label: "Dramatic Improvement - 3 Sessions",
-            },
-            {
-              src: "/images/micronedling/3.jpeg",
-              alt: "PRP results 2",
-              label: "Scar Reduction - 4 Sessions",
-            },
-            {
-              src: "/images/micronedling/4.jpeg",
-              alt: "PRP results 3",
-              label: "Glowing Skin - 6 Weeks",
-            },
-            {
-              src: "/images/micronedling/5.jpeg",
-              alt: "PRP results 4",
-              label: "Transformed Texture - Full Results",
-            },
-          ],
+          beforeAfterGallery: [],
           faqs: [
             {
               question: "What is PRP?",
@@ -1597,19 +1575,19 @@ export const treatmentsData = {
       beforeAfterGallery: [
         {
           src: "/images/misotrops/1.jpeg",
-          alt: "Mesotherapy results 1",
-          label: "Brightness - 4 Sessions",
+          alt: "Under-eye comparison photo 1",
+          label: "Under-eye comparison"
         },
         {
           src: "/images/misotrops/2.jpeg",
-          alt: "Mesotherapy results 2",
-          label: "Even Tone - 3 Sessions",
+          alt: "Under-eye comparison photo 2",
+          label: "Under-eye comparison"
         },
         {
-          src: "/images/misotrops/4.jpeg",
-          alt: "Mesotherapy results 3",
-          label: "Healthy Skin - Full Result",
-        },
+          src: "/images/misotrops/3.jpeg",
+          alt: "Under-eye comparison photo 3",
+          label: "Under-eye comparison"
+        }
       ],
 
       faqs: [
@@ -1662,22 +1640,19 @@ export const treatmentsData = {
           beforeAfterGallery: [
             {
               src: "/images/misotrops/1.jpeg",
-
-              alt: "Under eye meso results 1",
-              label: "Brighter Eyes - Before & After",
+              alt: "Under-eye comparison photo 1",
+              label: "Under-eye comparison"
             },
             {
               src: "/images/misotrops/2.jpeg",
-
-              alt: "Under eye meso results 1",
-              label: "Brighter Eyes - Before & After",
+              alt: "Under-eye comparison photo 2",
+              label: "Under-eye comparison"
             },
             {
               src: "/images/misotrops/3.jpeg",
-
-              alt: "Under eye meso results 1",
-              label: "Brighter Eyes - Before & After",
-            },
+              alt: "Under-eye comparison photo 3",
+              label: "Under-eye comparison"
+            }
           ],
           faqs: [
             {
@@ -1703,8 +1678,8 @@ export const treatmentsData = {
           price: "From £150",
           duration: "25 minutes",
           image: {
-            src: "/images/misotrops/2.jpeg",
-            alt: "Hand Mesotherapy Treatment",
+            src: "/images/brand/clinic-treatment-room-1.jpg",
+            alt: "The Aesthetics by GS treatment room"
           },
           benefits: [
             "Restores volume",
@@ -1721,23 +1696,7 @@ export const treatmentsData = {
             full: "4 sessions",
             duration: "6-12 months",
           },
-          beforeAfterGallery: [
-            {
-              src: "/images/misotrops/2.jpeg",
-              alt: "Hand meso results 1",
-              label: "Volume Restored - 3 Sessions",
-            },
-            {
-              src: "/images/misotrops/3.jpeg",
-              alt: "Hand meso results 2",
-              label: "Faded Spots - 4 Sessions",
-            },
-            {
-              src: "/images/misotrops/4.jpeg",
-              alt: "Hand meso results 3",
-              label: "Youthful Hands - Full Result",
-            },
-          ],
+          beforeAfterGallery: [],
           faqs: [
             {
               question: "How many sessions do I need?",
@@ -1794,34 +1753,29 @@ export const treatmentsData = {
       beforeAfterGallery: [
         {
           src: "/images/non-surgecal/1.jpeg",
-          alt: "Rhinoplasty results 1",
-          label: "Bridge Smoothing - Immediate",
-        },
-        {
-          src: "/images/non-surgecal/2.jpeg",
-          alt: "Rhinoplasty results 2",
-          label: "Tip Lift - Same Day",
+          alt: "Nose profile comparison 1",
+          label: "Nose profile comparison"
         },
         {
           src: "/images/non-surgecal/3.jpeg",
-          alt: "Rhinoplasty results 3",
-          label: "Profile Enhancement - 1 Week",
+          alt: "Nose profile comparison 2",
+          label: "Nose profile comparison"
         },
         {
           src: "/images/non-surgecal/4.jpeg",
-          alt: "Rhinoplasty results 4",
-          label: "Balanced Appearance - 2 Weeks",
+          alt: "Nose profile comparison 3",
+          label: "Nose profile comparison"
         },
         {
           src: "/images/non-surgecal/5.jpeg",
-          alt: "Rhinoplasty results 5",
-          label: "Natural Result - 3 Weeks",
+          alt: "Nose profile comparison 4",
+          label: "Nose profile comparison"
         },
         {
           src: "/images/non-surgecal/6.jpeg",
-          alt: "Rhinoplasty results 6",
-          label: "Full Effect - Final",
-        },
+          alt: "Nose profile comparison 5",
+          label: "Nose profile comparison"
+        }
       ],
 
       faqs: [
@@ -1885,29 +1839,29 @@ export const treatmentsData = {
       beforeAfterGallery: [
         {
           src: "/images/lemon/1.jpeg",
-          alt: "Fat dissolving results 1",
-          label: "Double Chin - 3 Sessions",
+          alt: "Chin profile comparison",
+          label: "Chin profile comparison"
         },
         {
           src: "/images/lemon/2.jpeg",
-          alt: "Fat dissolving results 2",
-          label: "Abdomen - 5 Sessions",
+          alt: "Facial profile comparison",
+          label: "Facial profile comparison"
         },
         {
           src: "/images/lemon/3.jpeg",
-          alt: "Fat dissolving results 3",
-          label: "Thighs - 4 Sessions",
+          alt: "Upper-arm comparison",
+          label: "Upper-arm comparison"
         },
         {
           src: "/images/lemon/4.jpeg",
-          alt: "Fat dissolving results 4",
-          label: "Arms - 3 Sessions",
+          alt: "Upper-arm comparison",
+          label: "Upper-arm comparison"
         },
         {
           src: "/images/lemon/5.jpeg",
-          alt: "Fat dissolving results 5",
-          label: "Full Results - 5 Sessions",
-        },
+          alt: "Upper-arm measurement comparison",
+          label: "Upper-arm measurement comparison"
+        }
       ],
 
       faqs: [
@@ -1930,6 +1884,195 @@ export const treatmentsData = {
 
       subTreatments: [], // no sub-treatments
     },
+    // Services highlighted in the clinic's leaflet. Prices and appointment
+    // lengths are confirmed at consultation rather than estimated here.
+    {
+      id: "prp-treatments",
+      name: "PRP Treatments",
+      category: "skin-care",
+      shortDescription:
+        "Platelet-rich plasma options for skin and scalp concerns, following a clinical consultation.",
+      longDescription:
+        "Platelet-rich plasma (PRP) is prepared from a sample of your own blood, concentrating the platelets before treatment. We discuss your skin or scalp concerns and whether PRP is appropriate. Your consultation covers the proposed approach, expected outcomes, limitations, aftercare and pricing before you decide to proceed.",
+      image: {
+        src: "/images/brand-stock/prp-treatment-wide.jpg",
+        alt: "Representative platelet-rich plasma scalp treatment",
+      },
+      price: "On consultation",
+      featured: false,
+      subTreatments: [],
+      faqs: [
+        {
+          question: "Is this the same as microneedling with PRP?",
+          answer:
+            "Microneedling with PRP is a combined treatment and has its own page on our website. A consultation helps identify whether a combined approach or a different PRP treatment is appropriate for you.",
+        },
+        {
+          question: "How much does treatment cost?",
+          answer:
+            "Pricing, appointment length and the proposed number of sessions are confirmed at consultation, based on the treatment area and your individual plan.",
+        },
+      ],
+    },
+    {
+      id: "pdo-threads",
+      name: "PDO Threads",
+      category: "skin-care",
+      shortDescription:
+        "Discuss thread treatments for selected facial lifting and contouring concerns.",
+      longDescription:
+        "PDO thread treatments use absorbable polydioxanone threads placed beneath the skin to address selected concerns about facial support and contour. We assess your skin, medical history and expectations before recommending a plan. The proposed technique, potential risks, recovery and alternatives are discussed at consultation.",
+      image: {
+        src: "/images/brand/clinic-treatment-room-1.jpg",
+        alt: "The Aesthetics by GS treatment room in Leeds",
+      },
+      price: "On consultation",
+      featured: false,
+      subTreatments: [],
+      faqs: [
+        {
+          question: "Is a thread treatment the same as a surgical facelift?",
+          answer:
+            "No. Thread treatments and surgical facelifts have different approaches, limitations and recovery requirements. We discuss realistic expectations and suitable alternatives during consultation.",
+        },
+        {
+          question: "What should I know about recovery and pricing?",
+          answer:
+            "Recovery varies with the treatment plan. Possible effects include swelling, bruising and discomfort. Aftercare, appointment length and pricing are explained before treatment.",
+        },
+      ],
+    },
+    {
+      id: "skin-rejuvenation",
+      name: "Skin Rejuvenation",
+      category: "skin-care",
+      shortDescription:
+        "Explore a personalised skin treatment plan for texture, tone and hydration concerns.",
+      longDescription:
+        "Skin rejuvenation starts with understanding your skin and the changes you would like to address. We review concerns such as uneven texture, dullness and hydration, then discuss suitable options from our skin treatment range. Expectations, aftercare, appointment arrangements and costs are agreed at consultation.",
+      image: {
+        src: "/images/clinic-photos/facial-gel-mask.webp",
+        alt: "Client resting with a gel mask on the face",
+        label: "Facial mask",
+        position: "50% 75%"
+      },
+      price: "On consultation",
+      featured: false,
+      subTreatments: [],
+      treatmentGallery: [
+        {
+          src: "/images/clinic-photos/facial-steam-treatment.webp",
+          alt: "Client receiving facial skincare with steam",
+          label: "Facial steam"
+        },
+        {
+          src: "/images/clinic-photos/facial-product-application.webp",
+          alt: "Practitioner applying a topical facial product with a brush",
+          label: "Facial skincare"
+        },
+        {
+          src: "/images/clinic-photos/facial-gel-mask.webp",
+          alt: "Client resting with a gel mask on the face",
+          label: "Facial mask"
+        }
+      ],
+      faqs: [
+        {
+          question: "Which skin treatment should I choose?",
+          answer:
+            "The right approach depends on your skin, medical history and goals. We assess these at consultation and explain suitable options, which may include treatments already listed in our skin care range.",
+        },
+        {
+          question: "How many appointments will I need?",
+          answer:
+            "This depends on the recommended treatment and your individual concerns. Appointment lengths, costs and any proposed follow-up are confirmed during consultation.",
+        },
+      ],
+    },
+    {
+      id: "body-contouring",
+      name: "Body Contouring",
+      category: "body-contouring",
+      shortDescription:
+        "Discuss non-surgical treatment options for specific body shape and contour concerns.",
+      longDescription:
+        "A body contouring consultation focuses on the areas you would like to address and the outcome you hope to achieve. We assess suitability and explain the available non-surgical options, their limitations and potential risks. The proposed approach, number of appointments and pricing are agreed individually.",
+      image: {
+        src: "/images/brand/clinic-interior-lounge.jpg",
+        alt: "The Aesthetics by GS clinic in Leeds",
+      },
+      price: "On consultation",
+      featured: false,
+      subTreatments: [],
+      faqs: [
+        {
+          question: "Is body contouring a weight-loss treatment?",
+          answer:
+            "No. Non-surgical body contouring addresses selected contour concerns and does not replace weight management. Suitability and realistic outcomes are discussed at consultation.",
+        },
+        {
+          question: "Which method do I need, and what does it cost?",
+          answer:
+            "This depends on your treatment area, medical history and goals. We explain the options available at the clinic, pricing and aftercare before recommending a plan.",
+        },
+      ],
+    },
+    {
+      id: "iv-therapy",
+      name: "IV Therapy",
+      category: "wellness",
+      shortDescription:
+        "Discuss intravenous treatment options and suitability with our clinical team.",
+      longDescription:
+        "Intravenous (IV) therapy delivers a preparation into a vein. A clinical assessment is needed to review your medical history, current medicines and whether an infusion is appropriate. The team will explain the proposed preparation, its purpose, possible risks and alternatives, together with appointment arrangements and pricing.",
+      image: {
+        src: "/images/brand/clinic-treatment-room-1.jpg",
+        alt: "Clinical treatment setting at Aesthetics by GS",
+      },
+      price: "On consultation",
+      featured: false,
+      subTreatments: [],
+      faqs: [
+        {
+          question: "Do I need a consultation first?",
+          answer:
+            "Yes. Our clinical team must review your health, current medicines and treatment goals before advising whether an infusion is appropriate. If recommended, its contents, purpose and potential risks are explained before you decide to proceed.",
+        },
+        {
+          question: "How long does an appointment take and what does it cost?",
+          answer:
+            "Appointment length and cost depend on the proposed treatment. Contact the clinic for a consultation and an individual quote.",
+        },
+      ],
+    },
+    {
+      id: "vitamin-therapy",
+      name: "Vitamin Therapy",
+      category: "wellness",
+      shortDescription:
+        "Individual advice about vitamin treatment options, guided by your health needs and clinical assessment.",
+      longDescription:
+        "Vitamin therapy begins with a review of your health, diet, current supplements and any relevant test results. Our clinical team will discuss whether treatment is appropriate and explain the available options. The preparation and method depend on individual clinical needs, with costs and follow-up discussed before treatment.",
+      image: {
+        src: "/images/brand/clinic-interior-lounge.jpg",
+        alt: "Consultation setting at Aesthetics by GS in Leeds",
+      },
+      price: "On consultation",
+      featured: false,
+      subTreatments: [],
+      faqs: [
+        {
+          question: "Which vitamins do I need?",
+          answer:
+            "This depends on your individual needs. Your practitioner will review your history and any relevant test results before advising on treatment. Bring details of medicines and supplements you already take.",
+        },
+        {
+          question: "Is vitamin therapy suitable for everyone?",
+          answer:
+            "No. Vitamin treatment should be based on clinical need, and some people may be better suited to dietary advice or oral supplements. Your consultation helps determine the appropriate approach and pricing.",
+        },
+      ],
+    },
   ], // end treatments array
 
   // ─────────────────────────────────────────
@@ -1945,6 +2088,68 @@ export const treatmentsData = {
   // ─────────────────────────────────────────
   // WHY CHOOSE US
   // ─────────────────────────────────────────
+  clinicGallery: {
+    badge: "Aesthetics by GS",
+    title: "Inside Our Clinic",
+    description: "A closer look at our treatments and everyday care.",
+    images: [
+      {
+        src: "/images/clinic-photos/facial-microneedling-01.webp",
+        alt: "Practitioner using a microneedling pen on a client's face",
+        label: "Facial microneedling"
+      },
+      {
+        src: "/images/clinic-photos/facial-steam-treatment.webp",
+        alt: "Client receiving facial skincare with steam",
+        label: "Facial steam"
+      },
+      {
+        src: "/images/clinic-photos/facial-gel-mask.webp",
+        alt: "Client resting with a gel mask on the face",
+        label: "Facial mask"
+      },
+      {
+        src: "/images/clinic-photos/facial-microneedling-02.webp",
+        alt: "Facial microneedling performed in the clinic",
+        label: "Facial microneedling"
+      },
+      {
+        src: "/images/clinic-photos/facial-product-application.webp",
+        alt: "Practitioner applying a topical facial product with a brush",
+        label: "Facial skincare"
+      },
+      {
+        src: "/images/clinic-photos/scalp-treatment.webp",
+        alt: "Practitioner working on a client's scalp in the clinic",
+        label: "Scalp care"
+      },
+      {
+        src: "/images/clinic-photos/forehead-injection-closeup.webp",
+        alt: "Close-up of a practitioner administering a forehead injection",
+        label: "Forehead treatment"
+      },
+      {
+        src: "/images/clinic-photos/neck-injection.webp",
+        alt: "Practitioner administering an injection at a client's neck",
+        label: "Neck treatment"
+      },
+      {
+        src: "/images/clinic-photos/blood-sample-collection.webp",
+        alt: "Practitioner collecting a blood sample from a client's arm",
+        label: "Blood sample collection"
+      },
+      {
+        src: "/images/clinic-photos/facial-microneedling-03.webp",
+        alt: "Microneedling pen used on a client's cheek",
+        label: "Cheek microneedling"
+      },
+      {
+        src: "/images/clinic-photos/forehead-injection.webp",
+        alt: "Client receiving a forehead injection in the clinic",
+        label: "Forehead treatment"
+      }
+    ]
+  },
   whyChooseUs: [
     "CPD-certified specialists",
     "Premium, approved products",

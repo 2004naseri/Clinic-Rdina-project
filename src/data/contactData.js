@@ -5,6 +5,9 @@
 // ========================================
 import { social, phones, whatsapp, hours, clinic } from "./siteConfig";
 
+// Match the clinic's exact Google Maps listing, including its business pin.
+const encodedMapAddress = encodeURIComponent(`${clinic.name}, ${clinic.address}`);
+
 export const contactData = {
   hero: {
     badge: "Get In Touch",
@@ -42,8 +45,9 @@ export const contactData = {
     },
     address: {
       fullAddress: clinic.address,
-      mapLink:
-        "https://maps.google.com/?q=Unit+1+Gemini+Business+Park+9+Sheepscar+Way+Leeds+LS7+3JB",
+      mapLink: `https://www.google.com/maps/search/?api=1&query=${encodedMapAddress}&query_place_id=${clinic.mapPlaceId}`,
+      directionsLink: `https://www.google.com/maps/dir/?api=1&destination=${encodedMapAddress}&destination_place_id=${clinic.mapPlaceId}`,
+      mapEmbedUrl: `https://maps.google.com/maps?cid=${clinic.mapCid}&z=16&output=embed`,
     },
     hours,
   },
@@ -114,8 +118,14 @@ export const contactData = {
         "Non-Surgical Rhinoplasty",
         "Dermal Fillers",
         "Skin Boosters",
+        "Microneedling",
+        "PRP Treatments",
+        "PDO Threads",
+        "Skin Rejuvenation",
+        "Body Contouring",
         "Mesotherapy",
         "Lemon Bottle Fat Dissolving",
+        "IV Therapy",
         "Vitamin Therapy",
         "Other",
       ],

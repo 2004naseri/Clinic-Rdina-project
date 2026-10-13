@@ -4,7 +4,7 @@
 // ========================================
 // Use for section titles and descriptions
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SectionHeader = ({
   badge,
@@ -23,7 +23,7 @@ const SectionHeader = ({
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth", // Changed from "instant" to "auto"
+      behavior: "smooth",
     });
     navigate(path);
   }

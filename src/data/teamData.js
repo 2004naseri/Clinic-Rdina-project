@@ -97,67 +97,6 @@ export const teamData = {
       },
     },
 
-    // ── Sima Parsazad ──
-    {
-      id: "sima-parsazad",
-      featured: false,
-      name: "Sima Parsazad",
-      title: "PhD · DBA",
-      role: "Senior Aesthetic Practitioner",
-      roles: [
-        "Aesthetic Practitioner",
-        "18+ Years of Clinical Experience",
-        "PhD in Clinical Psychology",
-        "Internationally Certified — France, Spain, Italy, UAE, Iran & UK",
-      ],
-      image: {
-        src: "/images/dr-sima.jpeg",
-        alt: "Sima Parsazad",
-        placeholder: "S",
-      },
-      tagline:
-        "Scientific expertise, clinical precision, and artistic vision — every treatment tells a story of refined transformation.",
-      shortBio:
-        "Sima Parsazad is a highly experienced Aesthetic Practitioner with over 18 years of professional expertise in skin, hair, and advanced injectable aesthetic treatments, holding internationally recognised certifications across six countries.",
-      fullBio: [
-        "Sima Parsazad is a highly experienced Aesthetic Practitioner with over 18 years of professional expertise in skin, hair, and advanced injectable aesthetic treatments. She began her career in 2006 and has since gained an extensive portfolio of internationally recognised certifications from France, Spain, Italy, the United Arab Emirates, Iran, and the United Kingdom.",
-        "She holds a PhD in Clinical Psychology, a Doctorate in Business Administration (DBA), and a Master's degree in International Management and Marketing, with part of her academic education completed in Georgia.",
-        "Sima specialises in a wide range of advanced aesthetic procedures, including dermal fillers, anti-wrinkle injections, skin boosters, mesotherapy, microneedling, hair fillers, Lemon Bottle fat-dissolving treatments, skin rejuvenation, and bespoke non-surgical aesthetic solutions.",
-        "Her professional philosophy combines scientific expertise, clinical precision, and artistic vision to deliver safe, natural-looking, and refined results. Every treatment is tailored to the individual, with a strong focus on client confidence, wellbeing, and long-term satisfaction.",
-      ],
-      credentials: [
-        {
-          icon: "degree",
-          label: "PhD in Clinical Psychology",
-          detail: "Doctorate in Business Administration (DBA)",
-        },
-        {
-          icon: "research",
-          label: "MSc International Management & Marketing",
-          detail: "Part of education completed in Georgia",
-        },
-        {
-          icon: "aesthetic",
-          label: "18+ Years Aesthetic Experience",
-          detail: "Career commenced 2006",
-        },
-        {
-          icon: "editor",
-          label: "International Certifications",
-          detail: "France · Spain · Italy · UAE · Iran · UK",
-        },
-      ],
-      expertise: [
-        "Dermal fillers & natural facial contouring",
-        "Anti-wrinkle injections & botulinum toxin",
-        "Skin boosters & advanced hydration therapies",
-        "Mesotherapy & microneedling",
-        "Hair fillers & scalp treatments",
-        "Lemon Bottle fat-dissolving treatments",
-        "Skin rejuvenation & bespoke non-surgical solutions",
-      ],
-    },
-
     // ── Golara Shibani ──
     {
       id: "golara-shibani",
@@ -222,7 +161,7 @@ export const teamData = {
   // CLINIC STATS
   // ==================
   stats: [
-    { number: "3", label: "Expert Practitioners" },
+    { number: "2", label: "Expert Practitioners" },
     { number: "18+", label: "Years Combined Experience" },
     { number: "UK", label: "Clinical Standards" },
     { number: "MD", label: "Medical Doctor Led" },

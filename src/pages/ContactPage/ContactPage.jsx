@@ -1,7 +1,8 @@
 // src/pages/ContactPage/ContactPage.jsx — Tailwind v4
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 import contactData from "../../data/contactData";
+import SocialIcon from "../../components/SocialIcon";
 
 const { hero, contactInfo, socialMedia, formFields, quickActions, faqs } =
   contactData;
@@ -89,7 +90,19 @@ function ClockIcon({ className }) {
   );
 }
 
-const iconMap = { phone: PhoneIcon, whatsapp: WhatsAppIcon, email: EmailIcon };
+const iconMap = { phone: PhoneIcon, whatsapp: WhatsAppIcon, email: EmailIcon, location: LocationIcon };
+
+const contactActions = [
+  ...quickActions.filter((action) => action.action),
+  {
+    id: "directions",
+    title: "Find Us",
+    description: "Visit our clinic in Leeds",
+    icon: "location",
+    action: contactInfo.address.directionsLink,
+    buttonText: "Get Directions",
+  },
+];
 
 // ─── FAQ Item ─────────────────────────────────────────────────
 function FAQItem({ faq, index }) {
@@ -259,53 +272,41 @@ export default function ContactPage() {
         />
       </section>
 
-      {/* ══ QUICK ACTIONS ═════════════════════════════════════ */}
-      <section className="bg-white py-16">
+      {/* ══ QUICK CONTACT ═════════════════════════════════════ */}
+      <section aria-label="Ways to contact the clinic" className="bg-white py-10 lg:py-12">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {quickActions.map((action, i) => {
+          <div className={`grid grid-cols-1 gap-4 ${contactActions.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
+            {contactActions.map((action) => {
               const Icon = iconMap[action.icon] || PhoneIcon;
               const isExternal = action.action.startsWith("http");
+              const detail = action.id === "whatsapp"
+                ? contactInfo.whatsapp.display
+                : action.id === "email"
+                  ? contactInfo.email.display
+                  : action.id === "call" ? contactInfo.phone.display : null;
+              const availability = action.id === "whatsapp"
+                ? contactInfo.whatsapp.available
+                : action.id === "email"
+                  ? `Response ${contactInfo.email.response}`
+                  : action.id === "call" ? contactInfo.phone.available : null;
               return (
                 <a
                   key={action.id}
                   href={action.action}
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
-                  className="group flex items-center gap-5 p-6 border border-border
-                             hover:border-secondary hover:shadow-[0_16px_40px_rgba(58,49,40,0.12)]
-                             hover:-translate-y-1 transition-all duration-400 relative overflow-hidden"
-                  style={{
-                    animation: `fadeUp 0.6s cubic-bezier(.16,1,.3,1) ${i * 0.12}s both`,
-                  }}
+                  className="group flex items-start gap-4 p-6 border border-border bg-background
+                             hover:border-primary hover:shadow-md transition-all duration-300 min-w-0"
                 >
-                  <div
-                    className="absolute top-0 left-0 right-0 h-0.5
-                                  bg-gradient-to-r from-secondary to-primary
-                                  scale-x-0 group-hover:scale-x-100
-                                  transition-transform duration-400 origin-left"
-                  />
-                  <div
-                    className="w-14 h-14 rounded-full bg-secondary/8 flex items-center justify-center
-                                  shrink-0 group-hover:bg-gradient-to-br group-hover:from-secondary
-                                  group-hover:to-primary transition-all duration-400"
-                  >
-                    <Icon className="w-6 h-6 text-secondary group-hover:text-white transition-colors duration-400" />
-                  </div>
-                  <div className="flex-1">
-                    <h3
-                      className="font-display text-[19px] font-normal text-text-primary mb-0.5
-                                   group-hover:text-secondary transition-colors duration-300"
-                    >
-                      {action.title}
-                    </h3>
-                    <p className="font-body text-[11px] text-text-muted mb-2">
-                      {action.description}
-                    </p>
-                    <span
-                      className="font-body text-[10px] font-bold tracking-[0.18em] uppercase
-                                     text-accent group-hover:text-secondary transition-colors duration-300"
-                    >
+                  <span className="w-11 h-11 rounded-full bg-secondary/8 flex items-center justify-center shrink-0">
+                    <Icon className="w-5 h-5 text-secondary" />
+                  </span>
+                  <div className="flex flex-col flex-1 min-w-0 self-stretch">
+                    <h2 className="font-display text-[23px] leading-tight text-secondary mb-2">{action.title}</h2>
+                    <p className="font-body text-[11px] leading-relaxed text-text-muted">{action.description}</p>
+                    {detail && <p className="font-body text-[12px] font-semibold text-secondary mt-2 break-words">{detail}</p>}
+                    {availability && <p className="font-body text-[10px] leading-relaxed text-text-muted mt-1">{availability}</p>}
+                    <span className="block font-body text-[9px] font-bold tracking-[0.16em] uppercase text-accent mt-auto pt-4">
                       {action.buttonText} →
                     </span>
                   </div>
@@ -313,334 +314,206 @@ export default function ContactPage() {
               );
             })}
           </div>
+          {contactInfo.additionalPhones.filter((phone) => phone.link && phone.display).map((phone) => (
+            <a key={phone.link} href={phone.link} className="inline-block font-body text-[12px] text-secondary mt-4 mr-5">
+              {phone.label}: {phone.display}
+            </a>
+          ))}
         </div>
       </section>
 
-      {/* ══ FORM + INFO ═══════════════════════════════════════ */}
-      <section className="bg-surface py-20">
+      {/* ══ APPOINTMENT + VISIT ═══════════════════════════════ */}
+      <section id="contact-details" className="bg-surface py-12 lg:py-20">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {/* ── WHATSAPP FORM ── */}
-            <div className="lg:col-span-2">
-              <div className="bg-white border border-border p-8 lg:p-10">
-                {/* Header */}
-                <p
-                  className="font-body text-[9px] tracking-[0.35em] uppercase text-accent font-semibold mb-3
-                               flex items-center gap-2.5"
-                >
-                  <span className="w-5 h-px bg-accent inline-block" />
-                  Free Consultation
-                </p>
-                <h2
-                  className="font-display font-normal text-text-primary tracking-tight
-                               leading-[1.1] text-[clamp(26px,3vw,40px)] mb-3"
-                >
-                  Request an Appointment
-                </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+            <div id="appointment-card" className="min-w-0 bg-white border border-border p-6 sm:p-8 lg:p-9">
+              <p className="font-body text-[9px] tracking-[0.3em] uppercase text-accent font-semibold mb-3 flex items-center gap-2.5">
+                <span className="w-5 h-px bg-accent inline-block" />
+                Free Consultation
+              </p>
+              <h2 className="font-display font-normal text-secondary leading-[1.1] text-[30px] lg:text-[36px] mb-5">
+                Request an Appointment
+              </h2>
 
-                {/* WhatsApp notice banner */}
-                <div
-                  className="flex items-start gap-4 p-4 mb-7
-                                bg-[#25D366]/8 border border-[#25D366]/30"
-                >
-                  <div className="w-9 h-9 rounded-full bg-[#25D366] flex items-center justify-center shrink-0 mt-0.5">
-                    <WhatsAppIcon className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-body text-[12px] font-semibold text-text-primary mb-1">
-                      Messages go directly to WhatsApp
-                    </p>
-                    <p className="font-body text-[12px] leading-[1.75] text-text-muted">
-                      Fill in your details below and click{" "}
-                      <strong>"Send via WhatsApp"</strong> — your message will
-                      open in WhatsApp ready to send. We reply within a few
-                      hours.
-                    </p>
-                  </div>
+              <div className="flex items-start gap-3 p-4 mb-6 bg-primary-50 border border-border">
+                <span className="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0">
+                  <WhatsAppIcon className="w-4 h-4 text-white" />
+                </span>
+                <div className="min-w-0">
+                  <p className="font-body text-[12px] font-semibold text-secondary mb-1">Book through WhatsApp</p>
+                  <p className="font-body text-[12px] leading-[1.75] text-text-muted">
+                    Your request opens in WhatsApp, ready to send. Our team will reply to arrange your visit.
+                  </p>
                 </div>
+              </div>
 
-                <form onSubmit={handleWhatsApp} className="flex flex-col gap-5">
-                  {/* Name */}
-                  <div>
-                    <label
-                      className="block font-body text-[11px] font-semibold tracking-[0.1em]
-                                      uppercase text-text-primary mb-2"
-                    >
+              <form onSubmit={handleWhatsApp} className="flex flex-col gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="min-w-0">
+                    <label htmlFor="contact-name" className="block font-body text-[10px] font-semibold tracking-[0.1em] uppercase text-secondary mb-2">
                       Your Name <span className="text-accent">*</span>
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       name="name"
+                      autoComplete="name"
                       required
                       placeholder="e.g. Sarah Johnson"
                       onChange={handleChange}
                       className={fieldCls}
                     />
                   </div>
-
-                  {/* Phone + Service */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                      <label
-                        className="block font-body text-[11px] font-semibold tracking-[0.1em]
-                                        uppercase text-text-primary mb-2"
-                      >
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        placeholder="07XXX XXXXXX"
-                        onChange={handleChange}
-                        className={fieldCls}
-                      />
-                    </div>
-                    <div>
-                      <label
-                        className="block font-body text-[11px] font-semibold tracking-[0.1em]
-                                        uppercase text-text-primary mb-2"
-                      >
-                        Treatment of Interest
-                      </label>
-                      <select
-                        name="service"
-                        onChange={handleChange}
-                        className={fieldCls}
-                      >
-                        <option value="">Select a treatment…</option>
-                        {formFields.service.options.map((o, i) => (
-                          <option key={i} value={o}>
-                            {o}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Message */}
-                  <div>
-                    <label
-                      className="block font-body text-[11px] font-semibold tracking-[0.1em]
-                                      uppercase text-text-primary mb-2"
-                    >
-                      Your Message
+                  <div className="min-w-0">
+                    <label htmlFor="contact-phone" className="block font-body text-[10px] font-semibold tracking-[0.1em] uppercase text-secondary mb-2">
+                      Phone Number
                     </label>
-                    <textarea
-                      name="message"
-                      rows={4}
-                      placeholder="Tell us about your concerns or any questions you have…"
+                    <input
+                      id="contact-phone"
+                      type="tel"
+                      name="phone"
+                      autoComplete="tel"
+                      placeholder="07XXX XXXXXX"
                       onChange={handleChange}
-                      className={`${fieldCls} resize-none`}
+                      className={fieldCls}
                     />
                   </div>
+                </div>
 
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    className="w-full py-4 flex items-center justify-center gap-3
-                               bg-[#25D366] text-white
-                               font-body text-[10px] font-bold tracking-[0.25em] uppercase
-                               transition-all duration-300 hover:bg-[#1ebe5d] hover:-translate-y-0.5
-                               cursor-pointer mt-2"
-                  >
-                    <WhatsAppIcon className="w-5 h-5" />
-                    Send via WhatsApp
-                  </button>
+                <div className="min-w-0">
+                  <label htmlFor="contact-service" className="block font-body text-[10px] font-semibold tracking-[0.1em] uppercase text-secondary mb-2">
+                    Treatment of Interest
+                  </label>
+                  <select id="contact-service" name="service" onChange={handleChange} className={fieldCls}>
+                    <option value="">Select a treatment…</option>
+                    {formFields.service.options.map((option) => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
 
-                  <p className="font-body text-[10px] text-text-muted text-center italic">
-                    ✦ Clicking the button opens WhatsApp with your message
-                    pre-filled — just hit send.
-                  </p>
-                </form>
+                <div>
+                  <label htmlFor="contact-message" className="block font-body text-[10px] font-semibold tracking-[0.1em] uppercase text-secondary mb-2">
+                    Your Message
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows={4}
+                    placeholder="Tell us about your concerns or any questions you have…"
+                    onChange={handleChange}
+                    className={`${fieldCls} resize-y min-h-28`}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-4 flex items-center justify-center gap-3 bg-primary text-white
+                             font-body text-[10px] font-bold tracking-[0.2em] uppercase
+                             transition-colors duration-300 hover:bg-primary-dark cursor-pointer"
+                >
+                  <WhatsAppIcon className="w-5 h-5" />
+                  Send via WhatsApp
+                </button>
+                <p className="font-body text-[10px] leading-relaxed text-text-muted text-center">
+                  Review your message in WhatsApp, then tap send.
+                </p>
+              </form>
+            </div>
+
+            <div id="clinic-map-card" className="min-w-0 flex flex-col bg-white border border-border overflow-hidden">
+              <div className="bg-background p-6 sm:p-8">
+                <p className="flex items-center gap-2.5 font-body text-[9px] font-semibold tracking-[0.3em] uppercase text-accent mb-3">
+                  <LocationIcon className="w-4 h-4 shrink-0" />
+                  Find Us
+                </p>
+                <h2 className="font-display text-[30px] lg:text-[36px] leading-[1.1] text-secondary mb-4">
+                  Visit Our Leeds Clinic
+                </h2>
+                <a
+                  href={contactInfo.address.mapLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View our Leeds clinic address in Google Maps (opens in a new tab)"
+                  className="block font-body text-[13px] leading-[1.8] text-secondary
+                             underline decoration-border underline-offset-4 hover:decoration-primary"
+                >
+                  {contactInfo.address.fullAddress}
+                </a>
+              </div>
+              <iframe
+                src={contactInfo.address.mapEmbedUrl}
+                title={`Clinic location: ${contactInfo.address.fullAddress}`}
+                width="100%"
+                height="360"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                className="block w-full min-h-[300px] lg:flex-1 lg:min-h-[320px] border-0 bg-background"
+              />
+              <div className="flex flex-wrap items-center justify-between gap-4 p-6 bg-background border-t border-border">
+                <p className="font-body text-[11px] leading-relaxed text-text-muted">Plan your journey with Google Maps</p>
+                <a
+                  href={contactInfo.address.directionsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Get directions to our Leeds clinic in Google Maps (opens in a new tab)"
+                  className="inline-flex items-center justify-center gap-3 px-5 py-3.5 bg-primary text-white
+                             font-body text-[9px] font-bold tracking-[0.16em] uppercase
+                             hover:bg-primary-dark transition-colors duration-300
+                             focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                >
+                  Get directions <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* ══ PRACTICAL INFORMATION ════════════════════════ */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-6 lg:mt-8">
+            <div id="opening-hours-card" className="min-w-0 bg-white border border-border p-6 sm:p-8">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="w-10 h-10 rounded-full bg-secondary/8 flex items-center justify-center">
+                  <ClockIcon className="w-4 h-4 text-secondary" />
+                </span>
+                <h2 className="font-display text-[26px] text-secondary">Opening Hours</h2>
+              </div>
+              <div>
+                {contactInfo.hours.map((row) => (
+                  <div key={row.day} className="flex flex-wrap justify-between items-center gap-2 py-3 border-b border-border last:border-0">
+                    <span className="font-body text-[12px] text-text-muted">{row.day}</span>
+                    <span className={`font-body text-[12px] font-semibold ${row.open ? "text-secondary" : "text-accent"}`}>
+                      {row.hours}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* ── INFO SIDEBAR ── */}
-            <div className="flex flex-col gap-5">
-              {/* Contact details */}
-              <div className="bg-white border border-border p-7">
-                <p className="font-body text-[9px] tracking-[0.3em] uppercase text-accent font-semibold mb-5">
-                  Contact Information
-                </p>
-
-                <div className="flex flex-col gap-5">
-                  {/* Phone */}
-                  <div className="flex gap-3.5 items-start">
-                    <div className="w-9 h-9 rounded-full bg-secondary/8 flex items-center justify-center shrink-0">
-                      <PhoneIcon className="w-4 h-4 text-secondary" />
-                    </div>
-                    <div>
-                      <p className="font-body text-[9px] tracking-[0.15em] uppercase text-text-muted mb-1">
-                        Phone
-                      </p>
-                      <a
-                        href={contactInfo.phone.link}
-                        className="font-body text-[13px] font-semibold text-text-primary hover:text-secondary
-                                   transition-colors duration-300 block"
-                      >
-                        {contactInfo.phone.display}
-                      </a>
-                      {contactInfo.additionalPhones.map((p, i) => (
-                        <a
-                          key={i}
-                          href={p.link}
-                          className="font-body text-[12px] text-text-muted hover:text-secondary
-                                     transition-colors duration-300 block mt-1"
-                        >
-                          {p.display}
-                          <span className="text-[10px] ml-1">({p.label})</span>
-                        </a>
-                      ))}
-                      <p className="font-body text-[10px] text-text-muted mt-1">
-                        {contactInfo.phone.available}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="h-px bg-border" />
-
-                  {/* WhatsApp */}
-                  <div className="flex gap-3.5 items-start">
-                    <div className="w-9 h-9 rounded-full bg-secondary/8 flex items-center justify-center shrink-0">
-                      <WhatsAppIcon className="w-4 h-4 text-secondary" />
-                    </div>
-                    <div>
-                      <p className="font-body text-[9px] tracking-[0.15em] uppercase text-text-muted mb-1">
-                        WhatsApp
-                      </p>
-                      <a
-                        href={contactInfo.whatsapp.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-body text-[13px] font-semibold text-text-primary hover:text-secondary
-                                   transition-colors duration-300"
-                      >
-                        {contactInfo.whatsapp.display}
-                      </a>
-                      <p className="font-body text-[10px] text-text-muted mt-1">
-                        {contactInfo.whatsapp.available}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="h-px bg-border" />
-
-                  {/* Email */}
-                  <div className="flex gap-3.5 items-start">
-                    <div className="w-9 h-9 rounded-full bg-secondary/8 flex items-center justify-center shrink-0">
-                      <EmailIcon className="w-4 h-4 text-secondary" />
-                    </div>
-                    <div>
-                      <p className="font-body text-[9px] tracking-[0.15em] uppercase text-text-muted mb-1">
-                        Email
-                      </p>
-                      <a
-                        href={contactInfo.email.link}
-                        className="font-body text-[13px] font-semibold text-text-primary hover:text-secondary
-                                   transition-colors duration-300 break-all"
-                      >
-                        {contactInfo.email.display}
-                      </a>
-                      <p className="font-body text-[10px] text-text-muted mt-1">
-                        Response {contactInfo.email.response}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="h-px bg-border" />
-
-                  {/* Location */}
-                  <div className="flex gap-3.5 items-start">
-                    <div className="w-9 h-9 rounded-full bg-secondary/8 flex items-center justify-center shrink-0">
-                      <LocationIcon className="w-4 h-4 text-secondary" />
-                    </div>
-                    <div>
-                      <p className="font-body text-[9px] tracking-[0.15em] uppercase text-text-muted mb-1">
-                        Location
-                      </p>
-                      <p className="font-body text-[13px] font-semibold text-text-primary">
-                        {contactInfo.address.fullAddress}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Hours */}
-              <div className="bg-white border border-border p-7">
-                <div className="flex items-center gap-3 mb-5">
-                  <ClockIcon className="w-4 h-4 text-accent" />
-                  <p className="font-body text-[9px] tracking-[0.3em] uppercase text-accent font-semibold">
-                    Opening Hours
-                  </p>
-                </div>
-                <div className="flex flex-col gap-3">
-                  {[
-                    { day: "Mon — Fri", hours: "09:00 – 18:00", open: true },
-                    { day: "Saturday", hours: "10:00 – 16:00", open: true },
-                    { day: "Sunday", hours: "Closed", open: false },
-                  ].map((row) => (
-                    <div
-                      key={row.day}
-                      className="flex justify-between items-center py-2.5 border-b border-border last:border-0"
-                    >
-                      <span className="font-body text-[12px] text-text-muted">
-                        {row.day}
-                      </span>
-                      <span
-                        className={`font-body text-[12px] font-semibold
-                                        ${row.open ? "text-text-primary" : "text-accent"}`}
-                      >
-                        {row.hours}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Social */}
-              <div className="bg-white border border-border p-7">
-                <p className="font-body text-[9px] tracking-[0.3em] uppercase text-accent font-semibold mb-5">
-                  Follow Us
-                </p>
-                <div className="flex flex-col gap-3">
-                  {socialMedia.map((s) => (
-                    <a
-                      key={s.id}
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between group
-                                 py-2.5 border-b border-border last:border-0"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div
-                          className="w-7 h-7 rounded-full bg-secondary/8 flex items-center justify-center
-                                        group-hover:bg-secondary transition-colors duration-300"
-                        >
-                          <span
-                            className="font-body text-[9px] font-bold text-secondary
-                                           group-hover:text-white transition-colors duration-300"
-                          >
-                            {s.platform[0]}
-                          </span>
-                        </div>
-                        <span
-                          className="font-body text-[12px] text-text-secondary group-hover:text-secondary
-                                         transition-colors duration-300"
-                        >
-                          {s.platform}
-                        </span>
-                      </div>
-                      <span
-                        className="font-body text-[10px] text-text-muted group-hover:text-accent
-                                       transition-colors duration-300"
-                      >
-                        {s.handle}
-                      </span>
-                    </a>
-                  ))}
-                </div>
+            <div id="social-links-card" className="min-w-0 bg-white border border-border p-6 sm:p-8">
+              <h2 className="font-display text-[26px] leading-10 text-secondary mb-5">Stay Connected</h2>
+              <div>
+                {socialMedia.map((social) => (
+                  <a
+                    key={social.id}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${social.platform}: ${social.handle} (opens in a new tab)`}
+                    className="group flex items-center gap-3 py-3 border-b border-border last:border-0
+                               focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                  >
+                    <span className="w-10 h-10 rounded-full bg-vanilla text-secondary flex items-center justify-center shrink-0
+                                     group-hover:bg-primary group-hover:text-vanilla transition-colors duration-300">
+                      <SocialIcon platform={social.icon} className="w-[18px] h-[18px]" />
+                    </span>
+                    <span className="flex-1 min-w-0">
+                      <span className="block font-body text-[12px] font-semibold text-secondary group-hover:text-primary">{social.platform}</span>
+                      <span className="block font-body text-[11px] text-text-muted break-words mt-1">{social.handle}</span>
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 text-primary shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -705,14 +578,16 @@ export default function ContactPage() {
               <WhatsAppIcon className="w-4 h-4" />
               WhatsApp Us
             </a>
-            <a
-              href={contactInfo.phone.link}
-              className="inline-block px-10 py-4 border border-white/35 text-white
-                         font-body text-[10px] font-bold tracking-[0.25em] uppercase
-                         transition-all duration-300 hover:border-white/80"
-            >
-              Call {contactInfo.phone.display}
-            </a>
+            {contactInfo.phone.link && contactInfo.phone.display && (
+              <a
+                href={contactInfo.phone.link}
+                className="inline-block px-10 py-4 border border-white/35 text-white
+                           font-body text-[10px] font-bold tracking-[0.25em] uppercase
+                           transition-all duration-300 hover:border-white/80"
+              >
+                Call {contactInfo.phone.display}
+              </a>
+            )}
           </div>
         </div>
       </section>
